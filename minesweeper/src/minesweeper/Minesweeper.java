@@ -16,8 +16,9 @@ public class Minesweeper {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Hello guys Engo using git with me ");
-        System.out.println("mouaz am here guys (V)_(V)");
+        System.out.println("am here guys (V)_(V)");
         System.out.println("Da");
+
     }
 
     

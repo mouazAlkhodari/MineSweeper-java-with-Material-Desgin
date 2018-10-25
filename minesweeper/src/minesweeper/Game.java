@@ -11,12 +11,19 @@ import java.util.ArrayList;
  *
  * @author Omar
  */
-public abstract class Game {
+public class Game {
+    class GameRules{
+        public int GetScoreChange(ArrayList moves)
+        {
+            
+        }
+        public Player DecideNextPlayer(ArrayList moves)
+        {}
+    }
     ArrayList players;
     Player currentPlayer;
     ArrayList moves;
     GameRules currentRules;
-    
     public void initGame(){};
     public boolean AcceptMove(PlayerMove move){};
     public void ApplyPlayerMove(PlayerMove move){};

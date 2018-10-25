@@ -1,6 +1,6 @@
 package minesweeper;
 
-enum MoveType{Reveal,mark}
+enum MoveType{Reveal,Mark}
 public class PlayerMove {
     Player player;
     Square square;

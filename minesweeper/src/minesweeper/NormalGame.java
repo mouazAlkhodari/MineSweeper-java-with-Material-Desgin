@@ -26,4 +26,9 @@ public class NormalGame extends Game{
     {
         return false;
     }
+
+    @Override
+    public void ApplyPlayerMove(PlayerMove move) {
+
+    }
 }

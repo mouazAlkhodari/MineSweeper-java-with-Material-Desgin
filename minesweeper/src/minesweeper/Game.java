@@ -11,11 +11,13 @@ import java.util.ArrayList;
  *
  * @author Omar
  */
-public class Game {
-    class GameRules{
-        public int GetScoreChange(ArrayList moves)
-        {
+enum GameStatus{
+    Win,Lose,Running
+}
+public abstract class Game {
 
+    class GameRules{
+        public int GetScoreChange(ArrayList moves){
             return 0;
         }
 
@@ -29,8 +31,6 @@ public class Game {
     ArrayList moves;
     GameRules currentRules;
     public void initGame(){};
-    public boolean AcceptMove(PlayerMove move){
-        return false;
-    };
-    public void ApplyPlayerMove(PlayerMove move){};
+    public abstract boolean AcceptMove(PlayerMove move);
+    public abstract void ApplyPlayerMove(PlayerMove move);
 }

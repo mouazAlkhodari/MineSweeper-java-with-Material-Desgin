@@ -64,7 +64,20 @@ public abstract class Game {
 
     protected abstract void Win();
 
-    public boolean AcceptMove(PlayerMove move){
+    public boolean AcceptMove(PlayerMove move){// x Rows Y columns
+        Square s = move.getSquare();
+        if(s.getX() <= grid.getHeight() && s.getY() <= grid.getWidth())
+        {
+            if(s.status == SquareStatus.Closed)
+            {
+                return true;
+            }
+            if(move.getType() == MoveType.Mark && s.status == SquareStatus.Marked)
+            {
+              return true;
+            }
+        }
+        return false;
     };
     public void ApplyPlayerMove(PlayerMove move){};
     public void AddPlayer(Player player)

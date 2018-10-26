@@ -31,8 +31,10 @@ public class Square {
          this.status = newStatus;
          this.playersMoves.add(PlayerWhoMadeChanges);
      }
-
+    
+    public int getNumberOfSurroundedMines() { return this.NumberOfSurroundedMines;}
     public int getX() { return this.x;}
     public int getY() { return this.x;}
+    
          
 }

@@ -4,18 +4,18 @@
  * and open the template in the editor.
  */
 package minesweeper;
-
 import java.util.ArrayList;
 
 /**
  *
  * @author Omar
  */
+
 public class Minesweeper {
 
     /**
-     * @param args the command line arguments
      */
+
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Hello guys Engo using git with me ");

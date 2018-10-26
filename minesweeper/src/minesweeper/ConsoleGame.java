@@ -5,7 +5,8 @@
  */
 package minesweeper;
 
-import java.io.Console;
+
+import BaseAlphabit.Converter;
 
 /**
  *
@@ -13,20 +14,28 @@ import java.io.Console;
  */
 public class ConsoleGame extends NormalGame {
     @Override
-    protected void printGrid() {
-        for(int i=0;i<this.grid.getwidth();i++){
+    private abstract void printGrid() {
+        for(int i=0;i<this.grid.getWidth();i++){
+            System.out.println(" "+ Converter.valueOf(i));
+        }
 
+        for(int i=0;i<this.grid.getHeight();i++){
+            System.out.println("/n");
+            System.out.println(i+" ");
+            for (int j=0;j<this.grid.getWidth();i++){
+
+            }
         }
     }
 
     @Override
-    protected void Lose() {
+    private abstract void Lose() {
         // must Do some things in Grid make user feel unhappy because he Lose the game 🌚_🌚
         System.out.println("You catch all Mines and win the game!!\n 💃💃💃^___^💃💃💃");
     }
 
     @Override
-    protected void Win() {
+    private abstract void Win() {
         // must Do some things in Grid make user feel happy because he win the game 💙_💙
         System.out.println("You catch all Mines and win the game!!\n 💃💃💃^___^💃💃💃");
     }

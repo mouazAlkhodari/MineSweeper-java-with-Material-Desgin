@@ -1,7 +1,8 @@
 package minesweeper;
 
-import java.util.Scanner;
+import BaseAlphabit.Converter;
 
+import java.util.Scanner;
 public class ConsolePlayer extends Player {
     private static Scanner in = new Scanner(System.in);
     public ConsolePlayer(String _name, int _currentScore) {
@@ -61,16 +62,8 @@ public class ConsolePlayer extends Player {
             if(!valid) System.out.println("not valid input!! try again...\n");
         } while (!valid);
         int x=Integer.valueOf(row);
-        int y=valueOf(col);
+        int y= Converter.valueOf(col);
 //        System.out.println(x+".."+y+".."+t);
         return new PlayerMove(this, new Square(x,y,Boolean.FALSE),t,new MoveResult());
-    }
-
-    private int valueOf(String alphaNum) {// get integer value of number in alphabet base number...
-        int ret=0;
-        for(int i=0;i<alphaNum.length();i++){
-            ret=ret*26+(Integer.valueOf(alphaNum.charAt(i))-(int)'a'+1);
-        }
-        return ret;
     }
 }

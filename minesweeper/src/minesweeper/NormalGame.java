@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public abstract class NormalGame extends Game{
     class DefaultRules extends GameRules{
-        
+
         public int GetScoreChange(ArrayList moves){
             return 0;
         }
@@ -34,4 +34,5 @@ public abstract class NormalGame extends Game{
     public boolean AcceptMove(PlayerMove move) {
 
     }
+
 }

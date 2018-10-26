@@ -65,7 +65,7 @@ public abstract class Game {
     protected abstract void Win();
 
     public boolean AcceptMove(PlayerMove move){
-    };
+    }
     public void ApplyPlayerMove(PlayerMove move){};
     public void AddPlayer(Player player)
     {

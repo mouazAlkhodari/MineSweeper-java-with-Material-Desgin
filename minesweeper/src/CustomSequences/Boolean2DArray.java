@@ -6,6 +6,7 @@
 package CustomSequences;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  *
@@ -13,18 +14,37 @@ import java.util.Arrays;
  */
 public class Boolean2DArray {
     public boolean[][] arr;
+    public int width,height;
     public Boolean2DArray(int width,int height,Boolean value) {
+        this.width = width;
+        this.height = height;
         for (int i = 0 ;i < height; i++) { 
              Arrays.fill(arr[i], value);
         }
     }
     
     public Boolean2DArray(int width,int height) { 
+        this.width = width;
+        this.height = height;
         for (int i = 0 ;i < height; i++) { 
              Arrays.fill(arr[i], false);
         }
+    }   
+    
+    public void GenerateRandomMines(int NumberOfMines) { 
+         for (int i = 0 ;i < NumberOfMines; i++) {
+             
+             Random rand = new Random();
+             int randomWidth,randomHeight;
+             //checking that there is no duplicated mines in one square
+             while (true) { 
+                 randomWidth = rand.nextInt(width);
+                 randomHeight = rand.nextInt(height);
+                 if (!arr[randomHeight][randomWidth]) { 
+                     arr[randomHeight][randomWidth] = true;
+                     break;
+                 }
+             }
+         }
     }
-    Boolean
-    
-    
 }

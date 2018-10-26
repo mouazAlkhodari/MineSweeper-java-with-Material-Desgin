@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Omar
  */
-public class NormalGame extends Game{
+public abstract class NormalGame extends Game{
     class DefaultRules extends GameRules{
         
         public int GetScoreChange(ArrayList moves){
@@ -21,9 +21,17 @@ public class NormalGame extends Game{
             return null;
         }
     }
+
     @Override
-    public boolean AcceptMove(PlayerMove move)
-    {
-        return false;
+    protected abstract void printGrid();
+    @Override
+    protected abstract void Lose();
+    @Override
+    protected abstract void Win();
+    @Override
+    public abstract void ApplyPlayerMove(PlayerMove move);
+    @Override
+    public boolean AcceptMove(PlayerMove move) {
+
     }
 }

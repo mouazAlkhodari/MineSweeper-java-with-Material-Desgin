@@ -11,5 +11,25 @@ package minesweeper;
  */
 public class ConsoleGame extends NormalGame {
     @Override
+    protected void printGrid() {
+
+    }
+
+    @Override
+    protected void Lose() {
+
+    }
+
+    @Override
+    protected void Win() {
+
+    }
+
+    @Override
+    public void ApplyPlayerMove(PlayerMove move) {
+
+    }
+
+    @Override
     public boolean AcceptMove(PlayerMove move){return true;}
 }

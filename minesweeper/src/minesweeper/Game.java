@@ -11,11 +11,13 @@ import java.util.ArrayList;
  *
  * @author Omar
  */
-public class Game {
-    class GameRules{
-        public int GetScoreChange(ArrayList moves)
-        {
+enum GameStatus{
+    Win,Lose,Running
+}
+public abstract class Game {
 
+    class GameRules{
+        public int GetScoreChange(ArrayList moves){
             return 0;
         }
 
@@ -29,16 +31,39 @@ public class Game {
     ArrayList moves;
     GameRules currentRules;
     Grid grid;
+    GameStatus status;
     public void initGame(int width,int height,int minesCount){
         currentPlayer = (Player)players.get(0);
+        this.status=GameStatus.Running;// need to change to begin game
         grid = new Grid(width,height,minesCount);
-    };
+        printGrid();
+        GetMove();
+    }
+
+    protected abstract void printGrid();
+
+    ;
     public void GetMove(){
         PlayerMove move = currentPlayer.GetPlayerMove();
-        if(AcceptMove(move))
+        if(AcceptMove(move)){
             ApplyPlayerMove(move);
-        
+            if(this.status==GameStatus.Win){
+                Win();
+            }
+            else if(this.status==GameStatus.Lose){
+                Lose();
+            }
+            else{
+                printGrid();
+                GetMove();
+            }
+        }
     }
+
+    protected abstract void Lose();
+
+    protected abstract void Win();
+
     public boolean AcceptMove(PlayerMove move){
         return false;   
     };

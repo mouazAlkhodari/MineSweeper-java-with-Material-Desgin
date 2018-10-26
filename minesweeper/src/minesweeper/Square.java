@@ -22,6 +22,8 @@ public class Square {
     
     public Boolean isMine() { 
         return mine == null ? false : true;
-    }   
+    } 
+    public int getX() { return this.x;}
+    public int getY() { return this.x;}
          
 }

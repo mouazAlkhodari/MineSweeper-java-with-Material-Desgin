@@ -30,7 +30,46 @@ public abstract class Game {
     Player currentPlayer;
     ArrayList moves;
     GameRules currentRules;
-    public void initGame(){};
-    public abstract boolean AcceptMove(PlayerMove move);
-    public abstract void ApplyPlayerMove(PlayerMove move);
+    Grid grid;
+    GameStatus status;
+    public void initGame(int width,int height,int minesCount){
+        currentPlayer = (Player)players.get(0);
+        this.status=GameStatus.Running;// need to change to begin game
+        grid = new Grid(width,height,minesCount);
+        printGrid();
+        GetMove();
+    }
+
+    protected abstract void printGrid();
+
+    ;
+    public void GetMove(){
+        PlayerMove move = currentPlayer.GetPlayerMove();
+        if(AcceptMove(move)){
+            ApplyPlayerMove(move);
+            if(this.status==GameStatus.Win){
+                Win();
+            }
+            else if(this.status==GameStatus.Lose){
+                Lose();
+            }
+            else{
+                printGrid();
+                GetMove();
+            }
+        }
+    }
+
+    protected abstract void Lose();
+
+    protected abstract void Win();
+
+    public boolean AcceptMove(PlayerMove move){
+        return false;   
+    };
+    public void ApplyPlayerMove(PlayerMove move){};
+    public void AddPlayer(Player player)
+    {
+        players.add(player);
+    }
 }

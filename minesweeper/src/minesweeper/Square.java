@@ -23,6 +23,9 @@ public class Square {
     public Boolean isMine() { 
         return mine == null ? false : true;
     } 
+    public void ChangeStatus(SquareStatus newStatus) { 
+        this.status = newStatus;
+    }
     public int getX() { return this.x;}
     public int getY() { return this.x;}
          

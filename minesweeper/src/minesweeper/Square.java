@@ -22,7 +22,12 @@ public class Square {
     
     public Boolean isMine() { 
         return mine == null ? false : true;
-    } 
+    }
+     public void ApplyChangesToSquare(SquareStatus newStatus,Player PlayerWhoMadeChanges) { 
+         this.status = newStatus;
+         this.playersMoves.add(PlayerWhoMadeChanges);
+     }
+
     public int getX() { return this.x;}
     public int getY() { return this.x;}
          

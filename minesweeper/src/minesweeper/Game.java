@@ -28,9 +28,23 @@ public class Game {
     Player currentPlayer;
     ArrayList moves;
     GameRules currentRules;
-    public void initGame(){};
+    Grid grid;
+    public void initGame(int width,int height,int minesCount){
+        currentPlayer = (Player)players.get(0);
+        grid = new Grid(width,height,minesCount);
+    };
+    public void GetMove(){
+        PlayerMove move = currentPlayer.GetPlayerMove();
+        if(AcceptMove(move))
+            ApplyPlayerMove(move);
+        
+    }
     public boolean AcceptMove(PlayerMove move){
-        return false;
+        return false;   
     };
     public void ApplyPlayerMove(PlayerMove move){};
+    public void AddPlayer(Player player)
+    {
+        players.add(player);
+    }
 }

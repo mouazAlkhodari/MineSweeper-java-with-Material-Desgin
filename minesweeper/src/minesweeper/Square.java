@@ -8,16 +8,20 @@ enum SquareStatus {
 public class Square {
     private int x;
     private int y;
+    private int NumberOfSurroundedMines;
     private Mine mine;
     private ArrayList playersMoves;
     SquareStatus status;
+    
 
-    public Square(int x, int y,Boolean hasMine) {
+    public Square(int x, int y,Boolean hasMine,int NOSM) {
         this.x = x;
         this.y = y;
         this.mine = hasMine ? new Mine() : null;
         this.playersMoves = new ArrayList();
-        status = SquareStatus.Closed;
+        this.status = SquareStatus.Closed;
+        this.NumberOfSurroundedMines = NOSM;
+        
     }
     
     public Boolean isMine() { 

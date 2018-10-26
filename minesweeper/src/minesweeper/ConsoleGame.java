@@ -14,7 +14,7 @@ import BaseAlphabit.Converter;
  */
 public class ConsoleGame extends NormalGame {
     @Override
-    protected void printGrid() {
+    protected void UpdateVeiw() {
         for(int i=0;i<this.grid.getWidth();i++){
             System.out.println(" "+ Converter.valueOf(i));
         }
@@ -44,14 +44,14 @@ public class ConsoleGame extends NormalGame {
     @Override
     protected void Lose() {
         // must Do some things in Grid make user feel unhappy because he Lose the game 🌚_🌚
-        printGrid();
+        UpdateVeiw();
         System.out.println("You catch all Mines and win the game!!\n 💃💃💃^___^💃💃💃");
     }
 
     @Override
     protected void Win() {
         // must Do some things in Grid make user feel happy because he win the game 💙_💙
-        printGrid();
+        UpdateVeiw();
         System.out.println("You catch all Mines and win the game!!\n 💃💃💃^___^💃💃💃");
     }
 

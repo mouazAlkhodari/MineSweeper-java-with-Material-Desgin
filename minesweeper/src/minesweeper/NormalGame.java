@@ -23,7 +23,7 @@ public abstract class NormalGame extends Game{
     }
 
     @Override
-    protected abstract void printGrid();
+    protected abstract void UpdateVeiw();
     @Override
     protected abstract void Lose();
     @Override

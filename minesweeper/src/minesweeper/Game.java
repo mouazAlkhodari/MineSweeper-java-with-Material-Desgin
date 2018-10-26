@@ -36,11 +36,11 @@ public abstract class Game {
         currentPlayer = (Player)players.get(0);
         this.status=GameStatus.Running;// need to change to begin game
         grid = new Grid(width,height,minesCount);
-        printGrid();
+        UpdateVeiw();
         GetMove();
     }
 
-    protected abstract void printGrid();
+    protected abstract void UpdateVeiw();
 
     ;
     public void GetMove(){
@@ -54,7 +54,7 @@ public abstract class Game {
                 Lose();
             }
             else{
-                printGrid();
+                UpdateVeiw();
                 GetMove();
             }
         }

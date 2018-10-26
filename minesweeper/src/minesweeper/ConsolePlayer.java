@@ -64,6 +64,6 @@ public class ConsolePlayer extends Player {
         int x=Integer.valueOf(row);
         int y= Converter.valueOf(col);
 //        System.out.println(x+".."+y+".."+t);
-        return new PlayerMove(this, new Square(x,y,Boolean.FALSE),t,new MoveResult());
+        return new PlayerMove(this, new Square(x,y,Boolean.FALSE,0),t,new MoveResult());
     }
 }

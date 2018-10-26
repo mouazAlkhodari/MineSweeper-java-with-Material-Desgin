@@ -15,6 +15,8 @@ public class Grid {
         this.minesCount=minesNumber;
         InitGrid();
     }
+    public int getWidth(){return this.width;}
+    public int getHeight(){return this.height;}
     
     
     public void InitGrid() {

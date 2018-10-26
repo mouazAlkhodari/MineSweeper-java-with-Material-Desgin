@@ -22,9 +22,18 @@ public class Minesweeper {
         System.out.println("Hello guys Engo using git with me ");
         System.out.println("am here guys (V)_(V)");
         System.out.println("Da");
+<<<<<<< HEAD
         ArrayList Playerslist=new ArrayList();
         playerslist.add(new ConsolePlayer("folan"));
         Game currGame=new ConsoleGame(W,H,M,playerlist);
+=======
+        /*
+        ---- for testing class player :3
+        Player p1=new ConsolePlayer("flan",0);
+        p1.GetPlayerMove();
+
+        */
+>>>>>>> ef7725448ae480293566145dce5f111d59cf1dbe
     }
 
     

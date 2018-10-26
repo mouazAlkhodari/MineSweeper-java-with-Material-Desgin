@@ -15,16 +15,22 @@ public class Game {
     class GameRules{
         public int GetScoreChange(ArrayList moves)
         {
-            
+
+            return 0;
         }
+
         public Player DecideNextPlayer(ArrayList moves)
-        {}
+        {
+            return null;
+        }
     }
     ArrayList players;
     Player currentPlayer;
     ArrayList moves;
     GameRules currentRules;
     public void initGame(){};
-    public boolean AcceptMove(PlayerMove move){};
+    public boolean AcceptMove(PlayerMove move){
+        return false;
+    };
     public void ApplyPlayerMove(PlayerMove move){};
 }

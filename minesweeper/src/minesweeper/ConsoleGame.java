@@ -57,6 +57,6 @@ public class ConsoleGame extends NormalGame {
 
     @Override
     public void ApplyPlayerMove(PlayerMove move) {
-
+        this.grid.AcceptMove(move);
     }
 }

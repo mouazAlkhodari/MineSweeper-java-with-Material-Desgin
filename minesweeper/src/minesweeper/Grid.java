@@ -1,4 +1,5 @@
 package minesweeper;
+import CostomSequences.Boolean2DArray;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -25,21 +26,21 @@ public class Grid {
     public void InitGrid() {
         field = new Square[height][width];
         //to generate random coordinates for mines
-        boolean[][] minesCoordinates = new boolean[height][width];
-        //fill the matrix it with false 
-         for (int i = 0 ;i < height; i++) { 
-             Arrays.fill(minesCoordinates[i], false);
-        }
+        Boolean2DArray minesCoordinates = new Boolean2DArray(width, height, Boolean.FALSE);
+        
+        int[][] numberOfSurroundedmines = new int[height][width];
+        
          //fill random coordinates with true (number of coordinates according to nnumber of mines)
          for (int i = 0 ;i < minesCount; i++) {
+             
              Random rand = new Random();
              int randomWidth,randomHeight;
              //checking that there is no duplicated mines in one square
              while (true) { 
                  randomWidth = rand.nextInt(width);
                  randomHeight = rand.nextInt(height);
-                 if (!minesCoordinates[randomHeight][randomWidth]) { 
-                     minesCoordinates[randomHeight][randomWidth] = true;
+                 if (!minesCoordinates.arr[randomHeight][randomWidth]) { 
+                     minesCoordinates.arr[randomHeight][randomWidth] = true;
                      break;
                  }
              }
@@ -55,5 +56,6 @@ public class Grid {
     public void AcceptMove(PlayerMove move) { 
         
     }
+    
     
 }

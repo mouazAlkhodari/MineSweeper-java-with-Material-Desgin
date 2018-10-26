@@ -4,16 +4,20 @@ import java.util.Random;
 
 
 public class Grid {
+    private int width,height,minesCount;
     private Square[][] field;
     private Mine[] mines;
     private Game CurrentGame;
 
     public Grid(int width,int height,int minesNumber) {
-        InitGrid(width, height, minesNumber);
+        this.width=width;
+        this.height=height;
+        this.minesCount=minesNumber;
+        InitGrid();
     }
     
     
-    public void InitGrid(int width,int height,int minesNumber) { 
+    public void InitGrid() {
         field = new Square[height][width];
         //to generate random coordinates for mines
         boolean[][] minesCoordinates = new boolean[height][width];
@@ -22,7 +26,7 @@ public class Grid {
              Arrays.fill(minesCoordinates[i], false);
         }
          //fill random coordinates with true (number of coordinates according to nnumber of mines)
-         for (int i = 0 ;i < minesNumber; i++) { 
+         for (int i = 0 ;i < minesCount; i++) {
              Random rand = new Random();
              int randomWidth,randomHeight;
              //checking that there is no duplicated mines in one square

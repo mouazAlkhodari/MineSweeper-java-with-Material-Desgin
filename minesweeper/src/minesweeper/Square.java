@@ -20,6 +20,6 @@ public class Square {
     
     public Boolean isMine() { 
         return mine == null ? false : true;
-    }
+    }   
          
 }

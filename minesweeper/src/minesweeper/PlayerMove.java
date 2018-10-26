@@ -8,6 +8,9 @@ public class PlayerMove {
     MoveResult result;
 
     public PlayerMove(Player _player,Square _square,MoveType _type,MoveResult _result) {
-        player=_player;square=_square;type=_type;result=_result;
+        this.player= _player;
+        this.square=_square;
+        this.type=_type;
+        this.result=_result;
     }
 }

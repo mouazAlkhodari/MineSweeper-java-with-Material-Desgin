@@ -30,9 +30,4 @@ public abstract class NormalGame extends Game{
     protected abstract void Win();
     @Override
     public abstract void ApplyPlayerMove(PlayerMove move);
-    @Override
-    public boolean AcceptMove(PlayerMove move) {
-
-    }
-
 }

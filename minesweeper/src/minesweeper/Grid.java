@@ -17,8 +17,11 @@ public class Grid {
     }
     public int getWidth(){return this.width;}
     public int getHeight(){return this.height;}
-    
-    
+
+    public Square[][] getField() {
+        return field;
+    }
+
     public void InitGrid() {
         field = new Square[height][width];
         //to generate random coordinates for mines

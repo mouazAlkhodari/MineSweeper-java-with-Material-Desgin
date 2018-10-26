@@ -24,7 +24,16 @@ public class Grid {
          //fill random coordinates with true (number of coordinates according to nnumber of mines)
          for (int i = 0 ;i < minesNumber; i++) { 
              Random rand = new Random();
-             minesCoordinates[rand.nextInt(width)][rand.nextInt(height)] = true;
+             int randomWidth,randomHeight;
+             //checking that there is no duplicated mines in one square
+             while (true) { 
+                 randomWidth = rand.nextInt(width);
+                 randomHeight = rand.nextInt(height);
+                 if (!minesCoordinates[randomHeight][randomWidth]) { 
+                     minesCoordinates[randomHeight][randomWidth] = true;
+                     break;
+                 }
+             }
          }
         //init sqaures inside the field
         for (int i = 0 ;i < height; i++) { 

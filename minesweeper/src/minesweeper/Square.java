@@ -35,9 +35,4 @@ public class Square {
     public int getNumberOfSurroundedMines() { return this.NumberOfSurroundedMines;}
     public int getX() { return this.x;}
     public int getY() { return this.x;}
-<<<<<<< HEAD
-=======
-    
-         
->>>>>>> 18d5cb33c14836fb7727a9167726603918eac164
 }

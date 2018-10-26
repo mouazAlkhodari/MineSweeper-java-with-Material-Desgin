@@ -13,4 +13,20 @@ public class PlayerMove {
         this.type=_type;
         this.result=_result;
     }
+
+    public Square getSquare() {
+        return square;
+    }
+
+    public MoveType getType() {
+        return type;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public MoveResult getResult() {
+        return result;
+    }
 }

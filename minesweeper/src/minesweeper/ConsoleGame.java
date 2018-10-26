@@ -5,6 +5,8 @@
  */
 package minesweeper;
 
+import java.io.Console;
+
 /**
  *
  * @author Omar
@@ -12,17 +14,21 @@ package minesweeper;
 public class ConsoleGame extends NormalGame {
     @Override
     protected void printGrid() {
+        for(int i=0;i<this.grid.getwidth();i++){
 
+        }
     }
 
     @Override
     protected void Lose() {
-
+        // must Do some things in Grid make user feel unhappy because he Lose the game 🌚_🌚
+        System.out.println("You catch all Mines and win the game!!\n 💃💃💃^___^💃💃💃");
     }
 
     @Override
     protected void Win() {
-
+        // must Do some things in Grid make user feel happy because he win the game 💙_💙
+        System.out.println("You catch all Mines and win the game!!\n 💃💃💃^___^💃💃💃");
     }
 
     @Override

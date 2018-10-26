@@ -6,4 +6,4 @@ public class PlayerMove {
     Square square;
     MoveType type;
     MoveResult result;
-}
+}   

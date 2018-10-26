@@ -10,12 +10,14 @@ public class Square {
     private int y;
     private Mine mine;
     private ArrayList playersMoves;
+    SquareStatus status;
 
     public Square(int x, int y,Boolean hasMine) {
         this.x = x;
         this.y = y;
         this.mine = hasMine ? new Mine() : null;
         this.playersMoves = new ArrayList();
+        status = SquareStatus.Closed;
     }
     
     public Boolean isMine() { 

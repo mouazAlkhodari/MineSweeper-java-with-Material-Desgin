@@ -6,6 +6,7 @@
 package minesweeper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -26,16 +27,18 @@ public abstract class Game {
             return null;
         }
     }
-    ArrayList players;
-    Player currentPlayer;
-    ArrayList moves;
-    GameRules currentRules;
-    Grid grid;
-    GameStatus status;
+    private List<Player> players=new ArrayList<Player>();
+    private Player currentPlayer;
+    private ArrayList moves;
+    private GameRules currentRules;
+    protected Grid grid;
+    private GameStatus status;
     public void initGame(int width,int height,int minesCount){
         currentPlayer = (Player)players.get(0);
         this.status=GameStatus.Running;// need to change to begin game
         grid = new Grid(width,height,minesCount);
+    }
+    public void StartGame(){
         UpdateVeiw();
         GetMove();
     }

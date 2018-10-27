@@ -62,7 +62,7 @@ public class ConsolePlayer extends Player {
             if(!valid) System.out.println("not valid input!! try again...\n");
         } while (!valid);
         int x=Integer.valueOf(row);
-        int y= Converter.valueOf(col);
+        int y= Converter.valueOf(col.toUpperCase());
 //        System.out.println(x+".."+y+".."+t);
         return new PlayerMove(this, new Square(x,y,Boolean.FALSE,0),t,new MoveResult());
     }

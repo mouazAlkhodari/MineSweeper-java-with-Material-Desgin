@@ -11,8 +11,8 @@ public class Grid {
     private Game CurrentGame;
 
     public Grid(int width,int height,int minesNumber) {
-        this.width=width;
-        this.height=height;
+        this.width=width+1;
+        this.height=height+1;
         this.minesCount = minesNumber;
         InitGrid();
     }
@@ -40,8 +40,8 @@ public class Grid {
         }
     }
         
-    public void AcceptMove(PlayerMove move) { 
-        
+    public void AcceptMove(PlayerMove move) {
+
     }
     
     

@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package minesweeper;
+import BaseAlphabit.Converter;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,6 +16,10 @@ import java.util.ArrayList;
 
 public class Minesweeper {
 
+    private static final int ConstMines = 10;
+    private static final int ConstHeight = 10 ;
+    private static final int ConstWidth = 10;
+    private static final Player ConstPlayer=new ConsolePlayer("Flan",0);
     /**
      */
 
@@ -25,8 +32,13 @@ public class Minesweeper {
         ---- for testing class player :3
         Player p1=new ConsolePlayer("flan",0);
         p1.GetPlayerMove();
-
         */
+
+       System.out.println(Converter.valueOf("AB"));
+       List<Player> Players=new ArrayList<Player>();
+       Players.add(ConstPlayer);
+       Game ConstGame=new ConsoleGame(ConstWidth,ConstHeight,ConstMines,Players);
+       ConstGame.StartGame();
     }
 
     

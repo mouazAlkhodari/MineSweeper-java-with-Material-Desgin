@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd6a108a-8d73-45dd-a619-3a59be4f3f3b" name="Default" comment="">
-<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/../.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/codeStyles/Project.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
@@ -36,24 +35,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/minesweeper/userDefineException/IllegalGameMove.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/minesweeper/userDefineException/IllegalSquareName.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/minesweeper/userDefineException/MineSweeperGameExeption.class" beforeDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/CustomSequences/MinesCoor2DArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/CustomSequences/MinesCoor2DArray.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/CustomSequences/SurroundingMines2DArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/CustomSequences/SurroundingMines2DArray.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/ConsoleGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/ConsoleGame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/ConsoleGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/ConsoleGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/ConsolePlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/ConsolePlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/Grid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/Minesweeper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/Minesweeper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/Square.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/Square.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CustomSequences/MinesCoor2DArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomSequences/MinesCoor2DArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CustomSequences/SurroundingMines2DArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomSequences/SurroundingMines2DArray.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minesweeper/ConsoleGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/ConsoleGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minesweeper/ConsolePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/ConsolePlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minesweeper/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minesweeper/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/Grid.java" afterDir="false" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
       <change beforePath="$PROJECT_DIR$/src/minesweeper/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/Square.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -156,7 +137,7 @@
     <session id="-1514558204">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.opened" value="2" />
@@ -184,104 +165,20 @@
       </usages-collector>
     </session>
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="minesweeper" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minesweeper/Minesweeper.java">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="476">
-              <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
-=======
-            <state relative-caret-position="29">
-              <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
+            <state relative-caret-position="678">
+              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#997#1005#0" expanded="true" />
               </folding>
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minesweeper/Grid.java">
-          <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="289">
-              <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-=======
-            <state relative-caret-position="259">
-              <caret line="50" selection-start-line="50" selection-end-line="50" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#313#314#0" expanded="true" />
-                <element signature="e#346#347#0" expanded="true" />
-                <element signature="e#2224#2236#0" expanded="true" />
-              </folding>
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minesweeper/ConsoleGame.java">
-          <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="153">
-              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-=======
-            <state relative-caret-position="157">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minesweeper/NormalGame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-<<<<<<< HEAD
-              <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-=======
-              <caret line="13" selection-start-line="13" selection-end-line="13" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
-            </state>
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minesweeper/MoveResult.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
-=======
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CustomSequences/SurroundingMines2DArray.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="70" column="46" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
-              <folding>
-                <element signature="e#1523#1524#0" expanded="true" />
-                <element signature="e#1591#1592#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CustomSequences/MinesCoor2DArray.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="48" column="27" lean-forward="true" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
             </state>
           </provider>
         </entry>
@@ -289,14 +186,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minesweeper/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
+            <state relative-caret-position="170">
+              <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minesweeper/Grid.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#615#623#0" expanded="true" />
-                <element signature="e#786#787#0" expanded="true" />
-                <element signature="e#815#816#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minesweeper/MoveResult.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/BaseAlphabit/Converter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -304,13 +225,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minesweeper/ConsolePlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
             <state relative-caret-position="1088">
-              <caret line="66" column="67" selection-start-line="66" selection-start-column="67" selection-end-line="66" selection-end-column="67" />
-=======
-            <state relative-caret-position="225">
-              <caret line="67" selection-start-line="67" selection-end-line="67" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
+              <caret line="67" column="67" selection-start-line="67" selection-start-column="67" selection-end-line="67" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -319,31 +235,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minesweeper/PlayerMove.java">
+        <entry file="file://$PROJECT_DIR$/src/minesweeper/ConsoleGame.java">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="-17">
-              <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-=======
-            <state relative-caret-position="131">
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
+            <state relative-caret-position="187">
+              <caret line="33" column="49" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
               <folding>
-                <element signature="e#144#145#0" expanded="true" />
-                <element signature="e#180#181#0" expanded="true" />
-                <element signature="e#508#509#0" expanded="true" />
-                <element signature="e#537#538#0" expanded="true" />
-                <element signature="e#659#660#0" expanded="true" />
+                <element signature="e#1942#1943#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CustomSequences/MinesCoor2DArray.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
+            <state relative-caret-position="-70">
+              <caret line="33" column="40" lean-forward="true" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -351,19 +258,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minesweeper/Square.java">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-            <state relative-caret-position="120">
-              <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
-=======
-            <state relative-caret-position="95">
-              <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+            <state relative-caret-position="24">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#351#352#0" expanded="true" />
                 <element signature="e#380#381#0" expanded="true" />
                 <element signature="e#742#743#0" expanded="true" />
                 <element signature="e#793#794#0" expanded="true" />
               </folding>
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-888">
+              <caret line="723" selection-start-line="723" selection-end-line="723" />
             </state>
           </provider>
         </entry>
@@ -389,20 +300,11 @@
         <option value="$PROJECT_DIR$/src/userDefineException/IllegalGameMove.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/MoveResult.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/BaseAlphabit/Converter.java" />
-<<<<<<< HEAD
-        <option value="$PROJECT_DIR$/src/BaseAlphabit/Converter.java" />
-        <option value="$PROJECT_DIR$/src/minesweeper/Grid.java" />
-=======
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
         <option value="$PROJECT_DIR$/src/minesweeper/NormalGame.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/Player.java" />
         <option value="$PROJECT_DIR$/src/BaseAlphabit/Converter.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/PlayerMove.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/Game.java" />
-<<<<<<< HEAD
-        <option value="$PROJECT_DIR$/src/minesweeper/Minesweeper.java" />
-        <option value="$PROJECT_DIR$/src/minesweeper/Square.java" />
-=======
         <option value="$PROJECT_DIR$/src/minesweeper/ConsolePlayer.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/ConsoleGame.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/Grid.java" />
@@ -410,7 +312,6 @@
         <option value="$PROJECT_DIR$/src/CustomSequences/SurroundingMines2DArray.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/Square.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/Minesweeper.java" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
       </list>
     </option>
   </component>
@@ -432,11 +333,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-<<<<<<< HEAD
       <pane id="PackagesPane" />
       <pane id="Scope" />
-=======
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -447,24 +345,7 @@
             <path>
               <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
               <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
-              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
-              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
-              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="BaseAlphabit" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
@@ -483,45 +364,21 @@
               <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
-<<<<<<< HEAD
-=======
-              <item name="Game.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-            </path>
-            <path>
-              <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
-              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
               <item name="Square.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-<<<<<<< HEAD
-=======
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-<<<<<<< HEAD
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540573053847" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="SDKs" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
-=======
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540662114304" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -617,30 +474,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-<<<<<<< HEAD
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26096824" />
-=======
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25718608" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49846154" visible="true" weight="0.26096824" />
+      <window_info id="Structure" order="1" sideWeight="0.50153846" side_tool="true" visible="true" weight="0.26096824" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Designer" order="3" />
       <window_info id="Image Layers" order="4" />
       <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Favorites" order="6" sideWeight="0.5011442" side_tool="true" weight="0.26096824" />
       <window_info id="UI Designer" order="7" />
       <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49848714" weight="0.3295082" />
-<<<<<<< HEAD
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49319214" visible="true" weight="0.3276923" />
-=======
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49319214" visible="true" weight="0.52131146" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49319214" weight="0.52" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49621785" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -768,28 +615,13 @@
     <entry file="file://$PROJECT_DIR$/out/production/minesweeper/minesweeper/Minesweeper.class" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5300">
-          <caret line="170" selection-start-line="170" selection-end-line="170" />
+        <state relative-caret-position="-888">
+          <caret line="723" selection-start-line="723" selection-end-line="723" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CustomSequences/Int2DArray.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CustomSequences/Boolean2DArray.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CustomSequences/Int2DArray.java" />
+    <entry file="file://$PROJECT_DIR$/src/CustomSequences/Boolean2DArray.java" />
     <entry file="file://$PROJECT_DIR$/src/minesweeper/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -797,64 +629,24 @@
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/PlayerMove.java">
-=======
     <entry file="file://$PROJECT_DIR$/src/BaseAlphabit/Converter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/MoveResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minesweeper/NormalGame.java">
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/src/CustomSequences/Int2DArray.java" />
-    <entry file="file://$PROJECT_DIR$/src/CustomSequences/Boolean2DArray.java" />
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/Minesweeper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="32" column="1" selection-start-line="32" selection-start-column="1" selection-end-line="32" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/NormalGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/BaseAlphabit/Converter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-=======
     <entry file="file://$PROJECT_DIR$/src/CustomSequences/MinesCoor2DArray.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="48" column="27" lean-forward="true" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+        <state relative-caret-position="-70">
+          <caret line="33" column="40" lean-forward="true" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -871,52 +663,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minesweeper/ConsoleGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
+        <state relative-caret-position="187">
+          <caret line="33" column="49" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1942#1943#0" expanded="true" />
           </folding>
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minesweeper/ConsolePlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
         <state relative-caret-position="1088">
-          <caret line="66" column="67" selection-start-line="66" selection-start-column="67" selection-end-line="66" selection-end-column="67" />
-=======
-        <state relative-caret-position="225">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
+          <caret line="67" column="67" selection-start-line="67" selection-start-column="67" selection-end-line="67" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/Square.java">
-      <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="120">
-          <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/Grid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-=======
-        <state relative-caret-position="157">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#615#623#0" expanded="true" />
-            <element signature="e#786#787#0" expanded="true" />
-            <element signature="e#815#816#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -931,66 +691,38 @@
             <element signature="e#508#509#0" expanded="true" />
             <element signature="e#537#538#0" expanded="true" />
             <element signature="e#659#660#0" expanded="true" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minesweeper/MoveResult.java">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
         <state relative-caret-position="102">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/ConsoleGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
-          <folding>
-            <element signature="e#1900#1901#0" expanded="true" />
-            <element signature="e#1942#1943#0" expanded="true" />
-=======
-        <state relative-caret-position="259">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#313#314#0" expanded="true" />
-            <element signature="e#346#347#0" expanded="true" />
-            <element signature="e#2224#2236#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minesweeper/Square.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="42" column="22" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+        <state relative-caret-position="24">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#351#352#0" expanded="true" />
             <element signature="e#380#381#0" expanded="true" />
             <element signature="e#742#743#0" expanded="true" />
             <element signature="e#793#794#0" expanded="true" />
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
           </folding>
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/src/CustomSequences/MinesCoor2DArray.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
-=======
     <entry file="file://$PROJECT_DIR$/src/minesweeper/Minesweeper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
+        <state relative-caret-position="678">
+          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#997#1005#0" expanded="true" />
           </folding>
->>>>>>> 2dbdb85a53451a3f70215e7ef73a72e13a06142b
         </state>
       </provider>
     </entry>

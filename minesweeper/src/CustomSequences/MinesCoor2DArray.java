@@ -42,8 +42,8 @@ public class MinesCoor2DArray {
              int randomWidth,randomHeight;
              //checking that there is no duplicated mines in one square
              while (true) { 
-                 randomWidth = rand.nextInt(width);
-                 randomHeight = rand.nextInt(height);
+                 randomWidth = rand.nextInt(width-2)+1;
+                 randomHeight = rand.nextInt(height-2)+1;
                  if (!arr[randomHeight][randomWidth]) { 
                      arr[randomHeight][randomWidth] = true;
                      break;

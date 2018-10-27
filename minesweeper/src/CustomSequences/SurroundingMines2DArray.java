@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class SurroundingMines2DArray {
     public int[][] arr;
     MinesCoor2DArray mines;
-    public int width,height;
+    static public int width,height;
     
     // <__ CONSTRUCTERS __> \\
     // Constructer initializr the field with 0
@@ -48,21 +48,30 @@ public class SurroundingMines2DArray {
     }
     
     //to Check if Coordinates is exist
-    private Boolean CheckIndex(int x,int y) { 
-        return (x >= 0 && x < height && y >= 0 && y < width);
+    public static Boolean CheckIndex(int x,int y) {
+        return (x >= 1 && x < height && y >= 1 && y < width);
     }
     
     //Calcuate Number of surrounding mines in each square in th field
-    private void CalculateNOSM() { 
-        for (int i=0;i<height;i++) { 
-            for (int j = 0;j < width; j++) { 
+    private void CalculateNOSM() {
+        for(int i=1;i<height;i++){
+            for(int j=1;j<width;j++){
+                System.out.print(mines.arr[i][j]?1:0);
+            }
+            System.out.println();
+        }
+        System.out.println();
+        for (int i=1;i<height;i++) {
+            for (int j = 1;j < width; j++) {
                 //here we are in each square
                 //for each square we will go to the surrounding squares and calculate number of mines in each one
                 //Then we sum the result and put it in this square;
                 
                 for (int x = i - 1;x <= i + 1;x++) { 
-                    for (int y = i - 1;y <= i + 1;y++) { 
-                        if (CheckIndex(x, y) && mines.arr[x][y]) { arr[i][j]++;}                           
+                    for (int y = j - 1;y <= j + 1;y++) {
+                        if (CheckIndex(x, y) && mines.arr[x][y]) {
+                            arr[i][j]++;
+                        }
                     }
                 }
             }

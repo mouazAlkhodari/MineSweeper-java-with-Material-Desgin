@@ -12,7 +12,11 @@ public class Square {
     private Mine mine;
     private ArrayList playersMoves;
     SquareStatus status;
-    
+
+    public SquareStatus getStatus() {
+        return status;
+    }
+
     // <__ CONSTRUCTER __> \\
     public Square(int x, int y,Boolean hasMine,int NOSM) {
         this.x = x;
@@ -32,15 +36,17 @@ public class Square {
         playersMoves.add(PlayerWhoMadeTheMove);
         switch (Type) { 
             case Mark: 
-                this.status = (this.status == SquareStatus.Marked ? SquareStatus.Closed : SquareStatus.Marked); 
+                this.status = (this.status == SquareStatus.Marked ? SquareStatus.Closed : SquareStatus.Marked);
+                break;
             case Reveal:
                 this.status = (this.mine != null ? SquareStatus.OpenedMine : this.NumberOfSurroundedMines == 0 ? SquareStatus.OpenedEmpty :SquareStatus.OpenedNumber);
+                break;
         }
     }
      
     // Getters
     public int getNumberOfSurroundedMines() { return this.NumberOfSurroundedMines;}
     public int getX() { return this.x;}
-    public int getY() { return this.x;}
 
+    public int getY() { return this.y;}
 }

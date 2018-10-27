@@ -7,7 +7,14 @@ import java.util.Queue;
 import java.util.Random;
 
 public class Grid {
-    private int width,height,minesCount;
+    private int width;
+    private int height;
+
+    public int getMinesCount() {
+        return minesCount;
+    }
+
+    private int minesCount;
     private Square[][] field;
     private Mine[] mines;
     private Game CurrentGame;
@@ -31,8 +38,8 @@ public class Grid {
         SurroundingMines2DArray numberOfSurroundedmines = new SurroundingMines2DArray(width, height, minesCoordinates);
      
         //init sqaures inside the field
-        for (int i = 0 ;i < height; i++) { 
-            for (int j = 0;j < width; j++) { 
+        for (int i = 1 ;i < height; i++) {
+            for (int j = 1;j < width; j++) {
                 field[i][j] = new Square(i, j,minesCoordinates.arr[i][j],numberOfSurroundedmines.arr[i][j]);
             }
         }
@@ -44,7 +51,10 @@ public class Grid {
             move.getSquare().ChangeStatus(move.getPlayer(), MoveType.Mark);
         }
         else{
-            if(move.getSquare().getNumberOfSurroundedMines()==0){
+            if(move.getSquare().isMine()){
+                move.getSquare().ChangeStatus(move.getPlayer(),MoveType.Reveal);
+            }
+            else if(move.getSquare().getNumberOfSurroundedMines()!=0){
                 move.getSquare().ChangeStatus(move.getPlayer(), MoveType.Reveal);
             }
             else{
@@ -59,10 +69,12 @@ public class Grid {
             PlayerMove curMove=Q.poll();
             Square curScuare=curMove.getSquare();
             curScuare.ChangeStatus(curMove.getPlayer(), MoveType.Reveal);
-            for(int i=curScuare.getX()-1;i<curScuare.getX()+1;i++){
-                for(int j=curScuare.getY()-1;i<curScuare.getY()+1;i++){
+            if(curMove.getSquare().getNumberOfSurroundedMines()!=0)continue;
+            for(int i=curScuare.getX()-1;i<=curScuare.getX()+1;i++){
+                for(int j=curScuare.getY()-1;j<=curScuare.getY()+1;j++){
+                    if(!SurroundingMines2DArray.CheckIndex(i,j))continue;;
                     Square toScuare=field[i][j];
-                    if(toScuare.getStatus()==SquareStatus.Closed){
+                    if(toScuare.getStatus()==SquareStatus.Closed && !toScuare.isMine()){
                         ((LinkedList<PlayerMove>) Q).add(new PlayerMove(move.getPlayer(),toScuare,MoveType.Reveal,new MoveResult()));
                     }
                 }

@@ -24,6 +24,7 @@ public class ConsoleGame extends NormalGame {
 
     @Override
     protected void UpdateVeiw() {
+        PrintGrid();
         System.out.print("   ");
         for(int i=0;i+1<this.grid.getWidth();i++){
             System.out.print(" "+Converter.valueOf(i));
@@ -55,7 +56,24 @@ public class ConsoleGame extends NormalGame {
         }
         System.out.println();
     }
-
+    protected void PrintGrid() {
+        System.out.print("   ");
+        for(int i=0;i+1<this.grid.getWidth();i++){
+            System.out.print(" "+Converter.valueOf(i));
+        }
+        System.out.println();
+        Square[][] feild=this.grid.getField();
+        for(int i=1;i<this.grid.getHeight();i++){
+            System.out.print("\n");
+            System.out.print(" "+i+"  ");
+            for (int j=1;j<this.grid.getWidth();j++){
+                if(!feild[i][j].isMine())
+                    System.out.print(feild[i][j].getNumberOfSurroundedMines()+" ");
+                else System.out.print("B ");
+            }
+        }
+        System.out.println();
+    }
     @Override
     protected void Lose() {
         // must Do some things in Grid make user feel unhappy because he Lose the game 🌚_🌚
@@ -73,5 +91,25 @@ public class ConsoleGame extends NormalGame {
     @Override
     public void ApplyPlayerMove(PlayerMove move) {
         this.grid.AcceptMove(move);
+        Square[][] feild=this.grid.getField();
+        int Closed=0,Marked=0;
+        for(int i=1;i<this.grid.getHeight();i++){
+            for (int j=1;j<this.grid.getWidth();j++){
+                switch (feild[i][j].status){
+                    case Closed:
+                        Closed++;
+                        break;
+                    case Marked:
+                        Marked++;
+                        break;
+                    case OpenedMine:
+                        this.setStatus(GameStatus.Lose);
+                        break;
+                }
+            }
+        }
+        if(this.getStatus()!=GameStatus.Lose && Closed+Marked==this.grid.getMinesCount()){
+            this.setStatus(GameStatus.Win);
+        }
     }
 }

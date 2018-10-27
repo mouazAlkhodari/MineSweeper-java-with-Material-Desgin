@@ -32,6 +32,15 @@ public abstract class Game {
     private ArrayList moves;
     private GameRules currentRules;
     protected Grid grid;
+
+    public GameStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(GameStatus status) {
+        this.status = status;
+    }
+
     private GameStatus status;
     public void initGame(int width,int height,int minesCount){
         currentPlayer = (Player)players.get(0);
@@ -48,6 +57,7 @@ public abstract class Game {
     ;
     public void GetMove(){
         PlayerMove move = currentPlayer.GetPlayerMove();
+        System.out.println("x= "+move.getSquare().getX()+"\ny= "+move.getSquare().getY());
         if(AcceptMove(move)){
             ApplyPlayerMove(move);
             if(this.status==GameStatus.Win){

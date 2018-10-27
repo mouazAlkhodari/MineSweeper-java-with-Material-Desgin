@@ -9,9 +9,10 @@ public class Converter {
         return ret;
     }
     public static String valueOf(int num) {// get integer value of number in alphabet base number...
+        if(num==0)return "A";
         String ret="";
         while(num!=0){
-            ret+='A' + (num%26);
+            ret+=(char)('A' + (num%26));
             num/=26;
         }
         return ret;

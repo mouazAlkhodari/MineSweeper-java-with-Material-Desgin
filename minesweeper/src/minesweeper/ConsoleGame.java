@@ -24,33 +24,36 @@ public class ConsoleGame extends NormalGame {
 
     @Override
     protected void UpdateVeiw() {
-        for(int i=1;i<this.grid.getWidth();i++){
-            System.out.println(" "+ Converter.valueOf(i));
+        System.out.print("   ");
+        for(int i=0;i+1<this.grid.getWidth();i++){
+            System.out.print(" "+Converter.valueOf(i));
         }
+        System.out.println();
         Square[][] feild=this.grid.getField();
         for(int i=1;i<this.grid.getHeight();i++){
-            System.out.println("/n");
-            System.out.println(i+" ");
-            for (int j=1;j<this.grid.getWidth();i++){
+            System.out.print("\n");
+            System.out.print(" "+i+"  ");
+            for (int j=1;j<this.grid.getWidth();j++){
                 switch (feild[i][j].status){
                     case Closed:
-                        System.out.println("O ");
+                        System.out.print("O ");
                         break;
                     case Marked:
-                        System.out.println("p ");
+                        System.out.print("p ");
                         break;
                     case OpenedMine:
-                        System.out.println("B ");
+                        System.out.print("B ");
                         break;
                     case OpenedNumber:
-                        System.out.println(feild[i][j].getNumberOfSurroundedMines()+" ");
+                        System.out.print(feild[i][j].getNumberOfSurroundedMines()+" ");
                         break;
                     case OpenedEmpty:
-                        System.out.println(". ");
+                        System.out.print(". ");
                         break;
                 }
             }
         }
+        System.out.println();
     }
 
     @Override

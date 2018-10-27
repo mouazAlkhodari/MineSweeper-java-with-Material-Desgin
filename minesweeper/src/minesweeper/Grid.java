@@ -2,6 +2,8 @@ package minesweeper;
 import CustomSequences.MinesCoor2DArray;
 import CustomSequences.SurroundingMines2DArray;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 
 
@@ -40,8 +42,36 @@ public class Grid {
     }
         
     public void AcceptMove(PlayerMove move) {
-
+        move.getSquare()=field[move.getSquare().getX()][move.getSquare().getY()];
+        if(move.getType()==MoveType.Mark){
+            move.getSquare().ApplyChangesToSquare(MoveType.Mark,move.getPlayer());
+        }
+        else{
+            if(move.getSquare().getNumberOfSurroundedMines()==0){
+                move.getSquare().ApplyChangesToSquare(MoveType.Reveal,move.getPlayer());
+            }
+            else{
+                this.floodFill(move);
+            }
+        }
     }
-    
-    
+    private void floodFill(PlayerMove move) {
+        Queue<PlayerMove> Q=new LinkedList<PlayerMove>();
+        Q.add(move);
+        while(!Q.isEmpty()){
+            PlayerMove curMove=Q.poll();
+            Square curScuare=curMove.getSquare();
+            curScuare.ApplyChangesToSquare(MoveType.Reveal,curMove.getPlayer());
+            for(int i=curScuare.getX()-1;i<curScuare.getX()+1;i++){
+                for(int j=curScuare.getY()-1;i<curScuare.getY()+1;i++){
+                    Square toScuare=field[i][j];
+                    if(toScuare.getStatus()==SquareStatus.Closed){
+                        ((LinkedList<PlayerMove>) Q).add(new PlayerMove(move.getPlayer(),toScuare,MoveType.Reveal,new MoveResult()));
+                    }
+                }
+            }
+        }
+    }
+
+
 }

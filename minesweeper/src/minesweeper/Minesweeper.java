@@ -34,7 +34,6 @@ public class Minesweeper {
         p1.GetPlayerMove();
         */
 
-       System.out.println(Converter.valueOf("AB"));
        List<Player> Players=new ArrayList<Player>();
        Players.add(ConstPlayer);
        Game ConstGame=new ConsoleGame(ConstWidth,ConstHeight,ConstMines,Players);

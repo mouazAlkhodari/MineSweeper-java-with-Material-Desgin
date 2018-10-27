@@ -12,7 +12,11 @@ public class Square {
     private Mine mine;
     private ArrayList playersMoves;
     SquareStatus status;
-    
+
+    public SquareStatus getStatus() {
+        return status;
+    }
+
     // <__ CONSTRUCTER __> \\
     public Square(int x, int y,Boolean hasMine,int NOSM) {
         this.x = x;

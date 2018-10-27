@@ -11,26 +11,72 @@ import java.util.Arrays;
  *
  * @author Da
  */
-public class Int2DArray {
+public class SurroundingMines2DArray {
     public int[][] arr;
-    Boolean2DArray mines;
+    MinesCoor2DArray mines;
     public int width,height;
-    public Int2DArray(int width,int height,int value,Boolean2DArray mines) {
-        this.width = width;
-        this.height = height;
-        this.mines = mines;
-        for (int i = 0 ;i < height; i++) { 
-             Arrays.fill(arr[i],value);
-        }
+    
+    // <__ CONSTRUCTERS __> \\
+    // Constructer initializr the field with 0
+    public SurroundingMines2DArray(int width,int height,MinesCoor2DArray mines) { 
+        SetDataMembers(width,height,mines);
+        Fill2DArray(0);
+        CalculateNOSM();
+    }   
+    // Constructer initializr the field with custom Value
+    public SurroundingMines2DArray(int width,int height,int value,MinesCoor2DArray mines) {
+        SetDataMembers(width,height,mines);
+        Fill2DArray(value);
+        CalculateNOSM();
        
     }
     
-    public Int2DArray(int width,int height,Boolean2DArray mines) { 
+    // <__ ASSISTANT FUNCTIONS __> \\
+    
+    //To set width,height & mines coordinates in the constructer
+    private void SetDataMembers(int width,int height,MinesCoor2DArray mines) { 
         this.width = width;
         this.height = height;
         this.mines = mines;
+    }
+    // To fill 2D Array with some Value
+    private void Fill2DArray(int value) { 
         for (int i = 0 ;i < height; i++) { 
-             Arrays.fill(arr[i],0);
+             Arrays.fill(arr[i],value);
         }
-    }   
+    }
+    
+    //to Check if Coordinates is exist
+    private Boolean CheckIndex(int x,int y) { 
+        return (x >= 0 && x < height && y >= 0 && y < width);
+    }
+    
+    //Calcuate Number of surrounding mines in each square in th field
+    private void CalculateNOSM() { 
+        for (int i=0;i<height;i++) { 
+            for (int j = 0;j < width; j++) { 
+                //here we are in each square
+                //for each square we will go to the surrounding squares and calculate number of mines in each one
+                //Then we sum the result and put it in this square;
+                
+                for (int x = i - 1;x <= i + 1;x++) { 
+                    for (int y = i - 1;y <= i + 1;y++) { 
+                        if (CheckIndex(x, y) && mines.arr[x][y]) { arr[i][j]++;}                           
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
 }

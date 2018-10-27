@@ -1,5 +1,6 @@
 package minesweeper;
-import CustomSequences.Boolean2DArray;
+import CustomSequences.MinesCoor2DArray;
+import CustomSequences.SurroundingMines2DArray;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -26,16 +27,14 @@ public class Grid {
     public void InitGrid() {
         field = new Square[height][width];
         //to generate random coordinates for mines
-        Boolean2DArray minesCoordinates = new Boolean2DArray(width, height, Boolean.FALSE);
+        MinesCoor2DArray minesCoordinates = new MinesCoor2DArray(width, height, Boolean.FALSE);
         minesCoordinates.GenerateRandomMines(minesCount);
-        int[][] numberOfSurroundedmines = new int[height][width];
-        
-        
-        
+        SurroundingMines2DArray numberOfSurroundedmines = new SurroundingMines2DArray(width, height, minesCoordinates);
+     
         //init sqaures inside the field
         for (int i = 0 ;i < height; i++) { 
             for (int j = 0;j < width; j++) { 
-               // field[i][j] = new Square(i, j,minesCoordinates[i][j]);
+                field[i][j] = new Square(i, j,minesCoordinates.arr[i][j],numberOfSurroundedmines.arr[i][j]);
             }
         }
     }

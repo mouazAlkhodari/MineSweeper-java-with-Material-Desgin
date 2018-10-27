@@ -31,10 +31,16 @@ public class Square {
     public Boolean isMine() { 
         return mine == null ? false : true;
     }
-     public void ApplyChangesToSquare(SquareStatus newStatus,Player PlayerWhoMadeChanges) { 
-         this.status = newStatus;
-         this.playersMoves.add(PlayerWhoMadeChanges);
-     }
+    
+    public void ChangeStatus(Player PlayerWhoMadeTheMove,MoveType Type) { 
+        playersMoves.add(PlayerWhoMadeTheMove);
+        switch (Type) { 
+            case Mark: 
+                this.status = (this.status == SquareStatus.Marked ? SquareStatus.Closed : SquareStatus.Marked); 
+            case Reveal:
+                this.status = (this.mine != null ? SquareStatus.OpenedMine : this.NumberOfSurroundedMines == 0 ? SquareStatus.OpenedEmpty :SquareStatus.OpenedNumber);
+        }
+    }
      
     // Getters
     public int getNumberOfSurroundedMines() { return this.NumberOfSurroundedMines;}

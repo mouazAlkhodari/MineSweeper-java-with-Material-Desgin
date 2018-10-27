@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
-
 public class Grid {
     private int width,height,minesCount;
     private Square[][] field;
@@ -22,9 +21,7 @@ public class Grid {
     public int getWidth(){return this.width;}
     public int getHeight(){return this.height;}
 
-    public Square[][] getField() {
-        return field;
-    }
+    public Square[][] getField() { return this.field;}
 
     public void InitGrid() {
         field = new Square[height][width];
@@ -42,13 +39,13 @@ public class Grid {
     }
         
     public void AcceptMove(PlayerMove move) {
-        move.getSquare()=field[move.getSquare().getX()][move.getSquare().getY()];
+        move.setSquare(field[move.getSquare().getX()][move.getSquare().getY()]);
         if(move.getType()==MoveType.Mark){
-            move.getSquare().ApplyChangesToSquare(MoveType.Mark,move.getPlayer());
+            move.getSquare().ChangeStatus(move.getPlayer(), MoveType.Mark);
         }
         else{
             if(move.getSquare().getNumberOfSurroundedMines()==0){
-                move.getSquare().ApplyChangesToSquare(MoveType.Reveal,move.getPlayer());
+                move.getSquare().ChangeStatus(move.getPlayer(), MoveType.Reveal);
             }
             else{
                 this.floodFill(move);
@@ -61,7 +58,7 @@ public class Grid {
         while(!Q.isEmpty()){
             PlayerMove curMove=Q.poll();
             Square curScuare=curMove.getSquare();
-            curScuare.ApplyChangesToSquare(MoveType.Reveal,curMove.getPlayer());
+            curScuare.ChangeStatus(curMove.getPlayer(), MoveType.Reveal);
             for(int i=curScuare.getX()-1;i<curScuare.getX()+1;i++){
                 for(int j=curScuare.getY()-1;i<curScuare.getY()+1;i++){
                     Square toScuare=field[i][j];

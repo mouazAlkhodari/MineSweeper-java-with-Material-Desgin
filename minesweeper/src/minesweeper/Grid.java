@@ -18,9 +18,7 @@ public class Grid {
     public int getWidth(){return this.width;}
     public int getHeight(){return this.height;}
 
-    public Square[][] getField() {
-        return field;
-    }
+    public Square[][] getField() { return this.field;}
 
     public void InitGrid() {
         field = new Square[height][width];

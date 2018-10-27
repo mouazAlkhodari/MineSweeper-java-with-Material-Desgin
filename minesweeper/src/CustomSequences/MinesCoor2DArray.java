@@ -12,20 +12,24 @@ import java.util.Random;
  *
  * @author Da
  */
-public class Boolean2DArray {
+public class MinesCoor2DArray {
     public boolean[][] arr;
     public int width,height;
-    public Boolean2DArray(int width,int height,Boolean value) {
+    
+    
+    public MinesCoor2DArray(int width,int height,Boolean value) {
         this.width = width;
         this.height = height;
+        arr = new boolean[height][width];
         for (int i = 0 ;i < height; i++) { 
              Arrays.fill(arr[i], value);
         }
     }
     
-    public Boolean2DArray(int width,int height) { 
+    public MinesCoor2DArray(int width,int height) { 
         this.width = width;
         this.height = height;
+        arr = new boolean[height][width];
         for (int i = 0 ;i < height; i++) { 
              Arrays.fill(arr[i], false);
         }

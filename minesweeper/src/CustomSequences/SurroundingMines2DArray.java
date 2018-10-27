@@ -38,6 +38,7 @@ public class SurroundingMines2DArray {
         this.width = width;
         this.height = height;
         this.mines = mines;
+        this.arr = new int[height][width];
     }
     // To fill 2D Array with some Value
     private void Fill2DArray(int value) { 

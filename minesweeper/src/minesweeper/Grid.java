@@ -1,8 +1,6 @@
 package minesweeper;
 import CustomSequences.MinesCoor2DArray;
 import CustomSequences.SurroundingMines2DArray;
-import java.util.Arrays;
-import java.util.Random;
 
 
 public class Grid {

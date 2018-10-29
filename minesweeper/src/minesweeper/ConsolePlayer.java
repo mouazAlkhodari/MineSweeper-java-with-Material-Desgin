@@ -66,7 +66,7 @@ public class ConsolePlayer extends Player {
                     }
                 }
                 if (NumberOfRow.length() == 0 || NumberOfCol.length() == 0) validMove = false;
-                if(!validMove) System.out.println("not validMove input!! try again...\n");
+                if(!validMove) System.out.println("not valid Move!! try again...\n");
             }
             catch (Exception e){
                 System.out.println(e.getMessage());

@@ -81,8 +81,7 @@ public class Grid {
             }
         }
     }
-
- //Getters
+    //Getters
     public int getMinesCount() { return minesCount; }
     public int getWidth(){return this.width;}
     public int getHeight(){return this.height;}

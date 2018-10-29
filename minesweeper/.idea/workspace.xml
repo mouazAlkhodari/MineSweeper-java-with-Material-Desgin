@@ -6,12 +6,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81b292c3-bd15-4cc7-ab51-aca56ad089f3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minesweeper/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minesweeper/PlayerMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/PlayerMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minesweeper/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/Square.java" afterDir="false" />
-    </list>
+    <list default="true" id="81b292c3-bd15-4cc7-ab51-aca56ad089f3" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,13 +18,14 @@
     <session id="-232348197">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.102" value="1" />
           <entry key="project.open.time.17" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.29" value="1" />
+          <entry key="project.open.time.46" value="1" />
           <entry key="project.open.time.62" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -69,7 +65,7 @@
         <entry file="file://$PROJECT_DIR$/src/BaseAlphabit/Converter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -87,7 +83,7 @@
         <entry file="file://$PROJECT_DIR$/src/CustomSequences/SurroundingMines2DArray.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="935">
-              <caret line="61" column="16" lean-forward="true" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+              <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -95,7 +91,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minesweeper/ConsoleGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-782">
+            <state relative-caret-position="51">
               <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
             </state>
           </provider>
@@ -105,12 +101,12 @@
         <entry file="file://$PROJECT_DIR$/src/minesweeper/ConsolePlayer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1309">
-              <caret line="81" column="1" lean-forward="true" selection-start-line="81" selection-start-column="1" selection-end-line="81" selection-end-column="1" />
+              <caret line="81" column="1" selection-start-line="81" selection-start-column="1" selection-end-line="81" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minesweeper/Player.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
@@ -132,7 +128,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minesweeper/Square.java">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -193,18 +189,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="minesweeper" type="1abcf292:AndroidViewProjectNode" />
-              <item name="minesweeper" type="e9137016:NonAndroidModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -217,22 +201,22 @@
               <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
             <path>
-              <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
-              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="CustomSequences" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
-              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
+              <item name="minesweeper" type="1abcf292:AndroidViewProjectNode" />
+              <item name="minesweeper" type="e9137016:NonAndroidModuleNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -313,16 +297,17 @@
       <workItem from="1540763819669" duration="187000" />
       <workItem from="1540826714593" duration="454000" />
       <workItem from="1540828556615" duration="279000" />
+      <workItem from="1540831200197" duration="29000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1258000" />
+    <option name="totallyTimeSpent" value="1287000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26928896" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2730711" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Designer" order="3" />
@@ -421,7 +406,7 @@
     <entry file="file://$PROJECT_DIR$/src/BaseAlphabit/Converter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -435,13 +420,13 @@
     <entry file="file://$PROJECT_DIR$/src/CustomSequences/SurroundingMines2DArray.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
-          <caret line="61" column="16" lean-forward="true" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
+          <caret line="61" column="16" selection-start-line="61" selection-start-column="16" selection-end-line="61" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minesweeper/ConsoleGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-782">
+        <state relative-caret-position="51">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
@@ -449,14 +434,7 @@
     <entry file="file://$PROJECT_DIR$/src/minesweeper/ConsolePlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1309">
-          <caret line="81" column="1" lean-forward="true" selection-start-line="81" selection-start-column="1" selection-end-line="81" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <caret line="81" column="1" selection-start-line="81" selection-start-column="1" selection-end-line="81" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -473,6 +451,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minesweeper/Square.java">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minesweeper/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">

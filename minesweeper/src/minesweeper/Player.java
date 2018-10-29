@@ -1,14 +1,6 @@
 package minesweeper;
 
 public abstract class Player {
-    public String getName() {
-        return name;
-    }
-
-    public int getCurrentScore() {
-        return currentScore;
-    }
-
     private String name;
     private int currentScore;
 
@@ -17,5 +9,10 @@ public abstract class Player {
         currentScore=_currentScore;
     }
 
+    // Implemented In each Kind Of Players Like Console Or GUI Player
     abstract PlayerMove GetPlayerMove();
+
+    public String getName() {
+        return name;
+    }
 }

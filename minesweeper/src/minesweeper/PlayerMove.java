@@ -2,12 +2,8 @@ package minesweeper;
 
 enum MoveType{Reveal,Mark}
 public class PlayerMove {
+
     private Player player;
-
-    public void setSquare(Square square) {
-        this.square = square;
-    }
-
     private Square square;
     private MoveType type;
     private MoveResult result;
@@ -18,19 +14,21 @@ public class PlayerMove {
         this.type=_type;
         this.result=_result;
     }
+    //setter
+    public void setSquare(Square square) {
+        this.square = square;
+    }
 
+    //getter
     public Square getSquare() {
         return square;
     }
-
     public MoveType getType() {
         return type;
     }
-
     public Player getPlayer() {
         return player;
     }
-
     public MoveResult getResult() {
         return result;
     }

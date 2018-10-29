@@ -54,13 +54,6 @@ public class SurroundingMines2DArray {
     
     //Calcuate Number of surrounding mines in each square in th field
     private void CalculateNOSM() {
-        for(int i=1;i<height;i++){
-            for(int j=1;j<width;j++){
-                System.out.print(mines.arr[i][j]?1:0);
-            }
-            System.out.println();
-        }
-        System.out.println();
         for (int i=1;i<height;i++) {
             for (int j = 1;j < width; j++) {
                 //here we are in each square

@@ -25,15 +25,6 @@ public class Minesweeper {
 
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println("Hello guys Engo using git with me ");
-        System.out.println("am here guys (V)_(V)");
-        System.out.println("Da");
-        /*
-        ---- for testing class player :3
-        Player p1=new ConsolePlayer("flan",0);
-        p1.GetPlayerMove();
-        */
-
        List<Player> Players=new ArrayList<Player>();
        Players.add(ConstPlayer);
        Game ConstGame=new ConsoleGame(ConstWidth,ConstHeight,ConstMines,Players);

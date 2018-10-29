@@ -41,9 +41,9 @@ public class ConsoleGame extends NormalGame {
         Square[][] feild=this.grid.getField();
         for(int i=1;i<this.grid.getHeight();i++){
             System.out.println();
-            System.out.print(" "+i+"  ");
-            if(i<=9) System.out.print(" ");
-            for (int j=1;j<this.grid.getWidth();j++){
+           String number = ConsoleGame.fixedLengthString(String.valueOf(i), 2);
+           System.out.print(number);
+                     for (int j=1;j<this.grid.getWidth();j++){
                 switch (feild[i][j].status){
                     case Closed:
                         System.out.print("O ");
@@ -79,6 +79,9 @@ public class ConsoleGame extends NormalGame {
         UpdateVeiw();
         System.out.println("Shame On You!! \n Game Over\n");
     }
+        public static String fixedLengthString(String string, int length) {
+    return String.format("%1$"+length+ "s  ", string);
+}
 
     // That Function for Debug
     private void PrintGrid() {

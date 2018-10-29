@@ -8,6 +8,8 @@ package minesweeper;
 import java.util.ArrayList;
 import java.util.List;
 
+import CustomSequences.SurroundingMines2DArray;
+
 /**
  *
  * @author Omar
@@ -17,34 +19,26 @@ enum GameStatus{
 }
 public abstract class Game {
 
-    class GameRules{
+    class GameRules{//inner Class
         public int GetScoreChange(ArrayList moves){
             return 0;
         }
-
         public Player DecideNextPlayer(ArrayList moves)
         {
             return null;
         }
     }
+    Player currentPlayer;
+    Grid grid;
+    GameStatus status;
+
     private List<Player> players=new ArrayList<Player>();
-    private Player currentPlayer;
     private ArrayList moves;
     private GameRules currentRules;
-    protected Grid grid;
 
-    public GameStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(GameStatus status) {
-        this.status = status;
-    }
-
-    private GameStatus status;
     public void initGame(int width,int height,int minesCount){
         currentPlayer = (Player)players.get(0);
-        this.status=GameStatus.Running;// need to change to begin game
+        this.status=GameStatus.Running;// need to change to New Start game
         grid = new Grid(width,height,minesCount);
     }
     public void StartGame(){
@@ -52,34 +46,9 @@ public abstract class Game {
         GetMove();
     }
 
-    protected abstract void UpdateVeiw();
-
-    ;
-    public void GetMove(){
-        PlayerMove move = currentPlayer.GetPlayerMove();
-        System.out.println("x= "+move.getSquare().getX()+"\ny= "+move.getSquare().getY());
-        if(AcceptMove(move)){
-            ApplyPlayerMove(move);
-            if(this.status==GameStatus.Win){
-                Win();
-            }
-            else if(this.status==GameStatus.Lose){
-                Lose();
-            }
-            else{
-                UpdateVeiw();
-                GetMove();
-            }
-        }
-    }
-
-    protected abstract void Lose();
-
-    protected abstract void Win();
-
-    public boolean AcceptMove(PlayerMove move){// x Rows Y columns
+    boolean AcceptMove(PlayerMove move){// x Rows Y columns
         Square s = move.getSquare();
-        if(s.getX() <= grid.getHeight() && s.getY() <= grid.getWidth())
+        if(SurroundingMines2DArray.CheckIndex(s.getX(),s.getY()))
         {
             if(s.status == SquareStatus.Closed)
             {
@@ -91,10 +60,26 @@ public abstract class Game {
             }
         }
         return false;
-    };
-    public void ApplyPlayerMove(PlayerMove move){};
-    public void AddPlayer(Player player)
+    }
+
+
+    //This func Implement in each kind of game Like Console Or GUI...
+    abstract void GetMove();
+    abstract void Lose();
+    abstract void Win();
+    abstract void UpdateVeiw();
+
+    // This Func Is implement in Normal Game Class Or any class That Extend This Class Immedialtly
+    abstract void ApplyPlayerMove(PlayerMove move);
+
+    void AddPlayer(Player player)
     {
         players.add(player);
+    }
+    void setStatus(GameStatus status) {
+        this.status = status;
+    }
+    public GameStatus getStatus() {
+        return status;
     }
 }

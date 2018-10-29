@@ -1,4 +1,5 @@
 package minesweeper;
+
 import CustomSequences.MinesCoor2DArray;
 import CustomSequences.SurroundingMines2DArray;
 import java.util.LinkedList;
@@ -15,6 +16,7 @@ public class Grid {
 
     // <__ CONSTRUCTERS __> \\
     public Grid(int width,int height,int minesNumber) {
+        // +1 because Number Start From 1
         this.width=width+1;
         this.height=height+1;
         this.minesCount = minesNumber;
@@ -36,7 +38,7 @@ public class Grid {
             }
         }
     }
-        
+
     public void AcceptMove(PlayerMove move) {
         move.setSquare(field[move.getSquare().getX()][move.getSquare().getY()]);
         if(move.getType()==MoveType.Mark){
@@ -55,33 +57,34 @@ public class Grid {
         }
     }
     private void floodFill(PlayerMove move) {
-        Queue<PlayerMove> Q=new LinkedList<PlayerMove>();
+        Queue<PlayerMove> Q = new LinkedList<PlayerMove>();
         Q.add(move);
-        while(!Q.isEmpty()){
-            PlayerMove curMove=Q.poll();
-            Square curScuare=curMove.getSquare();
-            curScuare.ChangeStatus(curMove.getPlayer(), MoveType.Reveal);
-            if(curMove.getSquare().getNumberOfSurroundedMines()!=0)continue;
-            for(int i=curScuare.getX()-1;i<=curScuare.getX()+1;i++){
-                for(int j=curScuare.getY()-1;j<=curScuare.getY()+1;j++){
-                    if(!SurroundingMines2DArray.CheckIndex(i,j))continue;;
-                    Square toScuare=field[i][j];
-                    if(toScuare.getStatus()==SquareStatus.Closed && !toScuare.isMine()){
-                        ((LinkedList<PlayerMove>) Q).add(new PlayerMove(move.getPlayer(),toScuare,MoveType.Reveal,new MoveResult()));
+        while (!Q.isEmpty()) {
+            PlayerMove CurrentMove = Q.poll();
+            Square CurrentSquare = CurrentMove.getSquare();
+
+            //Open The Square
+            CurrentSquare.ChangeStatus(CurrentMove.getPlayer(), MoveType.Reveal);
+
+            // Check The Surrounded Square To flood fill
+            for (int i = CurrentSquare.getX() - 1; i <= CurrentSquare.getX() + 1; i++) {
+                for (int j = CurrentSquare.getY() - 1; j <= CurrentSquare.getY() + 1; j++) {
+                    // in case Out Of Grid
+                    if (!SurroundingMines2DArray.CheckIndex(i, j)) continue;
+
+                    Square toScuare = field[i][j];
+                    if (toScuare.getStatus() == SquareStatus.Closed && !toScuare.isMine()
+                       && (CurrentMove.getSquare().getNumberOfSurroundedMines() == 0)) {
+                        ((LinkedList<PlayerMove>) Q).add(new PlayerMove(move.getPlayer(), toScuare, MoveType.Reveal, new MoveResult()));
                     }
                 }
             }
         }
     }
-    // <__ SETTERS-GETTERS __> \\
-    //Getters
+
+ //Getters
+    public int getMinesCount() { return minesCount; }
     public int getWidth(){return this.width;}
     public int getHeight(){return this.height;}
-    public int getMinesCount() {
-        return minesCount;
-    }
     public Square[][] getField() { return this.field;}
-
-
-
 }

@@ -14,7 +14,11 @@ public class Square {
     private ArrayList playersMoves;
     SquareStatus status;
 
+<<<<<<< HEAD
+    // <__ CONSTRUCTOR __> \\
+=======
     // <__ CONSTRUCTER __> \\
+>>>>>>> 558f50464b994835ad819fb8d3c9b4816051c794
     public Square(int x, int y,Boolean hasMine,int NOSM) {
         this.x = x;
         this.y = y;
@@ -24,7 +28,10 @@ public class Square {
         this.NumberOfSurroundedMines = NOSM;
         
     }
+<<<<<<< HEAD
+=======
     // <__ METHODS __> \\
+>>>>>>> 558f50464b994835ad819fb8d3c9b4816051c794
     public void ChangeStatus(Player PlayerWhoMadeTheMove,MoveType Type) { 
         playersMoves.add(PlayerWhoMadeTheMove);
         switch (Type) { 
@@ -36,12 +43,20 @@ public class Square {
                 break;
         }
     }
-     
+    public Boolean isMine() {
+        return mine == null ? false : true;
+    }
     // Getters
     public int getNumberOfSurroundedMines() { return this.NumberOfSurroundedMines;}
     public int getX() { return this.x;}
     public int getY() { return this.y;}
+<<<<<<< HEAD
+    public SquareStatus getStatus() {
+        return status;
+    }
+=======
     public Boolean isMine() { return mine == null ? false : true; }
     public SquareStatus getStatus() { return status; }
 
+>>>>>>> 558f50464b994835ad819fb8d3c9b4816051c794
 }

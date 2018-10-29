@@ -1,20 +1,24 @@
 package BaseAlphabit;
 
 public class Converter {
-    public static int valueOf(String alphaNum) {// get integer value of number in alphabet base number...
-        int ret=0;
+    // get Integer Value Of Alphabet Numer
+    public static int valueOf(String alphaNum) {
+        int IntegerValue=0;
         for(int i=0;i<alphaNum.length();i++){
-            ret=ret*26+(Integer.valueOf(alphaNum.charAt(i))-(int)'A'+1);
+            IntegerValue=IntegerValue*26+(Integer.valueOf(alphaNum.charAt(i))-(int)'A'+1);
         }
-        return ret;
+        return IntegerValue;
     }
-    public static String valueOf(int num) {// get integer value of number in alphabet base number...
-        if(num==0)return "A";
-        String ret="";
+    // get Alphabet Value Of Integer Number
+    public static String valueOf(int num) {
+        if(num==0)
+            return "A";
+        String AlphaBetValue="";
         while(num!=0){
-            ret+=(char)('A' + (num%26));
+            AlphaBetValue+=(char)('A' + (num%26));
             num/=26;
         }
-        return ret;
+        // AlphabetValue need To revers (:V)
+        return AlphaBetValue;
     }
 }

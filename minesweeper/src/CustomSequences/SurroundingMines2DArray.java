@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class SurroundingMines2DArray {
     public int[][] arr;
     MinesCoor2DArray mines;
-    static public int width,height;
+    public static int width,height;
     
     // <__ CONSTRUCTERS __> \\
     // Constructer initializr the field with 0
@@ -54,20 +54,13 @@ public class SurroundingMines2DArray {
     
     //Calcuate Number of surrounding mines in each square in th field
     private void CalculateNOSM() {
-        for(int i=1;i<height;i++){
-            for(int j=1;j<width;j++){
-                System.out.print(mines.arr[i][j]?1:0);
-            }
-            System.out.println();
-        }
-        System.out.println();
-        for (int i=1;i<height;i++) {
+          for (int i=1;i<height;i++) {
             for (int j = 1;j < width; j++) {
                 //here we are in each square
                 //for each square we will go to the surrounding squares and calculate number of mines in each one
                 //Then we sum the result and put it in this square;
-                
-                for (int x = i - 1;x <= i + 1;x++) { 
+
+                for (int x = i - 1;x <= i + 1;x++) {
                     for (int y = j - 1;y <= j + 1;y++) {
                         if (CheckIndex(x, y) && mines.arr[x][y]) {
                             arr[i][j]++;

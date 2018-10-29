@@ -3,6 +3,7 @@ package minesweeper;
 import BaseAlphabit.Converter;
 
 import java.util.Scanner;
+
 public class ConsolePlayer extends Player {
     private static Scanner in = new Scanner(System.in);
     public ConsolePlayer(String _name, int _currentScore) {

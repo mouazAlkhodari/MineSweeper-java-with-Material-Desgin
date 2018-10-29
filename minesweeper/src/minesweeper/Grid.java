@@ -1,35 +1,27 @@
 package minesweeper;
 import CustomSequences.MinesCoor2DArray;
 import CustomSequences.SurroundingMines2DArray;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Random;
 
 public class Grid {
+    // <__ DATA MEMBERS __> \\
     private int width;
     private int height;
-
-    public int getMinesCount() {
-        return minesCount;
-    }
-
     private int minesCount;
     private Square[][] field;
     private Mine[] mines;
     private Game CurrentGame;
 
+    // <__ CONSTRUCTERS __> \\
     public Grid(int width,int height,int minesNumber) {
         this.width=width+1;
         this.height=height+1;
         this.minesCount = minesNumber;
         InitGrid();
     }
-    public int getWidth(){return this.width;}
-    public int getHeight(){return this.height;}
 
-    public Square[][] getField() { return this.field;}
-
+    // <__ METHODS __> \\
     public void InitGrid() {
         field = new Square[height][width];
         //to generate random coordinates for mines
@@ -81,6 +73,15 @@ public class Grid {
             }
         }
     }
+    // <__ SETTERS-GETTERS __> \\
+    //Getters
+    public int getWidth(){return this.width;}
+    public int getHeight(){return this.height;}
+    public int getMinesCount() {
+        return minesCount;
+    }
+    public Square[][] getField() { return this.field;}
+
 
 
 }

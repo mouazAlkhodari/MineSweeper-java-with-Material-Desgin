@@ -36,6 +36,7 @@ public class Square {
                 break;
         }
     }
+    // <__ SETTERS-GETTERS __> \\
     // Getters
     public int getNumberOfSurroundedMines() { return this.NumberOfSurroundedMines;}
     public int getX() { return this.x;}

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package minesweeper;
-import BaseAlphabit.Converter;
 
 import java.util.ArrayList;
 import java.util.List;

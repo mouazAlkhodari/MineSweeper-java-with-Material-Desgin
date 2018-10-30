@@ -45,6 +45,7 @@ public class Grid {
             move.getSquare().ChangeStatus(move.getPlayer(), MoveType.Mark);
         }
         else{
+            if(move.getSquare().getStatus()==SquareStatus.Marked)return;
             if(move.getSquare().isMine()){
                 move.getSquare().ChangeStatus(move.getPlayer(),MoveType.Reveal);
             }

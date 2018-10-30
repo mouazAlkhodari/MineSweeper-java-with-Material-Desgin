@@ -33,7 +33,7 @@ public class ConsoleGame extends NormalGame {
     protected void UpdateVeiw() {
         //PrintGrid();
         //print in One row number Of each Column In Grid
-        System.out.print("   ");
+        System.out.print("    ");
         for(int i=0;i+1<this.grid.getWidth();i++){
             System.out.print(" "+Converter.valueOf(i));
         }
@@ -41,8 +41,9 @@ public class ConsoleGame extends NormalGame {
         Square[][] feild=this.grid.getField();
         for(int i=1;i<this.grid.getHeight();i++){
             System.out.println();
-            System.out.print(" "+i+"  ");
-            for (int j=1;j<this.grid.getWidth();j++){
+           String number = ConsoleGame.fixedLengthString(String.valueOf(i), 2);
+           System.out.print(number);
+                     for (int j=1;j<this.grid.getWidth();j++){
                 switch (feild[i][j].status){
                     case Closed:
                         System.out.print("O ");
@@ -63,6 +64,7 @@ public class ConsoleGame extends NormalGame {
             }
         }
         System.out.println();
+
     }
 
     // In Win and Lose Func
@@ -75,8 +77,11 @@ public class ConsoleGame extends NormalGame {
     @Override
     protected void Lose() {
         UpdateVeiw();
-        System.out.println("Same On You!! \n Game Orver\n");
+        System.out.println("Shame On You!! \n Game Over\n");
     }
+        public static String fixedLengthString(String string, int length) {
+    return String.format("%1$"+length+ "s  ", string);
+}
 
     // That Function for Debug
     private void PrintGrid() {

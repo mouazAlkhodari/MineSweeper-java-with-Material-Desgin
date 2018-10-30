@@ -65,12 +65,10 @@ public class Grid {
             //but if its empty then we will start iterating over the sudrrounded squares and open them if the dont contain mines
             //note that each empty square that opened will be added to the queue so it will also open the surrounding squares of it
 
-
-
             for (int i = CurrentSquare.getX() - 1; i <= CurrentSquare.getX() + 1; i++) {
                 for (int j = CurrentSquare.getY() - 1; j <= CurrentSquare.getY() + 1; j++) {
                     // in case Out Of Grid
-                     if (!SurroundingMines2DArray.CheckIndex(i, j, width, height)) continue;
+                    if (!SurroundingMines2DArray.CheckIndex(i, j, width, height)) continue;
 
                     Square SurroundedSquare = field[i][j];
                     //Checking if Square is closed and has no surrounded mines then we will open it
@@ -79,10 +77,9 @@ public class Grid {
                     }
                 }
             }
-
-
         }
     }
+
     //Getters
     public int getMinesCount() { return minesCount; }
     public int getWidth(){return this.width;}

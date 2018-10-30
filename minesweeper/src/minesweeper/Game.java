@@ -50,7 +50,7 @@ public abstract class Game {
     }
     boolean AcceptMove(PlayerMove move){// x Rows Y columns
         Square s = move.getSquare();
-        if(SurroundingMines2DArray.CheckIndex(s.getX(),s.getY()))
+        if(SurroundingMines2DArray.CheckIndex(s.getX(),s.getY(),grid.getWidth(),grid.getHeight()))
         {
             if(s.status == SquareStatus.Closed)
             {

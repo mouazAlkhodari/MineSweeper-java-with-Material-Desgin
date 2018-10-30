@@ -19,7 +19,8 @@ enum GameStatus{
 }
 public abstract class Game {
 
-    class GameRules{//inner Class
+    // <__ INNER CLASS __> \\
+    class GameRules{
         public int GetScoreChange(ArrayList moves){
             return 0;
         }
@@ -28,14 +29,16 @@ public abstract class Game {
             return null;
         }
     }
+
+    // <__ DATA MEMBERS __> \\
     Player currentPlayer;
     Grid grid;
     GameStatus status;
-
     private List<Player> players=new ArrayList<Player>();
     private ArrayList moves;
     private GameRules currentRules;
 
+    // <__ METHODS __> \\
     public void initGame(int width,int height,int minesCount){
         currentPlayer = (Player)players.get(0);
         this.status=GameStatus.Running;// need to change to New Start game
@@ -45,7 +48,6 @@ public abstract class Game {
         UpdateVeiw();
         GetMove();
     }
-
     boolean AcceptMove(PlayerMove move){// x Rows Y columns
         Square s = move.getSquare();
         if(SurroundingMines2DArray.CheckIndex(s.getX(),s.getY()))
@@ -61,6 +63,20 @@ public abstract class Game {
         }
         return false;
     }
+    void AddPlayer(Player player)
+    {
+        players.add(player);
+    }
+
+    // <__ SETTERS-GETTERS __> \\
+    //Setters
+    void setStatus(GameStatus status) {
+        this.status = status;
+    }
+    //Getters
+    public GameStatus getStatus() {
+        return status;
+    }
 
 
     //This func Implement in each kind of game Like Console Or GUI...
@@ -72,14 +88,5 @@ public abstract class Game {
     // This Func Is implement in Normal Game Class Or any class That Extend This Class Immedialtly
     abstract void ApplyPlayerMove(PlayerMove move);
 
-    void AddPlayer(Player player)
-    {
-        players.add(player);
-    }
-    void setStatus(GameStatus status) {
-        this.status = status;
-    }
-    public GameStatus getStatus() {
-        return status;
-    }
+
 }

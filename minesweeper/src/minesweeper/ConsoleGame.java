@@ -69,19 +69,22 @@ public class ConsoleGame extends NormalGame {
         System.out.println();
 
     }
-
-    // In Win and Lose Func
-    // Some Thing Will Change In case Of Multi Player
     @Override
     protected void EndGame() {
         UpdateVeiw();
-        System.out.println("You catch all Mines and win the game!!\n");
-    }
-    public static String fixedLengthString(String string, int length) {
-        return String.format("%1$"+length+ "s  ", string);
+        System.out.println("scores:");
+        Player winner=players.get(0);
+        for(int i=0;i<players.size();i++) {
+            System.out.println(players.get(i).getName() + ": "+players.get(i).getCurrentScore());
+            if(players.get(i).getCurrentScore()>winner.getCurrentScore()){
+                winner=players.get(i);
+            }
+        }
+        winner.setCurrentStatus(PlayerStatus.win);
+        System.out.println("The Winner Of The Game is: " + winner.getName()+" Congradulation!!");
     }
 
-    // That Function for Debug
+    // This Function for Debug
     private void PrintGrid() {
         System.out.print("   ");
         for(int i=0;i+1<this.grid.getWidth();i++){
@@ -99,6 +102,9 @@ public class ConsoleGame extends NormalGame {
             }
         }
         System.out.println();
+    }
+    public static String fixedLengthString(String string, int length) {
+        return String.format("%1$"+length+ "s  ", string);
     }
 
 }

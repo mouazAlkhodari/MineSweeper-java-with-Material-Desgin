@@ -3,6 +3,7 @@ package minesweeper;
 import java.util.ArrayList;
 
 public abstract class NormalGame extends Game{
+
     class DefaultRules extends GameRules{ // inner Class
         public int GetScoreChange(ArrayList moves){
             return 0;

@@ -17,9 +17,9 @@ import CustomSequences.SurroundingMines2DArray;
 enum GameStatus{
     Win,Lose,Running
 }
-public abstract class Game {
 
-    // <__ INNER CLASS __> \\
+public abstract class Game {
+      // <__ INNER CLASS __> \\
     class GameRules{
         public int GetScoreChange(ArrayList moves){
             return 0;

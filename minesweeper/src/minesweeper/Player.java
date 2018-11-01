@@ -1,5 +1,7 @@
 package minesweeper;
-
+enum PlayerStatus{
+    Activ,Lose,win
+}
 public abstract class Player {
 
     private String name;

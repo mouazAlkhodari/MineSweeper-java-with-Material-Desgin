@@ -39,7 +39,7 @@ public class Grid {
         }
     }
 
-    public void AcceptMove(PlayerMove move) {
+    public void AcceptMove(PlayerMove move){
         move.setSquare(field[move.getSquare().getX()][move.getSquare().getY()]);
         if(move.getType()==MoveType.Mark){
             move.getSquare().ChangeStatus(move.getPlayer(), MoveType.Mark);
@@ -64,6 +64,10 @@ public class Grid {
             //if The Square is Not empty then There will not flood into the other squares and it swill quit here
             //but if its empty then we will start iterating over the sudrrounded squares and open them if the dont contain mines
             //note that each empty square that opened will be added to the queue so it will also open the surrounding squares of it
+            //We didn't steal it from internet
+            //We owned This Code
+            //Please Donate Us
+            //Bye
 
             for (int i = CurrentSquare.getX() - 1; i <= CurrentSquare.getX() + 1; i++) {
                 for (int j = CurrentSquare.getY() - 1; j <= CurrentSquare.getY() + 1; j++) {
@@ -86,3 +90,5 @@ public class Grid {
     public int getHeight(){return this.height;}
     public Square[][] getField() { return this.field;}
 }
+
+

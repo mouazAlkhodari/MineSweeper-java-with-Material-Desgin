@@ -42,8 +42,8 @@ public class Grid {
         }
     }
 
-    public List<PlayerMove> AcceptMove(PlayerMove move){
-        List<PlayerMove> PlayerMoves=new ArrayList<PlayerMove>();
+    public ArrayList<PlayerMove> AcceptMove(PlayerMove move){
+        ArrayList<PlayerMove> PlayerMoves=new ArrayList<PlayerMove>();
         move.setSquare(field[move.getSquare().getX()][move.getSquare().getY()]);
         if(move.getType()==MoveType.Mark){
             move.getSquare().ChangeStatus(move.getPlayer(), MoveType.Mark);
@@ -54,9 +54,9 @@ public class Grid {
         }
         return PlayerMoves;
     }
-    private List<PlayerMove> floodFill(PlayerMove move) {
+    private ArrayList<PlayerMove> floodFill(PlayerMove move) {
         //Adding Square
-        List<PlayerMove> PlayerMoves=new ArrayList<PlayerMove>();
+        ArrayList<PlayerMove> PlayerMoves=new ArrayList<PlayerMove>();
         Queue<PlayerMove> Q = new LinkedList<PlayerMove>();
         Q.add(move);
 

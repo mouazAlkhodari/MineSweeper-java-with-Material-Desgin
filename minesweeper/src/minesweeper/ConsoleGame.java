@@ -36,11 +36,11 @@ public class ConsoleGame extends NormalGame {
     protected void UpdateVeiw() {
         //PrintGrid();
         //print in One row number Of each Column In Grid
-        System.out.print("    ");
+        System.out.print("   ");
         for(int i=0;i+1<this.grid.getWidth();i++){
             System.out.print(" "+Converter.valueOf(i));
         }
-        System.out.println();
+       // System.out.println();
         Square[][] feild=this.grid.getField();
         for(int i=1;i<this.grid.getHeight();i++){
             System.out.println();
@@ -83,6 +83,9 @@ public class ConsoleGame extends NormalGame {
         winner.setCurrentStatus(PlayerStatus.win);
         System.out.println("The Winner Of The Game is: " + winner.getName()+" Congradulation!!");
     }
+    public static String fixedLengthString(String string, int length) {
+    return String.format("%1$"+length+ "s  ", string);
+}
 
     // This Function for Debug
     private void PrintGrid() {

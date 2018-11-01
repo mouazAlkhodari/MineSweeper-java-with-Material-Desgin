@@ -30,10 +30,6 @@ public abstract class NormalGame extends Game{
             return 0;
         }
         Player DecideNextPlayer(ArrayList moves){
-            System.out.println("assadasd");
-            System.out.println("assadasd"g);
-            System.out.println("assadasd");
-            return null;
         }
     }
     GameRules currentRules;

@@ -1,11 +1,21 @@
 package minesweeper;
 enum PlayerStatus{
-    Activ,Lose,win
+    Playing,waiting,Lose,win
 }
 public abstract class Player {
 
     private String name;
     private int currentScore;
+
+    public void setCurrentStatus(PlayerStatus currentStatus) {
+        this.currentStatus = currentStatus;
+    }
+
+    public PlayerStatus getCurrentStatus() {
+        return currentStatus;
+    }
+
+    private PlayerStatus currentStatus;
 
     // <__ CONSTRUCTER __> \\
     public Player(String _name,int _currentScore){

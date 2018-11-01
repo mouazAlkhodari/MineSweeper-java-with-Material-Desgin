@@ -2,7 +2,10 @@ package minesweeper;
 
 import CustomSequences.MinesCoor2DArray;
 import CustomSequences.SurroundingMines2DArray;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class Grid {
@@ -39,23 +42,28 @@ public class Grid {
         }
     }
 
-    public void AcceptMove(PlayerMove move){
+    public List<PlayerMove> AcceptMove(PlayerMove move){
+        List<PlayerMove> PlayerMoves=new ArrayList<PlayerMove>();
         move.setSquare(field[move.getSquare().getX()][move.getSquare().getY()]);
         if(move.getType()==MoveType.Mark){
             move.getSquare().ChangeStatus(move.getPlayer(), MoveType.Mark);
+            PlayerMoves.add(move);
         }
         else{
-            this.floodFill(move);
+            PlayerMoves=this.floodFill(move);
         }
+        return PlayerMoves;
     }
-    private void floodFill(PlayerMove move) {
+    private List<PlayerMove> floodFill(PlayerMove move) {
         //Adding Square
+        List<PlayerMove> PlayerMoves=new ArrayList<PlayerMove>();
         Queue<PlayerMove> Q = new LinkedList<PlayerMove>();
         Q.add(move);
 
         while (!Q.isEmpty()) {
             //Pulling The last move added to queue
             PlayerMove CurrentMove = Q.poll();
+            PlayerMoves.add(CurrentMove);
             Square CurrentSquare = CurrentMove.getSquare();
             //Open The Square
             CurrentSquare.ChangeStatus(CurrentMove.getPlayer(), MoveType.Reveal);
@@ -82,6 +90,7 @@ public class Grid {
                 }
             }
         }
+        return PlayerMoves;
     }
 
     //Getters

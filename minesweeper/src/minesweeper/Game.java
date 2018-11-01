@@ -22,8 +22,8 @@ public abstract class Game {
 
     // <__ INNER CLASS __> \\
     abstract class GameRules{
-        public abstract int GetScoreChange(ArrayList moves);
-        public abstract Player DecideNextPlayer(ArrayList moves);
+        abstract int GetScoreChange(ArrayList moves);
+        abstract Player DecideNextPlayer(ArrayList moves);
     }
 
     // <__ DATA MEMBERS __> \\
@@ -74,8 +74,7 @@ public abstract class Game {
     //This func Implement in each kind of game Like Console Or GUI...
     public abstract void StartGame();
     abstract void GetMove();
-    abstract void Lose();
-    abstract void Win();
+    abstract void EndGame();
     abstract void UpdateVeiw();
 
     // This Func Is implement in Normal Game Class Or any class That Extend This Class Immedialtly

@@ -24,11 +24,8 @@ public class ConsoleGame extends NormalGame {
         if(AcceptMove(move))
             ApplyPlayerMove(move);
         // need else some thing wrong input Or Some Thing Like that :3
-        if(this.status==GameStatus.Win){
-            Win();
-        }
-        else if(this.status==GameStatus.Lose){
-            Lose();
+        if(this.status==GameStatus.Finish){
+            EndGame();
         }
         else{
             UpdateVeiw();
@@ -76,14 +73,9 @@ public class ConsoleGame extends NormalGame {
     // In Win and Lose Func
     // Some Thing Will Change In case Of Multi Player
     @Override
-    protected void Win() {
+    protected void EndGame() {
         UpdateVeiw();
         System.out.println("You catch all Mines and win the game!!\n");
-    }
-    @Override
-    protected void Lose() {
-        UpdateVeiw();
-        System.out.println("Shame On You!! \n Game Over\n");
     }
     public static String fixedLengthString(String string, int length) {
         return String.format("%1$"+length+ "s  ", string);

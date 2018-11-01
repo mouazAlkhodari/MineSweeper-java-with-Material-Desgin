@@ -5,28 +5,8 @@ import java.util.List;
 
 public abstract class NormalGame extends Game{
 
-    abstract class DefaultRules extends GameRules{ // inner Class
+    class DefaultRules extends GameRules{ // inner Class
         int GetScoreChange(ArrayList moves){
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
-            System.out.println("SDGhgfsfgdff");
             return 0;
         }
         Player DecideNextPlayer(ArrayList moves){

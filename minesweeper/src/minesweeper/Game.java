@@ -22,7 +22,7 @@ public abstract class Game {
 
     // <__ INNER CLASS __> \\
     abstract class GameRules{
-        abstract int GetScoreChange(ArrayList moves);
+        abstract int GetScoreChange(ArrayList<PlayerMove> moves);
         abstract Player DecideNextPlayer(ArrayList moves);
     }
 

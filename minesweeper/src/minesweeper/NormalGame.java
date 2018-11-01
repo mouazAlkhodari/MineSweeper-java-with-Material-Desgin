@@ -1,6 +1,7 @@
 package minesweeper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class NormalGame extends Game{
     class DefaultRules extends GameRules{
@@ -11,12 +12,12 @@ public abstract class NormalGame extends Game{
             PressMineBehavior = WhenHitMine.Lose;
             GamePoints = new Points();
         }
-        void ChangePlayerStatus(ArrayList<PlayerMove> moves) {
+        void ChangePlayerStatus(List<PlayerMove> moves) {
             if(moves.get(0).getSquare().getStatus()== SquareStatus.OpenedMine)
                 if (PressMineBehavior == WhenHitMine.Lose || (PressMineBehavior == WhenHitMine.Continue && currentPlayer.getCurrentScore() < 0))
                     currentPlayer.setCurrentStatus(PlayerStatus.Lose);
         }
-        int GetScoreChange(ArrayList<PlayerMove> moves){
+        int GetScoreChange(List<PlayerMove> moves){
             if (moves.size() == 1) {
                 PlayerMove move = moves.get(0);
                 switch (move.getSquare().getStatus()) {
@@ -35,7 +36,9 @@ public abstract class NormalGame extends Game{
             //In this case .. More than one sqaure revealed so >>
             return GamePoints.RevealEmpty + GamePoints.RevealFloodFill * (moves.size() - 1);
         }
-        Player DecideNextPlayer(ArrayList moves){
+
+        @Override
+        Player DecideNextPlayer(List<PlayerMove> moves){
             int indOfcurrentPlayer=players.lastIndexOf(currentPlayer);
             for(int i=0;i<players.size();i++){
                 indOfcurrentPlayer=(indOfcurrentPlayer+1)%players.size();

@@ -42,8 +42,8 @@ public abstract class Game {
     }
     // <__ INNER CLASS __> \\
     abstract class GameRules{
-        abstract int GetScoreChange(ArrayList<PlayerMove> moves);
-        abstract Player DecideNextPlayer(ArrayList moves);
+        abstract int GetScoreChange(List<PlayerMove> moves);
+        abstract Player DecideNextPlayer(List<PlayerMove> moves);
     }
 
     // <__ DATA MEMBERS __> \\
@@ -51,8 +51,8 @@ public abstract class Game {
     Grid grid;
     GameStatus status;
     GameRules currentRules;
-    ArrayList<Player> players=new ArrayList<Player>();
-    ArrayList<PlayerMove> moves=new ArrayList<PlayerMove>();
+    List<Player> players=new ArrayList<Player>();
+    List<PlayerMove> moves=new ArrayList<PlayerMove>();
 
 
     // <__ METHODS __> \\

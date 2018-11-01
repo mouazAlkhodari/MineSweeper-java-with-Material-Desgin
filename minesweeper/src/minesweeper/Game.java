@@ -30,9 +30,10 @@ public abstract class Game {
     Player currentPlayer;
     Grid grid;
     GameStatus status;
-    private List<Player> players=new ArrayList<Player>();
-    private ArrayList moves;
-    private GameRules currentRules;
+    GameRules currentRules;
+    ArrayList<Player> players=new ArrayList<Player>();
+    ArrayList<PlayerMove> moves=new ArrayList<PlayerMove>();
+
 
     // <__ METHODS __> \\
     public void initGame(int width,int height,int minesCount){

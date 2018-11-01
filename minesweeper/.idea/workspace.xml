@@ -138,24 +138,14 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-<<<<<<< HEAD
-        <entry file="file://$PROJECT_DIR$/src/minesweeper/ConsoleGame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
-=======
         <entry file="file://$PROJECT_DIR$/src/minesweeper/PlayerMove.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
               <caret line="30" column="18" lean-forward="true" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
->>>>>>> dd73a2623319e205578c31320d4e1f5fc098d575
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-      <file pinned="false" current-in-tab="true">
-=======
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minesweeper/Square.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -175,7 +165,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
->>>>>>> dd73a2623319e205578c31320d4e1f5fc098d575
         <entry file="file://$PROJECT_DIR$/src/minesweeper/Grid.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
@@ -221,15 +210,7 @@
         <option value="$PROJECT_DIR$/src/minesweeper/ConsolePlayer.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/Minesweeper.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/Minesweeper.java" />
-<<<<<<< HEAD
-        <option value="$PROJECT_DIR$/src/minesweeper/Grid.java" />
-        <option value="$PROJECT_DIR$/src/minesweeper/Grid.java" />
-        <option value="$PROJECT_DIR$/src/minesweeper/NormalGame.java" />
-        <option value="$PROJECT_DIR$/src/minesweeper/Game.java" />
-        <option value="$PROJECT_DIR$/src/minesweeper/Game.java" />
-=======
         <option value="$PROJECT_DIR$/src/minesweeper/Player.java" />
->>>>>>> dd73a2623319e205578c31320d4e1f5fc098d575
         <option value="$PROJECT_DIR$/src/minesweeper/Grid.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/Grid.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/ConsoleGame.java" />
@@ -293,13 +274,10 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
               <item name="Square.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
-<<<<<<< HEAD
-=======
             </path>
             <path>
               <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
->>>>>>> dd73a2623319e205578c31320d4e1f5fc098d575
             </path>
           </expand>
           <select />
@@ -398,11 +376,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-<<<<<<< HEAD
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49028078" visible="true" weight="0.27987897" />
-=======
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49028078" visible="true" weight="0.15733737" />
->>>>>>> dd73a2623319e205578c31320d4e1f5fc098d575
       <window_info id="Structure" order="1" sideWeight="0.5097192" side_tool="true" weight="0.2677761" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Designer" order="3" />
@@ -418,11 +392,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-<<<<<<< HEAD
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.42716858" />
-=======
       <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3276923" />
->>>>>>> dd73a2623319e205578c31320d4e1f5fc098d575
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50226927" side_tool="true" weight="0.4476923" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3295082" />
@@ -620,14 +590,8 @@
         <state relative-caret-position="-2">
           <caret line="33" column="43" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
           <folding>
-<<<<<<< HEAD
-            <element signature="e#270#271#0" expanded="true" />
-            <element signature="e#202#203#0" expanded="true" />
-            <element signature="e#238#239#0" expanded="true" />
-=======
             <element signature="e#1707#1708#0" expanded="true" />
             <element signature="e#1742#1743#0" expanded="true" />
->>>>>>> dd73a2623319e205578c31320d4e1f5fc098d575
           </folding>
         </state>
       </provider>

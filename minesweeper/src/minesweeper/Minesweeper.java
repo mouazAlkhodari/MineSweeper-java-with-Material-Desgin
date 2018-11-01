@@ -4,30 +4,21 @@
  * and open the template in the editor.
  */
 package minesweeper;
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author Omar
  */
-
 public class Minesweeper {
 
-    private static final int ConstMines = 10;
-    private static final int ConstHeight = 10 ;
-    private static final int ConstWidth = 10;
-    private static final Player ConstPlayer=new ConsolePlayer("Flan",0);
     /**
+     * @param args the command line arguments
      */
-
     public static void main(String[] args) {
         // TODO code application logic here
-       List<Player> Players=new ArrayList<Player>();
-       Players.add(ConstPlayer);
-       Game ConstGame=new ConsoleGame(ConstWidth,ConstHeight,ConstMines,Players);
-       ConstGame.StartGame();
+        System.out.println("Hello guys Engo using git with me ");
+        System.out.println("am here guys (V)_(V)");
+        System.out.println("Da");
+
     }
 
     

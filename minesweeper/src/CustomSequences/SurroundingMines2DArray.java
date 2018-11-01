@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class SurroundingMines2DArray {
     public int[][] arr;
     MinesCoor2DArray mines;
-    public static int width,height;
+    public int width,height;
     
     // <__ CONSTRUCTERS __> \\
     // Constructer initializr the field with 0
@@ -48,7 +48,7 @@ public class SurroundingMines2DArray {
     }
     
     //to Check if Coordinates is exist
-    public static Boolean CheckIndex(int x,int y) {
+    public static Boolean CheckIndex(int x,int y,int width,int height) {
         return (x >= 1 && x < height && y >= 1 && y < width);
     }
     
@@ -62,7 +62,7 @@ public class SurroundingMines2DArray {
 
                 for (int x = i - 1;x <= i + 1;x++) {
                     for (int y = j - 1;y <= j + 1;y++) {
-                        if (CheckIndex(x, y) && mines.arr[x][y]) {
+                        if (CheckIndex(x, y,width,height) && mines.arr[x][y]) {
                             arr[i][j]++;
                         }
                     }

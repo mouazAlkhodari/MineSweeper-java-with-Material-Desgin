@@ -70,13 +70,12 @@ public class ConsolePlayer extends Player {
             }
             catch (Exception e){
                 System.out.println(e.getMessage());
-            }
+}
         } while (!validMove);
-        int IntegerValueOfRow=Integer.valueOf(NumberOfRow);
-        int IntegerValueOfCol= Converter.valueOf(NumberOfCol.toUpperCase());
-//        System.out.println(x+".."+y+".."+t);
-        return new PlayerMove(this,
+                int IntegerValueOfRow=Integer.valueOf(NumberOfRow);
+                int IntegerValueOfCol= Converter.valueOf(NumberOfCol.toUpperCase());
+                return new PlayerMove(this,
                 new Square(IntegerValueOfRow,IntegerValueOfCol,Boolean.FALSE,0),
                 TypeOfMove,new MoveResult());
-    }
+                }
 }

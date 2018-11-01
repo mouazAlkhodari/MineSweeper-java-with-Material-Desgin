@@ -2,7 +2,10 @@ package minesweeper;
 
 import CustomSequences.MinesCoor2DArray;
 import CustomSequences.SurroundingMines2DArray;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class Grid {
@@ -39,52 +42,62 @@ public class Grid {
         }
     }
 
-    public void AcceptMove(PlayerMove move) {
+    public ArrayList<PlayerMove> AcceptMove(PlayerMove move){
+        ArrayList<PlayerMove> PlayerMoves=new ArrayList<PlayerMove>();
         move.setSquare(field[move.getSquare().getX()][move.getSquare().getY()]);
         if(move.getType()==MoveType.Mark){
             move.getSquare().ChangeStatus(move.getPlayer(), MoveType.Mark);
+            PlayerMoves.add(move);
         }
         else{
-            if(move.getSquare().getStatus()==SquareStatus.Marked)return;
-            if(move.getSquare().isMine()){
-                move.getSquare().ChangeStatus(move.getPlayer(),MoveType.Reveal);
-            }
-            else if(move.getSquare().getNumberOfSurroundedMines()!=0){
-                move.getSquare().ChangeStatus(move.getPlayer(), MoveType.Reveal);
-            }
-            else{
-                this.floodFill(move);
-            }
+            PlayerMoves=this.floodFill(move);
         }
+        return PlayerMoves;
     }
-    private void floodFill(PlayerMove move) {
+    private ArrayList<PlayerMove> floodFill(PlayerMove move) {
+        //Adding Square
+        ArrayList<PlayerMove> PlayerMoves=new ArrayList<PlayerMove>();
         Queue<PlayerMove> Q = new LinkedList<PlayerMove>();
         Q.add(move);
-        while (!Q.isEmpty()) {
-            PlayerMove CurrentMove = Q.poll();
-            Square CurrentSquare = CurrentMove.getSquare();
 
+        while (!Q.isEmpty()) {
+            //Pulling The last move added to queue
+            PlayerMove CurrentMove = Q.poll();
+            PlayerMoves.add(CurrentMove);
+            Square CurrentSquare = CurrentMove.getSquare();
             //Open The Square
             CurrentSquare.ChangeStatus(CurrentMove.getPlayer(), MoveType.Reveal);
+            if(CurrentSquare.getStatus() != SquareStatus.OpenedEmpty) { continue; }
 
-            // Check The Surrounded Square To flood fill
+            //if The Square is Not empty then There will not flood into the other squares and it swill quit here
+            //but if its empty then we will start iterating over the sudrrounded squares and open them if the dont contain mines
+            //note that each empty square that opened will be added to the queue so it will also open the surrounding squares of it
+            //We didn't steal it from internet
+            //We owned This Code
+            //Please Donate Us
+            //Bye
+
             for (int i = CurrentSquare.getX() - 1; i <= CurrentSquare.getX() + 1; i++) {
                 for (int j = CurrentSquare.getY() - 1; j <= CurrentSquare.getY() + 1; j++) {
                     // in case Out Of Grid
-                    if (!SurroundingMines2DArray.CheckIndex(i, j)) continue;
+                    if (!SurroundingMines2DArray.CheckIndex(i, j, width, height)) continue;
 
-                    Square toScuare = field[i][j];
-                    if (toScuare.getStatus() == SquareStatus.Closed && !toScuare.isMine()
-                       && (CurrentMove.getSquare().getNumberOfSurroundedMines() == 0)) {
-                        ((LinkedList<PlayerMove>) Q).add(new PlayerMove(move.getPlayer(), toScuare, MoveType.Reveal, new MoveResult()));
+                    Square SurroundedSquare = field[i][j];
+                    //Checking if Square is closed and has no surrounded mines then we will open it
+                    if (SurroundedSquare.getStatus() == SquareStatus.Closed && !SurroundedSquare.isMine()) {
+                        ((LinkedList<PlayerMove>) Q).add(new PlayerMove(move.getPlayer(), SurroundedSquare, MoveType.Reveal, new MoveResult()));
                     }
                 }
             }
         }
+        return PlayerMoves;
     }
+
     //Getters
     public int getMinesCount() { return minesCount; }
     public int getWidth(){return this.width;}
     public int getHeight(){return this.height;}
     public Square[][] getField() { return this.field;}
 }
+
+

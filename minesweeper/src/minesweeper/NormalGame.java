@@ -3,38 +3,50 @@ package minesweeper;
 import java.util.ArrayList;
 
 public abstract class NormalGame extends Game{
-    class DefaultRules extends GameRules{ // inner Class
-        public int GetScoreChange(ArrayList moves){
-            return 0;
+    class DefaultRules extends GameRules{
+        WhenHitMine PressMineBehavior;
+        Points GamePoints;
+
+        void DefaultRules() {
+            PressMineBehavior = WhenHitMine.Lose;
+            GamePoints = new Points();
         }
-        public Player DecideNextPlayer(ArrayList moves){
-            return null;
+        void ChangePlayerStatus(ArrayList<PlayerMove> moves) {
+            if(moves.get(0).getSquare().getStatus()== SquareStatus.OpenedMine)
+                if (PressMineBehavior == WhenHitMine.Lose || (PressMineBehavior == WhenHitMine.Continue && currentPlayer.getCurrentScore() < 0))
+                    currentPlayer.setCurrentStatus(PlayerStatus.Lose);
         }
-    }
-    public void ApplyPlayerMove(PlayerMove move) {
-        // here We ApPly The move And then Check The Status Of The Game
-        this.grid.AcceptMove(move);
-        Square[][] feild=this.grid.getField();
-        int Closed=0,Marked=0;
-        // here We Check The Number Of Closed And Marked Squares
-        // and in case If They equal To The number Of Mines The The Game Is Over
-        for(int i=1;i<this.grid.getHeight();i++){
-            for (int j=1;j<this.grid.getWidth();j++){
-                switch (feild[i][j].status){
-                    case Closed:
-                        Closed++;
-                        break;
-                    case Marked:
-                        Marked++;
-                        break;
+        int GetScoreChange(ArrayList<PlayerMove> moves){
+            if (moves.size() == 1) {
+                PlayerMove move = moves.get(0);
+                switch (move.getSquare().getStatus()) {
+                    case OpenedEmpty:
+                        return GamePoints.RevealEmpty;
+                    case OpenedNumber:
+                        return move.getSquare().getNumberOfSurroundedMines();
                     case OpenedMine:
-                        this.setStatus(GameStatus.Lose);
-                        break;
+                        return GamePoints.RevealMine;
+                    case Marked:
+                        return move.getSquare().isMine() ? GamePoints.MarkMine : GamePoints.MarkNotMine;
+                    case Closed: // This case is when user unmark marked sqaure so it will be closed;
+                        return GamePoints.Unmark;
                 }
             }
+            //In this case .. More than one sqaure revealed so >>
+            return GamePoints.RevealEmpty + GamePoints.RevealFloodFill * (moves.size() - 1);
         }
-        if(this.getStatus()!=GameStatus.Lose && Closed+Marked==this.grid.getMinesCount()){
-            this.setStatus(GameStatus.Win);
+        Player DecideNextPlayer(ArrayList moves){
+            int indOfcurrentPlayer=players.lastIndexOf(currentPlayer);
+            for(int i=0;i<players.size();i++){
+                indOfcurrentPlayer=(indOfcurrentPlayer+1)%players.size();
+                if(players.get(indOfcurrentPlayer).getCurrentStatus()!=PlayerStatus.Lose){
+                    return players.get(i);
+                }
+            }
+            return currentPlayer;
         }
     }
+
+
+
 }

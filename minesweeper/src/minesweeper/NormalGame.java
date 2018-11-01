@@ -38,7 +38,9 @@ public abstract class NormalGame extends Game{
 
 
         void ChangePlayerStatus(ArrayList<PlayerMove> moves) {
-
+            if(moves.get(0).getSquare().getStatus()== SquareStatus.OpenedMine)
+                if (PressMineBehavior == WhenHitMine.Lose || (PressMineBehavior == WhenHitMine.Continue && currentPlayer.getCurrentScore() < 0))
+                    currentPlayer.setCurrentStatus(PlayerStatus.Lose);
         }
 
         int GetScoreChange(ArrayList<PlayerMove> moves){
@@ -79,13 +81,7 @@ public abstract class NormalGame extends Game{
         int ScoreChange=currentRules.GetScoreChange(moves);
         currentPlayer.addScore(ScoreChange);
         // need To be Func
-            if(moves.get(0).getSquare().getStatus()==SquareStatus.OpenedMine) {
-                if (LoseWhenHitMine) {
-                    currentPlayer.setCurrentStatus(PlayerStatus.Lose);
-                } else if (currentPlayer.getCurrentScore() < 0) {
-                    currentPlayer.setCurrentStatus(PlayerStatus.Lose);
-                }
-            }
+
         ChangeStatus();
         currentPlayer=currentRules.DecideNextPlayer(moves);
 

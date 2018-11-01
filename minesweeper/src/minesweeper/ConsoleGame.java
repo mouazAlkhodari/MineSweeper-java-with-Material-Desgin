@@ -13,6 +13,12 @@ public class ConsoleGame extends NormalGame {
     }
 
     @Override
+    public void StartGame() {
+        UpdateVeiw();
+        GetMove();
+    }
+
+    @Override
     public void GetMove(){// get The Move From The Console Player and then Apply it
         PlayerMove move = this.currentPlayer.GetPlayerMove();
         if(AcceptMove(move))
@@ -79,9 +85,9 @@ public class ConsoleGame extends NormalGame {
         UpdateVeiw();
         System.out.println("Shame On You!! \n Game Over\n");
     }
-        public static String fixedLengthString(String string, int length) {
-    return String.format("%1$"+length+ "s  ", string);
-}
+    public static String fixedLengthString(String string, int length) {
+        return String.format("%1$"+length+ "s  ", string);
+    }
 
     // That Function for Debug
     private void PrintGrid() {
@@ -102,4 +108,5 @@ public class ConsoleGame extends NormalGame {
         }
         System.out.println();
     }
+
 }

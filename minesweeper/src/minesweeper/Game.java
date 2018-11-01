@@ -15,19 +15,15 @@ import CustomSequences.SurroundingMines2DArray;
  * @author Omar
  */
 enum GameStatus{
-    Win,Lose,Running
+    Running,Finish
 }
 
 public abstract class Game {
-      // <__ INNER CLASS __> \\
-    class GameRules{
-        public int GetScoreChange(ArrayList moves){
-            return 0;
-        }
-        public Player DecideNextPlayer(ArrayList moves)
-        {
-            return null;
-        }
+
+    // <__ INNER CLASS __> \\
+    abstract class GameRules{
+        public abstract int GetScoreChange(ArrayList moves);
+        public abstract Player DecideNextPlayer(ArrayList moves);
     }
 
     // <__ DATA MEMBERS __> \\
@@ -43,10 +39,6 @@ public abstract class Game {
         currentPlayer = (Player)players.get(0);
         this.status=GameStatus.Running;// need to change to New Start game
         grid = new Grid(width,height,minesCount);
-    }
-    public void StartGame(){
-        UpdateVeiw();
-        GetMove();
     }
     boolean AcceptMove(PlayerMove move){// x Rows Y columns
         Square s = move.getSquare();
@@ -80,6 +72,7 @@ public abstract class Game {
 
 
     //This func Implement in each kind of game Like Console Or GUI...
+    public abstract void StartGame();
     abstract void GetMove();
     abstract void Lose();
     abstract void Win();

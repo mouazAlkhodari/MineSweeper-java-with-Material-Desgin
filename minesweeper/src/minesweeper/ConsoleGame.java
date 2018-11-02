@@ -106,8 +106,5 @@ public class ConsoleGame extends NormalGame {
         }
         System.out.println();
     }
-    public static String fixedLengthString(String string, int length) {
-        return String.format("%1$"+length+ "s  ", string);
-    }
 
 }

@@ -1,31 +1,9 @@
 package minesweeper;
 
 import java.util.ArrayList;
-
-enum WhenHitMine {
-    Lose,Continue;
-}
+import java.util.List;
 
 public abstract class NormalGame extends Game{
-    class Points {
-        int RevealFloodFill;
-        int RevealEmpty;
-        int RevealMine;
-        int MarkMine;
-        int MarkNotMine;
-        int Unmark;
-        int LastNumber;
-
-        public Points() {
-            RevealFloodFill = 1;
-            RevealEmpty = 10;
-            RevealMine = -250;
-            MarkMine = 5;
-            MarkNotMine = -1;
-            Unmark = -1;
-        }
-    }
-
     class DefaultRules extends GameRules{
         WhenHitMine PressMineBehavior;
         Points GamePoints;
@@ -34,16 +12,12 @@ public abstract class NormalGame extends Game{
             PressMineBehavior = WhenHitMine.Lose;
             GamePoints = new Points();
         }
-
-
-
-        void ChangePlayerStatus(ArrayList<PlayerMove> moves) {
+        void ChangePlayerStatus(List<PlayerMove> moves) {
             if(moves.get(0).getSquare().getStatus()== SquareStatus.OpenedMine)
                 if (PressMineBehavior == WhenHitMine.Lose || (PressMineBehavior == WhenHitMine.Continue && currentPlayer.getCurrentScore() < 0))
                     currentPlayer.setCurrentStatus(PlayerStatus.Lose);
         }
-
-        int GetScoreChange(ArrayList<PlayerMove> moves){
+        int GetScoreChange(List<PlayerMove> moves){
             if (moves.size() == 1) {
                 PlayerMove move = moves.get(0);
                 switch (move.getSquare().getStatus()) {
@@ -62,11 +36,13 @@ public abstract class NormalGame extends Game{
             //In this case .. More than one sqaure revealed so >>
             return GamePoints.RevealEmpty + GamePoints.RevealFloodFill * (moves.size() - 1);
         }
-        Player DecideNextPlayer(ArrayList moves){
+
+        @Override
+        Player DecideNextPlayer(List<PlayerMove> moves){
             int indOfcurrentPlayer=players.lastIndexOf(currentPlayer);
-            for(int idx=indOfcurrentPlayer,i=0;i<players.size();i++){
-                idx+=(idx+1)%players.size();
-                if(players.get(idx).getCurrentStatus()!=PlayerStatus.Lose){
+            for(int i=0;i<players.size();i++){
+                indOfcurrentPlayer=(indOfcurrentPlayer+1)%players.size();
+                if(players.get(indOfcurrentPlayer).getCurrentStatus()!=PlayerStatus.Lose){
                     return players.get(i);
                 }
             }
@@ -75,41 +51,5 @@ public abstract class NormalGame extends Game{
     }
 
 
-    public void ApplyPlayerMove(PlayerMove move) {
-        // here We ApPly The move And then Check The Status Of The Game
-        moves =this.grid.AcceptMove(move);
-        int ScoreChange=currentRules.GetScoreChange(moves);
-        currentPlayer.addScore(ScoreChange);
-        // need To be Func
 
-        ChangeStatus();
-        currentPlayer=currentRules.DecideNextPlayer(moves);
-
-    }
-    public void ChangeStatus(){
-        Square[][] feild =this.grid.getField();
-        int num=0;
-        for(int i=1;i<this.grid.getWidth();i++){
-            for(int j=1;j<this.grid.getHeight();j++){
-                switch (feild[i][j].getStatus()){
-                    case Marked:
-                    case Closed:
-                        num++;
-                        break;
-                }
-            }
-        }
-        boolean CanContinue=false;
-        for(int i=0;i<players.size();i++){
-            if(players.get(i).getCurrentStatus()!=PlayerStatus.Lose){
-                CanContinue=true;
-            }
-        }
-        if(num==this.grid.getMinesCount() || !CanContinue){
-            status=GameStatus.Finish;
-        }
-        else{
-            status=GameStatus.Running;
-        }
-    }
 }

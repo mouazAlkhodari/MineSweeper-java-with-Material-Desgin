@@ -1,0 +1,23 @@
+.root {
+    -fx-background-color: #D2D7D3;
+}
+
+.button {
+    -fx-background-color: #22a6b3;
+    -fx-border-color: #D2D7D3;
+    -fx-border-width: 0.5;
+}
+
+.button:focused {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-scale-z: 0.95;
+}
+
+
+.grid  {
+    -fx-border-insets: 50,50,50,50;
+    -fx-border-color: #22a6b3;
+    -fx-border-width: 2
+}
+

@@ -26,14 +26,15 @@ public class GUIMineseeper extends Application {
         // For Start The Game
         List<Player> Players=new ArrayList<Player>();
         Players.add(guiplayer);
-        guiGame=new GUIGame(Players);
 
+        guiGame=new GUIGame(Players);
         layout=new BorderPane();
         layout.setCenter(guiGame.getFXgrid());
         guiGame.getFXgrid().setAlignment(Pos.CENTER);
         Scene scene = new Scene(layout);
+        scene.getStylesheets().add("Styles/style.css");
         guiGame.StartGame();
-        window.setTitle("Mine Sweeper");
+        window.setTitle("MineSweeper");
         window.setScene(scene);
         window.show();
     }

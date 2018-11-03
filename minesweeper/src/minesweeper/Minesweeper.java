@@ -34,7 +34,8 @@ public class Minesweeper extends Application {
        List<Player> Players=new ArrayList<Player>();
        Players.add(ConstPlayer);
        Game ConstGame=new ConsoleGame(ConstWidth,ConstHeight,ConstMines,Players);
-       ConstGame.StartGame();
+       Game guiGame = new GUIGame(ConstWidth,ConstHeight,ConstMines,Players);
+       guiGame.UpdateVeiw();
     }
 
     @Override

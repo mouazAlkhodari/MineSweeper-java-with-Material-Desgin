@@ -84,13 +84,13 @@ public class GUIGame extends NormalGame {
                     case Closed:
                         break;
                     case OpenedEmpty:
-                        currentButton.setStyle("-fx-background-color: #875F9A");
+                        currentButton.setStyle("-fx-background-color: #875F9A;-fx-border-width: 0;");
                         break;
                     case OpenedNumber:
                         currentButton.setText(""+feild[i][j].getNumberOfSurroundedMines());
                         break;
                     case OpenedMine:
-                        currentButton.setStyle("-fx-background-color: #C3272B");
+                        currentButton.setStyle("-fx-background-color: #8F1D21");
                         break;
                     case Marked:
                         currentButton.setStyle("-fx-background-color: #0ff");

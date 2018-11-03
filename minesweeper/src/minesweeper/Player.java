@@ -24,7 +24,7 @@ public abstract class Player {
     }
 
     // Implemented In each Kind Of Players Like Console Or GUI Player
-    abstract PlayerMove GetPlayerMove();
+    public abstract PlayerMove GetPlayerMove();
     //Getters
     public int getCurrentScore() {
         return currentScore;

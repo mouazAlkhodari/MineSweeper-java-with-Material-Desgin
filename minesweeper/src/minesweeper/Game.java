@@ -8,18 +8,8 @@ package minesweeper;
 import java.util.ArrayList;
 import java.util.List;
 
+import BaseAlphabit.Converter;
 import CustomSequences.SurroundingMines2DArray;
-
-/**
- *
- * @author Omar
- */
-enum GameStatus{
-    Running,Finish
-}
-enum WhenHitMine {
-    Lose,Continue;
-}
 
 public abstract class Game {
     class Points {
@@ -45,23 +35,22 @@ public abstract class Game {
         abstract int GetScoreChange(List<PlayerMove> moves);
         abstract Player DecideNextPlayer(List<PlayerMove> moves);
     }
-
     // <__ DATA MEMBERS __> \\
-    Player currentPlayer;
-    Grid grid;
-    GameStatus status;
-    GameRules currentRules;
-    List<Player> players=new ArrayList<Player>();
-    List<PlayerMove> moves=new ArrayList<PlayerMove>();
+    protected Player currentPlayer;
+    protected Grid grid;
+    protected GameStatus status;
+    protected GameRules currentRules;
+    protected List<Player> players=new ArrayList<Player>();
+    protected List<PlayerMove> moves=new ArrayList<PlayerMove>();
 
 
     // <__ METHODS __> \\
-    public void initGame(int width,int height,int minesCount){
+    protected void initGame(int width, int height, int minesCount){
         currentPlayer = (Player)players.get(0);
         this.status=GameStatus.Running;// need to change to New Start game
         grid = new Grid(width,height,minesCount);
     }
-    public void ApplyPlayerMove(PlayerMove move) {
+    protected void ApplyPlayerMove(PlayerMove move) {
         // here We ApPly The move And then Check The Status Of The Game
         moves =this.grid.AcceptMove(move);
         int ScoreChange=currentRules.GetScoreChange(moves);
@@ -72,7 +61,7 @@ public abstract class Game {
         currentPlayer=currentRules.DecideNextPlayer(moves);
 
     }
-    boolean AcceptMove(PlayerMove move){// x Rows Y columns
+    protected boolean AcceptMove(PlayerMove move){// x Rows Y columns
         Square s = move.getSquare();
         if(SurroundingMines2DArray.CheckIndex(s.getX(),s.getY(),grid.getWidth(),grid.getHeight()))
         {
@@ -87,7 +76,7 @@ public abstract class Game {
         }
         return false;
     }
-    public void ChangeStatus(){
+    protected void ChangeStatus(){
         Square[][] feild =this.grid.getField();
         int num=0;
         for(int i=1;i<this.grid.getWidth();i++){
@@ -113,14 +102,14 @@ public abstract class Game {
             status=GameStatus.Running;
         }
     }
-    void AddPlayer(Player player)
+    protected void AddPlayer(Player player)
     {
         players.add(player);
     }
 
     // <__ SETTERS-GETTERS __> \\
     //Setters
-    void setStatus(GameStatus status) {
+    protected void setStatus(GameStatus status) {
         this.status = status;
     }
     //Getters
@@ -131,8 +120,31 @@ public abstract class Game {
 
     //This func Implement in each kind of game Like Console Or GUI...
     public abstract void StartGame();
-    abstract void GetMove();
-    abstract void EndGame();
-    abstract void UpdateVeiw();
+    protected abstract void GetMove();
+    protected abstract void EndGame();
+    protected abstract void UpdateVeiw();
+
+    // This Function for Debug
+    private void PrintGrid() {
+        System.out.print("   ");
+        for(int i=0;i+1<this.grid.getWidth();i++){
+            System.out.print(" "+ Converter.valueOf(i));
+        }
+        System.out.println();
+        Square[][] feild=this.grid.getField();
+        for(int i=1;i<this.grid.getHeight();i++){
+            System.out.print("\n");
+            System.out.print(" "+i+"  ");
+            for (int j=1;j<this.grid.getWidth();j++){
+                if(!feild[i][j].isMine())
+                    System.out.print(feild[i][j].getNumberOfSurroundedMines()+" ");
+                else System.out.print("B ");
+            }
+        }
+        System.out.println();
+    }
+    public static String fixedLengthString(String string, int length) {
+        return String.format("%1$"+length+ "s  ", string);
+    }
 
 }

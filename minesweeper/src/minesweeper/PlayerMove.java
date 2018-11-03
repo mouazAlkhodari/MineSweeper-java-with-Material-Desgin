@@ -1,6 +1,5 @@
 package minesweeper;
 
-enum MoveType{Reveal,Mark}
 public class PlayerMove {
     // <__ DATA MEMBERS__> \\
     private Player player;

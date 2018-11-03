@@ -11,7 +11,7 @@ public class ConsolePlayer extends Player {
     }
 
     @Override
-    PlayerMove GetPlayerMove() {
+    public PlayerMove GetPlayerMove() {
         PlayerMove Move=null;
         MoveType TypeOfMove=MoveType.Reveal;
         boolean validMove=true;

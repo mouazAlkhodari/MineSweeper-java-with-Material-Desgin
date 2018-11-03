@@ -1,14 +1,21 @@
 package GUIGame;
 
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import minesweeper.*;
 
+import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
+import java.util.Properties;
 
 import static java.lang.Math.max;
 
@@ -16,18 +23,21 @@ public class GUIGame extends NormalGame {
     public GridPane getFXgrid() {
         return FXgrid;
     }
+    public VBox getScoreBoard() { return ScoreBoard; }
     private static Double ConstBorder=500.0;
     private GridPane FXgrid;
+    private VBox ScoreBoard;
     private Button ClicedButton;
     public GUIGame(List _players){
         super(_players);
-        initFXGrid();
+        initFXComponoents();
     }
     public GUIGame(int Width, int Height, int NumMines, List ListOfPlayers) {// Constructor
         super(Width,Height,NumMines,ListOfPlayers);
-        initFXGrid();
+        initFXComponoents();
     }
-    private void initFXGrid() {
+    private void initFXComponoents() {
+        // initialize Grid
         FXgrid=new GridPane();
         FXgrid.getStyleClass().add("grid");
         FXgrid.getStylesheets().add("Styles/style.css");
@@ -49,6 +59,17 @@ public class GUIGame extends NormalGame {
                 });
                 FXgrid.add(button,j,i);
             }
+            // Initialize ScoreBoard
+            ScoreBoard = new VBox();
+            for(Player _player:super.players){
+                VBox _playerPanel=new VBox();
+
+                Label playerNameLabel=new Label(_player.getName());
+                Label playerScoreLabel=new Label(String.valueOf(_player.getCurrentScore().getScore()));
+               // playerScoreLabel.textProperty().bind(new SimpleIntegerProperty(_player.getCurrentScore().getScore()).asString());
+                _playerPanel.getChildren().addAll(playerNameLabel,playerScoreLabel);
+                ScoreBoard.getChildren().add(_playerPanel);
+            }
         }
     }
     @Override
@@ -63,6 +84,7 @@ public class GUIGame extends NormalGame {
             move.getSquare().setX(GridPane.getRowIndex(ClicedButton));
             move.getSquare().setY(GridPane.getColumnIndex(ClicedButton));
         }
+        PrintGrid();
         if(AcceptMove(move))
             ApplyPlayerMove(move);
         // need else some thing wrong input Or Some Thing Like that :3
@@ -77,6 +99,7 @@ public class GUIGame extends NormalGame {
     }
     @Override
     protected void UpdateVeiw(){
+        // Update Grid View
         Square[][] feild=this.grid.getField();
         for (int i=1;i<this.grid.getHeight();i++){
             for(int j=1;j<this.grid.getWidth();j++){
@@ -99,6 +122,20 @@ public class GUIGame extends NormalGame {
                         currentButton.setStyle("-fx-background-color: #0ff");
                         break;
                 }
+            }
+        }
+        // Update ScoreBoard View
+        for(int i=0;i<players.size();i++){
+            Player _currentplayer=players.get(i);
+            VBox currentpanel=(VBox)ScoreBoard.getChildren().get(i);
+            Label currentNameLabel=(Label)currentpanel.getChildren().get(0);
+            Label currentScoreLabel=(Label)currentpanel.getChildren().get(1);
+            currentScoreLabel.setText(String.valueOf((_currentplayer.getCurrentScore().getScore())));
+            if(_currentplayer.getCurrentStatus()==PlayerStatus.Playing){
+                currentNameLabel.setStyle("-fx-font-style: Bold");
+            }
+            else{
+                currentNameLabel.setStyle("-fx-font-style: normal");
             }
         }
     }

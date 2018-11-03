@@ -7,18 +7,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81b292c3-bd15-4cc7-ab51-aca56ad089f3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/Score$Points.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/Score$Points.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/Score.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/Score.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/minesweeper/sample.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIMineseeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIMineseeper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minesweeper/ConsoleGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/ConsoleGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minesweeper/ConsolePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/ConsolePlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minesweeper/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minesweeper/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minesweeper/Minesweeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/Minesweeper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minesweeper/MoveResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/MoveResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minesweeper/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/Grid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minesweeper/NormalGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/NormalGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/minesweeper/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minesweeper/PlayerMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/PlayerMove.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/minesweeper/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minesweeper/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/minesweeper/Score.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/minesweeper/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/sample.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,7 +43,7 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="8" />
-          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.102" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.17" value="1" />
@@ -48,29 +51,31 @@
           <entry key="project.open.time.29" value="1" />
           <entry key="project.open.time.46" value="1" />
           <entry key="project.open.time.62" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="css" value="1" />
           <entry key="fxml" value="1" />
-          <entry key="java" value="63" />
+          <entry key="java" value="76" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="63" />
+          <entry key="CSS" value="1" />
+          <entry key="JAVA" value="76" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2082" />
+          <entry key="java" value="3582" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2082" />
+          <entry key="JAVA" value="3582" />
         </counts>
       </usages-collector>
     </session>
@@ -124,57 +129,89 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIMineseeper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+            <state relative-caret-position="105">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minesweeper/Square.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="35" column="166" lean-forward="true" selection-start-line="35" selection-start-column="166" selection-end-line="35" selection-end-column="166" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIPlayer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="759">
-              <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minesweeper/NormalGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1339">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="207">
+              <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
               <folding>
                 <element signature="method#NormalGame#0;class#NormalGame#0" />
-                <element signature="method#NormalGame#0;class#NormalGame#0" />
-                <element signature="class#DefaultRules#0;class#NormalGame#0" />
-                <element signature="method#ChangePlayerStatus#0;class#DefaultRules#0;class#NormalGame#0" />
-                <element signature="method#GetScoreChange#0;class#DefaultRules#0;class#NormalGame#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minesweeper/Minesweeper.java">
+        <entry file="file://$PROJECT_DIR$/src/minesweeper/Grid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="241">
+              <caret line="60" selection-start-line="60" selection-end-line="60" />
+              <folding>
+                <element signature="method#Grid#0;class#Grid#0" />
+                <element signature="method#InitGrid#0;class#Grid#0" />
+                <element signature="e#1497#1509#0" expanded="true" />
+                <element signature="e#2004#2016#0" expanded="true" />
+                <element signature="e#2064#2076#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIMineseeper.java">
+        <entry file="file://$PROJECT_DIR$/src/minesweeper/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="241">
+              <caret line="53" selection-start-line="53" selection-end-line="53" />
               <folding>
-                <element signature="method#StartGame#0;class#ConsoleGame#0" />
-                <element signature="method#GetMove#0;class#ConsoleGame#0" />
-                <element signature="method#UpdateVeiw#0;class#ConsoleGame#0" />
-                <element signature="method#EndGame#0;class#ConsoleGame#0" />
+                <element signature="e#881#882#0" expanded="true" />
+                <element signature="e#920#921#0" expanded="true" />
+                <element signature="method#initGame#0;class#Game#0" />
+                <element signature="method#ChangeStatus#0;class#Game#0" />
+                <element signature="e#3563#3564#0" expanded="true" />
+                <element signature="e#3599#3600#0" expanded="true" />
+                <element signature="e#3649#3650#0" expanded="true" />
+                <element signature="e#3678#3679#0" expanded="true" />
+                <element signature="method#PrintGrid#0;class#Game#0" />
+                <element signature="method#fixedLengthString#0;class#Game#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minesweeper/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
+              <folding>
+                <element signature="e#772#773#0" expanded="true" />
+                <element signature="e#808#809#0" expanded="true" />
+                <element signature="e#880#881#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIPlayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -182,17 +219,31 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="96" column="32" lean-forward="true" selection-start-line="96" selection-start-column="32" selection-end-line="96" selection-end-column="32" />
+            <state relative-caret-position="105">
+              <caret line="57" selection-start-line="57" selection-end-line="57" />
+              <folding>
+                <element signature="e#2964#2965#0" expanded="true" />
+                <element signature="e#2992#2993#0" expanded="true" />
+                <element signature="method#EndGame#0;class#GUIGame#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Styles/style.css">
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.base/javafx/event/Event.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+            <state relative-caret-position="203">
+              <caret line="198" selection-start-line="198" selection-end-line="198" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.graphics/javafx/scene/Scene.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="3898" selection-start-line="3898" selection-end-line="3898" />
             </state>
           </provider>
         </entry>
@@ -239,11 +290,18 @@
         <option value="$PROJECT_DIR$/src/minesweeper/GUIMain.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/GUIGame.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/GUIReadingParameters.java" />
-        <option value="$PROJECT_DIR$/src/GUIGame/GUIMineseeper.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/Minesweeper.java" />
         <option value="$PROJECT_DIR$/src/minesweeper/Minesweeper.java" />
-        <option value="$PROJECT_DIR$/src/GUIGame/GUIGame.java" />
         <option value="$PROJECT_DIR$/src/Styles/style.css" />
+        <option value="$PROJECT_DIR$/src/minesweeper/Score.java" />
+        <option value="$PROJECT_DIR$/src/GUIGame/GUIPlayer.java" />
+        <option value="$PROJECT_DIR$/src/GUIGame/GUIMineseeper.java" />
+        <option value="$PROJECT_DIR$/src/minesweeper/Player.java" />
+        <option value="$PROJECT_DIR$/src/GUIGame/GUIGame.java" />
+        <option value="$PROJECT_DIR$/src/minesweeper/NormalGame.java" />
+        <option value="$PROJECT_DIR$/src/minesweeper/Grid.java" />
+        <option value="$PROJECT_DIR$/src/minesweeper/Square.java" />
+        <option value="$PROJECT_DIR$/src/minesweeper/Game.java" />
       </list>
     </option>
   </component>
@@ -264,9 +322,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -279,35 +334,20 @@
               <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
-              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GUIGame" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
-              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="GUIGame" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
-              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Styles" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541268520663" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541278520978" />
     <property name="last_opened_file_path" value="C:/Program Files/Java/javafx-sdk-11/lib" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Project" />
@@ -317,14 +357,17 @@
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="minesweeper" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mouaz\Documents\AndoridApps\MineSweeper\minesweeper\src\GUIGame" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\RBCs\third year\first semister\Java\Lab Project\Project\MineSweeper\minesweeper\src\minesweeper" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="minesweeper" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\RBCs\third year\first semister\Java\Lab Project\Project\MineSweeper\minesweeper\src\minesweeper" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="minesweeper" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -360,7 +403,7 @@
       <option name="VM_PARAMETERS" value="--module-path=&quot;C:\Program Files\Java\javafx-sdk-11\lib&quot; --add-modules=javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="minesweeper.*" />
+          <option name="PATTERN" value="GUIGame.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -420,17 +463,18 @@
       <workItem from="1541256068607" duration="4640000" />
       <workItem from="1541263890581" duration="1280000" />
       <workItem from="1541265347561" duration="3150000" />
+      <workItem from="1541272761557" duration="5753000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14522000" />
+    <option name="totallyTimeSpent" value="20275000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49028078" weight="0.16868381" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49028078" visible="true" weight="0.16868381" />
       <window_info id="Structure" order="1" sideWeight="0.5097192" side_tool="true" weight="0.2677761" />
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Designer" order="3" />
@@ -441,12 +485,12 @@
       <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4977307" visible="true" weight="0.6745283" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39937106" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4977307" weight="0.28641573" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3254717" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.32405892" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50226927" side_tool="true" weight="0.4476923" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32923076" />
@@ -505,16 +549,40 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/minesweeper/Square.java</url>
-          <line>14</line>
-          <properties class="minesweeper.Square" method="&lt;init&gt;">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="6" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/minesweeper/Game.java</url>
+          <line>53</line>
+          <properties />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/minesweeper/NormalGame.java</url>
+          <line>36</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/minesweeper/Grid.java</url>
+          <line>60</line>
+          <properties />
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="guiplayer" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>guiplayer</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/settings.gradle" />
@@ -554,8 +622,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/GUIMain.java" />
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/GUIGame.java" />
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
@@ -572,29 +638,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/sample.fxml">
+    <entry file="file://$PROJECT_DIR$/src/GUIGame/sample.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="20" selection-start-column="20" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="34" column="5" lean-forward="true" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-          <folding>
-            <element signature="class#GameRules#0;class#Game#0" />
-            <element signature="e#881#882#0" expanded="true" />
-            <element signature="e#900#901#0" expanded="true" />
-            <element signature="method#initGame#0;class#Game#0" />
-            <element signature="method#ApplyPlayerMove#0;class#Game#0" />
-            <element signature="method#AcceptMove#0;class#Game#0" />
-            <element signature="method#ChangeStatus#0;class#Game#0" />
-            <element signature="method#PrintGrid#0;class#Game#0" />
-            <element signature="method#fixedLengthString#0;class#Game#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -605,41 +653,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/Minesweeper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#906#914#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minesweeper/MoveResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/Grid.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-          <folding>
-            <element signature="method#Grid#0;class#Grid#0" />
-            <element signature="method#InitGrid#0;class#Grid#0" />
-            <element signature="method#AcceptMove#0;class#Grid#0" />
-            <element signature="method#floodFill#0;class#Grid#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -677,20 +694,6 @@
     <entry file="file://$PROJECT_DIR$/src/minesweeper/GUIMain.java" />
     <entry file="file://$PROJECT_DIR$/src/minesweeper/GUIGame.java" />
     <entry file="file://$PROJECT_DIR$/src/minesweeper/GUIReadingParameters.java" />
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/ConsoleGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minesweeper/Minesweeper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minesweeper/ConsolePlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1339">
@@ -701,20 +704,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIMineseeper.java">
+    <entry file="file://$PROJECT_DIR$/src/Styles/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="153">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGame.java">
+    <entry file="file://$PROJECT_DIR$/src/minesweeper/Minesweeper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+        <state relative-caret-position="133">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUIGame/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -731,34 +738,121 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/minesweeper/Score.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="82" selection-start-line="82" selection-end-line="82" />
+          <folding>
+            <element signature="class#Points#0;class#Score#0" />
+            <element signature="method#Points#1;class#Points#0;class#Score#0" />
+            <element signature="method#Score#0;class#Score#0" />
+            <element signature="method#Score#1;class#Score#0" />
+            <element signature="e#1872#1873#0" expanded="true" />
+            <element signature="e#1913#1914#0" expanded="true" />
+            <element signature="e#1969#1970#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIMineseeper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        <state relative-caret-position="105">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minesweeper/Square.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="35" column="166" lean-forward="true" selection-start-line="35" selection-start-column="166" selection-end-line="35" selection-end-column="166" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minesweeper/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+          <folding>
+            <element signature="e#772#773#0" expanded="true" />
+            <element signature="e#808#809#0" expanded="true" />
+            <element signature="e#880#881#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238" />
-        <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-        <folding>
-          <element signature="e#139#140#0" expanded="true" />
-          <element signature="e#182#183#0" expanded="true" />
-          <element signature="e#290#291#0" expanded="true" />
-          <element signature="e#316#317#0" expanded="true" />
-        </folding>
-        <state relative-caret-position="161" />
-        <caret line="92" column="73" selection-start-line="92" selection-start-column="73" selection-end-line="92" selection-end-column="73" />
-        <state relative-caret-position="133">
-          <caret line="96" column="32" lean-forward="true" selection-start-line="96" selection-start-column="32" selection-end-line="96" selection-end-column="32" />
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Styles/style.css">
+    <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        <state relative-caret-position="105">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+          <folding>
+            <element signature="e#2964#2965#0" expanded="true" />
+            <element signature="e#2992#2993#0" expanded="true" />
+            <element signature="method#EndGame#0;class#GUIGame#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.base/javafx/event/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="198" selection-start-line="198" selection-end-line="198" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/javafx.graphics/javafx/scene/Scene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="3898" selection-start-line="3898" selection-end-line="3898" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minesweeper/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="e#881#882#0" expanded="true" />
+            <element signature="e#920#921#0" expanded="true" />
+            <element signature="method#initGame#0;class#Game#0" />
+            <element signature="method#ChangeStatus#0;class#Game#0" />
+            <element signature="e#3563#3564#0" expanded="true" />
+            <element signature="e#3599#3600#0" expanded="true" />
+            <element signature="e#3649#3650#0" expanded="true" />
+            <element signature="e#3678#3679#0" expanded="true" />
+            <element signature="method#PrintGrid#0;class#Game#0" />
+            <element signature="method#fixedLengthString#0;class#Game#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minesweeper/Grid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+          <folding>
+            <element signature="method#Grid#0;class#Grid#0" />
+            <element signature="method#InitGrid#0;class#Grid#0" />
+            <element signature="e#1497#1509#0" expanded="true" />
+            <element signature="e#2004#2016#0" expanded="true" />
+            <element signature="e#2064#2076#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minesweeper/NormalGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="34" column="13" lean-forward="true" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <folding>
+            <element signature="method#NormalGame#0;class#NormalGame#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -819,7 +913,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

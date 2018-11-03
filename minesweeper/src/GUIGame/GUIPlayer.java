@@ -4,7 +4,6 @@ import minesweeper.*;
 
 public class GUIPlayer extends Player {
 
-
     public GUIPlayer(String _name, Score _currentScore) {
         super(_name, _currentScore);
     }

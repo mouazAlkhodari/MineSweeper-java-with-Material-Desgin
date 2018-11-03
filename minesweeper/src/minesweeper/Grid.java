@@ -85,6 +85,7 @@ public class Grid {
                     Square SurroundedSquare = field[i][j];
                     //Checking if Square is closed and has no surrounded mines then we will open it
                     if (SurroundedSquare.getStatus() == SquareStatus.Closed && !SurroundedSquare.isMine()) {
+                        SurroundedSquare.ChangeStatus(CurrentMove.getPlayer(), MoveType.Reveal);
                         ((LinkedList<PlayerMove>) Q).add(new PlayerMove(move.getPlayer(), SurroundedSquare, MoveType.Reveal, new MoveResult()));
                     }
                 }

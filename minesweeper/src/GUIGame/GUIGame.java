@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import minesweeper.*;
 
+import java.util.Currency;
 import java.util.List;
 
 import static java.lang.Math.max;
@@ -89,6 +90,7 @@ public class GUIGame extends NormalGame {
                         break;
                     case OpenedNumber:
                         currentButton.setText(""+feild[i][j].getNumberOfSurroundedMines());
+//                        currentButton.setStyle("-fx-background-color: #F5AB35   ;");
                         break;
                     case OpenedMine:
                         currentButton.setStyle("-fx-background-color: #8F1D21");

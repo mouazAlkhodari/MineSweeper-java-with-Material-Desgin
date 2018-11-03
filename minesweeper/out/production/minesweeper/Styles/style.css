@@ -6,6 +6,9 @@
     -fx-background-color: #22a6b3;
     -fx-border-color: #D2D7D3;
     -fx-border-width: 0.5;
+    -fx-border-radius: 0;
+    -fx-font-size: 14;
+    -fx-font-family: Lato;
 }
 
 .button:focused {
@@ -16,8 +19,10 @@
 
 
 .grid  {
-    -fx-border-insets: 50,50,50,50;
+    -fx-border-insets: 20,20,20,20;
     -fx-border-color: #22a6b3;
-    -fx-border-width: 2
+    -fx-border-width: 2;
+
+    -fx-background-color: rgba(255,255,255,0);
 }
 

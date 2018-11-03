@@ -1,42 +1,60 @@
 package minesweeper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class NormalGame extends Game {
+
+
+    // Constructors
+    public NormalGame(List ListOfPlayers){
+        super(ListOfPlayers);
+        currentRules=new NormalGame.DefaultRules();
+    }
+    public NormalGame(int Width,int Height,int NumMines,List ListOfPlayers){
+        super(Width,Height,NumMines,ListOfPlayers);
+        currentRules=new NormalGame.DefaultRules();
+    }
+
+
+    // InnerClass
+    // #see GameRules In Game Class
     class DefaultRules extends GameRules {
         WhenHitMine PressMineBehavior;
-        Points GamePoints;
 
         public DefaultRules() {
             PressMineBehavior = WhenHitMine.Lose;
-            GamePoints = new Points();
         }
 
         void ChangePlayerStatus(List<PlayerMove> moves) {
             if (moves.get(0).getSquare().getStatus() == SquareStatus.OpenedMine)
-                if (PressMineBehavior == WhenHitMine.Lose || (PressMineBehavior == WhenHitMine.Continue && currentPlayer.getCurrentScore() < 0))
+                if (PressMineBehavior == WhenHitMine.Lose || (PressMineBehavior == WhenHitMine.Continue && currentPlayer.getCurrentScore().getScore() < 0))
                     currentPlayer.setCurrentStatus(PlayerStatus.Lose);
         }
 
-        int GetScoreChange(List<PlayerMove> moves) {
+        void GetScoreChange(List<PlayerMove> moves) {
             if (moves.size() == 1) {
                 PlayerMove move = moves.get(0);
                 switch (move.getSquare().getStatus()) {
                     case OpenedEmpty:
-                        return GamePoints.RevealEmpty;
+                        currentPlayer.getCurrentScore().addRevealEmptyPoints();
                     case OpenedNumber:
-                        return move.getSquare().getNumberOfSurroundedMines();
+                        currentPlayer.getCurrentScore().addPoints(move.getSquare().getNumberOfSurroundedMines());
                     case OpenedMine:
-                        return GamePoints.RevealMine;
+                        currentPlayer.getCurrentScore().addRevealMinePoints();
                     case Marked:
-                        return move.getSquare().isMine() ? GamePoints.MarkMine : GamePoints.MarkNotMine;
+                        if (move.getSquare().isMine()) {
+                            currentPlayer.getCurrentScore().addMarkMinePoints();
+                        } else {
+                            currentPlayer.getCurrentScore().addMarkNotMinePoints();
+                        }
                     case Closed: // This case is when user unmark marked sqaure so it will be closed;
-                        return GamePoints.Unmark;
+                        currentPlayer.getCurrentScore().addUnmarkPoints();
                 }
+                return;
             }
             //In this case .. More than one sqaure revealed so >>
-            return GamePoints.RevealEmpty + GamePoints.RevealFloodFill * (moves.size() - 1);
+            currentPlayer.getCurrentScore().addRevealEmptyPontis();
+            currentPlayer.getCurrentScore().addRevealFloodFill(moves.size() -1);
         }
 
         @Override
@@ -51,9 +69,9 @@ public abstract class NormalGame extends Game {
             return currentPlayer;
         }
     }
-    public NormalGame(){
-        currentRules=new DefaultRules();
-    }
+
+
+    @Override
     public abstract void GetMove();
     protected abstract void UpdateVeiw();
     protected abstract void EndGame();

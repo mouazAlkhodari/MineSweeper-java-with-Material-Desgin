@@ -14,10 +14,7 @@ public class GUIMineseeper extends Application {
     private Stage window;
     GUIGame guiGame;
     BorderPane layout;
-    private static final int ConstMines = 10;
-    private static final int ConstHeight = 10;
-    private static final int ConstWidth = 10;
-    private static final Player guiplayer=new GUIPlayer("flan",0);
+    private static final Player guiplayer=new GUIPlayer("flan");
 
     public static void main(String[] args) {
         launch(args);
@@ -29,8 +26,8 @@ public class GUIMineseeper extends Application {
         // For Start The Game
         List<Player> Players=new ArrayList<Player>();
         Players.add(guiplayer);
-            guiGame=new GUIGame(ConstWidth,ConstHeight,ConstMines,Players);
 
+        guiGame=new GUIGame(Players);
         layout=new BorderPane();
         layout.setCenter(guiGame.getFXgrid());
         guiGame.getFXgrid().setAlignment(Pos.CENTER);

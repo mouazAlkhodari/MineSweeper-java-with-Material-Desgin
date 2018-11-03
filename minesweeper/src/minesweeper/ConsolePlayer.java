@@ -6,9 +6,10 @@ import java.util.Scanner;
 
 public class ConsolePlayer extends Player {
     private static final Scanner in = new Scanner(System.in);
-    public ConsolePlayer(String _name, int _currentScore) {
+    public ConsolePlayer(String _name, Score _currentScore) {
         super(_name, _currentScore);
     }
+    public ConsolePlayer(String _name) { super(_name); }
 
     @Override
     public PlayerMove GetPlayerMove() {
@@ -70,12 +71,10 @@ public class ConsolePlayer extends Player {
             }
             catch (Exception e){
                 System.out.println(e.getMessage());
-}
+            }
         } while (!validMove);
-                int IntegerValueOfRow=Integer.valueOf(NumberOfRow);
-                int IntegerValueOfCol= Converter.valueOf(NumberOfCol.toUpperCase());
-                return new PlayerMove(this,
-                new Square(IntegerValueOfRow,IntegerValueOfCol,Boolean.FALSE,0),
-                TypeOfMove,new MoveResult());
-                }
+        int IntegerValueOfRow=Integer.valueOf(NumberOfRow);
+        int IntegerValueOfCol= Converter.valueOf(NumberOfCol.toUpperCase());
+        return new PlayerMove(this, new Square(IntegerValueOfRow,IntegerValueOfCol,Boolean.FALSE,0), TypeOfMove);
+    }
 }

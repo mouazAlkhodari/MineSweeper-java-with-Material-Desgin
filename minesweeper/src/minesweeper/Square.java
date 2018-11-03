@@ -19,8 +19,12 @@ public class Square {
         this.playersMoves = new ArrayList();
         this.status = SquareStatus.Closed;
         this.NumberOfSurroundedMines = NOSM;
-        
     }
+
+    public Square() {
+        this(0,0,false,0);
+    }
+
     // <__ METHODS __> \\
     public void ChangeStatus(Player PlayerWhoMadeTheMove,MoveType Type) {
         playersMoves.add(PlayerWhoMadeTheMove);

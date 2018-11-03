@@ -15,10 +15,8 @@ import java.util.ArrayList;
 
 public class Minesweeper {
 
-    private static final int ConstMines = 10;
-    private static final int ConstHeight = 10 ;
-    private static final int ConstWidth = 10;
-    private static final Player ConstPlayer=new ConsolePlayer("Flan",0);
+
+    private static final Player ConstPlayer=new ConsolePlayer("Flan");
     /**
      */
 
@@ -26,8 +24,7 @@ public class Minesweeper {
         // TODO code application logic here
        ArrayList<Player> Players=new ArrayList<Player>();
        Players.add(ConstPlayer);
-       Game ConstGame=new ConsoleGame(ConstWidth,ConstHeight,ConstMines,Players);
-       ConstGame.StartGame();
+       Game ConstGame=new ConsoleGame(Players);
     }
 
 

@@ -2,6 +2,7 @@ package GUIGame;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import minesweeper.*;
@@ -18,12 +19,12 @@ public class GUIGame extends NormalGame {
     private static Double ConstBorder=500.0;
     private GridPane FXgrid;
     private Button ClicedButton;
-    public GUIGame(int Width, int Height, int NumMines, List ListOfPlayers) {
-        super();
-        for(Object curPlayer:ListOfPlayers) {// add Players To the Game
-            this.AddPlayer((Player) curPlayer);
-        }
-        initGame(Width,Height,NumMines);
+    public GUIGame(List _players){
+        super(_players);
+        initFXGrid();
+    }
+    public GUIGame(int Width, int Height, int NumMines, List ListOfPlayers) {// Constructor
+        super(Width,Height,NumMines,ListOfPlayers);
         initFXGrid();
     }
     private void initFXGrid() {
@@ -41,7 +42,7 @@ public class GUIGame extends NormalGame {
                     @Override
                     public void handle(MouseEvent event) {
                         ClicedButton=button;
-                        if(event.isPrimaryButtonDown()) System.out.println("pr");
+                        if(event.getButton()== MouseButton.PRIMARY) System.out.println("pr");
                         else System.out.println("sec");
                         GetMove();
                     }

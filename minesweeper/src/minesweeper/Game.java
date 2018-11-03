@@ -12,27 +12,9 @@ import BaseAlphabit.Converter;
 import CustomSequences.SurroundingMines2DArray;
 
 public abstract class Game {
-    class Points {
-        int RevealFloodFill;
-        int RevealEmpty;
-        int RevealMine;
-        int MarkMine;
-        int MarkNotMine;
-        int Unmark;
-        int LastNumber;
-
-        public Points() {
-            RevealFloodFill = 1;
-            RevealEmpty = 10;
-            RevealMine = -250;
-            MarkMine = 5;
-            MarkNotMine = -1;
-            Unmark = -1;
-        }
-    }
     // <__ INNER CLASS __> \\
     abstract class GameRules{
-        abstract int GetScoreChange(List<PlayerMove> moves);
+        abstract void GetScoreChange(List<PlayerMove> moves);
         abstract Player DecideNextPlayer(List<PlayerMove> moves);
     }
     // <__ DATA MEMBERS __> \\
@@ -42,8 +24,15 @@ public abstract class Game {
     protected GameRules currentRules;
     protected List<Player> players=new ArrayList<Player>();
     protected List<PlayerMove> moves=new ArrayList<PlayerMove>();
-
-
+    public Game(List _players){
+        this(10,10,10,_players);
+    }
+    public Game(int Width,int Height,int NumMines,List _players){
+        for(Object curPlayer:_players) {// add Players To the Game
+            this.AddPlayer((Player) curPlayer);
+        }
+        initGame(Width,Height,NumMines);
+    }
     // <__ METHODS __> \\
     protected void initGame(int width, int height, int minesCount){
         currentPlayer = (Player)players.get(0);
@@ -53,8 +42,7 @@ public abstract class Game {
     protected void ApplyPlayerMove(PlayerMove move) {
         // here We ApPly The move And then Check The Status Of The Game
         moves =this.grid.AcceptMove(move);
-        int ScoreChange=currentRules.GetScoreChange(moves);
-        currentPlayer.addScore(ScoreChange);
+        currentRules.GetScoreChange(moves);
         // need To be Func
 
         ChangeStatus();

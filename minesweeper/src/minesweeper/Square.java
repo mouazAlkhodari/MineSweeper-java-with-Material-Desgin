@@ -2,9 +2,6 @@ package minesweeper;
 
 import java.util.ArrayList;
 
-enum SquareStatus { 
-    Closed,OpenedEmpty,OpenedNumber,OpenedMine,Marked;
-}
 public class Square {
     // <__ DATA MEMBERS __> \\
     private int x;
@@ -37,6 +34,15 @@ public class Square {
         }
     }
     // <__ SETTERS-GETTERS __> \\
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     // Getters
     public int getNumberOfSurroundedMines() { return this.NumberOfSurroundedMines;}
     public int getX() { return this.x;}

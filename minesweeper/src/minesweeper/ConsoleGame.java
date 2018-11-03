@@ -6,6 +6,7 @@ import java.util.List;
 public class ConsoleGame extends NormalGame {
 
     public ConsoleGame(int Width, int Height, int NumMines, List ListOfPlayers) {// Constructor
+        super();
         for(Object curPlayer:ListOfPlayers) {// add Players To the Game
             this.AddPlayer((Player) curPlayer);
         }

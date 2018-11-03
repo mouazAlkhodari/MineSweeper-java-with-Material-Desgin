@@ -6,20 +6,14 @@
 package minesweeper;
 
 import java.util.ArrayList;
-import java.util.List;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+
 
 /**
  *
  * @author Omar
  */
 
-public class Minesweeper extends Application {
+public class Minesweeper {
 
     private static final int ConstMines = 10;
     private static final int ConstHeight = 10 ;
@@ -30,19 +24,12 @@ public class Minesweeper extends Application {
 
     public static void main(String[] args) {
         // TODO code application logic here
-       launch(args);
-       List<Player> Players=new ArrayList<Player>();
+       ArrayList<Player> Players=new ArrayList<Player>();
        Players.add(ConstPlayer);
        Game ConstGame=new ConsoleGame(ConstWidth,ConstHeight,ConstMines,Players);
+       ConstGame.StartGame();
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("MineSweeper");
-        primaryStage.setScene(new Scene(root, 400, 275));
-        primaryStage.show();
-    }
 
     
 }

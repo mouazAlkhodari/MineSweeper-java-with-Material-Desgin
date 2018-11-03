@@ -27,10 +27,13 @@ public class GUIGame extends NormalGame {
     }
     private void initFXGrid() {
         FXgrid=new GridPane();
+        FXgrid.getStyleClass().add("grid");
+        FXgrid.getStylesheets().add("Styles/style.css");
         for(int i=1;i<this.grid.getHeight();i++){
             for(int j=1;j<this.grid.getWidth();j++){
                 Button button=new Button();
-                button.setMaxSize(50,40);
+                button.setMaxSize(50,50);
+                button.getStylesheets().add("Styles/style.css");
                 double buttonborder=ConstBorder/max(this.grid.getHeight(),this.grid.getWidth());
                 button.setMinSize(buttonborder,buttonborder);
                 button.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -81,13 +84,13 @@ public class GUIGame extends NormalGame {
                     case Closed:
                         break;
                     case OpenedEmpty:
-                        currentButton.setStyle("-fx-background-color: #a55");
+                        currentButton.setStyle("-fx-background-color: #875F9A");
                         break;
                     case OpenedNumber:
                         currentButton.setText(""+feild[i][j].getNumberOfSurroundedMines());
                         break;
                     case OpenedMine:
-                        currentButton.setStyle("-fx-background-color: #f00");
+                        currentButton.setStyle("-fx-background-color: #C3272B");
                         break;
                     case Marked:
                         currentButton.setStyle("-fx-background-color: #0ff");

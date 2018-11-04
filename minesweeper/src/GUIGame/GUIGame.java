@@ -7,10 +7,13 @@ import Models.Player.Player;
 import Models.Move.PlayerMove;
 import Models.Player.PlayerStatus;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -24,15 +27,17 @@ public class GUIGame extends NormalGame {
     private GridPane FXgrid;
     private VBox ScoreBoard;
     private Button ClickedButton;
+    private Scene scene;
+    private BorderPane layout;
 
     // <__ CONSTRUCTOR __> \\
     public GUIGame(List _players){
         super(_players);
-        initFXComponoents();
+        initScene();
     }
     public GUIGame(int Width, int Height, int NumMines, List ListOfPlayers) {// Constructor
         super(Width,Height,NumMines,ListOfPlayers);
-        initFXComponoents();
+        initScene();
     }
 
     // <__ GETTERS-SETTERS __> \\
@@ -42,12 +47,27 @@ public class GUIGame extends NormalGame {
         return FXgrid;
     }
     public VBox getScoreBoard() { return ScoreBoard; }
+    public Scene getScene() { return scene; }
+
+
+    private void initScene() {
+        initFXComponoents();
+        layout=new BorderPane();
+        layout.setCenter(FXgrid);
+        layout.setRight(ScoreBoard);
+        scene = new Scene(layout);
+        scene.getStylesheets().add("Styles/style.css");
+    }
+
+
 
     private void initFXComponoents() {
         // initialize Grid
         FXgrid=new GridPane();
         FXgrid.getStyleClass().add("grid");
         FXgrid.getStylesheets().add("Styles/style.css");
+        FXgrid.setAlignment(Pos.CENTER);
+
         for(int i=1;i<this.grid.getHeight();i++){
             for(int j=1;j<this.grid.getWidth();j++){
                 Button button=new Button();
@@ -81,6 +101,9 @@ public class GUIGame extends NormalGame {
             }
         }
     }
+
+
+
     @Override
     public void StartGame() {
         UpdateVeiw();

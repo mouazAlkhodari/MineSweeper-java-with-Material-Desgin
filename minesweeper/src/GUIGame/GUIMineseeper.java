@@ -11,7 +11,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import Models.Player.Player;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,27 +34,11 @@ public class GUIMineseeper extends Application {
         Players.add(guiplayer1);
         Players.add(guiplayer2);
         Players.add(dumbplayer);
-
         guiGame=new GUIGame(Players);
-        layout=new BorderPane();
-        layout.setCenter(guiGame.getFXgrid());
-        layout.setRight(guiGame.getScoreBoard());
-
-        // testing
-        //VBox testPanel=new VBox();
-        //Label playerNameLabel=new Label(guiplayer.getName());
-        //Label playerScoreLabel=new Label(String.valueOf(guiplayer.getCurrentScore().getScore()));
-        //playerScoreLabel.textProperty().bind(new SimpleIntegerProperty(guiplayer.getCurrentScore().getScore()).asString());
-        //testPanel.getChildren().addAll(playerNameLabel,playerScoreLabel);
-        //layout.setLeft(testPanel);
-        //guiplayer.getCurrentScore().addPoints(2);
-
-        guiGame.getFXgrid().setAlignment(Pos.CENTER);
-        Scene scene = new Scene(layout);
-        scene.getStylesheets().add("Styles/style.css");
         guiGame.StartGame();
+        
         window.setTitle("MineSweeper");
-        window.setScene(scene);
+        window.setScene(guiGame.getScene());
         window.show();
     }
 }

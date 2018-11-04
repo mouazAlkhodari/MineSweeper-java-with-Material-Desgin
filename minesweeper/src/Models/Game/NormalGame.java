@@ -23,7 +23,7 @@ public abstract class NormalGame extends Game {
 
     // InnerClass
     // #see GameRules In Game Class
-    class DefaultRules extends GameRules {
+    protected class DefaultRules extends GameRules {
         public Points points;
         class Points {
             int RevealFloodFill;
@@ -56,8 +56,8 @@ public abstract class NormalGame extends Game {
             public void addRevealEmptyPontis() { currentPlayer.getCurrentScore().addPoints(RevealEmpty); }
             public void addRevealFloodFill(int SquaresNumber) { currentPlayer.getCurrentScore().addPoints(RevealFloodFill*(SquaresNumber - 1) + RevealEmpty); }
         }
-
         WhenHitMine PressMineBehavior;
+
         public DefaultRules() {
             PressMineBehavior = WhenHitMine.Lose;
             points = new Points();

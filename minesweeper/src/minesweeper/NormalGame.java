@@ -32,7 +32,7 @@ public abstract class NormalGame extends Game {
                 else {
                     currentPlayer.setCurrentStatus(PlayerStatus.waiting);
                 }
-            }c
+            }
             else{
                 currentPlayer.setCurrentStatus(PlayerStatus.waiting);
             }

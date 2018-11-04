@@ -27,6 +27,7 @@ public abstract class Player {
 
     // Implemented In each Kind Of Players Like Console Or GUI Player
     public abstract PlayerMove GetPlayerMove();
+
     //Getters And Setters
     public void setCurrentStatus(PlayerStatus currentStatus) {
         this.currentStatus = currentStatus;

@@ -13,7 +13,7 @@ public abstract class NormalGame extends Game {
     // Constructors
     public NormalGame(List ListOfPlayers){
         super(ListOfPlayers);
-        currentRules=new NormalGame.DefaultRules();
+        currentRules=new DefaultRules();
     }
     public NormalGame(int Width,int Height,int NumMines,List ListOfPlayers){
         super(Width,Height,NumMines,ListOfPlayers);
@@ -110,7 +110,7 @@ public abstract class NormalGame extends Game {
             for (int i = 0; i < players.size(); i++) {
                 indOfcurrentPlayer = (indOfcurrentPlayer + 1) % players.size();
                 if (players.get(indOfcurrentPlayer).getCurrentStatus() != PlayerStatus.Lose) {
-                    return players.get(i);
+                    return players.get(indOfcurrentPlayer);
                 }
             }
             return currentPlayer;

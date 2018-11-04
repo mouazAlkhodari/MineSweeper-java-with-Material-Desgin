@@ -15,7 +15,11 @@ public class Square {
     private SquareStatus status;
 
     // <__ CONSTRUCTER __> \\
-    public Square(int x, int y,Boolean hasMine,int NOSM) {
+    public Square() {
+        this(0,0,false,0);
+    }
+    public Square(int x, int y) { this(x,y,false,0); }
+    public Square(int x, int y, Boolean hasMine, int NOSM) {
         this.x = x;
         this.y = y;
         this.mine = hasMine ? new Mine() : null;
@@ -23,11 +27,6 @@ public class Square {
         this.status = SquareStatus.Closed;
         this.NumberOfSurroundedMines = NOSM;
     }
-
-    public Square() {
-        this(0,0,false,0);
-    }
-
     // <__ METHODS __> \\
     public void ChangeStatus(Player PlayerWhoMadeTheMove, MoveType Type) {
         playersMoves.add(PlayerWhoMadeTheMove);

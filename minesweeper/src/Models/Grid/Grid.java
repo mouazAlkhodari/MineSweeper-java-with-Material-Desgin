@@ -17,7 +17,7 @@ public class Grid {
     private int height;
     private int minesCount;
     private Square[][] field;
-    private Mine[] mines;
+    private ArrayList<Square> mines;
     private Game CurrentGame;
 
     // <__ CONSTRUCTERS __> \\
@@ -32,15 +32,17 @@ public class Grid {
     // <__ METHODS __> \\
     public void InitGrid() {
         field = new Square[height][width];
+        mines=new ArrayList<Square>();
         //to generate random coordinates for mines
         MinesCoor2DArray minesCoordinates = new MinesCoor2DArray(width, height, Boolean.FALSE);
         minesCoordinates.GenerateRandomMines(minesCount);
         SurroundingMines2DArray numberOfSurroundedmines = new SurroundingMines2DArray(width, height, minesCoordinates);
-     
+
         //init sqaures inside the field
         for (int i = 1 ;i < height; i++) {
             for (int j = 1;j < width; j++) {
                 field[i][j] = new Square(i, j,minesCoordinates.arr[i][j],numberOfSurroundedmines.arr[i][j]);
+                if(minesCoordinates.arr[i][j]){ mines.add(field[i][j]); }
             }
         }
     }
@@ -98,6 +100,9 @@ public class Grid {
     }
 
     //Getters
+
+    public ArrayList<Square> getMines() { return mines; }
+
     public int getMinesCount() { return minesCount; }
     public int getWidth(){return this.width;}
     public int getHeight(){return this.height;}

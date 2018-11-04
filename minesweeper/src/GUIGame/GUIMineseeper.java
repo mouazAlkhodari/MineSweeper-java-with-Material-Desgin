@@ -1,5 +1,7 @@
 package GUIGame;
 
+import ConsoleGame.ConsolePlayer;
+import Models.Player.DumbPlayer;
 import javafx.application.Application;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.geometry.Pos;
@@ -17,7 +19,9 @@ public class GUIMineseeper extends Application {
     private Stage window;
     GUIGame guiGame;
     BorderPane layout;
-    private static final Player guiplayer=new GUIPlayer("flan");
+    private static final Player guiplayer1=new GUIPlayer("Kareem");
+    private static final Player guiplayer2=new GUIPlayer("Mouaz");
+    private static final Player dumbplayer=new DumbPlayer(10,10);
 
     public static void main(String[] args) {
         launch(args);
@@ -28,7 +32,9 @@ public class GUIMineseeper extends Application {
         window=primaryStage;
         // For Start The Game
         List<Player> Players=new ArrayList<Player>();
-        Players.add(guiplayer);
+        Players.add(guiplayer1);
+        Players.add(guiplayer2);
+        Players.add(dumbplayer);
 
         guiGame=new GUIGame(Players);
         layout=new BorderPane();
@@ -36,13 +42,13 @@ public class GUIMineseeper extends Application {
         layout.setRight(guiGame.getScoreBoard());
 
         // testing
-        VBox testPanel=new VBox();
-        Label playerNameLabel=new Label(guiplayer.getName());
-        Label playerScoreLabel=new Label(String.valueOf(guiplayer.getCurrentScore().getScore()));
-        playerScoreLabel.textProperty().bind(new SimpleIntegerProperty(guiplayer.getCurrentScore().getScore()).asString());
-        testPanel.getChildren().addAll(playerNameLabel,playerScoreLabel);
-        layout.setLeft(testPanel);
-        guiplayer.getCurrentScore().addPoints(2);
+        //VBox testPanel=new VBox();
+        //Label playerNameLabel=new Label(guiplayer.getName());
+        //Label playerScoreLabel=new Label(String.valueOf(guiplayer.getCurrentScore().getScore()));
+        //playerScoreLabel.textProperty().bind(new SimpleIntegerProperty(guiplayer.getCurrentScore().getScore()).asString());
+        //testPanel.getChildren().addAll(playerNameLabel,playerScoreLabel);
+        //layout.setLeft(testPanel);
+        //guiplayer.getCurrentScore().addPoints(2);
 
         guiGame.getFXgrid().setAlignment(Pos.CENTER);
         Scene scene = new Scene(layout);

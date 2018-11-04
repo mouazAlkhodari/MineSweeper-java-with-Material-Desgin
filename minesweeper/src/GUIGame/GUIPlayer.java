@@ -1,6 +1,8 @@
 package GUIGame;
 
-import minesweeper.*;
+import Models.Player.Player;
+import Models.Move.PlayerMove;
+import Models.Player.Score;
 
 public class GUIPlayer extends Player {
 

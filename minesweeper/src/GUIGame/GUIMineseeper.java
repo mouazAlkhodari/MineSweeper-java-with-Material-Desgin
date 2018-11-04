@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import minesweeper.Player;
+import Models.Player.Player;
 
 import java.util.ArrayList;
 import java.util.List;

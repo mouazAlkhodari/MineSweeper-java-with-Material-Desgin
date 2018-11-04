@@ -1,33 +1,31 @@
 package GUIGame;
 
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleIntegerProperty;
+import Models.Game.GameStatus;
+import Models.Game.NormalGame;
+import Models.Grid.Square;
+import Models.Player.Player;
+import Models.Move.PlayerMove;
+import Models.Player.PlayerStatus;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import minesweeper.*;
 
-import java.util.ArrayList;
-import java.util.Currency;
 import java.util.List;
-import java.util.Properties;
 
 import static java.lang.Math.max;
 
 public class GUIGame extends NormalGame {
-    public GridPane getFXgrid() {
-        return FXgrid;
-    }
-    public VBox getScoreBoard() { return ScoreBoard; }
+    // <__ DATA MEMBERS __> \\
     private static Double ConstBorder=500.0;
     private GridPane FXgrid;
     private VBox ScoreBoard;
-    private Button ClicedButton;
+    private Button ClickedButton;
+
+    // <__ CONSTRUCTOR __> \\
     public GUIGame(List _players){
         super(_players);
         initFXComponoents();
@@ -36,6 +34,15 @@ public class GUIGame extends NormalGame {
         super(Width,Height,NumMines,ListOfPlayers);
         initFXComponoents();
     }
+
+    // <__ GETTERS-SETTERS __> \\
+    //Getters;
+
+    public GridPane getFXgrid() {
+        return FXgrid;
+    }
+    public VBox getScoreBoard() { return ScoreBoard; }
+
     private void initFXComponoents() {
         // initialize Grid
         FXgrid=new GridPane();
@@ -44,14 +51,16 @@ public class GUIGame extends NormalGame {
         for(int i=1;i<this.grid.getHeight();i++){
             for(int j=1;j<this.grid.getWidth();j++){
                 Button button=new Button();
-                button.setMaxSize(50,50);
                 button.getStylesheets().add("Styles/style.css");
+                //SettingSize
+                button.setMaxSize(50,50);
                 double buttonborder=ConstBorder/max(this.grid.getHeight(),this.grid.getWidth());
                 button.setMinSize(buttonborder,buttonborder);
+                //Set Action
                 button.setOnMouseClicked(new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        ClicedButton=button;
+                        ClickedButton =button;
                         if(event.getButton()== MouseButton.PRIMARY) System.out.println("pr");
                         else System.out.println("sec");
                         GetMove();
@@ -61,9 +70,9 @@ public class GUIGame extends NormalGame {
             }
             // Initialize ScoreBoard
             ScoreBoard = new VBox();
+            ScoreBoard.setMinWidth(200);
             for(Player _player:super.players){
                 VBox _playerPanel=new VBox();
-
                 Label playerNameLabel=new Label(_player.getName());
                 Label playerScoreLabel=new Label(String.valueOf(_player.getCurrentScore().getScore()));
                // playerScoreLabel.textProperty().bind(new SimpleIntegerProperty(_player.getCurrentScore().getScore()).asString());
@@ -81,14 +90,14 @@ public class GUIGame extends NormalGame {
     public void GetMove(){
         PlayerMove move = this.currentPlayer.GetPlayerMove();
         if(currentPlayer instanceof GUIPlayer){
-            move.getSquare().setX(GridPane.getRowIndex(ClicedButton));
-            move.getSquare().setY(GridPane.getColumnIndex(ClicedButton));
+            move.getSquare().setX(GridPane.getRowIndex(ClickedButton));
+            move.getSquare().setY(GridPane.getColumnIndex(ClickedButton));
         }
         PrintGrid();
         if(AcceptMove(move))
             ApplyPlayerMove(move);
         // need else some thing wrong input Or Some Thing Like that :3
-        if(this.status==GameStatus.Finish){
+        if(this.status== GameStatus.Finish){
             EndGame();
         }
         else{
@@ -131,7 +140,7 @@ public class GUIGame extends NormalGame {
             Label currentNameLabel=(Label)currentpanel.getChildren().get(0);
             Label currentScoreLabel=(Label)currentpanel.getChildren().get(1);
             currentScoreLabel.setText(String.valueOf((_currentplayer.getCurrentScore().getScore())));
-            if(_currentplayer.getCurrentStatus()==PlayerStatus.Playing){
+            if(_currentplayer.getCurrentStatus()== PlayerStatus.Playing){
                 currentNameLabel.setStyle("-fx-font-style: Bold");
             }
             else{

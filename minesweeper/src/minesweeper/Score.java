@@ -1,7 +1,12 @@
 package minesweeper;
 
 public class Score {
+    private int score;
+    public Points points;
+
+    // Inner Class
     class Points {
+
         int RevealFloodFill;
         int RevealEmpty;
         int RevealMine;
@@ -10,7 +15,8 @@ public class Score {
         int Unmark;
         int LastNumber;
 
-        public Points() {
+        public Points(){
+            this(1,10,-250,5,-1,-1,0);
             RevealFloodFill = 1;
             RevealEmpty = 10;
             RevealMine = -250;
@@ -18,17 +24,38 @@ public class Score {
             MarkNotMine = -1;
             Unmark = -1;
         }
+        public Points(int revealFloodFill, int revealEmpty, int revealMine, int markMine, int markNotMine, int unmark, int lastNumber) {
+            RevealFloodFill = revealFloodFill;
+            RevealEmpty = revealEmpty;
+            RevealMine = revealMine;
+            MarkMine = markMine;
+            MarkNotMine = markNotMine;
+            Unmark = unmark;
+            LastNumber = lastNumber;
+        }
+
     }
-    private int score;
-    private Points points;
+
+    // Constructor
+    public Score(Points points) {
+        score=0;
+        this.points = points;
+    }
     public Score(){
         score=0;
         points=new Points();
     }
+
+    //Getters And Setters
     public int getScore() {
         return score;
     }
-
+    public Points getPoints() {
+        return points;
+    }
+    public void setPoints(Points points) {
+        this.points = points;
+    }
     public void setScore(int score) {
         this.score = score;
     }

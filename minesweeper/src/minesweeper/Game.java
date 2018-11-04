@@ -14,6 +14,7 @@ import CustomSequences.SurroundingMines2DArray;
 public abstract class Game {
     // <__ INNER CLASS __> \\
     abstract class GameRules{
+        abstract void ChangePlayerStatus(List<PlayerMove> moves);
         abstract void GetScoreChange(List<PlayerMove> moves);
         abstract Player DecideNextPlayer(List<PlayerMove> moves);
     }
@@ -31,6 +32,7 @@ public abstract class Game {
         for(Object curPlayer:_players) {// add Players To the Game
             this.AddPlayer((Player) curPlayer);
         }
+        setCurrentPlayer(players.get(0));
         initGame(Width,Height,NumMines);
     }
     // <__ METHODS __> \\
@@ -40,24 +42,24 @@ public abstract class Game {
         grid = new Grid(width,height,minesCount);
     }
     protected void ApplyPlayerMove(PlayerMove move) {
-        // here We ApPly The move And then Check The Status Of The Game
+        // here We ApPly The move And then Check The Status Of The Game And Players
         moves =this.grid.AcceptMove(move);
+
         currentRules.GetScoreChange(moves);
-        // need To be Func
-
+        currentRules.ChangePlayerStatus(moves);
         ChangeStatus();
-        currentPlayer=currentRules.DecideNextPlayer(moves);
-
+        setCurrentPlayer(currentRules.DecideNextPlayer(moves));
     }
     protected boolean AcceptMove(PlayerMove move){// x Rows Y columns
         Square s = move.getSquare();
         if(SurroundingMines2DArray.CheckIndex(s.getX(),s.getY(),grid.getWidth(),grid.getHeight()))
         {
-            if(s.status == SquareStatus.Closed)
+            move.setSquare(grid.getField()[move.getSquare().getX()][move.getSquare().getY()]);
+            if(move.getSquare().getStatus() == SquareStatus.Closed)
             {
                 return true;
             }
-            if(move.getType() == MoveType.Mark && s.status == SquareStatus.Marked)
+            if(move.getType() == MoveType.Mark && move.getSquare().getStatus() == SquareStatus.Marked)
             {
                 return true;
             }
@@ -97,6 +99,10 @@ public abstract class Game {
 
     // <__ SETTERS-GETTERS __> \\
     //Setters
+    protected void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+        currentPlayer.setCurrentStatus(PlayerStatus.Playing);
+    }
     protected void setStatus(GameStatus status) {
         this.status = status;
     }
@@ -113,7 +119,7 @@ public abstract class Game {
     protected abstract void UpdateVeiw();
 
     // This Function for Debug
-    private void PrintGrid() {
+    public void PrintGrid() {
         System.out.print("   ");
         for(int i=0;i+1<this.grid.getWidth();i++){
             System.out.print(" "+ Converter.valueOf(i));

@@ -26,9 +26,16 @@ public abstract class NormalGame extends Game {
         }
 
         void ChangePlayerStatus(List<PlayerMove> moves) {
-            if (moves.get(0).getSquare().getStatus() == SquareStatus.OpenedMine)
+            if (moves.get(0).getSquare().getStatus() == SquareStatus.OpenedMine) {
                 if (PressMineBehavior == WhenHitMine.Lose || (PressMineBehavior == WhenHitMine.Continue && currentPlayer.getCurrentScore().getScore() < 0))
                     currentPlayer.setCurrentStatus(PlayerStatus.Lose);
+                else {
+                    currentPlayer.setCurrentStatus(PlayerStatus.waiting);
+                }
+            }c
+            else{
+                currentPlayer.setCurrentStatus(PlayerStatus.waiting);
+            }
         }
 
         void GetScoreChange(List<PlayerMove> moves) {
@@ -37,18 +44,23 @@ public abstract class NormalGame extends Game {
                 switch (move.getSquare().getStatus()) {
                     case OpenedEmpty:
                         currentPlayer.getCurrentScore().addRevealEmptyPoints();
+                        break;
                     case OpenedNumber:
                         currentPlayer.getCurrentScore().addPoints(move.getSquare().getNumberOfSurroundedMines());
+                        break;
                     case OpenedMine:
                         currentPlayer.getCurrentScore().addRevealMinePoints();
+                        break;
                     case Marked:
                         if (move.getSquare().isMine()) {
                             currentPlayer.getCurrentScore().addMarkMinePoints();
                         } else {
                             currentPlayer.getCurrentScore().addMarkNotMinePoints();
                         }
+                        break;
                     case Closed: // This case is when user unmark marked sqaure so it will be closed;
                         currentPlayer.getCurrentScore().addUnmarkPoints();
+                        break;
                 }
                 return;
             }

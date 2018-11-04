@@ -10,10 +10,12 @@ public abstract class Player {
     public Player(){
         name="PC";
         currentScore=new Score();
+        currentStatus=PlayerStatus.waiting;
     }
     public Player(String _name){
         name=_name;
         currentScore=new Score();
+        currentStatus=PlayerStatus.waiting;
     }
     public Player(String _name,Score _currentScore){
         name=_name;

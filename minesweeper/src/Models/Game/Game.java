@@ -34,7 +34,7 @@ public abstract class Game {
     protected List<PlayerMove> moves=new ArrayList<PlayerMove>();
 
     // For View
-    protected int curNotMarkMines;
+    protected int FlagsNumber;
     public Game(List _players){
         this(10,10,10,_players);
     }
@@ -52,7 +52,7 @@ public abstract class Game {
         currentPlayer = (Player)players.get(0);
         this.status=GameStatus.Running;// need to change to New Start game
         grid = new Grid(width,height,minesCount);
-        curNotMarkMines=minesCount;
+        FlagsNumber =minesCount;
     }
     protected void ApplyPlayerMove(PlayerMove move) {
         // here We ApPly The move And then Check The Status Of The Game And Players
@@ -62,7 +62,7 @@ public abstract class Game {
         ChangeStatus();
         setCurrentPlayer(currentRules.DecideNextPlayer(moves));
         if(move.getType()==MoveType.Mark){
-            curNotMarkMines +=(move.getSquare().getStatus()==SquareStatus.Marked ?-1:1);
+            FlagsNumber +=(move.getSquare().getStatus()==SquareStatus.Marked ?-1:1);
         }
     }
     protected boolean AcceptMove(PlayerMove move){// x Rows Y columns
@@ -76,7 +76,7 @@ public abstract class Game {
                 }
             }
             else{
-                if(move.getSquare().getStatus() == SquareStatus.Marked  || (curNotMarkMines>0 && move.getSquare().getStatus()==SquareStatus.Closed)) {
+                if(move.getSquare().getStatus() == SquareStatus.Marked  || (FlagsNumber >0 && move.getSquare().getStatus()==SquareStatus.Closed)) {
                     return true;
                 }
             }

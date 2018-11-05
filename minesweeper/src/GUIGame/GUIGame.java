@@ -4,21 +4,17 @@ import Models.Game.GameStatus;
 import Models.Game.NormalGame;
 import Models.Grid.Square;
 import Models.Move.MoveType;
-import Models.Player.DumbPlayer;
 import Models.Player.Player;
 import Models.Move.PlayerMove;
 import Models.Player.PlayerStatus;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.max;
@@ -111,10 +107,7 @@ public class GUIGame extends NormalGame {
             Label playerScoreLabel=new Label(String.valueOf(_player.getCurrentScore().getScore()));
             playerNameLabel.getStyleClass().add("h2");
             playerScoreLabel.getStyleClass().add("h2");
-<<<<<<< HEAD
             _playerPanel.setStyle("-fx-background-color: "+(_player.getColor())+";");
-=======
->>>>>>> 0e0e189f72fa16dfaa0bbd43919a4857e534fe56
             _playerPanel.getChildren().addAll(playerNameLabel,playerScoreLabel);
             ScoreBoard.getChildren().add(_playerPanel);
         }
@@ -128,9 +121,9 @@ public class GUIGame extends NormalGame {
         Label LastMoveLabel;
         LastMoveLabel =new Label();
         // init Last Move Label
-        Label NumberOfNotMarkedLabel;
-        NumberOfNotMarkedLabel =new Label(""+curNotMarkMines+"");
-        footer.getChildren().addAll(NumberOfNotMarkedLabel,LastMoveLabel);
+        Label FlagsNumberLabel;
+        FlagsNumberLabel =new Label(""+ FlagsNumber +"");
+        footer.getChildren().addAll(FlagsNumberLabel,LastMoveLabel);
     }
 
     @Override
@@ -218,8 +211,8 @@ public class GUIGame extends NormalGame {
             LastMove=String.valueOf(GridPane.getRowIndex(ClickedButton)) + " --- " + String.valueOf(GridPane.getColumnIndex(ClickedButton));
         LastMoveLabel.setText(LastMove);
 
-        Label NumberOfNotMarkedLabel=(Label)footer.getChildren().get(1);
-        NumberOfNotMarkedLabel.setText(""+curNotMarkMines+"");
+        Label FlagsNumberLabel=(Label)footer.getChildren().get(1);
+        FlagsNumberLabel.setText(""+ FlagsNumber +"");
     }
 
     @Override

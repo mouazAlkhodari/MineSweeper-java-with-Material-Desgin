@@ -22,8 +22,14 @@ public abstract class Player {
     public Player(String _name,Score _currentScore){
         name=_name;
         currentScore=_currentScore;
+        currentStatus=PlayerStatus.waiting;
     }
 
+    public Player(String name, Score currentScore, PlayerStatus currentStatus) {
+        this.name = name;
+        this.currentScore = currentScore;
+        this.currentStatus = currentStatus;
+    }
 
     // Implemented In each Kind Of Players Like Console Or GUI Player
     public abstract PlayerMove GetPlayerMove();

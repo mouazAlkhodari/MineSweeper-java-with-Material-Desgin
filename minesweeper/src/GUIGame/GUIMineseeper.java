@@ -18,7 +18,7 @@ public class GUIMineseeper extends Application {
     private Stage window;
     GUIGame guiGame;
     BorderPane layout;
-    private static final Player guiplayer1=new GUIPlayer("Kareem");
+    private static final Player guiplayer1=new GUIPlayer("Omar");
     private static final Player guiplayer2=new GUIPlayer("Mouaz");
     private static final Player dumbplayer=new DumbPlayer(10,10);
 
@@ -33,7 +33,7 @@ public class GUIMineseeper extends Application {
         List<Player> Players=new ArrayList<Player>();
         Players.add(guiplayer1);
         Players.add(guiplayer2);
-        Players.add(dumbplayer);
+        //Players.add(dumbplayer);
         guiGame=new GUIGame(Players);
         guiGame.StartGame();
         

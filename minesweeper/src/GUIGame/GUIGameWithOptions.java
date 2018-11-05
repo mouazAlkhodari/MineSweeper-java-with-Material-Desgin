@@ -18,7 +18,6 @@ public class GUIGameWithOptions extends Application {
     WelcomeScene welcomescene = new WelcomeScene();
     OptionsScene optionsScene = new OptionsScene();
     Stage Window;
-
     public static void main(String[] args) {
         launch(args);
     }

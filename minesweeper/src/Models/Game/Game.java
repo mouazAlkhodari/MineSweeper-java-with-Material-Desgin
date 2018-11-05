@@ -39,7 +39,9 @@ public abstract class Game {
         for(Object curPlayer:_players) {// add Players To the Game
             this.AddPlayer((Player) curPlayer);
         }
-        setCurrentPlayer(players.get(0));
+        if(!(_players.isEmpty()))
+            setCurrentPlayer(players.get(0));
+        // else Some Exception OOOOOOOOOOOOOOOOHHHHHHHHHHHHHHHOOOOOOOOOOOOOOOOOOO deer balk ya (((fahman)) !!!!!!!!!!!!!!!
         initGame(Width,Height,NumMines);
     }
     // <__ METHODS __> \\
@@ -50,7 +52,7 @@ public abstract class Game {
     }
     protected void ApplyPlayerMove(PlayerMove move) {
         // here We ApPly The move And then Check The Status Of The Game And Players
-        moves =this.grid.AcceptMove(move);
+        moves=this.grid.AcceptMove(move);
 
         currentRules.GetScoreChange(moves);
         currentRules.ChangePlayerStatus(moves);
@@ -76,8 +78,8 @@ public abstract class Game {
     protected void ChangeStatus(){
         Square[][] feild =this.grid.getField();
         int num=0;
-        for(int i=1;i<this.grid.getWidth();i++){
-            for(int j=1;j<this.grid.getHeight();j++){
+        for(int i=1;i<this.grid.getHeight();i++){
+            for(int j=1;j<this.grid.getWidth();j++){
                 switch (feild[i][j].getStatus()){
                     case Marked:
                     case Closed:

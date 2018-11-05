@@ -2,25 +2,32 @@ package Models.Player;
 
 import Models.Move.PlayerMove;
 
+import java.awt.*;
+
 public abstract class Player {
 
     private String name;
     private Score currentScore;
     private PlayerStatus currentStatus;
+    private String color;
 
     // <__ CONSTRUCTOR __> \\
     public Player(){
         name="PC";
         currentScore=new Score();
+        color = "#9B59B6";
         currentStatus=PlayerStatus.waiting;
     }
-    public Player(String _name){
+    public Player(String _name,String _color){
         name=_name;
         currentScore=new Score();
+        color = _color;
         currentStatus=PlayerStatus.waiting;
+
     }
-    public Player(String _name,Score _currentScore){
+    public Player(String _name,Score _currentScore,String _color){
         name=_name;
+        color = _color;
         currentScore=_currentScore;
     }
 
@@ -41,4 +48,5 @@ public abstract class Player {
     public String getName() {
         return name;
     }
+    public String getColor() { return color; }
 }

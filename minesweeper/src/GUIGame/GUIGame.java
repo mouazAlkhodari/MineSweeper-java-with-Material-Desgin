@@ -15,10 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.max;
@@ -102,10 +101,16 @@ public class GUIGame extends NormalGame {
         // Initialize ScoreBoard
         ScoreBoard = new VBox();
         ScoreBoard.setMinWidth(200);
+        ScoreBoard.setStyle("-fx-alignment: CENTER;");
+        String[] colors = {"#8E44AD","1F4788","03A678"};
         for(Player _player:super.players){
-            VBox _playerPanel=new VBox();
-            Label playerNameLabel=new Label(_player.getName());
+            HBox _playerPanel=new HBox();
+            _playerPanel.getStyleClass().add("playerboard");
+            Label playerNameLabel=new Label(_player.getName() + " : ");
             Label playerScoreLabel=new Label(String.valueOf(_player.getCurrentScore().getScore()));
+            playerNameLabel.getStyleClass().add("h2");
+            playerScoreLabel.getStyleClass().add("h2");
+
             _playerPanel.getChildren().addAll(playerNameLabel,playerScoreLabel);
             ScoreBoard.getChildren().add(_playerPanel);
         }
@@ -162,13 +167,16 @@ public class GUIGame extends NormalGame {
                         break;
                     case OpenedEmpty:
                         currentButton.setStyle("-fx-background-color: #875F9A;-fx-border-width: 0;");
+                        currentButton.getStyleClass().add("pressed");
                         break;
                     case OpenedNumber:
                         currentButton.setText(""+feild[i][j].getNumberOfSurroundedMines());
                         currentButton.setStyle("-fx-background-color: #F5AB35   ;");
+                        currentButton.getStyleClass().add("pressed");
                         break;
                     case OpenedMine:
                         currentButton.setStyle("-fx-background-color: #8F1D21");
+                        currentButton.getStyleClass().add("pressed");
                         break;
                     case Marked:
                         currentButton.setStyle("-fx-background-color: #00f");
@@ -179,7 +187,7 @@ public class GUIGame extends NormalGame {
         // Update ScoreBoard View
         for(int i=0;i<players.size();i++){
             Player _currentplayer=players.get(i);
-            VBox currentpanel=(VBox)ScoreBoard.getChildren().get(i);
+            HBox currentpanel=(HBox)ScoreBoard.getChildren().get(i);
             Label currentNameLabel=(Label)currentpanel.getChildren().get(0);
             Label currentScoreLabel=(Label)currentpanel.getChildren().get(1);
             currentScoreLabel.setText(String.valueOf((_currentplayer.getCurrentScore().getScore())));

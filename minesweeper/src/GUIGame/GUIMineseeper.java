@@ -18,8 +18,8 @@ public class GUIMineseeper extends Application {
     private Stage window;
     GUIGame guiGame;
     BorderPane layout;
-    private static final Player guiplayer1=new GUIPlayer("Omar");
-    private static final Player guiplayer2=new GUIPlayer("Mouaz");
+    private static final Player guiplayer1=new GUIPlayer("Kareem","#F58F84");
+    private static final Player guiplayer2=new GUIPlayer("Mouaz","#875F9A");
     private static final Player dumbplayer=new DumbPlayer(10,10);
 
     public static void main(String[] args) {

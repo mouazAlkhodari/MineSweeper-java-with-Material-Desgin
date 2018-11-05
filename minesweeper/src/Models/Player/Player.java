@@ -2,33 +2,26 @@ package Models.Player;
 
 import Models.Move.PlayerMove;
 
+import java.awt.*;
+
 public abstract class Player {
 
     private String name;
     private Score currentScore;
     private PlayerStatus currentStatus;
+    private String color;
 
     // <__ CONSTRUCTOR __> \\
-    public Player(){
-        name="PC";
-        currentScore=new Score();
-        currentStatus=PlayerStatus.waiting;
-    }
-    public Player(String _name){
-        name=_name;
-        currentScore=new Score();
-        currentStatus=PlayerStatus.waiting;
-    }
-    public Player(String _name,Score _currentScore){
-        name=_name;
-        currentScore=_currentScore;
-        currentStatus=PlayerStatus.waiting;
-    }
-
-    public Player(String name, Score currentScore, PlayerStatus currentStatus) {
+    public Player() { this("PC",new Score(),PlayerStatus.waiting,"#9B59B6"); }
+    public Player(String _name){ this(_name,new Score(),PlayerStatus.waiting,"#9B59B6"); }
+    public Player(String _name,String _color){ this(_name,new Score(),PlayerStatus.waiting,_color); }
+    public Player(String _name,PlayerStatus _playerStatus){ this(_name,new Score(),_playerStatus,"#9B59B6"); }
+    public Player(String name,PlayerStatus currentStatus,String _color) { this(name,new Score(),currentStatus,_color); }
+    public Player(String name, Score currentScore, PlayerStatus currentStatus,String _color) {
         this.name = name;
         this.currentScore = currentScore;
         this.currentStatus = currentStatus;
+        this.color=_color;
     }
 
     // Implemented In each Kind Of Players Like Console Or GUI Player
@@ -47,4 +40,5 @@ public abstract class Player {
     public String getName() {
         return name;
     }
+    public String getColor() { return color; }
 }

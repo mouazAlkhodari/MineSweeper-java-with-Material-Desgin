@@ -17,10 +17,10 @@
     -fx-font-family: Lato;
 }
 
-.button:focused {
-    -fx-scale-x: 0.95;
-    -fx-scale-y: 0.95;
-    -fx-scale-z: 0.95;
+.pressed {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-scale-z: 1.05;
 }
 .label {
     -fx-alignment: CENTER;
@@ -28,11 +28,27 @@
 .h1 {
     -fx-font-size: 30;
 }
+.h2 {
+    -fx-font-size: 24;
+}
+
 .grid  {
     -fx-border-insets: 20,20,20,20;
     -fx-border-color: #22a6b3;
     -fx-border-width: 2;
-
+    -fx-alignment: CENTER;
     -fx-background-color: rgba(255,255,255,0);
+}
+.line {
+    -fx-background-color: #000;
+    -fx-min-height: 1;
+}
+
+.playerboard{
+    -fx-background-color:#BE90D4;
+    -fx-min-height: 100;
+    -fx-alignment: CENTER;
+    -fx-border-width: 1;
+    -fx-border-color: #323232;
 }
 

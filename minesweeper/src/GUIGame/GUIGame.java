@@ -15,10 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.max;
@@ -68,25 +67,24 @@ public class GUIGame extends NormalGame {
 
 
     private void initFXComponoents() {
+        initGrid();
+        initScoreBoard();
+    }
 
+    private void initGrid() {
         // initialize Grid
         FXgrid=new GridPane();
         FXgrid.getStyleClass().add("grid");
         FXgrid.getStylesheets().add("Styles/style.css");
-        FXgrid.setAlignment(Pos.CENTER);
-//      FXgrid.setStyle("-fx-border-color: #333");
-
         for(int i=1;i<this.grid.getHeight();i++){
             for(int j=1;j<this.grid.getWidth();j++){
                 Button currentbutton=new Button();
                 currentbutton.getStylesheets().add("Styles/style.css");
                 //SettingSize
-
                 double buttonborder = ConstBorder / max(this.grid.getHeight()-1, this.grid.getWidth()-1);
                 //System.out.println(buttonborder + " " + grid.getHeight() + " " +grid.getWidth());
                 currentbutton.setMaxSize(buttonborder-2, buttonborder-2);
                 currentbutton.setMinSize(buttonborder-2, buttonborder-2);
-
                 //Set Action
                 currentbutton.setOnMouseClicked(e->{
                     ClickedButton = currentbutton;
@@ -94,19 +92,25 @@ public class GUIGame extends NormalGame {
                     else TypeOfMove=MoveType.Mark;
                     GetMove();
                 });
-
                 FXgrid.add(currentbutton, j, i);
             }
         }
+    }
 
+    private void initScoreBoard() {
         // Initialize ScoreBoard
         ScoreBoard = new VBox();
         ScoreBoard.setMinWidth(200);
+        ScoreBoard.setStyle("-fx-alignment: CENTER;");
+        String[] colors = {"#8E44AD","1F4788","03A678"};
         for(Player _player:super.players){
-            VBox _playerPanel=new VBox();
-            Label playerNameLabel=new Label(_player.getName());
+            HBox _playerPanel=new HBox();
+            _playerPanel.getStyleClass().add("playerboard");
+            Label playerNameLabel=new Label(_player.getName() + " : ");
             Label playerScoreLabel=new Label(String.valueOf(_player.getCurrentScore().getScore()));
-           // playerScoreLabel.textProperty().bind(new SimpleIntegerProperty(_player.getCurrentScore().getScore()).asString());
+            playerNameLabel.getStyleClass().add("h2");
+            playerScoreLabel.getStyleClass().add("h2");
+
             _playerPanel.getChildren().addAll(playerNameLabel,playerScoreLabel);
             ScoreBoard.getChildren().add(_playerPanel);
         }
@@ -114,7 +118,6 @@ public class GUIGame extends NormalGame {
         LastMoveLabel.setStyle("-fx-padding: 10");
         ScoreBoard.getChildren().add(LastMoveLabel);
     }
-
 
 
     @Override
@@ -171,13 +174,16 @@ public class GUIGame extends NormalGame {
                         break;
                     case OpenedEmpty:
                         currentButton.setStyle("-fx-background-color: #875F9A;-fx-border-width: 0;");
+                        currentButton.getStyleClass().add("pressed");
                         break;
                     case OpenedNumber:
                         currentButton.setText(""+feild[i][j].getNumberOfSurroundedMines());
                         currentButton.setStyle("-fx-background-color: #F5AB35   ;");
+                        currentButton.getStyleClass().add("pressed");
                         break;
                     case OpenedMine:
                         currentButton.setStyle("-fx-background-color: #8F1D21");
+                        currentButton.getStyleClass().add("pressed");
                         break;
                     case Marked:
                         currentButton.setStyle("-fx-background-color: #00f");
@@ -188,7 +194,7 @@ public class GUIGame extends NormalGame {
         // Update ScoreBoard View
         for(int i=0;i<players.size();i++){
             Player _currentplayer=players.get(i);
-            VBox currentpanel=(VBox)ScoreBoard.getChildren().get(i);
+            HBox currentpanel=(HBox)ScoreBoard.getChildren().get(i);
             Label currentNameLabel=(Label)currentpanel.getChildren().get(0);
             Label currentScoreLabel=(Label)currentpanel.getChildren().get(1);
             currentScoreLabel.setText(String.valueOf((_currentplayer.getCurrentScore().getScore())));

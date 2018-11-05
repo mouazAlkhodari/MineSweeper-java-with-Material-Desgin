@@ -2,14 +2,17 @@ package GUIGame;
 
 import Models.Player.Player;
 import Models.Move.PlayerMove;
+import Models.Player.PlayerStatus;
 import Models.Player.Score;
 
 public class GUIPlayer extends Player {
 
-    public GUIPlayer(String _name, Score _currentScore) {
-        super(_name, _currentScore);
-    }
-    public GUIPlayer(String _name) { super(_name); }
+    public GUIPlayer() { super(); }
+    public GUIPlayer(String _name){ super(_name); }
+    public GUIPlayer(String _name,String _color){ super(_name,_color); }
+    public GUIPlayer(String _name, PlayerStatus _playerStatus){ super(_name,_playerStatus); }
+    public GUIPlayer(String name,PlayerStatus currentStatus,String _color) { super(name,currentStatus,_color); }
+    public GUIPlayer(String name, Score currentScore, PlayerStatus currentStatus,String _color) { super(name,currentScore,currentStatus,_color); }
 
     @Override
     public PlayerMove GetPlayerMove() {

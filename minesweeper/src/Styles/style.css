@@ -14,6 +14,8 @@
     -fx-border-radius: 0;
     -fx-font-size: 14;
     -fx-font-family: Lato;
+    -fx-max-height: 50;
+    -fx-max-width: 50;
 
 }
 
@@ -32,7 +34,7 @@
     -fx-border-insets: 20,20,20,20;
     -fx-border-color: #22a6b3;
     -fx-border-width: 2;
-
+    -fx-alignment: CENTER;
     -fx-background-color: rgba(255,255,255,0);
 }
 

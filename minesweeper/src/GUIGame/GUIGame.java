@@ -66,18 +66,21 @@ public class GUIGame extends NormalGame {
 
 
     private void initFXComponoents() {
+        initGrid();
+        initScoreBoard();
+    }
+
+    private void initGrid() {
         // initialize Grid
         FXgrid=new GridPane();
         FXgrid.getStyleClass().add("grid");
         FXgrid.getStylesheets().add("Styles/style.css");
-        FXgrid.setAlignment(Pos.CENTER);
 
         for(int i=1;i<this.grid.getHeight();i++){
             for(int j=1;j<this.grid.getWidth();j++){
                 Button button=new Button();
                 button.getStylesheets().add("Styles/style.css");
                 //SettingSize
-                button.setMaxSize(50, 50);
                 double buttonborder = ConstBorder / max(this.grid.getHeight(), this.grid.getWidth());
                 button.setMinSize(buttonborder, buttonborder);
                 //Set Action
@@ -93,6 +96,9 @@ public class GUIGame extends NormalGame {
                 FXgrid.add(button, j, i);
             }
         }
+    }
+
+    private void initScoreBoard() {
         // Initialize ScoreBoard
         ScoreBoard = new VBox();
         ScoreBoard.setMinWidth(200);
@@ -100,7 +106,6 @@ public class GUIGame extends NormalGame {
             VBox _playerPanel=new VBox();
             Label playerNameLabel=new Label(_player.getName());
             Label playerScoreLabel=new Label(String.valueOf(_player.getCurrentScore().getScore()));
-           // playerScoreLabel.textProperty().bind(new SimpleIntegerProperty(_player.getCurrentScore().getScore()).asString());
             _playerPanel.getChildren().addAll(playerNameLabel,playerScoreLabel);
             ScoreBoard.getChildren().add(_playerPanel);
         }
@@ -108,7 +113,6 @@ public class GUIGame extends NormalGame {
         LastMoveLabel.setStyle("-fx-padding: 10");
         ScoreBoard.getChildren().add(LastMoveLabel);
     }
-
 
 
     @Override

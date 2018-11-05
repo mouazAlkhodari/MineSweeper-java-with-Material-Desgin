@@ -10,13 +10,16 @@
 .button {
     -fx-background-color: #22a6b3;
     -fx-border-color: #D2D7D3;
+    -fx-padding: 0;
     -fx-border-width: 0.5;
     -fx-border-radius: 0;
-    -fx-font-size: 14;
+    -fx-font-size: 1em;
     -fx-font-family: Lato;
-    -fx-max-height: 50;
-    -fx-max-width: 50;
-
+}
+.menubutton {
+    -fx-padding: 10 10;
+    -fx-max-width: 175;
+    -fx-min-width: 125;
 }
 
 .pressed {
@@ -32,6 +35,9 @@
 }
 .h2 {
     -fx-font-size: 24;
+}
+.h3 {
+    -fx-font-size: 18;
 }
 
 .grid  {

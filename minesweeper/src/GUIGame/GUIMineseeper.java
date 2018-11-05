@@ -33,7 +33,7 @@ public class GUIMineseeper extends Application {
         List<Player> Players=new ArrayList<Player>();
         Players.add(guiplayer1);
         Players.add(guiplayer2);
-        Players.add(dumbplayer);
+        //Players.add(dumbplayer);
         guiGame=new GUIGame(Players);
         guiGame.StartGame();
         

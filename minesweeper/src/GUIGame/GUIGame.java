@@ -23,13 +23,15 @@ import java.util.List;
 import static java.lang.Math.max;
 
 public class GUIGame extends NormalGame {
-    private MoveType TypeOfMove;
     // <__ DATA MEMBERS __> \\
-    private static Double ConstBorder=500.0;
+    private MoveType TypeOfMove;
+    private Button ClickedButton;
+    private static Double ConstBorder=400.0;
+
     private GridPane FXgrid;
     private VBox ScoreBoard;
-    private Button ClickedButton;
     private Label LastMoveLabel;
+
     private Scene scene;
     private BorderPane layout;
 
@@ -46,9 +48,7 @@ public class GUIGame extends NormalGame {
     // <__ GETTERS-SETTERS __> \\
     //Getters;
 
-    public GridPane getFXgrid() {
-        return FXgrid;
-    }
+    public GridPane getFXgrid() { return FXgrid; }
     public VBox getScoreBoard() { return ScoreBoard; }
     public Scene getScene() { return scene; }
 
@@ -74,25 +74,23 @@ public class GUIGame extends NormalGame {
         FXgrid=new GridPane();
         FXgrid.getStyleClass().add("grid");
         FXgrid.getStylesheets().add("Styles/style.css");
-
         for(int i=1;i<this.grid.getHeight();i++){
             for(int j=1;j<this.grid.getWidth();j++){
-                Button button=new Button();
-                button.getStylesheets().add("Styles/style.css");
+                Button currentbutton=new Button();
+                currentbutton.getStylesheets().add("Styles/style.css");
                 //SettingSize
-                double buttonborder = ConstBorder / max(this.grid.getHeight(), this.grid.getWidth());
-                button.setMinSize(buttonborder, buttonborder);
+                double buttonborder = ConstBorder / max(this.grid.getHeight()-1, this.grid.getWidth()-1);
+                //System.out.println(buttonborder + " " + grid.getHeight() + " " +grid.getWidth());
+                currentbutton.setMaxSize(buttonborder-2, buttonborder-2);
+                currentbutton.setMinSize(buttonborder-2, buttonborder-2);
                 //Set Action
-                button.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        ClickedButton = button;
-                        if (event.getButton() == MouseButton.PRIMARY) {System.out.println("pr");TypeOfMove=MoveType.Reveal;}
-                        else { System.out.println("sec");TypeOfMove=MoveType.Mark;}
-                        GetMove();
-                    }
+                currentbutton.setOnMouseClicked(e->{
+                    ClickedButton = currentbutton;
+                    if (e.getButton() == MouseButton.PRIMARY) TypeOfMove=MoveType.Reveal;
+                    else TypeOfMove=MoveType.Mark;
+                    GetMove();
                 });
-                FXgrid.add(button, j, i);
+                FXgrid.add(currentbutton, j, i);
             }
         }
     }
@@ -122,15 +120,22 @@ public class GUIGame extends NormalGame {
     @Override
     public void StartGame() {
         UpdateVeiw();
+        if(!(currentPlayer instanceof GUIPlayer))
+            GetMove();
     }
 
     @Override
     public void GetMove(){
         PlayerMove move = this.currentPlayer.GetPlayerMove();
         if(currentPlayer instanceof GUIPlayer){
-            move=new PlayerMove(move.getPlayer(),new Square(GridPane.getRowIndex(ClickedButton),GridPane.getColumnIndex(ClickedButton)),TypeOfMove);
-            move.getSquare().setX(GridPane.getRowIndex(ClickedButton));
-            move.getSquare().setY(GridPane.getColumnIndex(ClickedButton));
+            move=new PlayerMove(move.getPlayer(),
+                                new Square(GridPane.getRowIndex(ClickedButton),GridPane.getColumnIndex(ClickedButton)),
+                                TypeOfMove);
+        }
+        else{
+            int Position=(move.getSquare().getX()-1)*(this.grid.getWidth()-1)+(move.getSquare().getY()-1);
+            ClickedButton=(Button)FXgrid.getChildren().get(Position);
+            TypeOfMove=move.getType();
         }
         //PrintGrid();
         if(AcceptMove(move))
@@ -158,8 +163,8 @@ public class GUIGame extends NormalGame {
         Square[][] feild=this.grid.getField();
         for (int i=1;i<this.grid.getHeight();i++){
             for(int j=1;j<this.grid.getWidth();j++){
-                int H=(i-1)*(this.grid.getWidth()-1)+(j-1);
-                Button currentButton=(Button)FXgrid.getChildren().get(H);
+                int Position=(i-1)*(this.grid.getWidth()-1)+(j-1);
+                Button currentButton=(Button)FXgrid.getChildren().get(Position);
                 switch (feild[i][j].getStatus()){
                     case Closed:
                         currentButton.setStyle("-fx-background-color: #22a6b3");
@@ -207,7 +212,7 @@ public class GUIGame extends NormalGame {
         UpdateVeiw();
         Player winner=players.get(0);
         for(int i=0;i<players.size();i++) {
-            if(players.get(i).getCurrentScore().getScore()>winner.getCurrentScore().getScore()){
+            if(players.get(i).getCurrentStatus()!=PlayerStatus.Lose && players.get(i).getCurrentScore().getScore()>winner.getCurrentScore().getScore()){
                 winner=players.get(i);
             }
         }

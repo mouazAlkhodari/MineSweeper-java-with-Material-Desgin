@@ -5,16 +5,19 @@ import Models.Grid.Square;
 import Models.Move.MoveType;
 import Models.Player.Player;
 import Models.Move.PlayerMove;
+import Models.Player.PlayerStatus;
 import Models.Player.Score;
 
 import java.util.Scanner;
 
 public class ConsolePlayer extends Player {
     private static final Scanner in = new Scanner(System.in);
-    public ConsolePlayer(String _name, Score _currentScore) {
-        super(_name, _currentScore);
-    }
-    public ConsolePlayer(String _name) { super(_name); }
+    public ConsolePlayer() { super(); }
+    public ConsolePlayer(String _name){ super(_name); }
+    public ConsolePlayer(String _name,String _color){ super(_name,_color); }
+    public ConsolePlayer(String _name,PlayerStatus _playerStatus){ super(_name,_playerStatus); }
+    public ConsolePlayer(String name,PlayerStatus currentStatus,String _color) { super(name,currentStatus,_color); }
+    public ConsolePlayer(String name, Score currentScore, PlayerStatus currentStatus,String _color) { super(name,currentScore,currentStatus,_color); }
 
     @Override
     public PlayerMove GetPlayerMove() {

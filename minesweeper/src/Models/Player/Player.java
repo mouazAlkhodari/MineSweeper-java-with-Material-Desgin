@@ -12,25 +12,17 @@ public abstract class Player {
     private String color;
 
     // <__ CONSTRUCTOR __> \\
-    public Player(){
-        name="PC";
-        currentScore=new Score();
-        color = "#9B59B6";
-        currentStatus=PlayerStatus.waiting;
+    public Player() { this("PC",new Score(),PlayerStatus.waiting,"#9B59B6"); }
+    public Player(String _name){ this(_name,new Score(),PlayerStatus.waiting,"#9B59B6"); }
+    public Player(String _name,String _color){ this(_name,new Score(),PlayerStatus.waiting,_color); }
+    public Player(String _name,PlayerStatus _playerStatus){ this(_name,new Score(),_playerStatus,"#9B59B6"); }
+    public Player(String name,PlayerStatus currentStatus,String _color) { this(name,new Score(),currentStatus,_color); }
+    public Player(String name, Score currentScore, PlayerStatus currentStatus,String _color) {
+        this.name = name;
+        this.currentScore = currentScore;
+        this.currentStatus = currentStatus;
+        this.color=_color;
     }
-    public Player(String _name,String _color){
-        name=_name;
-        currentScore=new Score();
-        color = _color;
-        currentStatus=PlayerStatus.waiting;
-
-    }
-    public Player(String _name,Score _currentScore,String _color){
-        name=_name;
-        color = _color;
-        currentScore=_currentScore;
-    }
-
 
     // Implemented In each Kind Of Players Like Console Or GUI Player
     public abstract PlayerMove GetPlayerMove();

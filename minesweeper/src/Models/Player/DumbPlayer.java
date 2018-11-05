@@ -22,12 +22,22 @@ public class DumbPlayer extends Player {
         this.width = width;
         this.height = height;
     }
-
-    public DumbPlayer(String _name, Score _currentScore, int width, int height) {
-        super(_name, _currentScore);
+    public DumbPlayer(String _name,String _color,int width,int height){
+        super(_name,_color);
         this.width = width;
         this.height = height;
+
     }
+    public DumbPlayer(String _name,PlayerStatus _playerStatus,int width,int height){ super(_name,_playerStatus);this.width = width;
+        this.height = height;
+    }
+    public DumbPlayer(String name,PlayerStatus currentStatus,String _color) { super(name,currentStatus,_color);this.width = width;
+        this.height = height;
+    }
+    public DumbPlayer(String name, Score currentScore, PlayerStatus currentStatus,String _color) { super(name,currentScore,currentStatus,_color);this.width = width;
+        this.height = height;
+    }
+
 
     @Override
     public PlayerMove GetPlayerMove() {

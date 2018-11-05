@@ -31,20 +31,20 @@ public abstract class NormalGame extends Game {
             int RevealMine;
             int MarkMine;
             int MarkNotMine;
-            int Unmark;
+            int Unmarkmine;
+            int UnmarkNotMine;
             int LastNumber;
 
-            public Points(){
-                this(1,10,-250,5,-1,-1,0);
-            }
+            public Points() { this(1,10,-250,5,-1,-5,1,0); }
 
-            public Points(int revealFloodFill, int revealEmpty, int revealMine, int markMine, int markNotMine, int unmark, int lastNumber) {
+            public Points(int revealFloodFill, int revealEmpty, int revealMine, int markMine, int markNotMine, int unmarkmine, int unmarkNotMine, int lastNumber) {
                 RevealFloodFill = revealFloodFill;
                 RevealEmpty = revealEmpty;
                 RevealMine = revealMine;
                 MarkMine = markMine;
                 MarkNotMine = markNotMine;
-                Unmark = unmark;
+                Unmarkmine = unmarkmine;
+                UnmarkNotMine = unmarkNotMine;
                 LastNumber = lastNumber;
             }
 
@@ -52,7 +52,8 @@ public abstract class NormalGame extends Game {
             public void addRevealMinePoints() { currentPlayer.getCurrentScore().addPoints(RevealMine); }
             public void addMarkMinePoints() { currentPlayer.getCurrentScore().addPoints(MarkMine); }
             public void addMarkNotMinePoints() { currentPlayer.getCurrentScore().addPoints(MarkNotMine); }
-            public void addUnmarkPoints() { currentPlayer.getCurrentScore().addPoints(Unmark); }
+            public void addUnmarkMinePoints() { currentPlayer.getCurrentScore().addPoints(Unmarkmine); }
+            public void addUnmarkNotMinePoints() { currentPlayer.getCurrentScore().addPoints(UnmarkNotMine); }
             public void addRevealEmptyPontis() { currentPlayer.getCurrentScore().addPoints(RevealEmpty); }
             public void addRevealFloodFill(int SquaresNumber) { currentPlayer.getCurrentScore().addPoints(RevealFloodFill*(SquaresNumber - 1) + RevealEmpty); }
         }
@@ -87,7 +88,8 @@ public abstract class NormalGame extends Game {
                         currentPlayer.getCurrentScore().addPoints(move.getSquare().getNumberOfSurroundedMines());
                         break;
                     case OpenedMine:
-                        points.addRevealMinePoints();
+                        if(PressMineBehavior == WhenHitMine.Continue)
+                            points.addRevealMinePoints();
                         break;
                     case Marked:
 //                        move.getSquare().isMine() ? points.addMarkMinePoints() : points.addMarkNotMinePoints();
@@ -95,13 +97,15 @@ public abstract class NormalGame extends Game {
                         else { points.addMarkNotMinePoints(); }
                         break;
                     case Closed: // This case is when user unmark marked sqaure so it will be closed;
-                        points.addUnmarkPoints();
+                        if(move.getSquare().isMine()){ points.addUnmarkMinePoints(); }
+                        else{ points.addUnmarkNotMinePoints(); }
                         break;
                 }
                 return;
             }
-            //In this case .. More than one sqaure revealed so >>
-            points.addRevealFloodFill(moves.size());
+            else {//In this case .. More than one sqaure revealed so >>
+                points.addRevealFloodFill(moves.size());
+            }
         }
 
         @Override
@@ -109,7 +113,7 @@ public abstract class NormalGame extends Game {
             int indOfcurrentPlayer = players.lastIndexOf(currentPlayer);
             for (int i = 0; i < players.size(); i++) {
                 indOfcurrentPlayer = (indOfcurrentPlayer + 1) % players.size();
-                if (players.get(indOfcurrentPlayer).getCurrentStatus() != PlayerStatus.Lose) {
+                if (players.get(indOfcurrentPlayer).getCurrentStatus() == PlayerStatus.waiting) {
                     return players.get(indOfcurrentPlayer);
                 }
             }

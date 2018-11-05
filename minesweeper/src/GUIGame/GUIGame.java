@@ -4,20 +4,17 @@ import Models.Game.GameStatus;
 import Models.Game.NormalGame;
 import Models.Grid.Square;
 import Models.Move.MoveType;
-import Models.Player.DumbPlayer;
 import Models.Player.Player;
 import Models.Move.PlayerMove;
 import Models.Player.PlayerStatus;
-import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.max;
@@ -30,7 +27,7 @@ public class GUIGame extends NormalGame {
 
     private GridPane FXgrid;
     private VBox ScoreBoard;
-    private Label LastMoveLabel;
+    private HBox footer;
 
     private Scene scene;
     private BorderPane layout;
@@ -51,13 +48,14 @@ public class GUIGame extends NormalGame {
     public GridPane getFXgrid() { return FXgrid; }
     public VBox getScoreBoard() { return ScoreBoard; }
     public Scene getScene() { return scene; }
-
+    public HBox getFooter() {return footer; }
 
     private void initScene() {
         initFXComponoents();
         layout=new BorderPane();
         layout.setCenter(FXgrid);
         layout.setRight(ScoreBoard);
+        layout.setBottom(footer);
         scene = new Scene(layout);
         scene.getStylesheets().add("Styles/style.css");
     }
@@ -67,9 +65,11 @@ public class GUIGame extends NormalGame {
     private void initFXComponoents() {
         initGrid();
         initScoreBoard();
+        initfooter();
     }
 
     private void initGrid() {
+        ConstBorder= Double.valueOf(Math.min(max(grid.getWidth(),grid.getHeight()) * 50,600));
         // initialize Grid
         FXgrid=new GridPane();
         FXgrid.getStyleClass().add("grid");
@@ -81,8 +81,8 @@ public class GUIGame extends NormalGame {
                 //SettingSize
                 double buttonborder = ConstBorder / max(this.grid.getHeight()-1, this.grid.getWidth()-1);
                 //System.out.println(buttonborder + " " + grid.getHeight() + " " +grid.getWidth());
-                currentbutton.setMaxSize(buttonborder-2, buttonborder-2);
-                currentbutton.setMinSize(buttonborder-2, buttonborder-2);
+                currentbutton.setMaxSize(buttonborder, buttonborder);
+                currentbutton.setMinSize(buttonborder, buttonborder);
                 //Set Action
                 currentbutton.setOnMouseClicked(e->{
                     ClickedButton = currentbutton;
@@ -100,7 +100,7 @@ public class GUIGame extends NormalGame {
         ScoreBoard = new VBox();
         ScoreBoard.setMinWidth(200);
         ScoreBoard.setStyle("-fx-alignment: CENTER;");
-        String[] colors = {"#8E44AD","1F4788","03A678"};
+        String[] colors = {"#8E44AD","#1F4788","#03A678"};
         for(Player _player:super.players){
             HBox _playerPanel=new HBox();
             _playerPanel.getStyleClass().add("playerboard");
@@ -108,14 +108,24 @@ public class GUIGame extends NormalGame {
             Label playerScoreLabel=new Label(String.valueOf(_player.getCurrentScore().getScore()));
             playerNameLabel.getStyleClass().add("h2");
             playerScoreLabel.getStyleClass().add("h2");
+            _playerPanel.setStyle("-fx-background-color: "+(_player.getColor())+";");
             _playerPanel.getChildren().addAll(playerNameLabel,playerScoreLabel);
             ScoreBoard.getChildren().add(_playerPanel);
         }
-        LastMoveLabel =new Label();
-        LastMoveLabel.setStyle("-fx-padding: 10");
-        ScoreBoard.getChildren().add(LastMoveLabel);
     }
-
+    private void initfooter() {
+        // init Last Move Label
+        footer=new HBox();
+        footer.setPadding(new Insets(20));
+        footer.setSpacing(200);
+        footer.setAlignment(Pos.CENTER);
+        Label LastMoveLabel;
+        LastMoveLabel =new Label();
+        // init Last Move Label
+        Label FlagsNumberLabel;
+        FlagsNumberLabel =new Label(""+ FlagsNumber +"");
+        footer.getChildren().addAll(FlagsNumberLabel,LastMoveLabel);
+    }
 
     @Override
     public void StartGame() {
@@ -152,13 +162,6 @@ public class GUIGame extends NormalGame {
     }
     @Override
     protected void UpdateVeiw(){
-        // Update Last Move Label
-        String LastMove="pick any Square";
-        if(ClickedButton!=null)
-            LastMove=String.valueOf(GridPane.getRowIndex(ClickedButton)) + " --- " + String.valueOf(GridPane.getColumnIndex(ClickedButton));
-//        System.out.println(LastMove);
-        LastMoveLabel.setText(LastMove);
-
         // Update Grid View
         Square[][] feild=this.grid.getField();
         for (int i=1;i<this.grid.getHeight();i++){
@@ -202,14 +205,27 @@ public class GUIGame extends NormalGame {
                 currentNameLabel.setStyle("-fx-font-weight: normal");
             }
         }
+        // Update footer Move Label
+        String LastMove="--";
+        Label LastMoveLabel=(Label)footer.getChildren().get(0);
+        if(ClickedButton!=null)
+            LastMove=String.valueOf(GridPane.getRowIndex(ClickedButton)) + " --- " + String.valueOf(GridPane.getColumnIndex(ClickedButton));
+        LastMoveLabel.setText(LastMove);
+
+        Label FlagsNumberLabel=(Label)footer.getChildren().get(1);
+        FlagsNumberLabel.setText(""+ FlagsNumber +"");
     }
 
     @Override
     protected void EndGame() {
+        // show All The mines in The Game
+        // and Update View For Shows
         for(Square mineSqauer:this.grid.getMines()){
             mineSqauer.ChangeStatus(currentPlayer,MoveType.Reveal);
         }
         UpdateVeiw();
+
+        // Get The Winner
         Player winner=players.get(0);
         for(int i=0;i<players.size();i++) {
             if(players.get(i).getCurrentStatus()!=PlayerStatus.Lose && players.get(i).getCurrentScore().getScore()>winner.getCurrentScore().getScore()){
@@ -217,13 +233,17 @@ public class GUIGame extends NormalGame {
             }
         }
         winner.setCurrentStatus(PlayerStatus.win);
-       LastMoveLabel.setText(winner.getName() + " Win the Game yyyyhaaaa!!!!");
-       for(int i=1;i<this.grid.getWidth();i++){
-           for(int j=1;j<this.grid.getHeight();j++){
+        // Update footer Move Label
+
+        Label LastMoveLabel=(Label)footer.getChildren().get(0);
+        LastMoveLabel.setText(winner.getName() + " Win the Game yyyyhaaaa!!!!");
+
+        for(int i=1;i<this.grid.getHeight();i++){
+           for(int j=1;j<this.grid.getWidth();j++){
                int H=(i-1)*(this.grid.getWidth()-1)+(j-1);
                Button currentButton=(Button)FXgrid.getChildren().get(H);
                currentButton.setDisable(true);
            }
-       }
+        }
     }
 }

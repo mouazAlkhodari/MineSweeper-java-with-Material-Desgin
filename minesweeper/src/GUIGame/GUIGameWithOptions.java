@@ -29,6 +29,7 @@ public class GUIGameWithOptions extends Application {
         Window = primaryStage;
         Window.setScene(welcomescene.scene);
         Window.show();
+
     }
 
     void initGame() {

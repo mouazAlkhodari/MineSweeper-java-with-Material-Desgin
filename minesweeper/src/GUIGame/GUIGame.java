@@ -111,7 +111,10 @@ public class GUIGame extends NormalGame {
             Label playerScoreLabel=new Label(String.valueOf(_player.getCurrentScore().getScore()));
             playerNameLabel.getStyleClass().add("h2");
             playerScoreLabel.getStyleClass().add("h2");
+<<<<<<< HEAD
             _playerPanel.setStyle("-fx-background-color: "+(_player.getColor())+";");
+=======
+>>>>>>> 0e0e189f72fa16dfaa0bbd43919a4857e534fe56
             _playerPanel.getChildren().addAll(playerNameLabel,playerScoreLabel);
             ScoreBoard.getChildren().add(_playerPanel);
         }

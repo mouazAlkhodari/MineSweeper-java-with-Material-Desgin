@@ -1,22 +1,26 @@
 package GUIGame;
 
 
+import Models.Game.Game;
+import Models.Player.DumbPlayer;
+import Models.Player.Player;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class GUIGameWithOptions extends Application {
     WelcomeScene welcomescene = new WelcomeScene();
     OptionsScene optionsScene = new OptionsScene();
+    GUIGame guiGame;
     Stage Window;
     public static void main(String[] args) {
         launch(args);
@@ -33,23 +37,35 @@ public class GUIGameWithOptions extends Application {
         Scene scene;
         VBox WelcomeLayout;
         Label Welcome;
-        Button newGameButton;
+        Button CustomGame;
+        Button SimpleGame;
 
         private void initLayout() {
             WelcomeLayout = new VBox(20);
             Welcome = new Label("MineSweeper");
-            newGameButton = new Button("NEW GAME");
-            newGameButton.setOnAction(e -> {
+            CustomGame = new Button("CUSTOM GAME");
+            SimpleGame = new Button("SIMPLE GAME");
+            CustomGame.getStyleClass().addAll("menubutton","h3");
+            SimpleGame.getStyleClass().addAll("menubutton","h3");
+            CustomGame.setOnAction(e -> {
                 Window.setScene(optionsScene.scene);
+            });
+            SimpleGame.setOnAction(e -> {
+                Player guiplayer1=new GUIPlayer("Your Score","#F58F84");
+                List<Player> Players=new ArrayList<Player>();
+                Players.add(guiplayer1);
+                guiGame =new GUIGame(Players);
+                guiGame.StartGame();
+                Window.setScene(guiGame.getScene());
             });
             //Setting Style
             WelcomeLayout.getStyleClass().add("vbox");
             Welcome.getStyleClass().add("h1");
             Welcome.getStylesheets().add("Styles/style.css");
-            newGameButton.getStylesheets().add("Styles/style.css");
+            CustomGame.getStylesheets().add("Styles/style.css");
             WelcomeLayout.getStylesheets().add("Styles/style.css");
             //Adding Components to layout
-            WelcomeLayout.getChildren().addAll(Welcome, newGameButton);
+            WelcomeLayout.getChildren().addAll(Welcome, SimpleGame,CustomGame);
         }
 
         public WelcomeScene() {

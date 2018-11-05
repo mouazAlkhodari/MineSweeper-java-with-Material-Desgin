@@ -16,6 +16,11 @@
     -fx-font-size: 1em;
     -fx-font-family: Lato;
 }
+.menubutton {
+    -fx-padding: 10 10;
+    -fx-max-width: 175;
+    -fx-min-width: 125;
+}
 
 .pressed {
     -fx-scale-x: 1.05;
@@ -30,6 +35,9 @@
 }
 .h2 {
     -fx-font-size: 24;
+}
+.h3 {
+    -fx-font-size: 18;
 }
 
 .grid  {

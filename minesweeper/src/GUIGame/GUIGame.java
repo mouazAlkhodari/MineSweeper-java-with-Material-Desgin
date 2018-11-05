@@ -110,7 +110,6 @@ public class GUIGame extends NormalGame {
             Label playerScoreLabel=new Label(String.valueOf(_player.getCurrentScore().getScore()));
             playerNameLabel.getStyleClass().add("h2");
             playerScoreLabel.getStyleClass().add("h2");
-
             _playerPanel.getChildren().addAll(playerNameLabel,playerScoreLabel);
             ScoreBoard.getChildren().add(_playerPanel);
         }

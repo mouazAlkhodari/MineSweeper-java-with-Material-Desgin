@@ -95,8 +95,6 @@ public class GUIGameWithOptions extends Application {
             break;
         }
         Window.setScene(guiGame.getScene());
-
-
     }
 
     class WelcomeScene {
@@ -234,7 +232,6 @@ public class GUIGameWithOptions extends Application {
             PlayerOption.getChildren().addAll(PlayerType,CustomPlayer);
         }
 
-
         private void initPointOptions() {
             PointsType.getItems().addAll("Default","Custom");
             PointsType.setPromptText("Choose Players");
@@ -247,7 +244,6 @@ public class GUIGameWithOptions extends Application {
 
             CustomPoint.setDisable(true);
             CustomPoint.getChildren().addAll(RevealFloodFill,RevealEmpty,RevealMine,MarkMine,MarkNotMine,Unmarkmine,UnmarkNotMine,LastNumber);
-
             RevealFloodFill.setPromptText("RevealFloodFill: e.g.: 1");
             RevealEmpty.setPromptText("RevealEmpty: e.g.: 10");
             RevealMine.setPromptText("RevealMine: e.g.: -250");

@@ -78,6 +78,7 @@ public class GUIGame extends NormalGame {
         for(int i=1;i<this.grid.getHeight();i++){
             for(int j=1;j<this.grid.getWidth();j++){
                 Button currentbutton=new Button();
+
                 currentbutton.getStylesheets().add("Styles/style.css");
                 //SettingSize
                 double buttonborder = ConstBorder / max(this.grid.getHeight()-1, this.grid.getWidth()-1);
@@ -181,8 +182,6 @@ public class GUIGame extends NormalGame {
                         currentButton.getStyleClass().add("pressed");
                         break;
                     case OpenedNumber:
-
-
                         currentButton.getStyleClass().add("ff");
                         currentButton.getStyleClass().add("f"+(String.valueOf(feild[i][j].getNumberOfSurroundedMines()))+"");
                         currentButton.setText(""+feild[i][j].getNumberOfSurroundedMines());

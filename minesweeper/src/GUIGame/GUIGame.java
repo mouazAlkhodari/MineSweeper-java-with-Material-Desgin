@@ -111,10 +111,7 @@ public class GUIGame extends NormalGame {
             Label playerScoreLabel=new Label(String.valueOf(_player.getCurrentScore().getScore()));
             playerNameLabel.getStyleClass().add("h2");
             playerScoreLabel.getStyleClass().add("h2");
-<<<<<<< HEAD
             _playerPanel.setStyle("-fx-background-color: "+(_player.getColor())+";");
-=======
->>>>>>> 0e0e189f72fa16dfaa0bbd43919a4857e534fe56
             _playerPanel.getChildren().addAll(playerNameLabel,playerScoreLabel);
             ScoreBoard.getChildren().add(_playerPanel);
         }
@@ -176,20 +173,26 @@ public class GUIGame extends NormalGame {
                 Button currentButton=(Button)FXgrid.getChildren().get(Position);
                 switch (feild[i][j].getStatus()){
                     case Closed:
-                        currentButton.setStyle("-fx-background-color: #22a6b3");
+                        currentButton.getStyleClass().removeAll();
+                        currentButton.getStyleClass().add("Closed");
                         break;
                     case OpenedEmpty:
-                        currentButton.setStyle("-fx-background-color: #875F9A;-fx-border-width: 0;");
+                        currentButton.setStyle("-fx-background-color: "+feild[i][j].getColor()+"");
+//                        currentButton.setStyle("-fx-background-color: #875F9A;-fx-border-width: 0;");
                         currentButton.getStyleClass().add("pressed");
                         break;
                     case OpenedNumber:
+
+
+                        currentButton.getStyleClass().add("ff");
+                        currentButton.getStyleClass().add("f"+(String.valueOf(feild[i][j].getNumberOfSurroundedMines()))+"");
                         currentButton.setText(""+feild[i][j].getNumberOfSurroundedMines());
-                        currentButton.setStyle("-fx-background-color: #F5AB35   ;");
+                        currentButton.setStyle("-fx-background-color: "+feild[i][j].getColor()+"");
                         currentButton.getStyleClass().add("pressed");
+
                         break;
                     case OpenedMine:
-                        currentButton.setStyle("-fx-background-color: #8F1D21");
-                        currentButton.getStyleClass().add("pressed");
+                        currentButton.setStyle("-fx-background-color: #ff1a28");
                         break;
                     case Marked:
                         currentButton.setStyle("-fx-background-color: #00f");

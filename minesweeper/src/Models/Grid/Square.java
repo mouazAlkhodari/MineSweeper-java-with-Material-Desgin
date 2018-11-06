@@ -13,7 +13,7 @@ public class Square {
     private Mine mine;
     private ArrayList playersMoves;
     private SquareStatus status;
-
+    private String Color;
     // <__ CONSTRUCTER __> \\
     public Square() {
         this(0,0,false,0);
@@ -30,6 +30,7 @@ public class Square {
     // <__ METHODS __> \\
     public void ChangeStatus(Player PlayerWhoMadeTheMove, MoveType Type) {
         playersMoves.add(PlayerWhoMadeTheMove);
+        Color=PlayerWhoMadeTheMove.getColor();
         switch (Type) { 
             case Mark: 
                 this.status = (this.status == SquareStatus.Marked ? SquareStatus.Closed : SquareStatus.Marked);
@@ -40,6 +41,8 @@ public class Square {
         }
     }
     // <__ SETTERS-GETTERS __> \\
+
+    public void setColor(String color) { Color = color; }
 
     public void setX(int x) {
         this.x = x;
@@ -55,4 +58,7 @@ public class Square {
     public int getY() { return this.y;}
     public Boolean isMine() { return mine == null ? false : true; }
     public SquareStatus getStatus() { return status; }
+    public String getColor() { return Color; }
+
+
 }

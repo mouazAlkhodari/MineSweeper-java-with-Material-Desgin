@@ -17,7 +17,7 @@ import java.util.List;
 
 public class GUIGameWithOptions extends Application {
     WelcomeScene welcomescene = new WelcomeScene();
-    OptionsScene optionsScene = new OptionsScene();
+    CustomGrid optionsScene = new CustomGrid();
     GUIGame guiGame;
     Stage Window;
     public static void main(String[] args) {
@@ -41,9 +41,11 @@ public class GUIGameWithOptions extends Application {
         Window.setScene(guiGame.getScene());
     }
     void initGame(int _width,int _height,int _mines) {
-        Player guiplayer1=new GUIPlayer("Your Score","#F58F84");
+        Player guiplayer1=new GUIPlayer("p1","#F58F84");
+        Player guiplayer2=new GUIPlayer("p2","#aaaaaa");
         List<Player> Players=new ArrayList<Player>();
         Players.add(guiplayer1);
+        Players.add(guiplayer2);
         guiGame =new GUIGame(_width,_height,_mines,Players);
         guiGame.StartGame();
         Window.setScene(guiGame.getScene());
@@ -82,7 +84,7 @@ public class GUIGameWithOptions extends Application {
         }
     }
 
-    class OptionsScene {
+    class CustomGrid {
         Scene scene;
         //SettingLabels;
         GridPane optionsGrid = new GridPane();
@@ -103,7 +105,7 @@ public class GUIGameWithOptions extends Application {
         VBox OptionLayout = new VBox(20);
 
 
-        public OptionsScene() {
+        public CustomGrid() {
            initScene();
         }
         private void initScene() {
@@ -149,4 +151,13 @@ public class GUIGameWithOptions extends Application {
 
 
     }
+    class Optionscene{
+        CustomGrid g;
+        CustomPoints c;
+        CustomPlayers p;
+
+    }
+    class CustomPoints{}
+    class CustomPlayers{}
+
 }

@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72e468c9-36b8-4bef-a3ab-2cfb3c596978" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/artifacts/minesweeper_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/minesweeper/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../out/artifacts/minesweeper_jar/minesweeper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../out/production/minesweeper/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/ConsoleGame/ConsoleMinesweeper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/ConsoleGame/ConsoleMinesweeper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameWithOptions$OptionsScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameWithOptions$OptionsScene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/userDefineException/MineSweeperGameExeption.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/userDefineException/MineSweeperGameExeption.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ConsoleGame/ConsoleMinesweeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConsoleGame/ConsoleMinesweeper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIGameWithOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIGameWithOptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userDefineException/MineSweeperGameExeption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/userDefineException/MineSweeperGameExeption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/ConsoleGame/ConsoleMinesweeper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/ConsoleGame/ConsoleMinesweeper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/userDefineException/MineSweeperGameExeption.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/userDefineException/MineSweeperGameExeption.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,14 +23,24 @@
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="47" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="47" />
+        </counts>
+      </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-609">
+            <state relative-caret-position="-779">
               <caret line="183" column="38" selection-start-line="183" selection-start-column="38" selection-end-line="183" selection-end-column="38" />
             </state>
           </provider>
@@ -80,17 +72,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIMineseeper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="119">
+              <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGameWithOptions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="39" column="28" selection-start-line="39" selection-start-column="28" selection-end-line="39" selection-end-column="28" />
+            <state relative-caret-position="-386">
+              <caret line="86" column="20" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="20" />
+              <folding>
+                <element signature="e#650#651#0" expanded="true" />
+                <element signature="e#678#679#0" expanded="true" />
+                <element signature="e#972#980#0" expanded="true" />
+                <element signature="e#1298#1306#0" expanded="true" />
+                <element signature="e#3410#3411#0" expanded="true" />
+                <element signature="e#3444#3445#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -151,8 +151,8 @@
         <option value="$PROJECT_DIR$/src/Models/Player/DumbPlayer.java" />
         <option value="$PROJECT_DIR$/src/Models/Game/Game.java" />
         <option value="$PROJECT_DIR$/src/Styles/style.css" />
-        <option value="$PROJECT_DIR$/src/GUIGame/GUIGameWithOptions.java" />
         <option value="$PROJECT_DIR$/src/GUIGame/GUIGame.java" />
+        <option value="$PROJECT_DIR$/src/GUIGame/GUIGameWithOptions.java" />
       </list>
     </option>
   </component>
@@ -161,6 +161,11 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-7" />
+    <option name="width" value="1378" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -204,6 +209,11 @@
       <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541523969443" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -269,17 +279,18 @@
       <workItem from="1541368094574" duration="2289000" />
       <workItem from="1541400105048" duration="28655000" />
       <workItem from="1541509753104" duration="2844000" />
-      <workItem from="1541520679396" duration="555000" />
+      <workItem from="1541520679396" duration="2182000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75000" />
+    <option name="totallyTimeSpent" value="1702000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2647504" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2647504" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -288,14 +299,14 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3289689" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3289689" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.27659574" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.27659574" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -384,8 +395,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-609">
+        <state relative-caret-position="-779">
           <caret line="183" column="38" selection-start-line="183" selection-start-column="38" selection-end-line="183" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIMineseeper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="19" column="22" lean-forward="true" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGameWithOptions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-386">
+          <caret line="86" column="20" selection-start-line="86" selection-start-column="20" selection-end-line="86" selection-end-column="20" />
+          <folding>
+            <element signature="e#650#651#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#972#980#0" expanded="true" />
+            <element signature="e#1298#1306#0" expanded="true" />
+            <element signature="e#3410#3411#0" expanded="true" />
+            <element signature="e#3444#3445#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -19,6 +19,18 @@ public abstract class NormalGame extends Game {
         super(Width,Height,NumMines,ListOfPlayers);
         currentRules=new NormalGame.DefaultRules();
     }
+    public NormalGame(int Width,int Height,int NumMines,List ListOfPlayers,
+                      int RevealFloodFill,
+                              int RevealEmpty,
+                              int RevealMine,
+                              int MarkMine,
+                              int MarkNotMine,
+                              int Unmarkmine,
+                              int UnmarkNotMine,
+                              int LastNumber){
+        super(Width,Height,NumMines,ListOfPlayers);
+        currentRules=new NormalGame.DefaultRules(RevealFloodFill,RevealEmpty,RevealMine,MarkMine,MarkNotMine,Unmarkmine,UnmarkNotMine,LastNumber);
+    }
 
 
     // InnerClass
@@ -62,6 +74,17 @@ public abstract class NormalGame extends Game {
         public DefaultRules() {
             PressMineBehavior = WhenHitMine.Lose;
             points = new Points();
+        }
+        public DefaultRules(int RevealFloodFill,
+                            int RevealEmpty,
+                            int RevealMine,
+                            int MarkMine,
+                            int MarkNotMine,
+                            int Unmarkmine,
+                            int UnmarkNotMine,
+                            int LastNumber){
+            PressMineBehavior=WhenHitMine.Lose;
+            points=new Points(RevealFloodFill,RevealEmpty,RevealMine,MarkMine,MarkNotMine,Unmarkmine,UnmarkNotMine,LastNumber);
         }
 
         void ChangePlayerStatus(List<PlayerMove> moves) {

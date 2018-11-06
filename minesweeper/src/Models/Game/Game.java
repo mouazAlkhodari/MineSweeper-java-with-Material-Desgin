@@ -49,7 +49,7 @@ public abstract class Game {
     }
     // <__ METHODS __> \\
     protected void initGame(int width, int height, int minesCount){
-        currentPlayer = (Player)players.get(0);
+        setCurrentPlayer(players.get(0));
         this.status=GameStatus.Running;// need to change to New Start game
         grid = new Grid(width,height,minesCount);
         FlagsNumber =minesCount;

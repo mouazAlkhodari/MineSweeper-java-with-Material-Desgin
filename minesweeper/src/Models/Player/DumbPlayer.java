@@ -16,7 +16,6 @@ public class DumbPlayer extends Player {
         this.width = width;
         this.height = height;
     }
-
     public DumbPlayer(String _name, int width, int height) {
         super(_name);
         this.width = width;

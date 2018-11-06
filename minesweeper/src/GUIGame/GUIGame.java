@@ -42,6 +42,18 @@ public class GUIGame extends NormalGame {
         super(Width,Height,NumMines,ListOfPlayers);
         initScene();
     }
+    public GUIGame(int Width,int Height,int NumMines,List ListOfPlayers,
+                      int RevealFloodFill,
+                      int RevealEmpty,
+                      int RevealMine,
+                      int MarkMine,
+                      int MarkNotMine,
+                      int Unmarkmine,
+                      int UnmarkNotMine,
+                      int LastNumber){
+        super(Width,Height,NumMines,ListOfPlayers,RevealFloodFill,RevealEmpty,RevealMine,MarkMine,MarkNotMine,Unmarkmine,UnmarkNotMine,LastNumber);
+        initScene();
+    }
 
     // <__ GETTERS-SETTERS __> \\
     //Getters;

@@ -155,7 +155,22 @@ public class GUIGameWithOptions extends Application {
         CustomGrid g;
         CustomPoints c;
         CustomPlayers p;
+        VBox layout;
+        void initScene(){
+            layout=new VBox();
+            initGrid();
+            initPlayers();
+            initPoints();
+        }
 
+        private void initPoints() {
+        }
+
+        private void initPlayers() {
+        }
+
+        private void initGrid() {
+        }
     }
     class CustomPoints{}
     class CustomPlayers{}

@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.util.List;
 
@@ -172,6 +173,7 @@ public class GUIGame extends NormalGame {
                     case Closed:
                         currentButton.getStyleClass().removeAll();
                         currentButton.getStyleClass().add("Closed");
+                        currentButton.setStyle("-fx-background-color: #22a6b3");
                         break;
                     case OpenedEmpty:
                         currentButton.setStyle("-fx-background-color: "+feild[i][j].getColor()+"");

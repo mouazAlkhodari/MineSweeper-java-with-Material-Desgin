@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.util.List;
 
@@ -69,6 +70,7 @@ public class GUIGame extends NormalGame {
     }
 
     private void initGrid() {
+        ConstBorder= Double.valueOf(Math.min(max(grid.getWidth(),grid.getHeight()) * 50,600));
         // initialize Grid
         FXgrid=new GridPane();
         FXgrid.getStyleClass().add("grid");
@@ -80,8 +82,8 @@ public class GUIGame extends NormalGame {
                 //SettingSize
                 double buttonborder = ConstBorder / max(this.grid.getHeight()-1, this.grid.getWidth()-1);
                 //System.out.println(buttonborder + " " + grid.getHeight() + " " +grid.getWidth());
-                currentbutton.setMaxSize(buttonborder-2, buttonborder-2);
-                currentbutton.setMinSize(buttonborder-2, buttonborder-2);
+                currentbutton.setMaxSize(buttonborder, buttonborder);
+                currentbutton.setMinSize(buttonborder, buttonborder);
                 //Set Action
                 currentbutton.setOnMouseClicked(e->{
                     ClickedButton = currentbutton;
@@ -169,20 +171,27 @@ public class GUIGame extends NormalGame {
                 Button currentButton=(Button)FXgrid.getChildren().get(Position);
                 switch (feild[i][j].getStatus()){
                     case Closed:
+                        currentButton.getStyleClass().removeAll();
+                        currentButton.getStyleClass().add("Closed");
                         currentButton.setStyle("-fx-background-color: #22a6b3");
                         break;
                     case OpenedEmpty:
-                        currentButton.setStyle("-fx-background-color: #875F9A;-fx-border-width: 0;");
+                        currentButton.setStyle("-fx-background-color: "+feild[i][j].getColor()+"");
+//                        currentButton.setStyle("-fx-background-color: #875F9A;-fx-border-width: 0;");
                         currentButton.getStyleClass().add("pressed");
                         break;
                     case OpenedNumber:
+
+
+                        currentButton.getStyleClass().add("ff");
+                        currentButton.getStyleClass().add("f"+(String.valueOf(feild[i][j].getNumberOfSurroundedMines()))+"");
                         currentButton.setText(""+feild[i][j].getNumberOfSurroundedMines());
-                        currentButton.setStyle("-fx-background-color: #F5AB35   ;");
+                        currentButton.setStyle("-fx-background-color: "+feild[i][j].getColor()+"");
                         currentButton.getStyleClass().add("pressed");
+
                         break;
                     case OpenedMine:
-                        currentButton.setStyle("-fx-background-color: #8F1D21");
-                        currentButton.getStyleClass().add("pressed");
+                        currentButton.setStyle("-fx-background-color: #ff1a28");
                         break;
                     case Marked:
                         currentButton.setStyle("-fx-background-color: #00f");
@@ -237,8 +246,8 @@ public class GUIGame extends NormalGame {
         Label LastMoveLabel=(Label)footer.getChildren().get(0);
         LastMoveLabel.setText(winner.getName() + " Win the Game yyyyhaaaa!!!!");
 
-        for(int i=1;i<this.grid.getWidth();i++){
-           for(int j=1;j<this.grid.getHeight();j++){
+        for(int i=1;i<this.grid.getHeight();i++){
+           for(int j=1;j<this.grid.getWidth();j++){
                int H=(i-1)*(this.grid.getWidth()-1)+(j-1);
                Button currentButton=(Button)FXgrid.getChildren().get(H);
                currentButton.setDisable(true);

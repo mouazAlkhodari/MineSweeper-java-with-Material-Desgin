@@ -1,14 +1,18 @@
 .root {
     -fx-background-color: #D2D7D3;
 }
-.vbox {
+.windowsize {
     -fx-alignment: CENTER;
     -fx-pref-width: 500;
     -fx-pref-height: 500;
 }
+.optiongrid {
+    -fx-vgap: 20;
+    -fx-hgap: 20;
+}
 
 .button {
-    -fx-background-color: #22a6b3;
+    /*-fx-background-color: #22a6b3;*/
     -fx-border-color: #D2D7D3;
     -fx-padding: 0;
     -fx-border-width: 0.5;
@@ -59,4 +63,16 @@
     -fx-border-width: 1;
     -fx-border-color: #323232;
 }
-
+.openedMine{-fx-background-color: #8F1D21}
+.marked{-fx-background-color: #00f}
+.f1{-fx-text-fill: #e26e0e}
+.f2{-fx-text-fill: #d5654d}
+.f3{-fx-text-fill: #923e25}
+.f4{-fx-text-fill: #a72920}
+.f5{-fx-text-fill: #9b2423}
+.f6{-fx-text-fill: #9b2321}
+.f7{-fx-text-fill: #861a22}
+.f8{-fx-text-fill: #6b1c23}
+.fg{-fx-text-fill: #6cffaa}
+.Closed{-fx-background-color: #22a6b3}
+.center { -fx-alignment: CENTER;}

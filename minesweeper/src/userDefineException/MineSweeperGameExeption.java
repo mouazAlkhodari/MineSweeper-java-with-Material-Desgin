@@ -1,5 +1,5 @@
 package userDefineException;
 
-public class MineSweeperGameExeption {
+public class MineSweeperGameExeption extends Exception {
 
 }

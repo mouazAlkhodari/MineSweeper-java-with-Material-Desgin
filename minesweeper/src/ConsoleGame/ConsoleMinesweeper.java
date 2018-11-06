@@ -29,6 +29,7 @@ public class ConsoleMinesweeper {
        ArrayList<Player> Players=new ArrayList<Player>();
        Players.add(ConstPlayer);
        Game ConstGame=new ConsoleGame(Players);
+       ConstGame.StartGame();
     }
 
 

@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
+import javafx.scene.control.Slider;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,6 +95,8 @@ public class GUIGameWithOptions extends Application {
         TextField HeightInput = new TextField();
         TextField MinesInput = new TextField();
 
+        Slider slider = new Slider(5,20,10);
+
         Label optionsLabel = new Label("Enter your Game Properties");
         Button startGameButtom = new Button("START GAME");
 
@@ -113,7 +115,7 @@ public class GUIGameWithOptions extends Application {
             optionsGrid.getStyleClass().addAll("optiongrid","center");
             optionsGrid.getStylesheets().add("Styles/style.css");
             optionsGrid.add(WidthLabel,0,0);
-            optionsGrid.add(WidthInput,1,0);
+            optionsGrid.add(slider,1,0);
             optionsGrid.add(HeightLabel,0,1);
             optionsGrid.add(HeightInput,1,1);
             optionsGrid.add(MinesLabel,0,2);
@@ -122,12 +124,14 @@ public class GUIGameWithOptions extends Application {
         private void initLayout() {
             OptionLayout.getStylesheets().add("Styles/style.css");
             OptionLayout.getStyleClass().add("windowsize");
-
+            slider.setShowTickLabels(true);
+            slider.setShowTickMarks(true);
+            slider.setMajorTickUnit(1);
             optionsLabel.getStyleClass().addAll("h1");
 
             startGameButtom.getStyleClass().addAll("menubuttom");
             startGameButtom.setOnAction(e -> {
-                initGame(Integer.valueOf(WidthInput.getText()),Integer.valueOf(HeightInput.getText()),Integer.valueOf(MinesInput.getText()));
+                initGame(Integer.valueOf((int) slider.getValue()),Integer.valueOf(HeightInput.getText()),Integer.valueOf(MinesInput.getText()));
             });
             initGridComponents();
             initOptionsGrid();

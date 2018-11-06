@@ -1,10 +1,14 @@
 .root {
     -fx-background-color: #D2D7D3;
 }
-.vbox {
+.windowsize {
     -fx-alignment: CENTER;
     -fx-pref-width: 500;
     -fx-pref-height: 500;
+}
+.optiongrid {
+    -fx-vgap: 20;
+    -fx-hgap: 20;
 }
 
 .button {
@@ -71,3 +75,4 @@
 .f8{-fx-text-fill: #6b1c23}
 .fg{-fx-text-fill: #6cffaa}
 .Closed{-fx-background-color: #22a6b3}
+.center { -fx-alignment: CENTER;}

@@ -4,21 +4,17 @@ import Models.Game.GameStatus;
 import Models.Game.NormalGame;
 import Models.Grid.Square;
 import Models.Move.MoveType;
-import Models.Player.DumbPlayer;
 import Models.Player.Player;
 import Models.Move.PlayerMove;
 import Models.Player.PlayerStatus;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.max;
@@ -73,6 +69,7 @@ public class GUIGame extends NormalGame {
     }
 
     private void initGrid() {
+        ConstBorder= Double.valueOf(Math.min(max(grid.getWidth(),grid.getHeight()) * 50,600));
         // initialize Grid
         FXgrid=new GridPane();
         FXgrid.getStyleClass().add("grid");
@@ -84,8 +81,8 @@ public class GUIGame extends NormalGame {
                 //SettingSize
                 double buttonborder = ConstBorder / max(this.grid.getHeight()-1, this.grid.getWidth()-1);
                 //System.out.println(buttonborder + " " + grid.getHeight() + " " +grid.getWidth());
-                currentbutton.setMaxSize(buttonborder-2, buttonborder-2);
-                currentbutton.setMinSize(buttonborder-2, buttonborder-2);
+                currentbutton.setMaxSize(buttonborder, buttonborder);
+                currentbutton.setMinSize(buttonborder, buttonborder);
                 //Set Action
                 currentbutton.setOnMouseClicked(e->{
                     ClickedButton = currentbutton;
@@ -125,9 +122,9 @@ public class GUIGame extends NormalGame {
         Label LastMoveLabel;
         LastMoveLabel =new Label();
         // init Last Move Label
-        Label NumberOfNotMarkedLabel;
-        NumberOfNotMarkedLabel =new Label(""+curNotMarkMines+"");
-        footer.getChildren().addAll(NumberOfNotMarkedLabel,LastMoveLabel);
+        Label FlagsNumberLabel;
+        FlagsNumberLabel =new Label(""+ FlagsNumber +"");
+        footer.getChildren().addAll(FlagsNumberLabel,LastMoveLabel);
     }
 
     @Override
@@ -221,8 +218,8 @@ public class GUIGame extends NormalGame {
             LastMove=String.valueOf(GridPane.getRowIndex(ClickedButton)) + " --- " + String.valueOf(GridPane.getColumnIndex(ClickedButton));
         LastMoveLabel.setText(LastMove);
 
-        Label NumberOfNotMarkedLabel=(Label)footer.getChildren().get(1);
-        NumberOfNotMarkedLabel.setText(""+curNotMarkMines+"");
+        Label FlagsNumberLabel=(Label)footer.getChildren().get(1);
+        FlagsNumberLabel.setText(""+ FlagsNumber +"");
     }
 
     @Override
@@ -247,8 +244,8 @@ public class GUIGame extends NormalGame {
         Label LastMoveLabel=(Label)footer.getChildren().get(0);
         LastMoveLabel.setText(winner.getName() + " Win the Game yyyyhaaaa!!!!");
 
-        for(int i=1;i<this.grid.getWidth();i++){
-           for(int j=1;j<this.grid.getHeight();j++){
+        for(int i=1;i<this.grid.getHeight();i++){
+           for(int j=1;j<this.grid.getWidth();j++){
                int H=(i-1)*(this.grid.getWidth()-1)+(j-1);
                Button currentButton=(Button)FXgrid.getChildren().get(H);
                currentButton.setDisable(true);

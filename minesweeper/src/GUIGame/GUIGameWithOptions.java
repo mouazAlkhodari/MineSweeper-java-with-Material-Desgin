@@ -1,8 +1,6 @@
 package GUIGame;
 
 
-import Models.Game.Game;
-import Models.Player.DumbPlayer;
 import Models.Player.Player;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -31,6 +29,24 @@ public class GUIGameWithOptions extends Application {
         Window = primaryStage;
         Window.setScene(welcomescene.scene);
         Window.show();
+
+    }
+
+    void initGame() {
+        Player guiplayer1=new GUIPlayer("Your Score","#F58F84");
+        List<Player> Players=new ArrayList<Player>();
+        Players.add(guiplayer1);
+        guiGame =new GUIGame(Players);
+        guiGame.StartGame();
+        Window.setScene(guiGame.getScene());
+    }
+    void initGame(int _width,int _height,int _mines) {
+        Player guiplayer1=new GUIPlayer("Your Score","#F58F84");
+        List<Player> Players=new ArrayList<Player>();
+        Players.add(guiplayer1);
+        guiGame =new GUIGame(_width,_height,_mines,Players);
+        guiGame.StartGame();
+        Window.setScene(guiGame.getScene());
     }
 
     class WelcomeScene {
@@ -47,19 +63,10 @@ public class GUIGameWithOptions extends Application {
             SimpleGame = new Button("SIMPLE GAME");
             CustomGame.getStyleClass().addAll("menubutton","h3");
             SimpleGame.getStyleClass().addAll("menubutton","h3");
-            CustomGame.setOnAction(e -> {
-                Window.setScene(optionsScene.scene);
-            });
-            SimpleGame.setOnAction(e -> {
-                Player guiplayer1=new GUIPlayer("Your Score","#F58F84");
-                List<Player> Players=new ArrayList<Player>();
-                Players.add(guiplayer1);
-                guiGame =new GUIGame(Players);
-                guiGame.StartGame();
-                Window.setScene(guiGame.getScene());
-            });
+            CustomGame.setOnAction(e -> Window.setScene(optionsScene.scene));
+            SimpleGame.setOnAction(e -> initGame());
             //Setting Style
-            WelcomeLayout.getStyleClass().add("vbox");
+            WelcomeLayout.getStyleClass().add("windowsize");
             Welcome.getStyleClass().add("h1");
             Welcome.getStylesheets().add("Styles/style.css");
             CustomGame.getStylesheets().add("Styles/style.css");
@@ -78,6 +85,8 @@ public class GUIGameWithOptions extends Application {
     class OptionsScene {
         Scene scene;
         //SettingLabels;
+        GridPane optionsGrid = new GridPane();
+        //Grid Elements
         Label WidthLabel = new Label("Width: ");
         Label HeightLabel = new Label("Height: ");
         Label MinesLabel = new Label("Mines Count: ");
@@ -86,12 +95,23 @@ public class GUIGameWithOptions extends Application {
         TextField HeightInput = new TextField();
         TextField MinesInput = new TextField();
 
-        GridPane optionsGrid = new GridPane();
+        Label optionsLabel = new Label("Enter your Game Properties");
+        Button startGameButtom = new Button("START GAME");
+
+        VBox OptionLayout = new VBox(20);
+
+
         public OptionsScene() {
            initScene();
         }
+        private void initScene() {
+            scene = new Scene(OptionLayout);
+            initLayout();
+        }
 
         private void initOptionsGrid() {
+            optionsGrid.getStyleClass().addAll("optiongrid","center");
+            optionsGrid.getStylesheets().add("Styles/style.css");
             optionsGrid.add(WidthLabel,0,0);
             optionsGrid.add(WidthInput,1,0);
             optionsGrid.add(HeightLabel,0,1);
@@ -99,11 +119,30 @@ public class GUIGameWithOptions extends Application {
             optionsGrid.add(MinesLabel,0,2);
             optionsGrid.add(MinesInput,1,2);
         }
+        private void initLayout() {
+            OptionLayout.getStylesheets().add("Styles/style.css");
+            OptionLayout.getStyleClass().add("windowsize");
 
-        private void initScene() {
-            scene = new Scene(optionsGrid);
+            optionsLabel.getStyleClass().addAll("h1");
+
+            startGameButtom.getStyleClass().addAll("menubuttom");
+            startGameButtom.setOnAction(e -> {
+                initGame(Integer.valueOf(WidthInput.getText()),Integer.valueOf(HeightInput.getText()),Integer.valueOf(MinesInput.getText()));
+            });
+            initGridComponents();
             initOptionsGrid();
+            OptionLayout.getChildren().addAll(optionsLabel,optionsGrid,startGameButtom);
 
         }
+        private void initGridComponents() {
+            WidthLabel.getStyleClass().add("h3");
+            HeightLabel.getStyleClass().add("h3");
+            MinesLabel.getStyleClass().add("h3");
+            startGameButtom.getStyleClass().addAll("menubutton","h3");
+        }
+
+
+
+
     }
 }

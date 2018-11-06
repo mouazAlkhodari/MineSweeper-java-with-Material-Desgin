@@ -33,7 +33,7 @@ public class GUIGameWithOptions extends Application {
     }
 
     void initGame() {
-        Player guiplayer1=new GUIPlayer("Your Score","#F58F84");
+        Player guiplayer1=new GUIPlayer("Your Score","#5f2");
         List<Player> Players=new ArrayList<Player>();
         Players.add(guiplayer1);
         guiGame =new GUIGame(Players);

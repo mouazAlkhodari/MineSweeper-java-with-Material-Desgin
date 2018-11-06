@@ -12,7 +12,7 @@
 }
 
 .button {
-    /*-fx-background-color: #22a6b3;*/
+    -fx-background-color: #22a6b3;
     -fx-border-color: #D2D7D3;
     -fx-padding: 0;
     -fx-border-width: 0.5;

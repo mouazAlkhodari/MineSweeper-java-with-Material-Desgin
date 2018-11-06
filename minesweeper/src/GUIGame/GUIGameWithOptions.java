@@ -44,6 +44,7 @@ public class GUIGameWithOptions extends Application {
         Player guiplayer1=new GUIPlayer("Your Score","#F58F84");
         List<Player> Players=new ArrayList<Player>();
         Players.add(guiplayer1);
+        Players.add(new GUIPlayer("me"));
         guiGame =new GUIGame(_width,_height,_mines,Players);
         guiGame.StartGame();
         Window.setScene(guiGame.getScene());
@@ -144,9 +145,5 @@ public class GUIGameWithOptions extends Application {
             MinesLabel.getStyleClass().add("h3");
             startGameButtom.getStyleClass().addAll("menubutton","h3");
         }
-
-
-
-
     }
 }

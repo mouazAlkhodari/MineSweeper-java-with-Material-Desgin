@@ -116,6 +116,7 @@ public abstract class Game {
         for(int i=1;i<this.grid.getHeight();i++){
             for(int j=1;j<this.grid.getWidth();j++){
                 switch (feild[i][j].getStatus()){
+                    case OpenedMine:
                     case Marked:
                     case Closed:
                         num++;

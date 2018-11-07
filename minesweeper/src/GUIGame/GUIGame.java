@@ -1,7 +1,6 @@
 package GUIGame;
 
-import Models.Game.GameStatus;
-import Models.Game.NormalGame;
+import Models.Game.*;
 import Models.Grid.Square;
 import Models.Move.MoveType;
 import Models.Player.Player;
@@ -44,16 +43,17 @@ public class GUIGame extends NormalGame {
         super(Width,Height,NumMines,ListOfPlayers);
         initScene();
     }
-    public GUIGame(int Width,int Height,int NumMines,List ListOfPlayers,
-                      int RevealFloodFill,
-                      int RevealEmpty,
-                      int RevealMine,
-                      int MarkMine,
-                      int MarkNotMine,
-                      int Unmarkmine,
-                      int UnmarkNotMine,
-                      int LastNumber){
-        super(Width,Height,NumMines,ListOfPlayers,RevealFloodFill,RevealEmpty,RevealMine,MarkMine,MarkNotMine,Unmarkmine,UnmarkNotMine,LastNumber);
+    public GUIGame(int Width, int Height, int NumMines, List _players, Points points,
+                   WhenHitMine pressMineBehavior,WhenScoreNegative scoreNegativeBehavior){
+        super(Width,Height,NumMines,_players,points,pressMineBehavior,scoreNegativeBehavior);
+        initScene();
+    }
+    public GUIGame(int Width, int Height, int NumMines, List ListOfPlayers,
+                   int RevealFloodFill, int RevealEmpty, int RevealMine, int MarkMine, int MarkNotMine, int Unmarkmine,
+                   int UnmarkNotMine, int LastNumber, WhenHitMine pressMineBehavior, WhenScoreNegative scoreNegativeBehavior){
+        super(Width,Height,NumMines,ListOfPlayers,
+                RevealFloodFill,RevealEmpty,RevealMine,MarkMine,MarkNotMine,Unmarkmine,UnmarkNotMine,LastNumber,
+               pressMineBehavior,scoreNegativeBehavior);
         initScene();
     }
 

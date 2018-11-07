@@ -1,7 +1,9 @@
 package GUIGame;
 
 
+import Models.Game.Points;
 import Models.Game.WhenHitMine;
+import Models.Game.WhenScoreNegative;
 import Models.Player.DumbPlayer;
 import Models.Player.Player;
 import com.jfoenix.controls.JFXCheckBox;
@@ -79,23 +81,39 @@ public class GUIGameMainMenu {
                 }
                 break;
         }
-        //Getting Values Of PlayerOptions
+        //Getting Values Of RulesOption
+        WhenHitMine pressMineBehavior=WhenHitMine.Lose;
+        WhenScoreNegative scoreNegativeBehavior=WhenScoreNegative.End;
+        if(!optionsScene.EndGameWhenHitMine.isSelected())
+            pressMineBehavior=WhenHitMine.Continue;
+        if(optionsScene.ContinuePlayinginNegativeScore.isSelected())
+            scoreNegativeBehavior=WhenScoreNegative.Continue;
+        //Getting Values Of PointsOption
+        int _RevealFloodFill;
+        int _RevealEmpty;
+        int _RevealMine;
+        int _MarkMine;
+        int _MarkNotMine;
+        int _Unmarkmine;
+        int _UnmarkNotMine;
+        int _LastNumber;
+        Points points;
         switch (optionsScene.pointsOption.PointsType.getSelectionModel().getSelectedItem()) {
             //"Default","Custom")
             case "Default":
                 guiGame=new GUIGame(_width,_height,_mines,_players);
                 break;
             case "Custom":
-                guiGame=new GUIGame(_width,_height,_mines,_players,
-                        Integer.valueOf(optionsScene.pointsOption.RevealFloodFill.getText()),
-                        Integer.valueOf(optionsScene.pointsOption.RevealEmpty.getText()),
-                        Integer.valueOf(optionsScene.pointsOption.RevealMine.getText()),
-                        Integer.valueOf(optionsScene.pointsOption.MarkMine.getText()),
-                        Integer.valueOf(optionsScene.pointsOption.MarkNotMine.getText()),
-                        Integer.valueOf(optionsScene.pointsOption.Unmarkmine.getText()),
-                        Integer.valueOf(optionsScene.pointsOption.UnmarkNotMine.getText()),
-                        Integer.valueOf(optionsScene.pointsOption.LastNumber.getText())
-                );
+                _RevealFloodFill=Integer.valueOf(optionsScene.pointsOption.RevealFloodFill.getText());
+                _RevealEmpty=Integer.valueOf(optionsScene.pointsOption.RevealEmpty.getText());
+                _RevealMine=Integer.valueOf(optionsScene.pointsOption.RevealMine.getText());
+                _MarkMine=Integer.valueOf(optionsScene.pointsOption.MarkMine.getText());
+                _MarkNotMine=Integer.valueOf(optionsScene.pointsOption.MarkNotMine.getText());
+                _Unmarkmine=Integer.valueOf(optionsScene.pointsOption.Unmarkmine.getText());
+                _UnmarkNotMine=Integer.valueOf(optionsScene.pointsOption.UnmarkNotMine.getText());
+                _LastNumber=Integer.valueOf(optionsScene.pointsOption.LastNumber.getText());
+                points=new Points(_RevealFloodFill, _RevealEmpty, _RevealMine, _MarkMine, _MarkNotMine, _Unmarkmine, _UnmarkNotMine, _LastNumber);
+                guiGame=new GUIGame(_width,_height,_mines,_players, points,pressMineBehavior,scoreNegativeBehavior);
             break;
         }
         guiGame.setBegin(this);
@@ -189,6 +207,9 @@ public class GUIGameMainMenu {
             OptionLayout.getChildren().addAll(optionsLabel,gridOption.Option,playersOption.Option, pointsOption.Option, CustomRulesOption, startGameButton, SaveButton);
         }
         private void initCustomRulesOption() {
+            EndGameWhenHitMine.setSelected(true);
+            FloodfillWhenHitMine.setSelected(true);
+            FloodfillWhenHitMine.setDisable(true);
             CustomRulesOption.getChildren().addAll(EndGameWhenHitMine,FloodfillWhenHitMine,ContinuePlayinginNegativeScore);
         }
 

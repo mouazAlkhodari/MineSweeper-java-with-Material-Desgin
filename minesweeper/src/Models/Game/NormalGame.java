@@ -19,17 +19,18 @@ public abstract class NormalGame extends Game {
         super(Width,Height,NumMines,ListOfPlayers);
         currentRules=new DefaultRules();
     }
-    public NormalGame(int Width,int Height,int NumMines,List ListOfPlayers,
-                      int RevealFloodFill,
-                      int RevealEmpty,
-                      int RevealMine,
-                      int MarkMine,
-                      int MarkNotMine,
-                      int Unmarkmine,
-                      int UnmarkNotMine,
-                      int LastNumber){
+    public NormalGame(int Width,int Height,int NumMines,List ListOfPlayers, int RevealFloodFill, int RevealEmpty, int RevealMine,
+                      int MarkMine, int MarkNotMine, int Unmarkmine, int UnmarkNotMine, int LastNumber,
+                      WhenHitMine pressMineBehavior ,WhenScoreNegative scoreNegativeBehavior){
         super(Width,Height,NumMines,ListOfPlayers);
-        currentRules=new NormalGame.DefaultRules(RevealFloodFill,RevealEmpty,RevealMine,MarkMine,MarkNotMine,Unmarkmine,UnmarkNotMine,LastNumber);
+        currentRules=new NormalGame.DefaultRules(RevealFloodFill,RevealEmpty,RevealMine,MarkMine,MarkNotMine,Unmarkmine,UnmarkNotMine,LastNumber,
+                                                  pressMineBehavior,scoreNegativeBehavior);
+    }
+
+    public NormalGame(int width, int height, int numMines, List players,
+                      Points points, WhenHitMine pressMineBehavior, WhenScoreNegative scoreNegativeBehavior) {
+        super(width, height, numMines, players);
+        currentRules=new DefaultRules(points,pressMineBehavior,scoreNegativeBehavior);
     }
 
 
@@ -37,67 +38,40 @@ public abstract class NormalGame extends Game {
     // #see GameRules In Game Class
     protected class DefaultRules extends GameRules {
         public Points points;
-        class Points {
-            int RevealFloodFill;
-            int RevealEmpty;
-            int RevealMine;
-            int MarkMine;
-            int MarkNotMine;
-            int Unmarkmine;
-            int UnmarkNotMine;
-            int LastNumber;
-
-            public Points() { this(1,10,-250,5,-1,-5,1,0); }
-
-            public Points(int revealFloodFill, int revealEmpty, int revealMine, int markMine, int markNotMine, int unmarkmine, int unmarkNotMine, int lastNumber) {
-                RevealFloodFill = revealFloodFill;
-                RevealEmpty = revealEmpty;
-                RevealMine = revealMine;
-                MarkMine = markMine;
-                MarkNotMine = markNotMine;
-                Unmarkmine = unmarkmine;
-                UnmarkNotMine = unmarkNotMine;
-                LastNumber = lastNumber;
-            }
-
-            public void addRevealEmptyPoints() { currentPlayer.getCurrentScore().addPoints(RevealEmpty); }
-            public void addRevealMinePoints() { currentPlayer.getCurrentScore().addPoints(RevealMine); }
-            public void addMarkMinePoints() { currentPlayer.getCurrentScore().addPoints(MarkMine); }
-            public void addMarkNotMinePoints() { currentPlayer.getCurrentScore().addPoints(MarkNotMine); }
-            public void addUnmarkMinePoints() { currentPlayer.getCurrentScore().addPoints(Unmarkmine); }
-            public void addUnmarkNotMinePoints() { currentPlayer.getCurrentScore().addPoints(UnmarkNotMine); }
-            public void addRevealEmptyPontis() { currentPlayer.getCurrentScore().addPoints(RevealEmpty); }
-            public void addRevealFloodFill(int SquaresNumber) { currentPlayer.getCurrentScore().addPoints(RevealFloodFill*(SquaresNumber - 1) + RevealEmpty); }
-        }
         WhenHitMine PressMineBehavior;
-
+        WhenScoreNegative ScoreNegativeBehavior;
         public DefaultRules() {
             PressMineBehavior = WhenHitMine.Lose;
+            ScoreNegativeBehavior=WhenScoreNegative.End;
             points = new Points();
         }
-        public DefaultRules(int RevealFloodFill,
-                            int RevealEmpty,
-                            int RevealMine,
-                            int MarkMine,
-                            int MarkNotMine,
-                            int Unmarkmine,
-                            int UnmarkNotMine,
-                            int LastNumber){
-            PressMineBehavior=WhenHitMine.Lose;
+        public DefaultRules(int RevealFloodFill, int RevealEmpty, int RevealMine, int MarkMine, int MarkNotMine,
+                            int Unmarkmine, int UnmarkNotMine, int LastNumber,
+                            WhenHitMine pressMineBehvior, WhenScoreNegative scoreNegativeBehavior){
+            PressMineBehavior=pressMineBehvior;
+            ScoreNegativeBehavior=scoreNegativeBehavior;
             points=new Points(RevealFloodFill,RevealEmpty,RevealMine,MarkMine,MarkNotMine,Unmarkmine,UnmarkNotMine,LastNumber);
         }
 
+        public DefaultRules(Points _points, WhenHitMine pressMineBehavior, WhenScoreNegative scoreNegativeBehavior) {
+            points=_points;
+            PressMineBehavior=pressMineBehavior;
+            ScoreNegativeBehavior=scoreNegativeBehavior;
+
+        }
+
         void ChangePlayerStatus(List<PlayerMove> moves) {
-            if (moves.get(0).getSquare().getStatus() == SquareStatus.OpenedMine) {
-                if (PressMineBehavior == WhenHitMine.Lose || (PressMineBehavior == WhenHitMine.Continue && currentPlayer.getCurrentScore().getScore() < 0))
-                    currentPlayer.setCurrentStatus(PlayerStatus.Lose);
-                else {
-                    currentPlayer.setCurrentStatus(PlayerStatus.waiting);
-                }
+            if (moves.get(0).getSquare().getStatus() == SquareStatus.OpenedMine && PressMineBehavior == WhenHitMine.Lose){
+                currentPlayer.setCurrentStatus(PlayerStatus.Lose);
+                return;
             }
-            else{
-                currentPlayer.setCurrentStatus(PlayerStatus.waiting);
+            if( currentPlayer.getCurrentScore().getScore() < 0
+                    && PressMineBehavior == WhenHitMine.Continue
+                    && ScoreNegativeBehavior ==WhenScoreNegative.End){
+                currentPlayer.setCurrentStatus(PlayerStatus.Lose);
+                return;
             }
+            currentPlayer.setCurrentStatus(PlayerStatus.waiting);
         }
 
         void GetScoreChange(List<PlayerMove> moves) {
@@ -105,29 +79,29 @@ public abstract class NormalGame extends Game {
                 PlayerMove move = moves.get(0);
                 switch (move.getSquare().getStatus()) {
                     case OpenedEmpty:
-                        points.addRevealEmptyPoints();
+                        points.addRevealEmptyPoints(currentPlayer);
                         break;
                     case OpenedNumber:
                         currentPlayer.getCurrentScore().addPoints(move.getSquare().getNumberOfSurroundedMines());
                         break;
                     case OpenedMine:
                         if(PressMineBehavior == WhenHitMine.Continue)
-                            points.addRevealMinePoints();
+                            points.addRevealMinePoints(currentPlayer);
                         break;
                     case Marked:
 //                        move.getSquare().isMine() ? points.addMarkMinePoints() : points.addMarkNotMinePoints();
-                        if (move.getSquare().isMine()) { points.addMarkMinePoints(); }
-                        else { points.addMarkNotMinePoints(); }
+                        if (move.getSquare().isMine()) { points.addMarkMinePoints(currentPlayer); }
+                        else { points.addMarkNotMinePoints(currentPlayer); }
                         break;
                     case Closed: // This case is when user unmark marked sqaure so it will be closed;
-                        if(move.getSquare().isMine()){ points.addUnmarkMinePoints(); }
-                        else{ points.addUnmarkNotMinePoints(); }
+                        if(move.getSquare().isMine()){ points.addUnmarkMinePoints(currentPlayer); }
+                        else{ points.addUnmarkNotMinePoints(currentPlayer); }
                         break;
                 }
                 return;
             }
             else {//In this case .. More than one sqaure revealed so >>
-                points.addRevealFloodFill(moves.size());
+                points.addRevealFloodFill(currentPlayer,moves.size());
             }
         }
 

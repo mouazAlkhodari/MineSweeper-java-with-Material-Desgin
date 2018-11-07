@@ -1,5 +1,5 @@
 package Models.Game;
 
 public enum WhenHitMine {
-    Lose,Continue;
+    Lose,Continue
 }

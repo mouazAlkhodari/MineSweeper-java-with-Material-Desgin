@@ -16,21 +16,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class GUIGameWithOptions extends Application {
+public class GUIGameWithOptions{
     WelcomeScene welcomescene = new WelcomeScene();
     OptionScene optionsScene = new OptionScene();
+
+
+
     GUIGame guiGame;
     Stage Window;
-    public static void main(String[] args) {
-        launch(args);
-    }
 
-    @Override
     public void start(Stage primaryStage) {
         Window = primaryStage;
         Window.setScene(welcomescene.scene);
         Window.show();
-
     }
 
     void initGame() {
@@ -94,6 +92,7 @@ public class GUIGameWithOptions extends Application {
                 );
             break;
         }
+        guiGame.setBegin(this);
         Window.setScene(guiGame.getScene());
     }
 
@@ -168,7 +167,7 @@ public class GUIGameWithOptions extends Application {
         TextField LastNumber = new TextField();
 
         Button startGameButtom = new Button("START GAME");
-
+        Button SaveBtn=new Button("Save");
 
         public OptionScene() {
             initScene();
@@ -184,8 +183,11 @@ public class GUIGameWithOptions extends Application {
             initGridOptions();
             initPlayerOptions();
             initPointOptions();
-            OptionLayout.getChildren().addAll(optionsLabel,GridOption,PlayerOption,PointOption,startGameButtom);
+            OptionLayout.getChildren().addAll(optionsLabel,GridOption,PlayerOption,PointOption,startGameButtom,SaveBtn);
             startGameButtom.setOnAction(e-> initGame());
+            SaveBtn.setOnAction(e->{
+                Window.setScene(welcomescene.scene);
+            });
         }
 
         private void initGridOptions() {
@@ -257,4 +259,7 @@ public class GUIGameWithOptions extends Application {
         }
 
     }
+    public Scene getWelcomescene() { return welcomescene.scene; }
+
+    public Scene getOptionsScene() { return optionsScene.scene; }
 }

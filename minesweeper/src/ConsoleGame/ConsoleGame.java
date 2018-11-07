@@ -90,7 +90,12 @@ public class ConsoleGame extends NormalGame {
             }
         }
         winner.setCurrentStatus(PlayerStatus.win);
-        System.out.println("The Winner Of The Game is: " + winner.getName()+" Congradulation!!");
+        String WinnerStr=winner.getName() + " Win The Game yyyhaaa";
+        if(players.size()==1){
+            WinnerStr = winner.getCurrentStatus()==PlayerStatus.Lose ?"You Lose" : "You Win";
+        }
+        winner.setCurrentStatus(PlayerStatus.win);
+        System.out.println(WinnerStr);
     }
 
 }

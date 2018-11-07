@@ -33,6 +33,8 @@ public class GUIGame extends NormalGame {
     private Scene scene;
     private BorderPane layout;
 
+    private Button BackBTn;
+    private GUIGameWithOptions Begin;
     // <__ CONSTRUCTOR __> \\
     public GUIGame(List _players){
         super(_players);
@@ -62,6 +64,10 @@ public class GUIGame extends NormalGame {
     public VBox getScoreBoard() { return ScoreBoard; }
     public Scene getScene() { return scene; }
     public HBox getFooter() {return footer; }
+
+    public GUIGameWithOptions getBegin() { return Begin; }
+
+    public void setBegin(GUIGameWithOptions begin) { Begin = begin; }
 
     private void initScene() {
         initFXComponoents();
@@ -138,7 +144,14 @@ public class GUIGame extends NormalGame {
         // init Last Move Label
         Label FlagsNumberLabel;
         FlagsNumberLabel =new Label(""+ FlagsNumber +"");
-        footer.getChildren().addAll(FlagsNumberLabel,LastMoveLabel);
+
+        BackBTn=new Button("Back");
+        BackBTn.setPrefSize(100,40);
+        BackBTn.setOnAction(e->{
+            Begin.Window.setScene(Begin.getWelcomescene());
+        });
+
+        footer.getChildren().addAll(FlagsNumberLabel,LastMoveLabel,BackBTn);
     }
 
     @Override

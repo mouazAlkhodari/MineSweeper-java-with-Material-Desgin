@@ -34,6 +34,11 @@
     -fx-text-fill: #1EB98F;
     -fx-font-weight: bold;
 }
+.notpressed {
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-scale-z: 1;
+}
 
 .pressed {
     -fx-border-width: 0;
@@ -41,6 +46,9 @@
     -fx-scale-y: 1.1;
     -fx-scale-z: 1.1;
 }
+.closed {-fx-background-color: #607d8b;}
+.openedMine{-fx-background-color: #8F1D21}
+.marked{-fx-background-color: #cfd8dc}
 .label {
     -fx-alignment: CENTER;
     -fx-text-fill: #FFFFFF;
@@ -109,8 +117,7 @@
 .padding {
     -fx-padding: 50px;
 }
-.openedMine{-fx-background-color: #8F1D21}
-.marked{-fx-background-color: #535c68}
+
 .f1{-fx-text-fill: #e26e0e;  -fx-font-weight: 700;}
 .f2{-fx-text-fill: #d5654d;  -fx-font-weight: 700;}
 .f3{-fx-text-fill: #923e25;  -fx-font-weight: 700;}

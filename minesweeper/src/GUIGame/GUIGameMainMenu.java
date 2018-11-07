@@ -52,7 +52,7 @@ public class GUIGameMainMenu {
                 _mines = 150;
                 break;
             case "Custom":
-                _width = Integer.valueOf(optionsScene.WidthInput.getText());
+                _width = (int) optionsScene.WidthInput.getValue();
                 _height = Integer.valueOf(optionsScene.HeightInput.getText());
                 _mines = Integer.valueOf(optionsScene.MinesInput.getText());
                 break;
@@ -147,7 +147,7 @@ public class GUIGameMainMenu {
         ComboBox<String> difficulty = new ComboBox<>();
         VBox CustomGrid = new VBox(10);
         //Elements
-        TextField WidthInput = new TextField();
+        Slider WidthInput = new Slider(5,30,8);
         TextField HeightInput = new TextField();
         TextField MinesInput = new TextField();
 
@@ -235,7 +235,6 @@ public class GUIGameMainMenu {
             CustomGrid.managedProperty().bind(CustomGrid.visibleProperty());
             CustomGrid.getChildren().addAll(WidthInput,HeightInput,MinesInput);
 
-            WidthInput.setPromptText("Enter Width");
             HeightInput.setPromptText("Enter Height");
             MinesInput.setPromptText("Enter Number Of Mines");
 

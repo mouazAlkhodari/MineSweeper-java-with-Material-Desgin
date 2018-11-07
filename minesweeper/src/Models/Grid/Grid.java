@@ -47,6 +47,8 @@ public class Grid {
         }
     }
     public void initGrid(PlayerMove move) {
+        field = new Square[height][width];
+        mines=new ArrayList<Square>();
         //to generate random coordinates for mines
         MinesCoor2DArray minesCoordinates = new MinesCoor2DArray(width, height,Boolean.FALSE);
         minesCoordinates.GenerateRandomMines(minesCount,move);
@@ -54,8 +56,10 @@ public class Grid {
         //init sqaures inside the field
         for (int i = 1 ;i < height; i++) {
             for (int j = 1;j < width; j++) {
-                if(minesCoordinates.arr[i][j]){ mines.add(field[i][j]); }
-                field[i][j] = new Square(i, j,minesCoordinates.arr[i][j],numberOfSurroundedmines.arr[i][j]);
+                Square currentSquare=new Square(i, j,minesCoordinates.arr[i][j],numberOfSurroundedmines.arr[i][j]);
+                if(minesCoordinates.arr[i][j]){ mines.add(currentSquare); }
+                field[i][j] = currentSquare;
+
             }
         }
     }

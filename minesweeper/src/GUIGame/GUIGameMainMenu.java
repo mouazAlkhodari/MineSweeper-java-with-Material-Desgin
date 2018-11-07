@@ -7,14 +7,13 @@ import Models.Game.WhenScoreNegative;
 import Models.Player.DumbPlayer;
 import Models.Player.Player;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.JFXSnackbar;
 import javafx.animation.FadeTransition;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -234,10 +233,10 @@ public class GUIGameMainMenu {
     public Scene getOptionsScene() { return optionsScene.scene; }
 
     class GridOption{
-        HBox Option = new HBox(20);
+        HBox Option = new HBox(30);
 
         ComboBox<String> difficulty = new ComboBox<>();
-        VBox CustomGrid = new VBox(10);
+        VBox CustomGrid = new VBox(5);
         //Elements
         JFXSlider WidthInput = new JFXSlider(5,30,10);
         JFXSlider HeightInput = new JFXSlider(5,30,10);
@@ -260,14 +259,18 @@ public class GUIGameMainMenu {
             });
             CustomGrid.setVisible(false);
             CustomGrid.managedProperty().bind(CustomGrid.visibleProperty());
-            CustomGrid.getChildren().addAll(WidthInput,HeightInput,MinesInput);
+            Label WidthLabel=new Label("Width");
+            Label HeightLabel=new Label("Heght");
+            Label MinesLabel=new Label("Mines");
+            CustomGrid.getChildren().addAll(WidthLabel,WidthInput,HeightLabel,HeightInput,MinesLabel,MinesInput);
             Option.getStyleClass().add("center");
-            Option.getChildren().addAll(difficulty,CustomGrid);
+            Label difficultyLabel=new Label("Difficulty: ");
+            Option.getChildren().addAll(difficultyLabel,difficulty,CustomGrid);
         }
     }
     class PlayersOption{
         //initializing PlayerOptions
-        HBox Option = new HBox(20);
+        HBox Option = new HBox(30);
         int ConstNumOfPlayers=4;
         ComboBox<String> PlayerType = new ComboBox<>();
         VBox CustomPlayer = new VBox(10);
@@ -300,11 +303,12 @@ public class GUIGameMainMenu {
             _playersColor.add("#972e0e");
 
             Option.getStyleClass().add("center");
-            Option.getChildren().addAll(PlayerType,CustomPlayer);
+            Label PlayersLabel=new Label("Players: ");
+            Option.getChildren().addAll(PlayersLabel,PlayerType,CustomPlayer);
         }
     }
     class PointsOption{
-        HBox Option = new HBox(20);
+        HBox Option = new HBox(30);
 
         //initializing PointOptions
         ComboBox<String> PointsType = new ComboBox<>();
@@ -351,7 +355,8 @@ public class GUIGameMainMenu {
             LastNumber.setPromptText("LastNumber: e.g.: 0");
 
             Option.getStyleClass().add("center");
-            Option.getChildren().addAll(PointsType,CustomPoint);
+            Label PointsLabel=new Label("Players: ");
+            Option.getChildren().addAll(PointsLabel,PointsType,CustomPoint);
         }
     }
 }

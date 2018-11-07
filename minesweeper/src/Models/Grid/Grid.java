@@ -48,7 +48,7 @@ public class Grid {
         mines=new ArrayList<Square>();
         //to generate random coordinates for mines
         MinesCoor2DArray minesCoordinates = new MinesCoor2DArray(width, height, Boolean.FALSE);
-        minesCoordinates.GenerateRandomMines(minesCount);
+        minesCoordinates.GenerateRandomMines(minesCount,new PlayerMove());
         SurroundingMines2DArray numberOfSurroundedmines = new SurroundingMines2DArray(width, height, minesCoordinates);
 
         //init sqaures inside the field

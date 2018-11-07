@@ -46,7 +46,6 @@ public abstract class Game {
         }
         if(!(_players.isEmpty()))
             setCurrentPlayer(players.get(0));
-        // else Some Exception OOOOOOOOOOOOOOOOHHHHHHHHHHHHHHHOOOOOOOOOOOOOOOOOOO deer balk ya (((fahman)) !!!!!!!!!!!!!!!
         initGame(Width,Height,NumMines);
     }
     // <__ METHODS __> \\

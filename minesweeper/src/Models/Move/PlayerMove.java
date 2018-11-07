@@ -1,6 +1,8 @@
 package Models.Move;
 
+import ConsoleGame.ConsolePlayer;
 import Models.Grid.Square;
+import Models.Player.DumbPlayer;
 import Models.Player.Player;
 
 public class PlayerMove {
@@ -11,6 +13,7 @@ public class PlayerMove {
     private MoveResult result;
 
     // <__ CONSTRUCTER __> \\
+    public PlayerMove(){this(new ConsolePlayer(),new Square(),MoveType.Reveal,new MoveResult());}
     public PlayerMove(Player _player){ this(_player,new Square(),MoveType.Reveal,new MoveResult()); }
     public PlayerMove(Player _player,Square _sqaure){ this(_player,_sqaure,MoveType.Reveal,new MoveResult()); }
     public PlayerMove(Player _player,Square _sqaure,MoveType _type){

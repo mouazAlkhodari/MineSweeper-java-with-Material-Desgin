@@ -36,23 +36,6 @@ public class MinesCoor2DArray {
              Arrays.fill(arr[i], false);
         }
     }   
-    
-    public void GenerateRandomMines(int NumberOfMines) { 
-         for (int i = 0 ;i < NumberOfMines; i++) {
-             
-             Random rand = new Random();
-             int randomWidth,randomHeight;
-             //checking that there is no duplicated mines in one square
-             while (true) { 
-                 randomWidth = rand.nextInt(width-2)+1;
-                 randomHeight = rand.nextInt(height-2)+1;
-                 if (!arr[randomHeight][randomWidth]) { 
-                     arr[randomHeight][randomWidth] = true;
-                     break;
-                 }
-             }
-         }
-    }
 
     public void GenerateRandomMines(int NumberOfMines, PlayerMove move) {
         for (int i = 0 ;i < NumberOfMines; i++) {
@@ -63,6 +46,7 @@ public class MinesCoor2DArray {
             while (true) {
                 randomWidth = rand.nextInt(width-2)+1;
                 randomHeight = rand.nextInt(height-2)+1;
+                System.out.println(rand.nextInt(8));
                 if(randomHeight==move.getSquare().getX() && randomWidth==move.getSquare().getY())continue;
                 if (!arr[randomHeight][randomWidth]) {
                     arr[randomHeight][randomWidth] = true;

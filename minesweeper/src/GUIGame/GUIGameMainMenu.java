@@ -1,8 +1,10 @@
 package GUIGame;
 
 
+import Models.Game.WhenHitMine;
 import Models.Player.DumbPlayer;
 import Models.Player.Player;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXSlider;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
@@ -166,13 +168,15 @@ public class GUIGameMainMenu {
         HBox GridOption = new HBox(20);
         HBox PlayerOption = new HBox(20);
         HBox PointOption = new HBox(20);
+        HBox CustomRulesOption = new HBox(10);
+
         //initializing gridOptions
         ComboBox<String> difficulty = new ComboBox<>();
         VBox CustomGrid = new VBox(10);
         //Elements
         JFXSlider WidthInput = new JFXSlider(5,30,10);
         JFXSlider HeightInput = new JFXSlider(5,30,10);
-        JFXSlider MinesInput = new JFXSlider(5,450,15);
+        JFXSlider MinesInput = new JFXSlider(5,75,15);
 
         //initializing PlayerOptions
         int ConstNumOfPlayers=4;
@@ -195,6 +199,13 @@ public class GUIGameMainMenu {
         TextField UnmarkNotMine = new TextField();
         TextField LastNumber = new TextField();
 
+        //initializing CustomRulesOptions
+        //Elements
+        JFXCheckBox EndGameWhenHitMine = new JFXCheckBox("End Game When Hit Mine");
+        JFXCheckBox FloodfillWhenHitMine = new JFXCheckBox("Flood fill When Hit Mine");
+        JFXCheckBox ContinuePlayinginNegativeScore = new JFXCheckBox("Continue Playing in Negative Score");
+
+
         Button startGameButton = new Button("START GAME");
         Button SaveButton =new Button("Save");
 
@@ -212,24 +223,16 @@ public class GUIGameMainMenu {
             initGridOptions();
             initPlayerOptions();
             initPointOptions();
+            initCustomRulesOption();
             initOptionsButtons();
             OptionLayout.getStyleClass().addAll("windowsize","padding");
             OptionLayout.getStylesheets().add("Styles/style.css");
-            OptionLayout.getChildren().addAll(optionsLabel,GridOption,PlayerOption,PointOption, startGameButton, SaveButton);
+            OptionLayout.getChildren().addAll(optionsLabel,GridOption,PlayerOption,PointOption, startGameButton, CustomRulesOption,SaveButton);
            
         }
         private void initOptionsLabel() {
 //            optionsLabel.getStylesheets().add("Styles/style.css");
             optionsLabel.getStyleClass().add("h2");
-        }
-        private void initOptionsButtons(){
-            startGameButton.getStyleClass().addAll("menubutton","h3");
-            SaveButton.getStyleClass().addAll("menubutton","h3");
-            
-            startGameButton.setOnAction(e-> initGame());
-            SaveButton.setOnAction(e->{
-                Window.setScene(welcomescene.scene);
-            });
         }
 
         private void initGridOptions() {
@@ -318,6 +321,20 @@ public class GUIGameMainMenu {
 
             PointOption.getStyleClass().add("center");
             PointOption.getChildren().addAll(PointsType,CustomPoint);
+        }
+
+        private void initCustomRulesOption() {
+            CustomRulesOption.getChildren().addAll(EndGameWhenHitMine,FloodfillWhenHitMine,ContinuePlayinginNegativeScore);
+        }
+
+        private void initOptionsButtons(){
+            startGameButton.getStyleClass().addAll("menubutton","h3");
+            SaveButton.getStyleClass().addAll("menubutton","h3");
+
+            startGameButton.setOnAction(e-> initGame());
+            SaveButton.setOnAction(e->{
+                Window.setScene(welcomescene.scene);
+            });
         }
 
     }

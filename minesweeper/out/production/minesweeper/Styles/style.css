@@ -3,8 +3,8 @@
 }
 .windowsize {
     -fx-alignment: CENTER;
-    -fx-pref-width: 500;
-    -fx-pref-height: 500;
+    -fx-pref-width: 600;
+    -fx-pref-height: 600;
 }
 .optiongrid {
     -fx-vgap: 20;
@@ -163,4 +163,16 @@
 .jfx-slider .slider-value {
     -fx-fill: white;
     -fx-stroke: white;
+}
+
+.jfx-check-box {
+    -fx-text-fill: white;
+    -jfx-checked-color: #1EB98F;
+    -jfx-unchecked-color: #fff;
+    -fx-font-family: Lato;
+}
+
+/* Styling checkmark */
+.jfx-check-box .mark{
+    -fx-border-color: white;
 }

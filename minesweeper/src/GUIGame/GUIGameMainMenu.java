@@ -1,8 +1,10 @@
 package GUIGame;
 
 
+import Models.Game.WhenHitMine;
 import Models.Player.DumbPlayer;
 import Models.Player.Player;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXSlider;
 import javafx.animation.FadeTransition;
 import javafx.scene.Node;
@@ -154,11 +156,18 @@ public class GUIGameMainMenu {
         Scene scene;
         //SettingLabels;
         VBox OptionLayout = new VBox(20);
-
         Label optionsLabel = new Label("Enter your Game Properties");
         GridOption gridOption=new GridOption();
         PlayersOption playersOption=new PlayersOption();
         PointsOption pointsOption=new PointsOption();
+        HBox CustomRulesOption = new HBox(10);
+
+        //initializing CustomRulesOptions
+        //Elements
+        JFXCheckBox EndGameWhenHitMine = new JFXCheckBox("End Game When Hit Mine");
+        JFXCheckBox FloodfillWhenHitMine = new JFXCheckBox("Flood fill When Hit Mine");
+        JFXCheckBox ContinuePlayinginNegativeScore = new JFXCheckBox("Continue Playing in Negative Score");
+
         Button startGameButton = new Button("START GAME");
         Button SaveButton =new Button("Save");
 
@@ -177,20 +186,24 @@ public class GUIGameMainMenu {
             OptionLayout.getStyleClass().addAll("windowsize","padding");
             OptionLayout.getStylesheets().add("Styles/style.css");
             OptionLayout.getChildren().addAll(optionsLabel,gridOption.Option,playersOption.Option, pointsOption.Option, startGameButton, SaveButton);
-           
         }
-        private void initOptionsLabel() {
-//            optionsLabel.getStylesheets().add("Styles/style.css");
-            optionsLabel.getStyleClass().add("h2");
+        private void initCustomRulesOption() {
+            CustomRulesOption.getChildren().addAll(EndGameWhenHitMine,FloodfillWhenHitMine,ContinuePlayinginNegativeScore);
         }
+
         private void initOptionsButtons(){
             startGameButton.getStyleClass().addAll("menubutton","h3");
             SaveButton.getStyleClass().addAll("menubutton","h3");
-            
+
             startGameButton.setOnAction(e-> initGame());
             SaveButton.setOnAction(e->{
                 Window.setScene(welcomescene.scene);
             });
+        }
+
+        private void initOptionsLabel() {
+//            optionsLabel.getStylesheets().add("Styles/style.css");
+            optionsLabel.getStyleClass().add("h2");
         }
 
     }

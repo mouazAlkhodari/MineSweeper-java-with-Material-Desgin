@@ -14,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 
 import java.util.List;
 
@@ -34,7 +33,7 @@ public class GUIGame extends NormalGame {
     private BorderPane layout;
 
     private Button BackBTn;
-    private GUIGameWithOptions Begin;
+    private GUIGameMainMenu Begin;
     // <__ CONSTRUCTOR __> \\
     public GUIGame(List _players){
         super(_players);
@@ -65,9 +64,9 @@ public class GUIGame extends NormalGame {
     public Scene getScene() { return scene; }
     public HBox getFooter() {return footer; }
 
-    public GUIGameWithOptions getBegin() { return Begin; }
+    public GUIGameMainMenu getBegin() { return Begin; }
 
-    public void setBegin(GUIGameWithOptions begin) { Begin = begin; }
+    public void setBegin(GUIGameMainMenu begin) { Begin = begin; }
 
     private void initScene() {
         initFXComponoents();
@@ -264,7 +263,7 @@ public class GUIGame extends NormalGame {
         // Get The Winner
         Player winner=players.get(0);
         for(int i=0;i<players.size();i++) {
-            if(players.get(i).getCurrentStatus()!=PlayerStatus.Lose && players.get(i).getCurrentScore().getScore()>winner.getCurrentScore().getScore()){
+            if(players.get(i).getCurrentScore().getScore()>winner.getCurrentScore().getScore()){
                 winner=players.get(i);
             }
         }

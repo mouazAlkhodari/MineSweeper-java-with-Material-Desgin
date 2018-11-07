@@ -156,7 +156,6 @@ public abstract class Game {
         return status;
     }
 
-
     //This func Implement in each kind of game Like Console Or GUI...
     public abstract void StartGame();
     protected abstract void GetMove();

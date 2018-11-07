@@ -24,7 +24,7 @@ public class Grid {
     // <__ CONSTRUCTERS __> \\
     public Grid(int width,int height,int minesCount)throws IllegalBoundsOfGrid {
         if (width<=0 || height<=0 || minesCount<0)throw new IllegalBoundsOfGrid("Illegal Bound Of Grid");
-        if(minesCount > ((height*width *8.5)/10))throw new IllegalBoundsOfGrid("Allot Mines ");
+        if(minesCount >width*height)throw new IllegalBoundsOfGrid("Allot Mines ");
 
         // +1 because Number Start From 1
         this.width=width+1;

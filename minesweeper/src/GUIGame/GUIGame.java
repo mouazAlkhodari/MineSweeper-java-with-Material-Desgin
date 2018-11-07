@@ -206,13 +206,11 @@ public class GUIGame extends NormalGame {
                 Button currentButton=(Button)FXgrid.getChildren().get(Position);
                 switch (feild[i][j].getStatus()){
                     case Closed:
-//                        currentButton.getStyleClass().removeAll();
-//                        currentButton.getStyleClass().add("Closed");
-//                        currentButton.setStyle("-fx-background-color: #22a6b3");
+                        currentButton.getStyleClass().removeAll("pressed","openedMine","marked");
+                        currentButton.getStyleClass().add("notpressed");
                         break;
                     case OpenedEmpty:
                         currentButton.setStyle("-fx-background-color: "+feild[i][j].getColor()+"");
-//                        currentButton.setStyle("-fx-background-color: #875F9A;-fx-border-width: 0;");
                         currentButton.getStyleClass().add("pressed");
                         break;
                     case OpenedNumber:
@@ -224,11 +222,11 @@ public class GUIGame extends NormalGame {
 
                         break;
                     case OpenedMine:
-                        currentButton.setStyle("-fx-background-color: #ff1a28");
+                        currentButton.getStyleClass().addAll("pressed","openedMine");
                         break;
                     case Marked:
-                        currentButton.setStyle("-fx-background-color: #cfd8dc");
-                        currentButton.getStyleClass().add("pressed");
+                        currentButton.getStyleClass().removeAll("notpressed","closed");
+                        currentButton.getStyleClass().addAll("pressed","marked");
                         break;
                 }
             }

@@ -3,19 +3,20 @@ package GUIGame;
 
 import Models.Player.DumbPlayer;
 import Models.Player.Player;
-import javafx.animation.Animation;
+import com.jfoenix.controls.JFXSlider;
 import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.util.ArrayList;
 
 
@@ -52,9 +53,9 @@ public class GUIGameMainMenu {
                 _mines = 150;
                 break;
             case "Custom":
-                _width = Integer.valueOf(optionsScene.WidthInput.getText());
-                _height = Integer.valueOf(optionsScene.HeightInput.getText());
-                _mines = Integer.valueOf(optionsScene.MinesInput.getText());
+                _width = (int) optionsScene.WidthInput.getValue();
+                _height = (int) optionsScene.HeightInput.getValue();
+                _mines = (int) optionsScene.MinesInput.getValue();
                 break;
         }
 
@@ -102,6 +103,22 @@ public class GUIGameMainMenu {
         Window.centerOnScreen();
     }
 
+    void fadeIn(Node node) {
+        node.setVisible(true);
+        FadeTransition ft = new FadeTransition(Duration.millis(500),node);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.play();
+    }
+    void fadeOut(Node node) {
+        node.setVisible(true);
+        FadeTransition ft = new FadeTransition(Duration.millis(500),node);
+        ft.setFromValue(1);
+        ft.setToValue(0);
+        ft.play();
+        ft.onFinishedProperty().set(event -> node.setVisible(false));
+    }
+
     class WelcomeScene {
         Scene scene;
         VBox WelcomeLayout;
@@ -147,9 +164,9 @@ public class GUIGameMainMenu {
         ComboBox<String> difficulty = new ComboBox<>();
         VBox CustomGrid = new VBox(10);
         //Elements
-        TextField WidthInput = new TextField();
-        TextField HeightInput = new TextField();
-        TextField MinesInput = new TextField();
+        JFXSlider WidthInput = new JFXSlider(5,30,10);
+        JFXSlider HeightInput = new JFXSlider(5,30,10);
+        JFXSlider MinesInput = new JFXSlider(5,450,15);
 
         //initializing PlayerOptions
         int ConstNumOfPlayers=4;
@@ -214,31 +231,20 @@ public class GUIGameMainMenu {
             difficulty.setPromptText("Choose Difficulty");
             difficulty.getSelectionModel().select(0);
             difficulty.setOnAction(e -> {
-                if (difficulty.getSelectionModel().getSelectedItem() == "Custom") {
-                    CustomGrid.setVisible(true);
-                    FadeTransition ft = new FadeTransition(Duration.millis(500),CustomGrid);
-                    ft.setFromValue(0.1);
-                    ft.setToValue(1);
-                    ft.play();
-                }
-                else {
-                    FadeTransition ft = new FadeTransition(Duration.millis(200),CustomGrid);
-                    ft.setFromValue(1);
-                    ft.setToValue(0);
-                    ft.play();
-                    ft.onFinishedProperty().set(event -> CustomGrid.setVisible(false));
-                }
+                if (difficulty.getSelectionModel().getSelectedItem() == "Custom") { fadeIn(CustomGrid);}
+                else { fadeOut(CustomGrid); }
                 Window.sizeToScene();
             });
 
+            WidthInput.valueProperty().addListener( (v,oldValue,NewValue) -> {
+                MinesInput.setMax((NewValue.doubleValue() * HeightInput.getValue())* 0.75);
+            });
+            HeightInput.valueProperty().addListener( (v,oldValue,NewValue) -> {
+                MinesInput.setMax((NewValue.doubleValue() * WidthInput.getValue()) * 0.75);
+            });
             CustomGrid.setVisible(false);
             CustomGrid.managedProperty().bind(CustomGrid.visibleProperty());
             CustomGrid.getChildren().addAll(WidthInput,HeightInput,MinesInput);
-
-            WidthInput.setPromptText("Enter Width");
-            HeightInput.setPromptText("Enter Height");
-            MinesInput.setPromptText("Enter Number Of Mines");
-
             GridOption.getStyleClass().add("center");
             GridOption.getChildren().addAll(difficulty,CustomGrid);
         }
@@ -248,8 +254,8 @@ public class GUIGameMainMenu {
             PlayerType.setPromptText("Choose Players");
             PlayerType.getSelectionModel().select(0);
             PlayerType.setOnAction(e -> {
-                if (PlayerType.getSelectionModel().getSelectedItem() == "Custom") { CustomPlayer.setVisible(true);}
-                else {CustomPlayer.setVisible(false);}
+                if (PlayerType.getSelectionModel().getSelectedItem() == "Custom") { fadeIn(CustomPlayer);}
+                else {fadeOut(CustomPlayer);}
                 CustomPlayer.managedProperty().bind(CustomPlayer.visibleProperty());
                 Window.sizeToScene();
             });
@@ -277,8 +283,8 @@ public class GUIGameMainMenu {
             PointsType.setPromptText("Choose Players");
             PointsType.getSelectionModel().select(0);
             PointsType.setOnAction(e -> {
-                if (PointsType.getSelectionModel().getSelectedItem() == "Custom") { CustomPoint.setVisible(true);}
-                else {CustomPoint.setVisible(false);}
+                if (PointsType.getSelectionModel().getSelectedItem() == "Custom") { fadeIn(CustomPoint);}
+                else {fadeOut(CustomPoint);}
                 CustomPoint.managedProperty().bind(CustomPoint.visibleProperty());
                 Window.sizeToScene();
             });

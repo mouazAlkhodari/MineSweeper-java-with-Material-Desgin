@@ -17,6 +17,7 @@ import Models.Move.MoveType;
 import Models.Player.Player;
 import Models.Move.PlayerMove;
 import Models.Player.PlayerStatus;
+import userDefineException.IllegalGameMove;
 
 public abstract class Game {
     // <__ INNER CLASS __> \\
@@ -50,12 +51,19 @@ public abstract class Game {
     // <__ METHODS __> \\
     protected void initGame(int width, int height, int minesCount){
         setCurrentPlayer(players.get(0));
-        this.status=GameStatus.Running;// need to change to New Start game
+        this.status=GameStatus.FirstMove;// need to change to New Start game
         grid = new Grid(width,height,minesCount);
-        FlagsNumber =minesCount;
+        FlagsNumber = minesCount;
+    }
+    protected void initGame(PlayerMove move){
+        grid.initGrid(move);
+        status=GameStatus.Running;
     }
     protected void ApplyPlayerMove(PlayerMove move) {
         // here We ApPly The move And then Check The Status Of The Game And Players
+        if(status==GameStatus.FirstMove){
+            initGame(move);
+        }
         moves=this.grid.AcceptMove(move);
         currentRules.GetScoreChange(moves);
         currentRules.ChangePlayerStatus(moves);
@@ -65,23 +73,24 @@ public abstract class Game {
             FlagsNumber +=(move.getSquare().getStatus()==SquareStatus.Marked ?-1:1);
         }
     }
-    protected boolean AcceptMove(PlayerMove move){// x Rows Y columns
+    protected void AcceptMove(PlayerMove move)throws IllegalGameMove {// x Rows Y columns
         Square s = move.getSquare();
         if(SurroundingMines2DArray.CheckIndex(s.getX(),s.getY(),grid.getWidth(),grid.getHeight()))
         {
             move.setSquare(grid.getField()[move.getSquare().getX()][move.getSquare().getY()]);
             if(move.getType()==MoveType.Reveal) {
                 if (move.getSquare().getStatus() == SquareStatus.Closed) {
-                    return true;
+                    ApplyPlayerMove(move);
                 }
             }
             else{
                 if(move.getSquare().getStatus() == SquareStatus.Marked  || (FlagsNumber >0 && move.getSquare().getStatus()==SquareStatus.Closed)) {
-                    return true;
+                    ApplyPlayerMove(move);
                 }
             }
+            throw new IllegalGameMove();
         }
-        return false;
+        throw new IllegalGameMove();
     }
     protected void ChangeStatus(){
         Square[][] feild =this.grid.getField();
@@ -118,7 +127,8 @@ public abstract class Game {
     //Setters
     protected void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
-        currentPlayer.setCurrentStatus(PlayerStatus.Playing);
+        if(currentPlayer.getCurrentStatus()!=PlayerStatus.Lose)
+            currentPlayer.setCurrentStatus(PlayerStatus.Playing);
     }
     protected void setStatus(GameStatus status) {
         this.status = status;

@@ -46,7 +46,19 @@ public class Grid {
             }
         }
     }
-
+    public void initGrid(PlayerMove move) {
+        //to generate random coordinates for mines
+        MinesCoor2DArray minesCoordinates = new MinesCoor2DArray(width, height,Boolean.FALSE);
+        minesCoordinates.GenerateRandomMines(minesCount,move);
+        SurroundingMines2DArray numberOfSurroundedmines = new SurroundingMines2DArray(width, height, minesCoordinates);
+        //init sqaures inside the field
+        for (int i = 1 ;i < height; i++) {
+            for (int j = 1;j < width; j++) {
+                if(minesCoordinates.arr[i][j]){ mines.add(field[i][j]); }
+                field[i][j] = new Square(i, j,minesCoordinates.arr[i][j],numberOfSurroundedmines.arr[i][j]);
+            }
+        }
+    }
     public ArrayList<PlayerMove> AcceptMove(PlayerMove move){
         ArrayList<PlayerMove> PlayerMoves=new ArrayList<PlayerMove>();
         move.setSquare(field[move.getSquare().getX()][move.getSquare().getY()]);
@@ -107,6 +119,7 @@ public class Grid {
     public int getWidth(){return this.width;}
     public int getHeight(){return this.height;}
     public Square[][] getField() { return this.field;}
+
 }
 
 

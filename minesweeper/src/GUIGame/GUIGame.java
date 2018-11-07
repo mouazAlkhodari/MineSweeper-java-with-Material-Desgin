@@ -162,8 +162,12 @@ public class GUIGame extends NormalGame {
             TypeOfMove=move.getType();
         }
         //PrintGrid();
-        if(AcceptMove(move))
-            ApplyPlayerMove(move);
+        try {
+            AcceptMove(move);
+        }
+        catch (Exception e){
+
+        }
         // need else some thing wrong input Or Some Thing Like that :3
         if(this.status== GameStatus.Finish){
             EndGame();
@@ -251,11 +255,15 @@ public class GUIGame extends NormalGame {
                 winner=players.get(i);
             }
         }
-        winner.setCurrentStatus(PlayerStatus.win);
         // Update footer Move Label
 
         Label LastMoveLabel=(Label)footer.getChildren().get(0);
-        LastMoveLabel.setText(winner.getName() + " Win the Game yyyyhaaaa!!!!");
+        String WinnerStr=winner.getName() + " Win The Game";
+        if(players.size()==1){
+            WinnerStr = winner.getCurrentStatus()==PlayerStatus.Lose ?"You Lose" : "You Win";
+        }
+        winner.setCurrentStatus(PlayerStatus.win);
+        LastMoveLabel.setText(WinnerStr);
 
         for(int i=1;i<this.grid.getHeight();i++){
            for(int j=1;j<this.grid.getWidth();j++){

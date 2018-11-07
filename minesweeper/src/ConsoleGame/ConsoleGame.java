@@ -27,9 +27,12 @@ public class ConsoleGame extends NormalGame {
     @Override
     public void GetMove(){// get The Move From The Console Player and then Apply it
         PlayerMove move = this.currentPlayer.GetPlayerMove();
-        if(AcceptMove(move))
-            ApplyPlayerMove(move);
-        // need else some thing wrong input Or Some Thing Like that :3
+        try {
+            AcceptMove(move);
+        }
+        catch (Exception e) {
+            // need else some thing wrong input Or Some Thing Like that :3
+        }
         if(this.status== GameStatus.Finish){
             EndGame();
         }

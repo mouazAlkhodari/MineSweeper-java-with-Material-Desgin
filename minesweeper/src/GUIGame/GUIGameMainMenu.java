@@ -24,8 +24,6 @@ public class GUIGameMainMenu {
     WelcomeScene welcomescene = new WelcomeScene();
     OptionScene optionsScene = new OptionScene();
 
-
-
     GUIGame guiGame;
     Stage Window;
 
@@ -40,7 +38,7 @@ public class GUIGameMainMenu {
     void initGame() {
         //Getting Values Of GridOptions
         int _width = 10,_height = 10,_mines = 10;
-        switch (optionsScene.difficulty.getSelectionModel().getSelectedItem()) {
+        switch (optionsScene.gridOption.difficulty.getSelectionModel().getSelectedItem()) {
             case "Easy":
                 _width = _height = _mines = 8;
                 break;
@@ -53,15 +51,15 @@ public class GUIGameMainMenu {
                 _mines = 150;
                 break;
             case "Custom":
-                _width = (int) optionsScene.WidthInput.getValue();
-                _height = (int) optionsScene.HeightInput.getValue();
-                _mines = (int) optionsScene.MinesInput.getValue();
+                _width = (int) optionsScene.gridOption.WidthInput.getValue();
+                _height = (int) optionsScene.gridOption.HeightInput.getValue();
+                _mines = (int) optionsScene.gridOption.MinesInput.getValue();
                 break;
         }
 
         //Getting Values Of PlayerOptions
         ArrayList<Player> _players= new ArrayList<Player>();
-        switch (optionsScene.PlayerType.getSelectionModel().getSelectedItem()) {
+        switch (optionsScene.playersOption.PlayerType.getSelectionModel().getSelectedItem()) {
             //"Single Player","VS Dump PC","Custom"
             case "Single Player":
                 _players.add(new GUIPlayer("Your Score","#ffe082"));
@@ -72,29 +70,29 @@ public class GUIGameMainMenu {
                 break;
             case "Custom":
                 int i=0;
-                for(TextField _playerName:optionsScene._playerFields){
+                for(TextField _playerName:optionsScene.playersOption._playerFields){
                     if(_playerName.getText().length()!=0) {
-                        _players.add(new GUIPlayer(_playerName.getText(), optionsScene._playersColor.get(i++)));
+                        _players.add(new GUIPlayer(_playerName.getText(), optionsScene.playersOption._playersColor.get(i++)));
                     }
                 }
                 break;
         }
         //Getting Values Of PlayerOptions
-        switch (optionsScene.PointsType.getSelectionModel().getSelectedItem()) {
+        switch (optionsScene.pointsOption.PointsType.getSelectionModel().getSelectedItem()) {
             //"Default","Custom")
             case "Default":
                 guiGame=new GUIGame(_width,_height,_mines,_players);
                 break;
             case "Custom":
                 guiGame=new GUIGame(_width,_height,_mines,_players,
-                        Integer.valueOf(optionsScene.RevealFloodFill.getText()),
-                        Integer.valueOf(optionsScene.RevealEmpty.getText()),
-                        Integer.valueOf(optionsScene.RevealMine.getText()),
-                        Integer.valueOf(optionsScene.MarkMine.getText()),
-                        Integer.valueOf(optionsScene.MarkNotMine.getText()),
-                        Integer.valueOf(optionsScene.Unmarkmine.getText()),
-                        Integer.valueOf(optionsScene.UnmarkNotMine.getText()),
-                        Integer.valueOf(optionsScene.LastNumber.getText())
+                        Integer.valueOf(optionsScene.pointsOption.RevealFloodFill.getText()),
+                        Integer.valueOf(optionsScene.pointsOption.RevealEmpty.getText()),
+                        Integer.valueOf(optionsScene.pointsOption.RevealMine.getText()),
+                        Integer.valueOf(optionsScene.pointsOption.MarkMine.getText()),
+                        Integer.valueOf(optionsScene.pointsOption.MarkNotMine.getText()),
+                        Integer.valueOf(optionsScene.pointsOption.Unmarkmine.getText()),
+                        Integer.valueOf(optionsScene.pointsOption.UnmarkNotMine.getText()),
+                        Integer.valueOf(optionsScene.pointsOption.LastNumber.getText())
                 );
             break;
         }
@@ -124,17 +122,17 @@ public class GUIGameMainMenu {
         VBox WelcomeLayout;
         Label Welcome;
         Button CustomGame;
-        Button SimpleGame;
+        Button StartGame;
 
         private void initLayout() {
             WelcomeLayout = new VBox(20);
             Welcome = new Label("MineSweeper");
             CustomGame = new Button("CUSTOM GAME");
-            SimpleGame = new Button("SIMPLE GAME");
+            StartGame = new Button("START GAME");
             CustomGame.getStyleClass().addAll("menubutton","h3");
-            SimpleGame.getStyleClass().addAll("menubutton","h3");
+            StartGame.getStyleClass().addAll("menubutton","h3");
             CustomGame.setOnAction(e -> {Window.setScene(optionsScene.scene);Window.centerOnScreen();});
-            SimpleGame.setOnAction(e -> initGame());
+            StartGame.setOnAction(e -> initGame());
             //Setting Style
             WelcomeLayout.getStyleClass().add("windowsize");
             Welcome.getStyleClass().add("h1");
@@ -142,7 +140,7 @@ public class GUIGameMainMenu {
             CustomGame.getStylesheets().add("Styles/style.css");
             WelcomeLayout.getStylesheets().add("Styles/style.css");
             //Adding Components to layout
-            WelcomeLayout.getChildren().addAll(Welcome, SimpleGame,CustomGame);
+            WelcomeLayout.getChildren().addAll(Welcome, StartGame,CustomGame);
         }
 
         public WelcomeScene() {
@@ -156,39 +154,11 @@ public class GUIGameMainMenu {
         Scene scene;
         //SettingLabels;
         VBox OptionLayout = new VBox(20);
+
         Label optionsLabel = new Label("Enter your Game Properties");
-        HBox GridOption = new HBox(20);
-        HBox PlayerOption = new HBox(20);
-        HBox PointOption = new HBox(20);
-        //initializing gridOptions
-        ComboBox<String> difficulty = new ComboBox<>();
-        VBox CustomGrid = new VBox(10);
-        //Elements
-        JFXSlider WidthInput = new JFXSlider(5,30,10);
-        JFXSlider HeightInput = new JFXSlider(5,30,10);
-        JFXSlider MinesInput = new JFXSlider(5,450,15);
-
-        //initializing PlayerOptions
-        int ConstNumOfPlayers=4;
-        ComboBox<String> PlayerType = new ComboBox<>();
-        VBox CustomPlayer = new VBox(10);
-        //Elements
-        ArrayList<TextField> _playerFields=new ArrayList<>();
-        ArrayList<String> _playersColor=new ArrayList<>();
-
-        //initializing PointOptions
-        ComboBox<String> PointsType = new ComboBox<>();
-        GridPane CustomPoint = new GridPane();
-        //Elements
-        TextField RevealFloodFill = new TextField();
-        TextField RevealEmpty = new TextField();
-        TextField RevealMine = new TextField();
-        TextField MarkMine = new TextField();
-        TextField MarkNotMine = new TextField();
-        TextField Unmarkmine = new TextField();
-        TextField UnmarkNotMine = new TextField();
-        TextField LastNumber = new TextField();
-
+        GridOption gridOption=new GridOption();
+        PlayersOption playersOption=new PlayersOption();
+        PointsOption pointsOption=new PointsOption();
         Button startGameButton = new Button("START GAME");
         Button SaveButton =new Button("Save");
 
@@ -203,13 +173,10 @@ public class GUIGameMainMenu {
 
         private void initLayout() {
             initOptionsLabel();
-            initGridOptions();
-            initPlayerOptions();
-            initPointOptions();
             initOptionsButtons();
             OptionLayout.getStyleClass().addAll("windowsize","padding");
             OptionLayout.getStylesheets().add("Styles/style.css");
-            OptionLayout.getChildren().addAll(optionsLabel,GridOption,PlayerOption,PointOption, startGameButton, SaveButton);
+            OptionLayout.getChildren().addAll(optionsLabel,gridOption.Option,playersOption.Option, pointsOption.Option, startGameButton, SaveButton);
            
         }
         private void initOptionsLabel() {
@@ -226,7 +193,21 @@ public class GUIGameMainMenu {
             });
         }
 
-        private void initGridOptions() {
+    }
+    public Scene getWelcomescene() { return welcomescene.scene; }
+
+    public Scene getOptionsScene() { return optionsScene.scene; }
+
+    class GridOption{
+        HBox Option = new HBox(20);
+
+        ComboBox<String> difficulty = new ComboBox<>();
+        VBox CustomGrid = new VBox(10);
+        //Elements
+        JFXSlider WidthInput = new JFXSlider(5,30,10);
+        JFXSlider HeightInput = new JFXSlider(5,30,10);
+        JFXSlider MinesInput = new JFXSlider(5,450,15);
+        public GridOption() {
             difficulty.getItems().addAll("Easy","Medium","Hard","Custom");
             difficulty.setPromptText("Choose Difficulty");
             difficulty.getSelectionModel().select(0);
@@ -245,11 +226,20 @@ public class GUIGameMainMenu {
             CustomGrid.setVisible(false);
             CustomGrid.managedProperty().bind(CustomGrid.visibleProperty());
             CustomGrid.getChildren().addAll(WidthInput,HeightInput,MinesInput);
-            GridOption.getStyleClass().add("center");
-            GridOption.getChildren().addAll(difficulty,CustomGrid);
+            Option.getStyleClass().add("center");
+            Option.getChildren().addAll(difficulty,CustomGrid);
         }
-
-        private void initPlayerOptions() {
+    }
+    class PlayersOption{
+        //initializing PlayerOptions
+        HBox Option = new HBox(20);
+        int ConstNumOfPlayers=4;
+        ComboBox<String> PlayerType = new ComboBox<>();
+        VBox CustomPlayer = new VBox(10);
+        //Elements
+        ArrayList<TextField> _playerFields=new ArrayList<>();
+        ArrayList<String> _playersColor=new ArrayList<>();
+        PlayersOption(){
             PlayerType.getItems().addAll("Single Player","VS Dump PC","Custom");
             PlayerType.setPromptText("Choose Players");
             PlayerType.getSelectionModel().select(0);
@@ -274,11 +264,26 @@ public class GUIGameMainMenu {
             _playersColor.add("#00838f");
             _playersColor.add("#972e0e");
 
-            PlayerOption.getStyleClass().add("center");
-            PlayerOption.getChildren().addAll(PlayerType,CustomPlayer);
+            Option.getStyleClass().add("center");
+            Option.getChildren().addAll(PlayerType,CustomPlayer);
         }
+    }
+    class PointsOption{
+        HBox Option = new HBox(20);
 
-        private void initPointOptions() {
+        //initializing PointOptions
+        ComboBox<String> PointsType = new ComboBox<>();
+        GridPane CustomPoint = new GridPane();
+        //Elements
+        TextField RevealFloodFill = new TextField();
+        TextField RevealEmpty = new TextField();
+        TextField RevealMine = new TextField();
+        TextField MarkMine = new TextField();
+        TextField MarkNotMine = new TextField();
+        TextField Unmarkmine = new TextField();
+        TextField UnmarkNotMine = new TextField();
+        TextField LastNumber = new TextField();
+        PointsOption(){
             PointsType.getItems().addAll("Default","Custom");
             PointsType.setPromptText("Choose Players");
             PointsType.getSelectionModel().select(0);
@@ -310,12 +315,8 @@ public class GUIGameMainMenu {
             UnmarkNotMine.setPromptText("UnmarkNotMine: e.g.: 1");
             LastNumber.setPromptText("LastNumber: e.g.: 0");
 
-            PointOption.getStyleClass().add("center");
-            PointOption.getChildren().addAll(PointsType,CustomPoint);
+            Option.getStyleClass().add("center");
+            Option.getChildren().addAll(PointsType,CustomPoint);
         }
-
     }
-    public Scene getWelcomescene() { return welcomescene.scene; }
-
-    public Scene getOptionsScene() { return optionsScene.scene; }
 }

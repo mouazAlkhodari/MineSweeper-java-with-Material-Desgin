@@ -6,8 +6,7 @@ import Models.Grid.Square;
 import Models.Player.Player;
 import Models.Move.PlayerMove;
 import Models.Player.PlayerStatus;
-import userDefineException.IllegalGameMove;
-import userDefineException.MineSweeperGameExeption;
+import MineSweeperGameDefineException.IllegalGameMove;
 
 import java.util.List;
 

@@ -6,7 +6,7 @@ import Models.Game.Game;
 import Models.Move.MoveResult;
 import Models.Move.MoveType;
 import Models.Move.PlayerMove;
-import userDefineException.IllegalBoundsOfGrid;
+import MineSweeperGameDefineException.IllegalBoundsOfGrid;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

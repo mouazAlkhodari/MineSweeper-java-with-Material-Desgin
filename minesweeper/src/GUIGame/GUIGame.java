@@ -14,7 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
-import userDefineException.IllegalGameMove;
+import MineSweeperGameDefineException.IllegalGameMove;
 
 import java.util.List;
 
@@ -214,7 +214,6 @@ public class GUIGame extends NormalGame {
                         currentButton.getStyleClass().add("pressed");
                         break;
                     case OpenedNumber:
-                        currentButton.getStyleClass().add("ff");
                         currentButton.getStyleClass().add("f"+(String.valueOf(feild[i][j].getNumberOfSurroundedMines()))+"");
                         currentButton.setText(""+feild[i][j].getNumberOfSurroundedMines());
                         currentButton.setStyle("-fx-background-color: "+feild[i][j].getColor()+"");

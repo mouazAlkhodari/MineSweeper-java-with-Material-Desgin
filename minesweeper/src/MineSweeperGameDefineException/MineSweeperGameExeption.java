@@ -1,4 +1,4 @@
-package userDefineException;
+package MineSweeperGameDefineException;
 
 public abstract class MineSweeperGameExeption extends Exception {
 

@@ -17,8 +17,8 @@ import Models.Move.MoveType;
 import Models.Player.Player;
 import Models.Move.PlayerMove;
 import Models.Player.PlayerStatus;
-import userDefineException.IllegalBoundsOfGrid;
-import userDefineException.IllegalGameMove;
+import MineSweeperGameDefineException.IllegalBoundsOfGrid;
+import MineSweeperGameDefineException.IllegalGameMove;
 
 public abstract class Game {
     // <__ INNER CLASS __> \\

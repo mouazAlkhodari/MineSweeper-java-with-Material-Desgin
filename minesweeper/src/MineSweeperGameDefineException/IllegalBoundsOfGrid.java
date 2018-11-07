@@ -1,4 +1,4 @@
-package userDefineException;
+package MineSweeperGameDefineException;
 
 public class IllegalBoundsOfGrid extends MineSweeperGameExeption {
 

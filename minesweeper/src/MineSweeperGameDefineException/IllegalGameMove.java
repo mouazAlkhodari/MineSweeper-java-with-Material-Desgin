@@ -1,4 +1,4 @@
-package userDefineException;
+package MineSweeperGameDefineException;
 
 public class IllegalGameMove extends MineSweeperGameExeption {
     public IllegalGameMove(){
@@ -9,7 +9,7 @@ public class IllegalGameMove extends MineSweeperGameExeption {
     }
     public void handle(){
         System.out.println(this.getMessage());
-        printStackTrace();
+       // printStackTrace();
     }
 
 }

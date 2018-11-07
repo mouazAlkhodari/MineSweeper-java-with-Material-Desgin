@@ -183,9 +183,10 @@ public class GUIGameMainMenu {
         private void initLayout() {
             initOptionsLabel();
             initOptionsButtons();
+            initCustomRulesOption();
             OptionLayout.getStyleClass().addAll("windowsize","padding");
             OptionLayout.getStylesheets().add("Styles/style.css");
-            OptionLayout.getChildren().addAll(optionsLabel,gridOption.Option,playersOption.Option, pointsOption.Option, startGameButton, SaveButton);
+            OptionLayout.getChildren().addAll(optionsLabel,gridOption.Option,playersOption.Option, pointsOption.Option, CustomRulesOption, startGameButton, SaveButton);
         }
         private void initCustomRulesOption() {
             CustomRulesOption.getChildren().addAll(EndGameWhenHitMine,FloodfillWhenHitMine,ContinuePlayinginNegativeScore);

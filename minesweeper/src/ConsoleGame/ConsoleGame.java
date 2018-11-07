@@ -6,6 +6,8 @@ import Models.Grid.Square;
 import Models.Player.Player;
 import Models.Move.PlayerMove;
 import Models.Player.PlayerStatus;
+import userDefineException.IllegalGameMove;
+import userDefineException.MineSweeperGameExeption;
 
 import java.util.List;
 
@@ -29,9 +31,8 @@ public class ConsoleGame extends NormalGame {
         PlayerMove move = this.currentPlayer.GetPlayerMove();
         try {
             AcceptMove(move);
-        }
-        catch (Exception e) {
-            // need else some thing wrong input Or Some Thing Like that :3
+        } catch (IllegalGameMove illegalGameMove) {
+            illegalGameMove.handle();
         }
         if(this.status== GameStatus.Finish){
             EndGame();

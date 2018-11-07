@@ -83,6 +83,6 @@ public class ConsolePlayer extends Player {
         } while (!validMove);
         int IntegerValueOfRow=Integer.valueOf(NumberOfRow);
         int IntegerValueOfCol= Converter.valueOf(NumberOfCol.toUpperCase());
-        return new PlayerMove(this, new Square(IntegerValueOfRow,IntegerValueOfCol,Boolean.FALSE,0), TypeOfMove);
+        return new PlayerMove(this, new Square(IntegerValueOfRow,IntegerValueOfCol), TypeOfMove);
     }
 }

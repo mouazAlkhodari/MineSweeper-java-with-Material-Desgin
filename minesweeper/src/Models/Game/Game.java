@@ -17,6 +17,7 @@ import Models.Move.MoveType;
 import Models.Player.Player;
 import Models.Move.PlayerMove;
 import Models.Player.PlayerStatus;
+import userDefineException.IllegalBoundsOfGrid;
 import userDefineException.IllegalGameMove;
 
 public abstract class Game {
@@ -50,13 +51,23 @@ public abstract class Game {
     }
     // <__ METHODS __> \\
     protected void initGame(int width, int height, int minesCount){
+        try {
+            grid = new Grid(width,height,minesCount);
+        } catch (IllegalBoundsOfGrid e) {
+            e.handle();
+            return;
+        }
         setCurrentPlayer(players.get(0));
         this.status=GameStatus.FirstMove;// need to change to New Start game
-        grid = new Grid(width,height,minesCount);
         FlagsNumber = minesCount;
     }
     protected void initGame(PlayerMove move){
-        grid.initGrid(move);
+        try {
+            grid=new Grid(this.grid.getWidth()-1,this.grid.getHeight()-1,this.grid.getMinesCount(),move);
+        } catch (IllegalBoundsOfGrid e) {
+            e.handle();
+            return;
+        }
         status=GameStatus.Running;
     }
     protected void ApplyPlayerMove(PlayerMove move) {
@@ -81,16 +92,23 @@ public abstract class Game {
             if(move.getType()==MoveType.Reveal) {
                 if (move.getSquare().getStatus() == SquareStatus.Closed) {
                     ApplyPlayerMove(move);
+                    return;
+                }
+                else{
+                    throw new IllegalGameMove("Not Close Square");
                 }
             }
             else{
                 if(move.getSquare().getStatus() == SquareStatus.Marked  || (FlagsNumber >0 && move.getSquare().getStatus()==SquareStatus.Closed)) {
                     ApplyPlayerMove(move);
+                    return;
+                }
+                else{
+                    throw new IllegalGameMove("flags more than mines");
                 }
             }
-            throw new IllegalGameMove();
         }
-        throw new IllegalGameMove();
+        throw new IllegalGameMove("Out Of Bounds");
     }
     protected void ChangeStatus(){
         Square[][] feild =this.grid.getField();

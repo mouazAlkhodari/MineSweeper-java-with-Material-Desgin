@@ -6,6 +6,7 @@ import Models.Game.Game;
 import Models.Move.MoveResult;
 import Models.Move.MoveType;
 import Models.Move.PlayerMove;
+import userDefineException.IllegalBoundsOfGrid;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -21,16 +22,28 @@ public class Grid {
     private Game CurrentGame;
 
     // <__ CONSTRUCTERS __> \\
-    public Grid(int width,int height,int minesNumber) {
+    public Grid(int width,int height,int minesCount)throws IllegalBoundsOfGrid {
+        if (width<=0 || height<=0 || minesCount<0)throw new IllegalBoundsOfGrid("Illegal Bound Of Grid");
+        if(minesCount > ((height*width *8.5)/10))throw new IllegalBoundsOfGrid("Allot Mines ");
+
         // +1 because Number Start From 1
         this.width=width+1;
         this.height=height+1;
-        this.minesCount = minesNumber;
+        this.minesCount = minesCount;
         InitGrid();
+    }
+    public Grid(int width,int height,int minesCount,PlayerMove _move) throws IllegalBoundsOfGrid{
+        if (width<=0 || height<=0 || minesCount<0)throw new IllegalBoundsOfGrid("Illegal Bound Of Grid");
+        if(minesCount >height*width)throw new IllegalBoundsOfGrid("Mines more than All squares");
+
+        this.width=width+1;
+        this.height=height+1;
+        this.minesCount = minesCount;
+        InitGrid(_move);
     }
 
     // <__ METHODS __> \\
-    public void InitGrid() {
+    protected void InitGrid() {
         field = new Square[height][width];
         mines=new ArrayList<Square>();
         //to generate random coordinates for mines
@@ -46,7 +59,7 @@ public class Grid {
             }
         }
     }
-    public void initGrid(PlayerMove move) {
+    protected void InitGrid(PlayerMove move) {
         field = new Square[height][width];
         mines=new ArrayList<Square>();
         //to generate random coordinates for mines

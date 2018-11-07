@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
+import userDefineException.IllegalGameMove;
 
 import java.util.List;
 
@@ -155,6 +156,7 @@ public class GUIGame extends NormalGame {
         footer.getChildren().addAll(FlagsNumberLabel,LastMoveLabel, BackButton);
     }
 
+
     @Override
     public void StartGame() {
         UpdateVeiw();
@@ -165,6 +167,8 @@ public class GUIGame extends NormalGame {
     @Override
     public void GetMove(){
         PlayerMove move = this.currentPlayer.GetPlayerMove();
+
+        // For view And Git Clicked Button
         if(currentPlayer instanceof GUIPlayer){
             move=new PlayerMove(move.getPlayer(),
                                 new Square(GridPane.getRowIndex(ClickedButton),GridPane.getColumnIndex(ClickedButton)),
@@ -175,13 +179,13 @@ public class GUIGame extends NormalGame {
             ClickedButton=(Button)FXgrid.getChildren().get(Position);
             TypeOfMove=move.getType();
         }
-        //PrintGrid();
+
         try {
             AcceptMove(move);
+        } catch (IllegalGameMove illegalGameMove) {
+            illegalGameMove.handle();
         }
-        catch (Exception e){
 
-        }
         // need else some thing wrong input Or Some Thing Like that :3
         if(this.status== GameStatus.Finish){
             EndGame();

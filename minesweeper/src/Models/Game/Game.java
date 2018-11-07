@@ -81,11 +81,13 @@ public abstract class Game {
             if(move.getType()==MoveType.Reveal) {
                 if (move.getSquare().getStatus() == SquareStatus.Closed) {
                     ApplyPlayerMove(move);
+                    return;
                 }
             }
             else{
                 if(move.getSquare().getStatus() == SquareStatus.Marked  || (FlagsNumber >0 && move.getSquare().getStatus()==SquareStatus.Closed)) {
                     ApplyPlayerMove(move);
+                    return;
                 }
             }
             throw new IllegalGameMove();
@@ -137,7 +139,6 @@ public abstract class Game {
     public GameStatus getStatus() {
         return status;
     }
-
 
     //This func Implement in each kind of game Like Console Or GUI...
     public abstract void StartGame();

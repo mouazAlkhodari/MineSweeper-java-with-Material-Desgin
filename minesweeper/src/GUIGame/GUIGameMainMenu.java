@@ -247,7 +247,7 @@ public class GUIGameMainMenu {
             difficulty.getSelectionModel().select(0);
             difficulty.setOnAction(e -> {
                 if (difficulty.getSelectionModel().getSelectedItem() == "Custom") { fadeIn(CustomGrid);}
-                else { fadeOut(CustomGrid); }
+                else if (difficulty.getSelectionModel().getSelectedItem() != "Custom" && CustomGrid.isVisible()) { fadeOut(CustomGrid); }
                 Window.sizeToScene();
             });
 
@@ -265,6 +265,7 @@ public class GUIGameMainMenu {
             CustomGrid.getChildren().addAll(WidthLabel,WidthInput,HeightLabel,HeightInput,MinesLabel,MinesInput);
             Option.getStyleClass().add("center");
             Label difficultyLabel=new Label("Difficulty: ");
+            difficultyLabel.getStyleClass().addAll("minwidth","h4");
             Option.getChildren().addAll(difficultyLabel,difficulty,CustomGrid);
         }
     }
@@ -281,9 +282,9 @@ public class GUIGameMainMenu {
             PlayerType.getItems().addAll("Single Player","VS Dump PC","Custom");
             PlayerType.setPromptText("Choose Players");
             PlayerType.getSelectionModel().select(0);
-            PlayerType.setOnAction(e -> {
+            PlayerType. setOnAction(e -> {
                 if (PlayerType.getSelectionModel().getSelectedItem() == "Custom") { fadeIn(CustomPlayer);}
-                else {fadeOut(CustomPlayer);}
+                else if (PlayerType.getSelectionModel().getSelectedItem() != "Custom" && CustomPlayer.isVisible()) {fadeOut(CustomPlayer);}
                 CustomPlayer.managedProperty().bind(CustomPlayer.visibleProperty());
                 Window.sizeToScene();
             });
@@ -304,6 +305,7 @@ public class GUIGameMainMenu {
 
             Option.getStyleClass().add("center");
             Label PlayersLabel=new Label("Players: ");
+            PlayersLabel.getStyleClass().addAll("minwidth","h4");
             Option.getChildren().addAll(PlayersLabel,PlayerType,CustomPlayer);
         }
     }
@@ -328,7 +330,7 @@ public class GUIGameMainMenu {
             PointsType.getSelectionModel().select(0);
             PointsType.setOnAction(e -> {
                 if (PointsType.getSelectionModel().getSelectedItem() == "Custom") { fadeIn(CustomPoint);}
-                else {fadeOut(CustomPoint);}
+                else if (PointsType.getSelectionModel().getSelectedItem() != "Custom" && CustomPoint.isVisible()) {fadeOut(CustomPoint);}
                 CustomPoint.managedProperty().bind(CustomPoint.visibleProperty());
                 Window.sizeToScene();
             });
@@ -354,8 +356,9 @@ public class GUIGameMainMenu {
             UnmarkNotMine.setPromptText("UnmarkNotMine: e.g.: 1");
             LastNumber.setPromptText("LastNumber: e.g.: 0");
 
-            Option.getStyleClass().add("center");
-            Label PointsLabel=new Label("Players: ");
+            Option.getStyleClass().addAll("center");
+            Label PointsLabel=new Label("Points: ");
+            PointsLabel.getStyleClass().addAll("minwidth","h4");
             Option.getChildren().addAll(PointsLabel,PointsType,CustomPoint);
         }
     }

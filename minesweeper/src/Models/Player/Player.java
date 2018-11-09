@@ -12,7 +12,7 @@ public abstract class Player {
     private String color;
 
     // <__ CONSTRUCTOR __> \\
-    public Player() { this("PC",new Score(),PlayerStatus.waiting,"#4527a0"); }
+    public Player() { this("PC",new Score(),PlayerStatus.waiting,"#b39ddb"); }
     public Player(String _name){ this(_name,new Score(),PlayerStatus.waiting,"#4527a0"); }
     public Player(String _name,String _color){ this(_name,new Score(),PlayerStatus.waiting,_color); }
     public Player(String _name,PlayerStatus _playerStatus){ this(_name,new Score(),_playerStatus,"#4527a0"); }

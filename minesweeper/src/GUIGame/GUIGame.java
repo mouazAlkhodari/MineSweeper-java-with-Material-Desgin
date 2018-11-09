@@ -137,13 +137,16 @@ public class GUIGame extends NormalGame {
         // init Last Move Label
         footer=new HBox();
         footer.setPadding(new Insets(20));
-        footer.setSpacing(200);
+        footer.setSpacing(100);
         footer.setAlignment(Pos.CENTER);
         Label LastMoveLabel;
+
         LastMoveLabel =new Label();
         // init Last Move Label
         Label FlagsNumberLabel;
-        FlagsNumberLabel =new Label(""+ FlagsNumber +"");
+        FlagsNumberLabel =new Label("Flags left: "+ FlagsNumber +"");
+        FlagsNumberLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
+        LastMoveLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
 
         BackButton =new Button("Back");
         BackButton.getStyleClass().addAll("menubutton","h3");
@@ -152,7 +155,6 @@ public class GUIGame extends NormalGame {
             Begin.Window.setScene(Begin.getWelcomescene());
             Begin.Window.centerOnScreen();
         });
-
         footer.getChildren().addAll(FlagsNumberLabel,LastMoveLabel, BackButton);
     }
 
@@ -246,13 +248,13 @@ public class GUIGame extends NormalGame {
         }
         // Update footer Move Label
         String LastMove="--";
-        Label LastMoveLabel=(Label)footer.getChildren().get(0);
+        Label LastMoveLabel=(Label)footer.getChildren().get(1);
         if(ClickedButton!=null)
             LastMove=String.valueOf(GridPane.getRowIndex(ClickedButton)) + " --- " + String.valueOf(GridPane.getColumnIndex(ClickedButton));
         LastMoveLabel.setText(LastMove);
 
-        Label FlagsNumberLabel=(Label)footer.getChildren().get(1);
-        FlagsNumberLabel.setText(""+ FlagsNumber +"");
+        Label FlagsNumberLabel=(Label)footer.getChildren().get(0);
+        FlagsNumberLabel.setText("Flags left: "+ FlagsNumber +"");
     }
 
     @Override

@@ -34,6 +34,11 @@
     -fx-text-fill: #1EB98F;
     -fx-font-weight: bold;
 }
+.buttonlabel {
+    -fx-background-color: #485761;
+    -fx-background-radius: 5;
+    -fx-min-width: 150;
+}
 .notpressed {
     -fx-scale-x: 1;
     -fx-scale-y: 1;
@@ -51,18 +56,6 @@
 .marked{-fx-background-color: #cfd8dc}
 .label {
     -fx-alignment: CENTER;
-    -fx-text-fill: #FFFFFF;
-}
-.h1 {
-    -fx-font-size: 30;
-    -fx-text-fill: #FFFFFF;
-}
-.h2 {
-    -fx-font-size: 24;
-    -fx-text-fill: #FFFFFF;
-}
-.h3 {
-    -fx-font-size: 18;
     -fx-text-fill: #FFFFFF;
 }
 
@@ -114,9 +107,7 @@
     -fx-border-width: 1;
     -fx-border-color: #323232;
 }
-.padding {
-    -fx-padding: 50px;
-}
+.padding {-fx-padding: 50px;}
 
 .f1{-fx-text-fill: #e26e0e;  -fx-font-weight: 700;}
 .f2{-fx-text-fill: #d5654d;  -fx-font-weight: 700;}
@@ -128,6 +119,22 @@
 .f8{-fx-text-fill: #6b1c23;  -fx-font-weight: 700;}
 .Closed{-fx-background-color: #22a6b3}
 .center { -fx-alignment: CENTER;}
+.minwidth { -fx-min-width: 100;}
+.padding {-fx-padding: 50px;}
+.padding-sm{-fx-padding: 10px 20px;}
+.h1 {
+    -fx-font-size: 30;
+    -fx-text-fill: #FFFFFF;
+}
+.h2 {
+    -fx-font-size: 24;
+    -fx-text-fill: #FFFFFF;
+}
+.h3 {
+    -fx-font-size: 18;
+    -fx-text-fill: #FFFFFF;
+}
+.h4 { -fx-font-size: 14;}
 
 /* Styling the slider track */
 .jfx-slider > .track {

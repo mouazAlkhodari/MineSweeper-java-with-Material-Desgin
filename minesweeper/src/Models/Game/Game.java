@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import BaseAlphabit.Converter;
-import CustomSequences.SurroundingMines2DArray;
+import CustomSequences.SquareType2DArray;
 import Models.Grid.Grid;
 import Models.Grid.Square;
 import Models.Grid.SquareStatus;
@@ -85,7 +85,7 @@ public abstract class Game {
     }
     protected void AcceptMove(PlayerMove move)throws IllegalGameMove {// x Rows Y columns
         Square s = move.getSquare();
-        if(SurroundingMines2DArray.CheckIndex(s.getX(),s.getY(),grid.getWidth(),grid.getHeight()))
+        if(SquareType2DArray.CheckIndex(s.getX(),s.getY(),grid.getWidth(),grid.getHeight()))
         {
             move.setSquare(grid.getField()[move.getSquare().getX()][move.getSquare().getY()]);
             if(move.getType()==MoveType.Reveal) {

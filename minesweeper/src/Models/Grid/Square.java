@@ -2,6 +2,9 @@ package Models.Grid;
 
 import Models.Move.MoveType;
 import Models.Player.Player;
+import Models.Shield.HeroShield;
+import Models.Shield.NormalShield;
+import Models.Shield.Shield;
 
 import java.util.ArrayList;
 
@@ -11,18 +14,18 @@ public class Square {
     private int y;
     private int NumberOfSurroundedMines;
     private Mine mine;
+    private Shield shield;
     private ArrayList playersMoves;
     private SquareStatus status;
     private String Color;
     // <__ CONSTRUCTER __> \\
-    public Square() {
-        this(0,0,false,0);
-    }
-    public Square(int x, int y) { this(x,y,false,0); }
-    public Square(int x, int y, Boolean hasMine, int NOSM) {
+    public Square() { this(0,0,SquareType.Empty,0); }
+    public Square(int x, int y) { this(x,y,SquareType.Empty,0); }
+    public Square(int x, int y, SquareType type, int NOSM) {
         this.x = x;
         this.y = y;
-        this.mine = hasMine ? new Mine() : null;
+        this.mine = type == SquareType.Mine ? new Mine() : null;
+        this.shield = type == SquareType.Shield ? new NormalShield() : type == SquareType.HeroShield ? new HeroShield() : null;
         this.playersMoves = new ArrayList();
         this.status = SquareStatus.Closed;
         this.NumberOfSurroundedMines = NOSM;

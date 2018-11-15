@@ -7,30 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72e468c9-36b8-4bef-a3ab-2cfb3c596978" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/minesweeper_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CustomSequences/Int2DArray.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CustomSequences/MineSweeperGrid.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CustomSequences/SquareType2DArray.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CustomSequences/SurroundingMinesMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Models/Grid/SquareType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Models/Shield/HeroShield.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Models/Shield/NormalShield.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Models/Shield/Shield.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/minesweeper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$GridOption.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$GridOption.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$OptionScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$OptionScene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$PlayersOption.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$PlayersOption.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$PointsOption.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$PointsOption.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$WelcomeScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$WelcomeScene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CustomSequences/MinesCoor2DArray.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CustomSequences/SurroundingMines2DArray.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/Grid/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Grid/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Grid/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Grid/Square.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Grid/SquareStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Grid/SquareStatus.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -83,13 +60,13 @@
         <counts>
           <entry key="css" value="116" />
           <entry key="dummy" value="152" />
-          <entry key="java" value="2085" />
+          <entry key="java" value="2090" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="116" />
-          <entry key="JAVA" value="2085" />
+          <entry key="JAVA" value="2090" />
           <entry key="PLAIN_TEXT" value="152" />
         </counts>
       </usages-collector>
@@ -123,8 +100,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Models/Grid/Grid.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+            <state relative-caret-position="184">
+              <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -435,18 +412,18 @@
       <workItem from="1542033825656" duration="1734000" />
       <workItem from="1542174583773" duration="1290000" />
       <workItem from="1542276387753" duration="5934000" />
-      <workItem from="1542282594939" duration="8000" />
+      <workItem from="1542282594939" duration="99000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31549000" />
+    <option name="totallyTimeSpent" value="31640000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29425114" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29425114" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -461,7 +438,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.39779875" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.39779875" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.20440252" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3295082" />
@@ -799,8 +776,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Models/Grid/Grid.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+        <state relative-caret-position="184">
+          <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
         </state>
       </provider>
     </entry>

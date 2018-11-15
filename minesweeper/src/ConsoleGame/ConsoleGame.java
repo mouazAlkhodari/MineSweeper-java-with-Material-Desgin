@@ -21,7 +21,7 @@ public class ConsoleGame extends NormalGame {
 
     @Override
     public void StartGame() {
-        UpdateVeiw();
+        UpdateVeiw(moves);
         GetMove();
     }
 
@@ -37,12 +37,12 @@ public class ConsoleGame extends NormalGame {
             EndGame();
         }
         else{
-            UpdateVeiw();
+            UpdateVeiw(moves);
             GetMove();
         }
     }
     @Override
-    protected void UpdateVeiw() {
+    protected void UpdateVeiw(List<PlayerMove> Moves) {
         //PrintGrid();
         //print in One row number Of each Column In Grid
         System.out.print("   ");
@@ -80,7 +80,7 @@ public class ConsoleGame extends NormalGame {
     }
     @Override
     protected void EndGame() {
-        UpdateVeiw();
+        UpdateVeiw(moves);
         System.out.println("scores:");
         Player winner=players.get(0);
         for(int i=0;i<players.size();i++) {

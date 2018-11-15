@@ -11,6 +11,7 @@ public class Points {
     int Unmarkmine;
     int UnmarkNotMine;
     int LastNumber;
+    int NormalShildPoints;
 
     public Points() { this(1,10,-250,5,-1,-5,1,0); }
 

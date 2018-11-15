@@ -23,9 +23,9 @@ import MineSweeperGameDefineException.IllegalGameMove;
 public abstract class Game {
     // <__ INNER CLASS __> \\
     abstract class GameRules{
-        abstract void ChangePlayerStatus(List<PlayerMove> moves);
-        abstract void GetScoreChange(List<PlayerMove> moves);
-        abstract Player DecideNextPlayer(List<PlayerMove> moves);
+        protected abstract void ChangePlayerStatus(List<PlayerMove> moves);
+        protected abstract void GetScoreChange(List<PlayerMove> moves);
+        protected abstract Player DecideNextPlayer(List<PlayerMove> moves);
     }
     // <__ DATA MEMBERS __> \\
     protected Player currentPlayer;
@@ -160,7 +160,7 @@ public abstract class Game {
     public abstract void StartGame();
     protected abstract void GetMove();
     protected abstract void EndGame();
-    protected abstract void UpdateVeiw();
+    protected abstract void UpdateVeiw(List<PlayerMove> Moves);
 
     // This Function for Debug
     public void PrintGrid() {

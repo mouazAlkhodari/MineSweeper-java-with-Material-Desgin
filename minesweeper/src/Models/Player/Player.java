@@ -4,6 +4,8 @@ import Models.Move.PlayerMove;
 
 import java.awt.*;
 
+import static java.lang.Math.min;
+
 public abstract class Player {
 
     private String name;
@@ -11,17 +13,27 @@ public abstract class Player {
     private PlayerStatus currentStatus;
     private String color;
 
+    int numberOfShield;
+    int maxNumberOfShild;
+
+    public void addNormalshild(int num){
+        numberOfShield=min(numberOfShield+num,maxNumberOfShild);
+    }
     // <__ CONSTRUCTOR __> \\
-    public Player() { this("PC",new Score(),PlayerStatus.waiting,"#b39ddb"); }
-    public Player(String _name){ this(_name,new Score(),PlayerStatus.waiting,"#4527a0"); }
-    public Player(String _name,String _color){ this(_name,new Score(),PlayerStatus.waiting,_color); }
-    public Player(String _name,PlayerStatus _playerStatus){ this(_name,new Score(),_playerStatus,"#4527a0"); }
-    public Player(String name,PlayerStatus currentStatus,String _color) { this(name,new Score(),currentStatus,_color); }
-    public Player(String name, Score currentScore, PlayerStatus currentStatus,String _color) {
+    public Player() { this("PC",new Score(),PlayerStatus.waiting,"#b39ddb",0,0); }
+
+    public Player(String _name){ this(_name,new Score(),PlayerStatus.waiting,"#4527a0",0,0); }
+    public Player(String _name,String _color){ this(_name,new Score(),PlayerStatus.waiting,_color,0,0); }
+    public Player(String _name,PlayerStatus _playerStatus){ this(_name,new Score(),_playerStatus,"#4527a0",0,0); }
+    public Player(String name,PlayerStatus currentStatus,String _color,int _maxNumberOfShild) { this(name,new Score(),currentStatus,_color,0,_maxNumberOfShild); }
+    public Player(String name,PlayerStatus currentStatus,String _color) { this(name,new Score(),currentStatus,_color,0,0); }
+    public Player(String name, Score currentScore, PlayerStatus currentStatus,String _color,int _numberOfShield,int _maxNumberOfShild) {
         this.name = name;
         this.currentScore = currentScore;
         this.currentStatus = currentStatus;
         this.color=_color;
+        numberOfShield=_numberOfShield;
+        maxNumberOfShild=_maxNumberOfShild;
     }
 
     // Implemented In each Kind Of Players Like Console Or GUI Player
@@ -41,4 +53,14 @@ public abstract class Player {
         return name;
     }
     public String getColor() { return color; }
+    public int getNumberOfShield() {
+        return numberOfShield;
+    }
+    public int getMaxNumberOfShild() {
+        return maxNumberOfShild;
+    }
+
+    public void setMaxNumberOfShild(int maxNumberOfShild) {
+        this.maxNumberOfShild = maxNumberOfShild;
+    }
 }

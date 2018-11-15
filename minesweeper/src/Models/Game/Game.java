@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import BaseAlphabit.Converter;
-import CustomSequences.SurroundingMines2DArray;
+import CustomSequences.SquareType2DArray;
 import Models.Grid.Grid;
 import Models.Grid.Square;
 import Models.Grid.SquareStatus;
@@ -37,32 +37,31 @@ public abstract class Game {
 
     // For View
     protected int FlagsNumber;
+    protected int ShildNumber;
+    protected int HeroShieldNumber;
     public Game(List _players){
-        this(10,10,10,_players);
+        this(10,10,10,0,_players);
     }
     public Game(int Width,int Height,int NumMines,List _players){
+        this(Width,Height,NumMines,0,_players);
+    }
+    public Game(int Width,int Height,int NumMines,int ShildCount,List _players){
         for(Object curPlayer:_players) {// add Players To the Game
             this.AddPlayer((Player) curPlayer);
         }
         if(!(_players.isEmpty()))
             setCurrentPlayer(players.get(0));
-        initGame(Width,Height,NumMines);
+        initGame(Width,Height,NumMines,ShildCount);
     }
     // <__ METHODS __> \\
-    protected void initGame(int width, int height, int minesCount){
-        try {
-            grid = new Grid(width,height,minesCount);
-        } catch (IllegalBoundsOfGrid e) {
-            e.handle();
-            return;
-        }
+    protected void initGame(int width, int height, int minesCount,int ShildCount){
         setCurrentPlayer(players.get(0));
         this.status=GameStatus.FirstMove;// need to change to New Start game
         FlagsNumber = minesCount;
     }
     protected void initGame(PlayerMove move){
         try {
-            grid=new Grid(this.grid.getWidth()-1,this.grid.getHeight()-1,this.grid.getMinesCount(),move);
+            grid=new Grid(this.grid.getWidth()-1,this.grid.getHeight()-1,this.grid.getMinesCount(),ShildNumber,HeroShieldNumber,move);
         } catch (IllegalBoundsOfGrid e) {
             e.handle();
             return;
@@ -85,7 +84,7 @@ public abstract class Game {
     }
     protected void AcceptMove(PlayerMove move)throws IllegalGameMove {// x Rows Y columns
         Square s = move.getSquare();
-        if(SurroundingMines2DArray.CheckIndex(s.getX(),s.getY(),grid.getWidth(),grid.getHeight()))
+        if(SquareType2DArray.CheckIndex(s.getX(),s.getY(),grid.getWidth(),grid.getHeight()))
         {
             move.setSquare(grid.getField()[move.getSquare().getX()][move.getSquare().getY()]);
             if(move.getType()==MoveType.Reveal) {

@@ -1,7 +1,8 @@
 package Models.Grid;
 
-import CustomSequences.MinesCoor2DArray;
-import CustomSequences.SurroundingMines2DArray;
+import CustomSequences.MineSweeperGrid;
+import CustomSequences.SquareType2DArray;
+import CustomSequences.SurroundingMinesMatrix;
 import Models.Game.Game;
 import Models.Move.MoveResult;
 import Models.Move.MoveType;
@@ -17,60 +18,40 @@ public class Grid {
     private int width;
     private int height;
     private int minesCount;
+    private int shieldsCount;
+    private int heroShieldsCount;
     private Square[][] field;
     private ArrayList<Square> mines;
     private Game CurrentGame;
 
     // <__ CONSTRUCTERS __> \\
-    public Grid(int width,int height,int minesCount)throws IllegalBoundsOfGrid {
-        if (width<=0 || height<=0 || minesCount<0)throw new IllegalBoundsOfGrid("Illegal Bound Of Grid");
-        if(minesCount >width*height)throw new IllegalBoundsOfGrid("Allot Mines ");
-
-        // +1 because Number Start From 1
-        this.width=width+1;
-        this.height=height+1;
-        this.minesCount = minesCount;
-        InitGrid();
-    }
-    public Grid(int width,int height,int minesCount,PlayerMove _move) throws IllegalBoundsOfGrid{
+    public Grid(int _width,int _height,int _minesCount, int _shieldsCount, int _heroShieldsCount,PlayerMove _move) throws IllegalBoundsOfGrid{
         if (width<=0 || height<=0 || minesCount<0)throw new IllegalBoundsOfGrid("Illegal Bound Of Grid");
         if(minesCount >height*width)throw new IllegalBoundsOfGrid("Mines more than All squares");
-
-        this.width=width+1;
-        this.height=height+1;
-        this.minesCount = minesCount;
+        this.width=_width+1;
+        this.height=_height+1;
+        this.minesCount = _minesCount;
+        this.shieldsCount = _shieldsCount;
+        this.heroShieldsCount = _heroShieldsCount;
         InitGrid(_move);
     }
 
-    // <__ METHODS __> \\
-    protected void InitGrid() {
-        field = new Square[height][width];
-        mines=new ArrayList<Square>();
-        //to generate random coordinates for mines
-        MinesCoor2DArray minesCoordinates = new MinesCoor2DArray(width, height, Boolean.FALSE);
-        minesCoordinates.GenerateRandomMines(minesCount,new PlayerMove());
-        SurroundingMines2DArray numberOfSurroundedmines = new SurroundingMines2DArray(width, height, minesCoordinates);
 
-        //init sqaures inside the field
-        for (int i = 1 ;i < height; i++) {
-            for (int j = 1;j < width; j++) {
-                field[i][j] = new Square(i, j,minesCoordinates.arr[i][j],numberOfSurroundedmines.arr[i][j]);
-                if(minesCoordinates.arr[i][j]){ mines.add(field[i][j]); }
-            }
-        }
-    }
+
+    // <__ METHODS __> \\
     protected void InitGrid(PlayerMove move) {
         field = new Square[height][width];
         mines=new ArrayList<Square>();
         //to generate random coordinates for mines
-        MinesCoor2DArray minesCoordinates = new MinesCoor2DArray(width, height,Boolean.FALSE);
-        minesCoordinates.GenerateRandomMines(minesCount,move);
-        SurroundingMines2DArray numberOfSurroundedmines = new SurroundingMines2DArray(width, height, minesCoordinates);
+        MineSweeperGrid generatedGrid = new MineSweeperGrid(width, height,minesCount,shieldsCount,heroShieldsCount,move);
+        SurroundingMinesMatrix numberOfSurroundedmines = new SurroundingMinesMatrix(width, height, generatedGrid);
+
         //init sqaures inside the field
         for (int i = 1 ;i < height; i++) {
             for (int j = 1;j < width; j++) {
-                Square currentSquare=new Square(i, j,minesCoordinates.arr[i][j],numberOfSurroundedmines.arr[i][j]);
-                if(minesCoordinates.arr[i][j]){ mines.add(currentSquare); }
+
+                Square currentSquare=new Square(i, j,generatedGrid.type[i][j],numberOfSurroundedmines.arr[i][j]);
+                if(generatedGrid.type[i][j] == SquareType.Mine){ mines.add(currentSquare); }
                 field[i][j] = currentSquare;
 
             }
@@ -114,7 +95,7 @@ public class Grid {
             for (int i = CurrentSquare.getX() - 1; i <= CurrentSquare.getX() + 1; i++) {
                 for (int j = CurrentSquare.getY() - 1; j <= CurrentSquare.getY() + 1; j++) {
                     // in case Out Of Grid
-                    if (!SurroundingMines2DArray.CheckIndex(i, j, width, height)) continue;
+                    if (!SquareType2DArray.CheckIndex(i, j, width, height)) continue;
 
                     Square SurroundedSquare = field[i][j];
                     //Checking if Square is closed and has no surrounded mines then we will open it

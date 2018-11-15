@@ -128,7 +128,6 @@ public class GUIGameMainMenu {
         ft.play();
     }
     void fadeOut(Node node) {
-        node.setVisible(true);
         FadeTransition ft = new FadeTransition(Duration.millis(500),node);
         ft.setFromValue(1);
         ft.setToValue(0);
@@ -260,7 +259,7 @@ public class GUIGameMainMenu {
             CustomGrid.setVisible(false);
             CustomGrid.managedProperty().bind(CustomGrid.visibleProperty());
             Label WidthLabel=new Label("Width");
-            Label HeightLabel=new Label("Heght");
+            Label HeightLabel=new Label("Height");
             Label MinesLabel=new Label("Mines");
             CustomGrid.getChildren().addAll(WidthLabel,WidthInput,HeightLabel,HeightInput,MinesLabel,MinesInput);
             Option.getStyleClass().add("center");

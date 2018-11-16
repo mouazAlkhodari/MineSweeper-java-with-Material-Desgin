@@ -300,7 +300,7 @@ public class GUIGameMainMenu {
         ComboBox<String> PlayerType = new ComboBox<>();
         VBox CustomPlayer = new VBox(10);
         //Elements
-        HBox playerFields=new HBox();
+        VBox playerFields=new VBox();
         ArrayList<String> _playersColor=new ArrayList<>();
         PlayersOption(){
             PlayerType.getItems().addAll("Single Player","VS Dump PC","Custom");
@@ -316,13 +316,13 @@ public class GUIGameMainMenu {
             CustomPlayer.setVisible(false);
             CustomPlayer.managedProperty().bind(CustomPlayer.visibleProperty());
             for(int i=1;i<= ConstNumOfPlayers;i++){
+                HBox currentbox=new HBox();
                 TextField _playerField=new TextField("");
                 _playerField.setPromptText("player " + i);
-
                 TextField _playerShild=new TextField("");
                 _playerShild.setPromptText("Begin with Shields e.g 0");
-
-                playerFields.getChildren().add(_playerField);
+                currentbox.getChildren().addAll(_playerField,_playerShild);
+                playerFields.getChildren().add(currentbox);
             }
             CustomPlayer.getChildren().add(playerFields);
             _playersColor.add("#6a1b9a");

@@ -234,7 +234,9 @@ public class GUIGame extends NormalGame {
             Label currentShieldLabel=(Label)currenPanel.getChildren().get(2);
 
             currentScoreLabel.setText(String.valueOf(_player.getCurrentScore().getScore()));
-            currentShieldLabel.setText(String.valueOf(_player.getNumberOfShield()));
+            if(_player.getCurrentStatus()==PlayerStatus.Lose)currentScoreLabel.setText(currentScoreLabel.getText()+" Lose");
+            if(_player.getNumberOfShield()>=0)
+                currentShieldLabel.setText(String.valueOf("#_#: "+_player.getNumberOfShield()));
 
             if(_player.getCurrentStatus()== PlayerStatus.Playing){
                 currentNameLabel.setStyle("-fx-font-weight: Bold");

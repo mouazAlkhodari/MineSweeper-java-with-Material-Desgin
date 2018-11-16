@@ -5,6 +5,7 @@ import Models.Game.WhenHitMine;
 import Models.Game.WhenScoreNegative;
 import Models.Grid.Square;
 import Models.Grid.SquareStatus;
+import Models.Move.MoveType;
 import Models.Move.PlayerMove;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
@@ -24,36 +25,42 @@ public class GUIGameCustom extends GUIGame {
             super(_points, pressMineBehavior, scoreNegativeBehavior);
         }
         protected void ChangePlayerStatus(List<PlayerMove> moves) {
-
-            if (PressMineBehavior == WhenHitMine.Lose && currentPlayer.getNumberOfShield() < 0){
-                currentPlayer.setCurrentStatus(PlayerStatus.Lose);
-                return;
-            }
-            if( currentPlayer.getCurrentScore().getScore() < 0
-                    && PressMineBehavior == WhenHitMine.Continue
-                    && ScoreNegativeBehavior ==WhenScoreNegative.End){
-                currentPlayer.setCurrentStatus(PlayerStatus.Lose);
-                return;
+            if(moves.get(0).getType()== MoveType.Reveal) {
+                if (PressMineBehavior == WhenHitMine.Lose && currentPlayer.getNumberOfShield() < 0) {
+                    currentPlayer.setCurrentStatus(PlayerStatus.Lose);
+                    return;
+                }
+                if (currentPlayer.getCurrentScore().getScore() < 0
+                        && PressMineBehavior == WhenHitMine.Continue
+                        && ScoreNegativeBehavior == WhenScoreNegative.End) {
+                    currentPlayer.setCurrentStatus(PlayerStatus.Lose);
+                    return;
+                }
             }
             currentPlayer.setCurrentStatus(PlayerStatus.waiting);
         }
         protected void GetScoreChange(List<PlayerMove> moves) {
             super.GetScoreChange(moves);
-            for(PlayerMove currentMove:moves){
-                Square currentSquare=currentMove.getSquare();
-                if(currentSquare.isMine() && currentPlayer.getNumberOfShield()>=0){
-                    currentPlayer.addNormalshild(-1);
-                    if(currentPlayer.getNumberOfShield()>=0)
+            if(moves.get(0).getType()==MoveType.Reveal) {
+                for (PlayerMove currentMove : moves) {
+                    Square currentSquare = currentMove.getSquare();
+                    if (currentSquare.isMine() && currentPlayer.getNumberOfShield() >= 0) {
+                        currentPlayer.addNormalshild(-1);
+                        if (currentPlayer.getNumberOfShield() >= 0 && PressMineBehavior!=WhenHitMine.Lose)
+                            points.addLostNormalShieldPoints(currentPlayer);
+                    } else if (currentSquare.hasNormalSield()) {
+                        currentPlayer.addNormalshild((1));
+                    } else if (currentSquare.hasHeroSield()) {
+                        // Todo: add number Of Normal Shield To Points and Player
+                    }
+                }
+                if (PressMineBehavior != WhenHitMine.Lose) {
+                    while (currentPlayer.getCurrentScore().getScore() < 0 && currentPlayer.getNumberOfShield() > 0) {
                         points.addLostNormalShieldPoints(currentPlayer);
-                }
-                else if(currentSquare.hasNormalSield()){
-                    currentPlayer.addNormalshild((1));
-                }
-                else if(currentSquare.hasHeroSield()){
-                    // Todo: add number Of Normal Shield To Points and Player
+                        currentPlayer.addNormalshild(-1);
+                    }
                 }
             }
-            // Todo: add While loop To remove Shield from Player until his Score become Positive in Case Game End When Score is Negative
         }
     };
 

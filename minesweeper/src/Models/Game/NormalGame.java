@@ -75,7 +75,8 @@ public abstract class NormalGame extends Game {
                         currentPlayer.getCurrentScore().addPoints(move.getSquare().getNumberOfSurroundedMines());
                         break;
                     case OpenedMine:
-                            points.addRevealMinePoints(currentPlayer);
+                            if(PressMineBehavior!=WhenHitMine.Lose)
+                                points.addRevealMinePoints(currentPlayer);
                         break;
                     case Marked:
 //                        move.getSquare().isMine() ? points.addMarkMinePoints() : points.addMarkNotMinePoints();

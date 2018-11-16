@@ -7,6 +7,7 @@ package ConsoleGame;
 
 import ConsoleGame.ConsoleGame;
 import Models.Game.Game;
+import Models.Game.Timer;
 import Models.Player.Player;
 
 import java.util.ArrayList;
@@ -29,6 +30,9 @@ public class ConsoleMinesweeper {
        ArrayList<Player> Players=new ArrayList<Player>();
        Players.add(ConstPlayer);
        Game ConstGame=new ConsoleGame(Players);
+       Timer t = new Timer();
+       Thread test = new Thread(t);
+       test.start();
        ConstGame.StartGame();
     }
 

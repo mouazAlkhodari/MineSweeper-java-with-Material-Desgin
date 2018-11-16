@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="minesweeper">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/minesweeper/dist/minesweeper.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/minesweeper_jar/minesweeper.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

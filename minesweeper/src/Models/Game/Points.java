@@ -3,14 +3,14 @@ package Models.Game;
 import Models.Player.Player;
 
 public class Points {
-    int RevealFloodFill;
-    int RevealEmpty;
-    int RevealMine;
-    int MarkMine;
-    int MarkNotMine;
-    int Unmarkmine;
-    int UnmarkNotMine;
-    int LastNumber;
+        int RevealFloodFill;
+        int RevealEmpty;
+        int RevealMine;
+        int MarkMine;
+        int MarkNotMine;
+        int Unmarkmine;
+        int UnmarkNotMine;
+        int LastNumber;
 
     public Points() { this(1,10,-250,5,-1,-5,1,0); }
 

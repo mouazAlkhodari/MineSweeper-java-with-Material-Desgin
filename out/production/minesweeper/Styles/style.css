@@ -3,8 +3,8 @@
 }
 .windowsize {
     -fx-alignment: CENTER;
-    -fx-pref-width: 500;
-    -fx-pref-height: 500;
+    -fx-pref-width: 600;
+    -fx-pref-height: 600;
 }
 .optiongrid {
     -fx-vgap: 20;
@@ -34,6 +34,11 @@
     -fx-text-fill: #1EB98F;
     -fx-font-weight: bold;
 }
+.notpressed {
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-scale-z: 1;
+}
 
 .pressed {
     -fx-border-width: 0;
@@ -41,6 +46,9 @@
     -fx-scale-y: 1.1;
     -fx-scale-z: 1.1;
 }
+.closed {-fx-background-color: #607d8b;}
+.openedMine{-fx-background-color: #8F1D21}
+.marked{-fx-background-color: #cfd8dc}
 .label {
     -fx-alignment: CENTER;
     -fx-text-fill: #FFFFFF;
@@ -109,8 +117,7 @@
 .padding {
     -fx-padding: 50px;
 }
-.openedMine{-fx-background-color: #8F1D21}
-.marked{-fx-background-color: #535c68}
+
 .f1{-fx-text-fill: #e26e0e;  -fx-font-weight: 700;}
 .f2{-fx-text-fill: #d5654d;  -fx-font-weight: 700;}
 .f3{-fx-text-fill: #923e25;  -fx-font-weight: 700;}
@@ -119,15 +126,43 @@
 .f6{-fx-text-fill: #9b2321;  -fx-font-weight: 700;}
 .f7{-fx-text-fill: #861a22;  -fx-font-weight: 700;}
 .f8{-fx-text-fill: #6b1c23;  -fx-font-weight: 700;}
-.fg{-fx-text-fill: #ae0}
 .Closed{-fx-background-color: #22a6b3}
 .center { -fx-alignment: CENTER;}
-#green {
-    -fx-background-color:
-            linear-gradient(#f0ff35, #a9ff00),
-            radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
-    -fx-background-radius: 6, 5;
-    -fx-background-insets: 0, 1;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
-    -fx-text-fill: #395306;
+
+/* Styling the slider track */
+.jfx-slider > .track {
+    -fx-background-color: "#fff";
+}
+
+/* Styling the slider thumb */
+.jfx-slider > .thumb {
+    -fx-background-color: #1EB98F;
+}
+
+/* Styling the filled track */
+.jfx-slider > .colored-track {
+    -fx-background-color: #1EB98F;
+}
+
+/* Styling the animated thumb */
+.jfx-slider > .animated-thumb {
+    -fx-background-color: #1EB98F;
+}
+
+/* Styling the slider value text inside animated thumb */
+.jfx-slider .slider-value {
+    -fx-fill: white;
+    -fx-stroke: white;
+}
+
+.jfx-check-box {
+    -fx-text-fill: white;
+    -jfx-checked-color: #1EB98F;
+    -jfx-unchecked-color: #fff;
+    -fx-font-family: Lato;
+}
+
+/* Styling checkmark */
+.jfx-check-box .mark{
+    -fx-border-color: white;
 }

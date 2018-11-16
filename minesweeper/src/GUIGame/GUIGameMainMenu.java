@@ -37,7 +37,23 @@ public class GUIGameMainMenu {
         Controller controller=new Controller();
         Window.show();
     }
-
+    static int getVal(Node text,int begin){
+        try {
+            int val=begin;
+            if(text instanceof TextField)
+                val=Integer.valueOf(((TextField)text).getText());
+            else if(text instanceof Slider){
+                val=(int)((Slider)text).getValue();
+            }
+            else {
+                // TODO: if some Thing Change:)
+            }
+            return val;
+        }
+        catch (Exception e){
+            return begin;
+        }
+    }
     void initGame() {
         //Getting Values Of GridOptions
         int _width = 10,_height = 10,_mines = 10;
@@ -54,9 +70,9 @@ public class GUIGameMainMenu {
                 _mines = 150;
                 break;
             case "Custom":
-                _width = (int) optionsScene.gridOption.WidthInput.getValue();
-                _height = (int) optionsScene.gridOption.HeightInput.getValue();
-                _mines = (int) optionsScene.gridOption.MinesInput.getValue();
+                _width = getVal(optionsScene.gridOption.WidthInput,10);
+                _height =getVal(optionsScene.gridOption.HeightInput,10);
+                _mines = getVal(optionsScene.gridOption.MinesInput,10);
                 break;
         }
 
@@ -73,9 +89,13 @@ public class GUIGameMainMenu {
                 break;
             case "Custom":
                 int i=0;
-                for(TextField _playerName:optionsScene.playersOption._playerFields){
+                for(Node playerfield:optionsScene.playersOption.playerFields.getChildren()){
+                    TextField _playerName=(TextField)(((HBox)playerfield).getChildren().get(0));
+                    TextField _NumberOfShield=(TextField)(((HBox)playerfield).getChildren().get(1));
                     if(_playerName.getText().length()!=0) {
-                        _players.add(new GUIPlayer(_playerName.getText(), optionsScene.playersOption._playersColor.get(i++)));
+                        Player currentPlayer=new GUIPlayer(_playerName.getText(), optionsScene.playersOption._playersColor.get(i++));
+                        currentPlayer.setNumberOfShild(getVal(_NumberOfShield,1));
+                        _players.add(currentPlayer);
                     }
                 }
                 break;
@@ -96,28 +116,33 @@ public class GUIGameMainMenu {
         int _Unmarkmine;
         int _UnmarkNotMine;
         int _LastNumber;
+        int _hasNormalShield;
+        int _lostNormalShield;
         Points points;
         switch (optionsScene.pointsOption.PointsType.getSelectionModel().getSelectedItem()) {
             //"Default","Custom")
             case "Default":
-                guiGame=new GUIGame(_width,_height,_mines,_players);
+                guiGame=new GUIGameCustom(_width,_height,_mines,2,_players,pressMineBehavior,scoreNegativeBehavior);
                 break;
             case "Custom":
-                _RevealFloodFill=Integer.valueOf(optionsScene.pointsOption.RevealFloodFill.getText());
-                _RevealEmpty=Integer.valueOf(optionsScene.pointsOption.RevealEmpty.getText());
-                _RevealMine=Integer.valueOf(optionsScene.pointsOption.RevealMine.getText());
-                _MarkMine=Integer.valueOf(optionsScene.pointsOption.MarkMine.getText());
-                _MarkNotMine=Integer.valueOf(optionsScene.pointsOption.MarkNotMine.getText());
-                _Unmarkmine=Integer.valueOf(optionsScene.pointsOption.Unmarkmine.getText());
-                _UnmarkNotMine=Integer.valueOf(optionsScene.pointsOption.UnmarkNotMine.getText());
-                _LastNumber=Integer.valueOf(optionsScene.pointsOption.LastNumber.getText());
-                points=new Points(_RevealFloodFill, _RevealEmpty, _RevealMine, _MarkMine, _MarkNotMine, _Unmarkmine, _UnmarkNotMine, _LastNumber);
-                guiGame=new GUIGame(_width,_height,_mines,_players, points,pressMineBehavior,scoreNegativeBehavior);
+                _RevealFloodFill=getVal(optionsScene.pointsOption.RevealFloodFill,1);
+                _RevealEmpty=getVal(optionsScene.pointsOption.RevealEmpty,10);
+                _RevealMine=getVal(optionsScene.pointsOption.RevealMine,-250);
+                _MarkMine=getVal(optionsScene.pointsOption.MarkMine,5);
+                _MarkNotMine=getVal(optionsScene.pointsOption.MarkNotMine,-1);
+                _Unmarkmine=getVal(optionsScene.pointsOption.Unmarkmine,-5);
+                _UnmarkNotMine=getVal(optionsScene.pointsOption.UnmarkNotMine,1);
+                _LastNumber=getVal(optionsScene.pointsOption.LastNumber,100);
+                _hasNormalShield=getVal(optionsScene.pointsOption.hasNormlShield,50);
+                _lostNormalShield=getVal(optionsScene.pointsOption.lostNormalShield,250);
+                points=new Points(_RevealFloodFill, _RevealEmpty, _RevealMine, _MarkMine, _MarkNotMine, _Unmarkmine, _UnmarkNotMine, _LastNumber,_hasNormalShield,_lostNormalShield);
+                guiGame=new GUIGameCustom(_width,_height,_mines,2,_players, points,pressMineBehavior,scoreNegativeBehavior);
             break;
         }
         guiGame.setBegin(this);
         Window.setScene(guiGame.getScene());
         Window.centerOnScreen();
+        guiGame.StartGame();
     }
 
     void fadeIn(Node node) {
@@ -275,7 +300,7 @@ public class GUIGameMainMenu {
         ComboBox<String> PlayerType = new ComboBox<>();
         VBox CustomPlayer = new VBox(10);
         //Elements
-        ArrayList<TextField> _playerFields=new ArrayList<>();
+        HBox playerFields=new HBox();
         ArrayList<String> _playersColor=new ArrayList<>();
         PlayersOption(){
             PlayerType.getItems().addAll("Single Player","VS Dump PC","Custom");
@@ -293,9 +318,13 @@ public class GUIGameMainMenu {
             for(int i=1;i<= ConstNumOfPlayers;i++){
                 TextField _playerField=new TextField("");
                 _playerField.setPromptText("player " + i);
-                _playerFields.add(_playerField);
-                CustomPlayer.getChildren().add(_playerField);
+
+                TextField _playerShild=new TextField("");
+                _playerShild.setPromptText("Begin with Shields e.g 0");
+
+                playerFields.getChildren().add(_playerField);
             }
+            CustomPlayer.getChildren().add(playerFields);
             _playersColor.add("#6a1b9a");
             _playersColor.add("#00695c");
             _playersColor.add("#9e9d24");
@@ -323,9 +352,12 @@ public class GUIGameMainMenu {
         TextField Unmarkmine = new TextField();
         TextField UnmarkNotMine = new TextField();
         TextField LastNumber = new TextField();
+        TextField hasNormlShield = new TextField();
+        TextField lostNormalShield = new TextField();
+
         PointsOption(){
             PointsType.getItems().addAll("Default","Custom");
-            PointsType.setPromptText("Choose Players");
+            PointsType.setPromptText("Choose Points");
             PointsType.getSelectionModel().select(0);
             PointsType.setOnAction(e -> {
                 if (PointsType.getSelectionModel().getSelectedItem() == "Custom") { fadeIn(CustomPoint);}
@@ -345,6 +377,8 @@ public class GUIGameMainMenu {
             CustomPoint.add(Unmarkmine,1,2);
             CustomPoint.add(UnmarkNotMine,0,3);
             CustomPoint.add(LastNumber,1,3);
+            CustomPoint.add(hasNormlShield,0,4);
+            CustomPoint.add(lostNormalShield,1,4);
 
             RevealFloodFill.setPromptText("RevealFloodFill: e.g.: 1");
             RevealEmpty.setPromptText("RevealEmpty: e.g.: 10");
@@ -354,6 +388,8 @@ public class GUIGameMainMenu {
             Unmarkmine.setPromptText("Unmarkmine: e.g.: -5");
             UnmarkNotMine.setPromptText("UnmarkNotMine: e.g.: 1");
             LastNumber.setPromptText("LastNumber: e.g.: 0");
+            hasNormlShield.setPromptText("hasNormalShield: e.g.: 50");
+            lostNormalShield.setPromptText("lostNormalShield: e.g.: 250");
 
             Option.getStyleClass().addAll("center");
             Label PointsLabel=new Label("Points: ");

@@ -25,9 +25,18 @@ public class Grid {
     private Game CurrentGame;
 
     // <__ CONSTRUCTERS __> \\
+    public Grid(int _width,int _height,int _minesCount, int _shieldsCount, int _heroShieldsCount) throws IllegalBoundsOfGrid{
+        if (_width<=0 || _height<=0 || _minesCount<0)throw new IllegalBoundsOfGrid("Illegal Bound Of Grid");
+        if(_minesCount >_height*_width)throw new IllegalBoundsOfGrid("Mines more than All squares");
+        this.width=_width+1;
+        this.height=_height+1;
+        this.minesCount = _minesCount;
+        this.shieldsCount = _shieldsCount;
+        this.heroShieldsCount = _heroShieldsCount;
+    }
     public Grid(int _width,int _height,int _minesCount, int _shieldsCount, int _heroShieldsCount,PlayerMove _move) throws IllegalBoundsOfGrid{
-        if (width<=0 || height<=0 || minesCount<0)throw new IllegalBoundsOfGrid("Illegal Bound Of Grid");
-        if(minesCount >height*width)throw new IllegalBoundsOfGrid("Mines more than All squares");
+        if (_width<=0 || _height<=0 || _minesCount<0)throw new IllegalBoundsOfGrid("Illegal Bound Of Grid");
+        if(_minesCount >_height*_width)throw new IllegalBoundsOfGrid("Mines more than All squares");
         this.width=_width+1;
         this.height=_height+1;
         this.minesCount = _minesCount;

@@ -66,4 +66,7 @@ public abstract class Player {
     public void setMaxNumberOfShild(int maxNumberOfShild) {
         this.maxNumberOfShild = maxNumberOfShild;
     }
+    public void setNumberOfShild(int NumberOfShild) {
+        this.numberOfShield = NumberOfShild;
+    }
 }

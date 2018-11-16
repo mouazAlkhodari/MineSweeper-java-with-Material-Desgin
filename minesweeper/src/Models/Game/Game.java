@@ -51,11 +51,17 @@ public abstract class Game {
         }
         if(!(_players.isEmpty()))
             setCurrentPlayer(players.get(0));
+
         initGame(Width,Height,NumMines,ShildCount);
     }
     // <__ METHODS __> \\
     protected void initGame(int width, int height, int minesCount,int ShildCount){
-        setCurrentPlayer(players.get(0));
+        try {
+            grid=new Grid(width,height,minesCount,ShildNumber,HeroShieldNumber);
+        } catch (IllegalBoundsOfGrid e) {
+            e.handle();
+            return;
+        }setCurrentPlayer(players.get(0));
         this.status=GameStatus.FirstMove;// need to change to New Start game
         FlagsNumber = minesCount;
     }
@@ -84,6 +90,10 @@ public abstract class Game {
     }
     protected void AcceptMove(PlayerMove move)throws IllegalGameMove {// x Rows Y columns
         Square s = move.getSquare();
+        if(status==GameStatus.FirstMove){
+            ApplyPlayerMove(move);
+            return;
+        }
         if(SquareType2DArray.CheckIndex(s.getX(),s.getY(),grid.getWidth(),grid.getHeight()))
         {
             move.setSquare(grid.getField()[move.getSquare().getX()][move.getSquare().getY()]);

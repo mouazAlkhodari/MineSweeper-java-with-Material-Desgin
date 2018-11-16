@@ -60,6 +60,8 @@ public class Square {
     public int getX() { return this.x;}
     public int getY() { return this.y;}
     public Boolean isMine() { return mine == null ? false : true; }
+    public Boolean hasNormalSield() { return shield == null ? false : (shield instanceof NormalShield); }
+    public Boolean hasHeroSield() { return shield == null ? false : (shield instanceof HeroShield); }
     public SquareStatus getStatus() { return status; }
     public String getColor() { return Color; }
 

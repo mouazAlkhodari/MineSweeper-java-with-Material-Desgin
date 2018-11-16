@@ -26,6 +26,7 @@ public abstract class NormalGame extends Game {
     }
 
 
+
     // InnerClass
     // #see GameRules In Game Class
     protected class DefaultRules extends GameRules {
@@ -35,6 +36,11 @@ public abstract class NormalGame extends Game {
         public DefaultRules() {
             PressMineBehavior = WhenHitMine.Lose;
             ScoreNegativeBehavior=WhenScoreNegative.End;
+            points = new Points();
+        }
+        public DefaultRules(WhenHitMine pressMineBehavior, WhenScoreNegative scoreNegativeBehavior) {
+            PressMineBehavior = pressMineBehavior;
+            ScoreNegativeBehavior=scoreNegativeBehavior;
             points = new Points();
         }
         public DefaultRules(Points _points, WhenHitMine pressMineBehavior, WhenScoreNegative scoreNegativeBehavior) {
@@ -69,7 +75,6 @@ public abstract class NormalGame extends Game {
                         currentPlayer.getCurrentScore().addPoints(move.getSquare().getNumberOfSurroundedMines());
                         break;
                     case OpenedMine:
-                        if(PressMineBehavior == WhenHitMine.Continue)
                             points.addRevealMinePoints(currentPlayer);
                         break;
                     case Marked:

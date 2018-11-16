@@ -15,26 +15,28 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import MineSweeperGameDefineException.IllegalGameMove;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.max;
 
 public class GUIGame extends NormalGame {
+    private static final List<PlayerPanel> PlayersPanel =new ArrayList<>() ;
     // <__ DATA MEMBERS __> \\
-    private MoveType TypeOfMove;
-    private Button ClickedButton;
-    private static Double ConstBorder=400.0;
+    protected MoveType TypeOfMove;
+    protected Button ClickedButton;
+    protected static Double ConstBorder=400.0;
 
-    private GridPane FXgrid;
-    private VBox ScoreBoard;
-    private HBox footer;
+    protected GridPane FXgrid;
+    protected VBox ScoreBoard;
+    protected HBox footer;
 
-    private Scene scene;
-    private BorderPane layout;
+    protected Scene scene;
+    protected BorderPane layout;
 
-    private Button BackButton;
-    private GUIGameMainMenu Begin;
+    protected Button BackButton;
+    protected GUIGameMainMenu Begin;
     // <__ CONSTRUCTOR __> \\
     public GUIGame(List _players){
         super(_players);
@@ -61,7 +63,7 @@ public class GUIGame extends NormalGame {
 
     public void setBegin(GUIGameMainMenu begin) { Begin = begin; }
 
-    private void initScene() {
+    protected void initScene() {
         initFXComponoents();
         layout=new BorderPane();
         layout.setCenter(FXgrid);
@@ -107,7 +109,7 @@ public class GUIGame extends NormalGame {
         }
     }
 
-    private void initScoreBoard() {
+    protected void initScoreBoard() {
         // Initialize ScoreBoard
         ScoreBoard = new VBox();
         ScoreBoard.setMinWidth(200);
@@ -115,6 +117,7 @@ public class GUIGame extends NormalGame {
         String[] colors = {"#8E44AD","#1F4788","#03A678"};
         for(Player _player:super.players){
             PlayerPanel _playerPanle=new PlayerPanel(_player);
+            PlayersPanel.add(_playerPanle);
             ScoreBoard.getChildren().add(_playerPanle.getPanel());
         }
     }
@@ -222,12 +225,18 @@ public class GUIGame extends NormalGame {
         // and  int top for timer
         // Update ScoreBoard View
         for(int i=0;i<players.size();i++){
-            Player _currentplayer=players.get(i);
-            HBox currentpanel=(HBox)ScoreBoard.getChildren().get(i);
-            Label currentNameLabel=(Label)currentpanel.getChildren().get(0);
-            Label currentScoreLabel=(Label)currentpanel.getChildren().get(1);
-            currentScoreLabel.setText(String.valueOf((_currentplayer.getCurrentScore().getScore())));
-            if(_currentplayer.getCurrentStatus()== PlayerStatus.Playing){
+            Player _player=players.get(i);
+
+            VBox currenPanel=(VBox)ScoreBoard.getChildren().get(i);
+
+            Label currentNameLabel=(Label)currenPanel.getChildren().get(0);
+            Label currentScoreLabel=(Label)currenPanel.getChildren().get(1);
+            Label currentShieldLabel=(Label)currenPanel.getChildren().get(2);
+
+            currentScoreLabel.setText(String.valueOf(_player.getCurrentScore().getScore()));
+            currentShieldLabel.setText(String.valueOf(_player.getNumberOfShield()));
+
+            if(_player.getCurrentStatus()== PlayerStatus.Playing){
                 currentNameLabel.setStyle("-fx-font-weight: Bold");
             }
             else{

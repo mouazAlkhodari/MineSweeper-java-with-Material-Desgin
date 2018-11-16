@@ -15,25 +15,28 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import MineSweeperGameDefineException.IllegalGameMove;
 
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Math.max;
 
 public class GUIGame extends NormalGame {
+    private static final List<PlayerPanel> PlayersPanel =new ArrayList<>() ;
     // <__ DATA MEMBERS __> \\
-    private MoveType TypeOfMove;
-    private Button ClickedButton;
-    private static Double ConstBorder=400.0;
+    protected MoveType TypeOfMove;
+    protected Button ClickedButton;
+    protected static Double ConstBorder=400.0;
 
-    private GridPane FXgrid;
-    private VBox ScoreBoard;
-    private HBox footer;
+    protected GridPane FXgrid;
+    protected VBox ScoreBoard;
+    protected HBox footer;
 
-    private Scene scene;
-    private BorderPane layout;
+    protected Scene scene;
+    protected BorderPane layout;
 
-    private Button BackButton;
-    private GUIGameMainMenu Begin;
+    protected Button BackButton;
+    protected GUIGameMainMenu Begin;
     // <__ CONSTRUCTOR __> \\
     public GUIGame(List _players){
         super(_players);
@@ -43,17 +46,8 @@ public class GUIGame extends NormalGame {
         super(Width,Height,NumMines,ListOfPlayers);
         initScene();
     }
-    public GUIGame(int Width, int Height, int NumMines, List _players, Points points,
-                   WhenHitMine pressMineBehavior,WhenScoreNegative scoreNegativeBehavior){
+    public GUIGame(int Width, int Height, int NumMines, List _players, Points points, WhenHitMine pressMineBehavior,WhenScoreNegative scoreNegativeBehavior){
         super(Width,Height,NumMines,_players,points,pressMineBehavior,scoreNegativeBehavior);
-        initScene();
-    }
-    public GUIGame(int Width, int Height, int NumMines, List ListOfPlayers,
-                   int RevealFloodFill, int RevealEmpty, int RevealMine, int MarkMine, int MarkNotMine, int Unmarkmine,
-                   int UnmarkNotMine, int LastNumber, WhenHitMine pressMineBehavior, WhenScoreNegative scoreNegativeBehavior){
-        super(Width,Height,NumMines,ListOfPlayers,
-                RevealFloodFill,RevealEmpty,RevealMine,MarkMine,MarkNotMine,Unmarkmine,UnmarkNotMine,LastNumber,
-               pressMineBehavior,scoreNegativeBehavior);
         initScene();
     }
 
@@ -69,7 +63,7 @@ public class GUIGame extends NormalGame {
 
     public void setBegin(GUIGameMainMenu begin) { Begin = begin; }
 
-    private void initScene() {
+    protected void initScene() {
         initFXComponoents();
         layout=new BorderPane();
         layout.setCenter(FXgrid);
@@ -115,35 +109,32 @@ public class GUIGame extends NormalGame {
         }
     }
 
-    private void initScoreBoard() {
+    protected void initScoreBoard() {
         // Initialize ScoreBoard
         ScoreBoard = new VBox();
         ScoreBoard.setMinWidth(200);
         ScoreBoard.setStyle("-fx-alignment: CENTER;");
         String[] colors = {"#8E44AD","#1F4788","#03A678"};
         for(Player _player:super.players){
-            HBox _playerPanel=new HBox();
-            _playerPanel.getStyleClass().add("playerboard");
-            Label playerNameLabel=new Label(_player.getName() + " : ");
-            Label playerScoreLabel=new Label(String.valueOf(_player.getCurrentScore().getScore()));
-            playerNameLabel.getStyleClass().add("h2");
-            playerScoreLabel.getStyleClass().add("h2");
-            _playerPanel.setStyle("-fx-background-color: "+(_player.getColor())+";");
-            _playerPanel.getChildren().addAll(playerNameLabel,playerScoreLabel);
-            ScoreBoard.getChildren().add(_playerPanel);
+            PlayerPanel _playerPanle=new PlayerPanel(_player);
+            PlayersPanel.add(_playerPanle);
+            ScoreBoard.getChildren().add(_playerPanle.getPanel());
         }
     }
     private void initfooter() {
         // init Last Move Label
         footer=new HBox();
         footer.setPadding(new Insets(20));
-        footer.setSpacing(200);
+        footer.setSpacing(100);
         footer.setAlignment(Pos.CENTER);
         Label LastMoveLabel;
+
         LastMoveLabel =new Label();
         // init Last Move Label
         Label FlagsNumberLabel;
-        FlagsNumberLabel =new Label(""+ FlagsNumber +"");
+        FlagsNumberLabel =new Label("Flags left: "+ FlagsNumber +"");
+        FlagsNumberLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
+        LastMoveLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
 
         BackButton =new Button("Back");
         BackButton.getStyleClass().addAll("menubutton","h3");
@@ -152,14 +143,13 @@ public class GUIGame extends NormalGame {
             Begin.Window.setScene(Begin.getWelcomescene());
             Begin.Window.centerOnScreen();
         });
-
         footer.getChildren().addAll(FlagsNumberLabel,LastMoveLabel, BackButton);
     }
 
 
     @Override
     public void StartGame() {
-        UpdateVeiw();
+        UpdateVeiw(moves);
         if(!(currentPlayer instanceof GUIPlayer))
             GetMove();
     }
@@ -191,53 +181,62 @@ public class GUIGame extends NormalGame {
             EndGame();
         }
         else{
-            UpdateVeiw();
+            UpdateVeiw(moves);
             if (!(currentPlayer instanceof GUIPlayer))
                 GetMove();
         }
     }
     @Override
-    protected void UpdateVeiw(){
+    protected void UpdateVeiw(List<PlayerMove> Moves){
         // Update Grid View
-        Square[][] feild=this.grid.getField();
-        for (int i=1;i<this.grid.getHeight();i++){
-            for(int j=1;j<this.grid.getWidth();j++){
-                int Position=(i-1)*(this.grid.getWidth()-1)+(j-1);
-                Button currentButton=(Button)FXgrid.getChildren().get(Position);
-                switch (feild[i][j].getStatus()){
-                    case Closed:
-                        currentButton.getStyleClass().removeAll("pressed","openedMine","marked");
-                        currentButton.getStyleClass().add("notpressed");
-                        break;
-                    case OpenedEmpty:
-                        currentButton.setStyle("-fx-background-color: "+feild[i][j].getColor()+"");
-                        currentButton.getStyleClass().add("pressed");
-                        break;
-                    case OpenedNumber:
-                        currentButton.getStyleClass().add("f"+(String.valueOf(feild[i][j].getNumberOfSurroundedMines()))+"");
-                        currentButton.setText(""+feild[i][j].getNumberOfSurroundedMines());
-                        currentButton.setStyle("-fx-background-color: "+feild[i][j].getColor()+"");
-                        currentButton.getStyleClass().add("pressed");
+        for(PlayerMove currentmove:Moves) {
+            int i = currentmove.getSquare().getX();
+            int j = currentmove.getSquare().getY();
+            int Position = (i - 1) * (this.grid.getWidth() - 1) + (j - 1);
+            Button currentButton = (Button) FXgrid.getChildren().get(Position);
+            Square currentSquare = currentmove.getSquare();
+            switch (currentSquare.getStatus()) {
+                case Closed:
+                    currentButton.getStyleClass().removeAll("pressed", "openedMine", "marked");
+                    currentButton.getStyleClass().add("notpressed");
+                    break;
+                case OpenedEmpty:
+                    currentButton.setStyle("-fx-background-color: " + currentSquare.getColor() + "");
+                    currentButton.getStyleClass().add("pressed");
+                    break;
+                case OpenedNumber:
+                    currentButton.getStyleClass().add("f" + (String.valueOf(currentSquare.getNumberOfSurroundedMines())) + "");
+                    currentButton.setText("" + currentSquare.getNumberOfSurroundedMines());
+                    currentButton.setStyle("-fx-background-color: " + currentSquare.getColor() + "");
+                    currentButton.getStyleClass().add("pressed");
 
-                        break;
-                    case OpenedMine:
-                        currentButton.getStyleClass().addAll("pressed","openedMine");
-                        break;
-                    case Marked:
-                        currentButton.getStyleClass().removeAll("notpressed","closed");
-                        currentButton.getStyleClass().addAll("pressed","marked");
-                        break;
-                }
+                    break;
+                case OpenedMine:
+                    currentButton.getStyleClass().addAll("pressed", "openedMine");
+                    break;
+                case Marked:
+                    currentButton.getStyleClass().removeAll("notpressed", "closed");
+                    currentButton.getStyleClass().addAll("pressed", "marked");
+                    break;
             }
         }
+        // TODO: make functon return Panels
+        // in Left for name & score & bla bla
+        // and  int top for timer
         // Update ScoreBoard View
         for(int i=0;i<players.size();i++){
-            Player _currentplayer=players.get(i);
-            HBox currentpanel=(HBox)ScoreBoard.getChildren().get(i);
-            Label currentNameLabel=(Label)currentpanel.getChildren().get(0);
-            Label currentScoreLabel=(Label)currentpanel.getChildren().get(1);
-            currentScoreLabel.setText(String.valueOf((_currentplayer.getCurrentScore().getScore())));
-            if(_currentplayer.getCurrentStatus()== PlayerStatus.Playing){
+            Player _player=players.get(i);
+
+            VBox currenPanel=(VBox)ScoreBoard.getChildren().get(i);
+
+            Label currentNameLabel=(Label)currenPanel.getChildren().get(0);
+            Label currentScoreLabel=(Label)currenPanel.getChildren().get(1);
+            Label currentShieldLabel=(Label)currenPanel.getChildren().get(2);
+
+            currentScoreLabel.setText(String.valueOf(_player.getCurrentScore().getScore()));
+            currentShieldLabel.setText(String.valueOf(_player.getNumberOfShield()));
+
+            if(_player.getCurrentStatus()== PlayerStatus.Playing){
                 currentNameLabel.setStyle("-fx-font-weight: Bold");
             }
             else{
@@ -246,23 +245,25 @@ public class GUIGame extends NormalGame {
         }
         // Update footer Move Label
         String LastMove="--";
-        Label LastMoveLabel=(Label)footer.getChildren().get(0);
+        Label LastMoveLabel=(Label)footer.getChildren().get(1);
         if(ClickedButton!=null)
             LastMove=String.valueOf(GridPane.getRowIndex(ClickedButton)) + " --- " + String.valueOf(GridPane.getColumnIndex(ClickedButton));
         LastMoveLabel.setText(LastMove);
 
-        Label FlagsNumberLabel=(Label)footer.getChildren().get(1);
-        FlagsNumberLabel.setText(""+ FlagsNumber +"");
+        Label FlagsNumberLabel=(Label)footer.getChildren().get(0);
+        FlagsNumberLabel.setText("Flags left: "+ FlagsNumber +"");
     }
 
     @Override
     protected void EndGame() {
         // show All The mines in The Game
         // and Update View For Shows
+        List<PlayerMove> curr = new ArrayList<>();
         for(Square mineSqauer:this.grid.getMines()){
             mineSqauer.ChangeStatus(currentPlayer,MoveType.Reveal);
+            curr.add(new PlayerMove(currentPlayer,mineSqauer));
         }
-        UpdateVeiw();
+        UpdateVeiw(curr);
 
         // Get The Winner
         Player winner=players.get(0);

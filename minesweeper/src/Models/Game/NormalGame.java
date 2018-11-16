@@ -19,14 +19,6 @@ public abstract class NormalGame extends Game {
         super(Width,Height,NumMines,ListOfPlayers);
         currentRules=new DefaultRules();
     }
-    public NormalGame(int Width,int Height,int NumMines,List ListOfPlayers, int RevealFloodFill, int RevealEmpty, int RevealMine,
-                      int MarkMine, int MarkNotMine, int Unmarkmine, int UnmarkNotMine, int LastNumber,
-                      WhenHitMine pressMineBehavior ,WhenScoreNegative scoreNegativeBehavior){
-        super(Width,Height,NumMines,ListOfPlayers);
-        currentRules=new NormalGame.DefaultRules(RevealFloodFill,RevealEmpty,RevealMine,MarkMine,MarkNotMine,Unmarkmine,UnmarkNotMine,LastNumber,
-                                                  pressMineBehavior,scoreNegativeBehavior);
-    }
-
     public NormalGame(int width, int height, int numMines, List players,
                       Points points, WhenHitMine pressMineBehavior, WhenScoreNegative scoreNegativeBehavior) {
         super(width, height, numMines, players);
@@ -34,25 +26,23 @@ public abstract class NormalGame extends Game {
     }
 
 
+
     // InnerClass
     // #see GameRules In Game Class
     protected class DefaultRules extends GameRules {
         public Points points;
-        WhenHitMine PressMineBehavior;
-        WhenScoreNegative ScoreNegativeBehavior;
+        protected WhenHitMine PressMineBehavior;
+        protected WhenScoreNegative ScoreNegativeBehavior;
         public DefaultRules() {
             PressMineBehavior = WhenHitMine.Lose;
             ScoreNegativeBehavior=WhenScoreNegative.End;
             points = new Points();
         }
-        public DefaultRules(int RevealFloodFill, int RevealEmpty, int RevealMine, int MarkMine, int MarkNotMine,
-                            int Unmarkmine, int UnmarkNotMine, int LastNumber,
-                            WhenHitMine pressMineBehvior, WhenScoreNegative scoreNegativeBehavior){
-            PressMineBehavior=pressMineBehvior;
+        public DefaultRules(WhenHitMine pressMineBehavior, WhenScoreNegative scoreNegativeBehavior) {
+            PressMineBehavior = pressMineBehavior;
             ScoreNegativeBehavior=scoreNegativeBehavior;
-            points=new Points(RevealFloodFill,RevealEmpty,RevealMine,MarkMine,MarkNotMine,Unmarkmine,UnmarkNotMine,LastNumber);
+            points = new Points();
         }
-
         public DefaultRules(Points _points, WhenHitMine pressMineBehavior, WhenScoreNegative scoreNegativeBehavior) {
             points=_points;
             PressMineBehavior=pressMineBehavior;
@@ -60,7 +50,7 @@ public abstract class NormalGame extends Game {
 
         }//EndOfClass
 
-        void ChangePlayerStatus(List<PlayerMove> moves) {
+        protected void ChangePlayerStatus(List<PlayerMove> moves) {
             if (moves.get(0).getSquare().getStatus() == SquareStatus.OpenedMine && PressMineBehavior == WhenHitMine.Lose){
                 currentPlayer.setCurrentStatus(PlayerStatus.Lose);
                 return;
@@ -74,7 +64,7 @@ public abstract class NormalGame extends Game {
             currentPlayer.setCurrentStatus(PlayerStatus.waiting);
         }
 
-        void GetScoreChange(List<PlayerMove> moves) {
+        protected void GetScoreChange(List<PlayerMove> moves) {
             if (moves.size() == 1) {
                 PlayerMove move = moves.get(0);
                 switch (move.getSquare().getStatus()) {
@@ -85,7 +75,6 @@ public abstract class NormalGame extends Game {
                         currentPlayer.getCurrentScore().addPoints(move.getSquare().getNumberOfSurroundedMines());
                         break;
                     case OpenedMine:
-                        if(PressMineBehavior == WhenHitMine.Continue)
                             points.addRevealMinePoints(currentPlayer);
                         break;
                     case Marked:
@@ -106,7 +95,7 @@ public abstract class NormalGame extends Game {
         }
 
         @Override
-        Player DecideNextPlayer(List<PlayerMove> moves) {
+        protected Player DecideNextPlayer(List<PlayerMove> moves) {
             int indOfcurrentPlayer = players.lastIndexOf(currentPlayer);
             for (int i = 0; i < players.size(); i++) {
                 indOfcurrentPlayer = (indOfcurrentPlayer + 1) % players.size();
@@ -121,6 +110,6 @@ public abstract class NormalGame extends Game {
 
     @Override
     public abstract void GetMove();
-    protected abstract void UpdateVeiw();
+    protected abstract void UpdateVeiw(List<PlayerMove> Moves);
     protected abstract void EndGame();
 }

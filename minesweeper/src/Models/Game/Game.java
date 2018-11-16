@@ -83,7 +83,8 @@ public abstract class Game {
         currentRules.GetScoreChange(moves);
         currentRules.ChangePlayerStatus(moves);
         ChangeStatus();
-        setCurrentPlayer(currentRules.DecideNextPlayer(moves));
+        Player nextPlayer = currentRules.DecideNextPlayer(moves);
+        setCurrentPlayer(nextPlayer);
         if(move.getType()==MoveType.Mark){
             FlagsNumber +=(move.getSquare().getStatus()==SquareStatus.Marked ?-1:1);
         }

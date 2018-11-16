@@ -48,7 +48,7 @@ public abstract class NormalGame extends Game {
             PressMineBehavior=pressMineBehavior;
             ScoreNegativeBehavior=scoreNegativeBehavior;
 
-        }
+        }//EndOfClass
 
         protected void ChangePlayerStatus(List<PlayerMove> moves) {
             if (moves.get(0).getSquare().getStatus() == SquareStatus.OpenedMine && PressMineBehavior == WhenHitMine.Lose){
@@ -104,7 +104,7 @@ public abstract class NormalGame extends Game {
                     return players.get(indOfcurrentPlayer);
                 }
             }
-            return currentPlayer;
+          return currentPlayer;
         }
     }
 

@@ -2,12 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="72e468c9-36b8-4bef-a3ab-2cfb3c596978" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/MineSweeperGameDefineException/TimeOutException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Models/Game/Timer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGameMainMenu$GridOption.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGameMainMenu$PlayersOption.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGameMainMenu$PointsOption.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../out/production/minesweeper/MineSweeperGameDefineException/IllegalBoundsOfGrid.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../out/production/minesweeper/MineSweeperGameDefineException/IllegalGameMove.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../out/production/minesweeper/MineSweeperGameDefineException/MineSweeperGameExeption.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/Points.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/Timer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/WhenScoreNegative.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/minesweeper_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/jfoenix_9_0_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/jfoenix_9_0_6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/jfoenix_9_0_6.xml___jb_tmp___" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/minesweeper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/minesweeper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml___jb_tmp___" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minesweeper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/minesweeper.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ConsoleGame/ConsoleMinesweeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConsoleGame/ConsoleMinesweeper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIGameCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIGameCustom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/Game/NormalGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Game/NormalGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Game/Points.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Game/Points.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/ConsoleGame/ConsoleGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/ConsoleGame/ConsoleGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/ConsoleGame/ConsoleMinesweeper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/ConsoleGame/ConsoleMinesweeper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/ConsoleGame/ConsolePlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/ConsoleGame/ConsolePlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/CustomSequences/MinesCoor2DArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/CustomSequences/MinesCoor2DArray.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGameMainMenu$OptionScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGameMainMenu$OptionScene.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGameMainMenu$WelcomeScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGameMainMenu$WelcomeScene.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGameMainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGameMainMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/GUIGame/GUIGameWithOptions$OptionsScene.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/Game$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/Game$GameRules.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/Game$GameRules.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/NormalGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/NormalGame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/NormalGame$DefaultRules$Points.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/NormalGame$DefaultRules.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/NormalGame$DefaultRules.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/NormalGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/Models/Game/NormalGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/Models/Grid/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/Models/Grid/Grid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/Models/Move/PlayerMove.class" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/Models/Move/PlayerMove.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/Styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../out/production/minesweeper/Styles/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/Styles/style.css___jb_tmp___" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/userDefineException/IllegalGameMove.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/userDefineException/IllegalSquareName.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/minesweeper/userDefineException/MineSweeperGameExeption.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,13 +62,13 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="java" value="22" />
-          <entry key="xml" value="1" />
+          <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JAVA" value="22" />
-          <entry key="XML" value="1" />
+          <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -70,10 +111,15 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ConsoleGame/ConsoleMinesweeper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+            <state relative-caret-position="160">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -98,7 +144,7 @@
         <entry file="file://$PROJECT_DIR$/src/Models/Game/NormalGame.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="77" column="67" lean-forward="true" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
+              <caret line="77" column="67" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
               <folding>
                 <element signature="n#!!doc;n#DefaultRules#0;n#NormalGame#0" />
                 <element signature="method#DecideNextPlayer#0;class#DefaultRules#0;class#NormalGame#0" />
@@ -148,12 +194,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
+            <state relative-caret-position="3682">
               <caret line="324" column="57" selection-start-line="324" selection-start-column="57" selection-end-line="324" selection-end-column="57" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#PointsOption#0;class#PointsOption#0;class#GUIGameMainMenu#0" />
               </folding>
             </state>
@@ -202,11 +249,11 @@
         <option value="$PROJECT_DIR$/src/Models/Game/Game.java" />
         <option value="$PROJECT_DIR$/src/Models/Player/Player.java" />
         <option value="$PROJECT_DIR$/src/GUIGame/PlayerPanel.java" />
-        <option value="$PROJECT_DIR$/src/ConsoleGame/ConsoleMinesweeper.java" />
         <option value="$PROJECT_DIR$/src/GUIGame/GUIGameCustom.java" />
         <option value="$PROJECT_DIR$/src/Models/Game/NormalGame.java" />
         <option value="$PROJECT_DIR$/src/GUIGame/GUIGame.java" />
         <option value="$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java" />
+        <option value="$PROJECT_DIR$/src/ConsoleGame/ConsoleMinesweeper.java" />
       </list>
     </option>
   </component>
@@ -255,6 +302,12 @@
               <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
               <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ConsoleGame" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GUIGame" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -278,8 +331,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542328571409" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Projects/MineSweeper/minesweeper" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/jfoenix-9.0.6.jar!/" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
@@ -368,12 +421,12 @@
       <workItem from="1542198001974" duration="1131000" />
       <workItem from="1542280343653" duration="5878000" />
       <workItem from="1542317752528" duration="412000" />
-      <workItem from="1542388550665" duration="1349000" />
+      <workItem from="1542388550665" duration="2112000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10782000" />
+    <option name="totallyTimeSpent" value="11545000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -397,13 +450,13 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49848714" visible="true" weight="0.30769232" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49848714" weight="0.30769232" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.39770868" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.39770868" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.20440252" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.3289689" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3289689" />
@@ -488,11 +541,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4384" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Models/Player/AutoPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -532,6 +580,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
           <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="method#InitGrid#0;class#Grid#0" />
+            <element signature="method#AcceptMove#0;class#Grid#0" />
+            <element signature="method#floodFill#0;class#Grid#0" />
+            <element signature="e#3321#3421#0" />
+            <element signature="method#getMines#0;class#Grid#0" />
+            <element signature="method#getMinesCount#0;class#Grid#0" />
+            <element signature="method#getWidth#0;class#Grid#0" />
+            <element signature="method#getHeight#0;class#Grid#0" />
+            <element signature="method#getField#0;class#Grid#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -658,17 +717,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ConsoleGame/ConsoleMinesweeper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Models/Game/NormalGame.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="77" column="67" lean-forward="true" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
+          <caret line="77" column="67" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
           <folding>
             <element signature="n#!!doc;n#DefaultRules#0;n#NormalGame#0" />
             <element signature="method#DecideNextPlayer#0;class#DefaultRules#0;class#NormalGame#0" />
@@ -690,13 +742,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
+        <state relative-caret-position="3682">
           <caret line="324" column="57" selection-start-line="324" selection-start-column="57" selection-end-line="324" selection-end-column="57" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#PointsOption#0;class#PointsOption#0;class#GUIGameMainMenu#0" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ConsoleGame/ConsoleMinesweeper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

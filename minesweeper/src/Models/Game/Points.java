@@ -14,6 +14,7 @@ public class Points {
     int hasNormalShield;
     int lostNormalShield;
 
+
     public Points() { this(1,10,-250,5,-1,-5,1,0,50,250); }
 
     public Points(int revealFloodFill, int revealEmpty, int revealMine, int markMine, int markNotMine, int unmarkmine, int unmarkNotMine, int lastNumber,int hasNormalShield

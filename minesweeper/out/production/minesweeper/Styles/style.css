@@ -34,6 +34,8 @@
     -fx-text-fill: #1EB98F;
     -fx-font-weight: bold;
 }
+.custombutton { -fx-background-color: #8DEC26}
+.custombutton:hover { -fx-text-fill: #8DEC26}
 .buttonlabel {
     -fx-background-color: #485761;
     -fx-background-radius: 5;
@@ -64,7 +66,7 @@
 }
 
 .combo-box {
-    -fx-min-width: 150;
+    -fx-min-width: 200;
     -fx-min-height: 30;
     -fx-background-color: #485761;
     -fx-background-radius: 0;
@@ -84,6 +86,7 @@
     -fx-border-radius: 0;
     -fx-background-radius: 0;
     -fx-text-fill: #fff;
+    -fx-font-size: 16;
     -fx-font-family: Lato;
     -fx-font-weight: bold;
 
@@ -114,6 +117,7 @@
 .padding {-fx-padding: 50px;}
 .leftpadding { -fx-padding: 0 50px 0 0;}
 .bottomPadding { -fx-padding: 0 0 50 0;}
+.maxwidth250 {-fx-max-width: 250}
 
 .f1{-fx-text-fill: #e26e0e;  -fx-font-weight: 700;}
 .f2{-fx-text-fill: #d5654d;  -fx-font-weight: 700;}
@@ -184,7 +188,7 @@
 }
 
 .jfx-tab-pane .tab-header-background {
-    -fx-background-color: #1EB98F;
+    -fx-background-color: #8DEC26;
     -fx-text-fill: WHITE;
 }
 

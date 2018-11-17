@@ -7,6 +7,7 @@ import Models.Game.WhenScoreNegative;
 import Models.Player.DumbPlayer;
 import Models.Player.Player;
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXRippler;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTabPane;
 import javafx.animation.FadeTransition;
@@ -58,7 +59,7 @@ public class GUIGameMainMenu {
     }
     void initGame() {
         //Getting Values Of GridOptions
-        int _width = 10,_height = 10,_mines = 10;
+        int _width = 10,_height = 10,_mines = 10,_shields = 4,_heroShields = 0;
         switch (optionsScene.gridOption.difficulty.getSelectionModel().getSelectedItem()) {
             case "Easy":
                 _width = _height = _mines = 8;
@@ -75,6 +76,8 @@ public class GUIGameMainMenu {
                 _width = getVal(optionsScene.gridOption.WidthInput,10);
                 _height =getVal(optionsScene.gridOption.HeightInput,10);
                 _mines = getVal(optionsScene.gridOption.MinesInput,10);
+                _shields = getVal(optionsScene.gridOption.ShieldsInput,10);
+                _heroShields = getVal(optionsScene.gridOption.HeroShieldsInput,10);
                 break;
         }
 
@@ -124,7 +127,7 @@ public class GUIGameMainMenu {
         switch (optionsScene.pointsOption.PointsType.getSelectionModel().getSelectedItem()) {
             //"Default","Custom")
             case "Default":
-                guiGame=new GUIGameCustom(_width,_height,_mines,2,_players,pressMineBehavior,scoreNegativeBehavior);
+                guiGame=new GUIGameCustom(_width,_height,_mines,_shields,_players,pressMineBehavior,scoreNegativeBehavior);
                 break;
             case "Custom":
                 _RevealFloodFill=getVal(optionsScene.pointsOption.RevealFloodFill,1);
@@ -138,7 +141,7 @@ public class GUIGameMainMenu {
                 _hasNormalShield=getVal(optionsScene.pointsOption.hasNormlShield,50);
                 _lostNormalShield=getVal(optionsScene.pointsOption.lostNormalShield,250);
                 points=new Points(_RevealFloodFill, _RevealEmpty, _RevealMine, _MarkMine, _MarkNotMine, _Unmarkmine, _UnmarkNotMine, _LastNumber,_hasNormalShield,_lostNormalShield);
-                guiGame=new GUIGameCustom(_width,_height,_mines,2,_players, points,pressMineBehavior,scoreNegativeBehavior);
+                guiGame=new GUIGameCustom(_width,_height,_mines,_shields,_players, points,pressMineBehavior,scoreNegativeBehavior);
             break;
         }
         guiGame.setBegin(this);
@@ -174,7 +177,7 @@ public class GUIGameMainMenu {
             Welcome = new Label("MineSweeper");
             CustomGame = new Button("CUSTOM GAME");
             StartGame = new Button("START GAME");
-            CustomGame.getStyleClass().addAll("menubutton","h3");
+            CustomGame.getStyleClass().addAll("menubutton","custombutton","h3");
             StartGame.getStyleClass().addAll("menubutton","h3");
             CustomGame.setOnAction(e -> {Window.setScene(optionsScene.scene);Window.centerOnScreen();});
             StartGame.setOnAction(e -> initGame());
@@ -303,7 +306,7 @@ public class GUIGameMainMenu {
 
 
     class GridOption{
-        HBox Option = new HBox(30);
+        VBox Option = new VBox(30);
 
         ComboBox<String> difficulty = new ComboBox<>();
         VBox CustomGrid = new VBox(5);
@@ -311,6 +314,8 @@ public class GUIGameMainMenu {
         JFXSlider WidthInput = new JFXSlider(5,30,10);
         JFXSlider HeightInput = new JFXSlider(5,30,10);
         JFXSlider MinesInput = new JFXSlider(5,450,15);
+        JFXSlider ShieldsInput = new JFXSlider(0,50,8);
+        JFXSlider HeroShieldsInput = new JFXSlider(0,10,3);
         public GridOption() {
             difficulty.getItems().addAll("Easy","Medium","Hard","Custom");
             difficulty.setPromptText("Choose Difficulty");
@@ -323,19 +328,38 @@ public class GUIGameMainMenu {
 
             WidthInput.valueProperty().addListener( (v,oldValue,NewValue) -> {
                 MinesInput.setMax((NewValue.doubleValue() * HeightInput.getValue())* 0.75);
+                ShieldsInput.setMax((NewValue.doubleValue() * HeightInput.getValue())* 0.25);
+                HeroShieldsInput.setMax((NewValue.doubleValue() * HeightInput.getValue())* 0.25);
             });
             HeightInput.valueProperty().addListener( (v,oldValue,NewValue) -> {
                 MinesInput.setMax((NewValue.doubleValue() * WidthInput.getValue()) * 0.75);
+                ShieldsInput.setMax((NewValue.doubleValue() * WidthInput.getValue())* 0.25);
+                HeroShieldsInput.setMax((NewValue.doubleValue() * WidthInput.getValue())* 0.25);
             });
+            MinesInput.valueProperty().addListener((v,oldValue,NewValue) -> {
+                ShieldsInput.setMax(WidthInput.getValue() * HeightInput.getValue() - MinesInput.getValue() - HeroShieldsInput.getValue());
+                HeroShieldsInput.setMax(WidthInput.getValue() * HeightInput.getValue() - MinesInput.getValue() - ShieldsInput.getValue());
+            });
+            ShieldsInput.valueProperty().addListener((v,oldValue,NewValue) -> {
+                MinesInput.setMax(WidthInput.getValue() * HeightInput.getValue() - ShieldsInput.getValue() - HeroShieldsInput.getValue());
+                HeroShieldsInput.setMax(WidthInput.getValue() * HeightInput.getValue() - MinesInput.getValue() - ShieldsInput.getValue());
+            });
+            HeroShieldsInput.valueProperty().addListener((v,oldValue,NewValue) -> {
+                MinesInput.setMax(WidthInput.getValue() * HeightInput.getValue() - ShieldsInput.getValue() - HeroShieldsInput.getValue());
+                ShieldsInput.setMax(WidthInput.getValue() * HeightInput.getValue() - MinesInput.getValue() - HeroShieldsInput.getValue());
+            });
+
             CustomGrid.setVisible(false);
             CustomGrid.managedProperty().bind(CustomGrid.visibleProperty());
             Label WidthLabel=new Label("Width");
             Label HeightLabel=new Label("Height");
             Label MinesLabel=new Label("Mines");
-            CustomGrid.getChildren().addAll(WidthLabel,WidthInput,HeightLabel,HeightInput,MinesLabel,MinesInput);
-            Option.getStyleClass().add("center");
-            Label difficultyLabel=new Label("Difficulty: ");
-            difficultyLabel.getStyleClass().addAll("minwidth","h4");
+            Label ShieldsLabel=new Label("Shields");
+            Label HeroShieldsLabel=new Label("Hero Shields");
+            CustomGrid.getChildren().addAll(WidthLabel,WidthInput,HeightLabel,HeightInput,MinesLabel,MinesInput,ShieldsLabel,ShieldsInput,HeroShieldsLabel,HeroShieldsInput);
+            Option.getStyleClass().addAll("center","maxwidth250");
+            JFXRippler difficultyLabel=new JFXRippler(new Label("Please Select Difficulty: "));
+            difficultyLabel.getStyleClass().addAll("minwidth","h2");
             Option.getChildren().addAll(difficultyLabel,difficulty,CustomGrid);
         }
     }

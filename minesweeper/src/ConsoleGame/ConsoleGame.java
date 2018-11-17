@@ -56,6 +56,10 @@ public class ConsoleGame extends NormalGame {
            String number = ConsoleGame.fixedLengthString(String.valueOf(i), 2);
            System.out.print(number);
                      for (int j=1;j<this.grid.getWidth();j++){
+                         if(status==GameStatus.FirstMove){
+                             System.out.print("O ");
+                            continue;
+                         }
                 switch (feild[i][j].getStatus()){
                     case Closed:
                         System.out.print("O ");

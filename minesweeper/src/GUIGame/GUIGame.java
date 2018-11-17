@@ -38,6 +38,10 @@ public class GUIGame extends NormalGame {
 
     protected Button BackButton;
     protected GUIGameMainMenu Begin;
+
+    // in footer
+    protected Label LastMoveLabel,FlagsNumberLabel,shieldNumberLabel;
+
     // <__ CONSTRUCTOR __> \\
     public GUIGame(List _players){
         super(_players);
@@ -130,25 +134,25 @@ public class GUIGame extends NormalGame {
         // init Last Move Label
         footer=new HBox();
         footer.setPadding(new Insets(20));
-        footer.setSpacing(100);
+        footer.setSpacing(80);
         footer.setAlignment(Pos.CENTER);
-        Label LastMoveLabel;
 
         LastMoveLabel =new Label();
-        // init Last Move Label
-        Label FlagsNumberLabel;
-        FlagsNumberLabel =new Label("Flags left: "+ FlagsNumber +"");
+        FlagsNumberLabel =new Label("Flags: "+ FlagsNumber +"");
+        shieldNumberLabel=new Label("Shields: " +ShildNumber + "");
         FlagsNumberLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
         LastMoveLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
+        shieldNumberLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
 
         BackButton =new Button("Back");
         BackButton.getStyleClass().addAll("menubutton","h3");
-        BackButton.setPrefSize(100,40);
+        BackButton.setPrefSize(80,40);
+
         BackButton.setOnAction(e->{
             Begin.Window.setScene(Begin.getWelcomescene());
             Begin.Window.centerOnScreen();
         });
-        footer.getChildren().addAll(FlagsNumberLabel,LastMoveLabel, BackButton);
+        footer.getChildren().addAll(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton);
     }
 
 
@@ -200,6 +204,9 @@ public class GUIGame extends NormalGame {
             int Position = (i - 1) * (this.grid.getWidth() - 1) + (j - 1);
             Button currentButton = (Button) FXgrid.getChildren().get(Position);
             Square currentSquare = currentmove.getSquare();
+            if(currentSquare.hasNormalSield()){
+                ShildNumber--;
+            }
             switch (currentSquare.getStatus()) {
                 case Closed:
                     currentButton.getStyleClass().removeAll("pressed", "openedMine", "marked");
@@ -236,13 +243,12 @@ public class GUIGame extends NormalGame {
         }
         // Update footer Move Label
         String LastMove="--";
-        Label LastMoveLabel=(Label)footer.getChildren().get(1);
         if(ClickedButton!=null)
             LastMove=String.valueOf(GridPane.getRowIndex(ClickedButton)) + " --- " + String.valueOf(GridPane.getColumnIndex(ClickedButton));
         LastMoveLabel.setText(LastMove);
 
-        Label FlagsNumberLabel=(Label)footer.getChildren().get(0);
-        FlagsNumberLabel.setText("Flags left: "+ FlagsNumber +"");
+        FlagsNumberLabel.setText("Flags: "+ FlagsNumber + "");
+        shieldNumberLabel.setText("Shilds: "+ShildNumber + "");
     }
 
     @Override

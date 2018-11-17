@@ -64,6 +64,7 @@ public abstract class Game {
         }setCurrentPlayer(players.get(0));
         this.status=GameStatus.FirstMove;// need to change to New Start game
         FlagsNumber = minesCount;
+        ShildNumber = ShildCount;
     }
     protected void initGame(PlayerMove move){
         try {

@@ -39,6 +39,10 @@
     -fx-background-radius: 5;
     -fx-min-width: 150;
 }
+
+.verticalbutton {
+    -fx-min-height: 100;
+}
 .notpressed {
     -fx-scale-x: 1;
     -fx-scale-y: 1;
@@ -108,6 +112,8 @@
     -fx-border-color: #323232;
 }
 .padding {-fx-padding: 50px;}
+.leftpadding { -fx-padding: 0 50px 0 0;}
+.bottomPadding { -fx-padding: 0 0 50 0;}
 
 .f1{-fx-text-fill: #e26e0e;  -fx-font-weight: 700;}
 .f2{-fx-text-fill: #d5654d;  -fx-font-weight: 700;}
@@ -172,4 +178,24 @@
 /* Styling checkmark */
 .jfx-check-box .mark{
     -fx-border-color: white;
+}
+.jfx-tab-pane .tab {
+    -fx-pref-height: 50;
+}
+
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: #1EB98F;
+    -fx-text-fill: WHITE;
+}
+
+.jfx-tab-pane .control-buttons-tab .tab-down-button{
+    -fx-background-color: white;
+}
+
+.jfx-tab-pane .headers-region > .tab > .jfx-rippler {
+    -jfx-rippler-fill: white;
+}
+
+.jfx-tab-pane .headers-region .tab-selected-line {
+    -fx-background-color: white;
 }

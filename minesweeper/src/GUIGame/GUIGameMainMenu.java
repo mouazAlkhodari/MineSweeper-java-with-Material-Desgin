@@ -6,10 +6,7 @@ import Models.Game.WhenHitMine;
 import Models.Game.WhenScoreNegative;
 import Models.Player.DumbPlayer;
 import Models.Player.Player;
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXRippler;
-import com.jfoenix.controls.JFXSlider;
-import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.*;
 import javafx.animation.FadeTransition;
 import javafx.geometry.Side;
 import javafx.scene.Node;
@@ -43,8 +40,8 @@ public class GUIGameMainMenu {
     static int getVal(Node text,int begin){
         try {
             int val=begin;
-            if(text instanceof TextField)
-                val=Integer.valueOf(((TextField)text).getText());
+            if(text instanceof JFXTextField)
+                val=Integer.valueOf(((JFXTextField)text).getText());
             else if(text instanceof Slider){
                 val=(int)((Slider)text).getValue();
             }
@@ -95,8 +92,8 @@ public class GUIGameMainMenu {
             case "Custom":
                 int i=0;
                 for(Node playerfield:optionsScene.playersOption.playerFields.getChildren()){
-                    TextField _playerName=(TextField)(((HBox)playerfield).getChildren().get(0));
-                    TextField _NumberOfShield=(TextField)(((HBox)playerfield).getChildren().get(1));
+                    JFXTextField _playerName=(JFXTextField)(((HBox)playerfield).getChildren().get(0));
+                    JFXTextField _NumberOfShield=(JFXTextField)(((HBox)playerfield).getChildren().get(1));
                     if(_playerName.getText().length()!=0) {
                         Player currentPlayer=new GUIPlayer(_playerName.getText(), optionsScene.playersOption._playersColor.get(i++));
                         currentPlayer.setNumberOfShild(getVal(_NumberOfShield,1));
@@ -365,12 +362,12 @@ public class GUIGameMainMenu {
     }
     class PlayersOption{
         //initializing PlayerOptions
-        HBox Option = new HBox(30);
+        VBox Option = new VBox(30);
         int ConstNumOfPlayers=4;
         ComboBox<String> PlayerType = new ComboBox<>();
         VBox CustomPlayer = new VBox(10);
         //Elements
-        VBox playerFields=new VBox();
+        VBox playerFields=new VBox(20);
         ArrayList<String> _playersColor=new ArrayList<>();
         PlayersOption(){
             PlayerType.getItems().addAll("Single Player","VS Dump PC","Custom");
@@ -386,12 +383,12 @@ public class GUIGameMainMenu {
             CustomPlayer.setVisible(false);
             CustomPlayer.managedProperty().bind(CustomPlayer.visibleProperty());
             for(int i=1;i<= ConstNumOfPlayers;i++){
-                HBox currentbox=new HBox();
-                TextField _playerField=new TextField("");
+                HBox currentbox=new HBox(20);
+                JFXTextField _playerField=new JFXTextField("");
                 _playerField.setPromptText("player " + i);
-                TextField _playerShild=new TextField("");
-                _playerShild.setPromptText("Begin with Shields e.g 0");
-                currentbox.getChildren().addAll(_playerField,_playerShild);
+                JFXTextField _playerShield=new JFXTextField("");
+                _playerShield.setPromptText("Begin with Shields e.g 0");
+                currentbox.getChildren().addAll(_playerField,_playerShield);
                 playerFields.getChildren().add(currentbox);
             }
             CustomPlayer.getChildren().add(playerFields);
@@ -401,9 +398,9 @@ public class GUIGameMainMenu {
             _playersColor.add("#00838f");
             _playersColor.add("#972e0e");
 
-            Option.getStyleClass().add("center");
-            Label PlayersLabel=new Label("Players: ");
-            PlayersLabel.getStyleClass().addAll("minwidth","h4");
+            Option.getStyleClass().addAll("center","maxwidth250");
+            JFXRippler PlayersLabel=new JFXRippler(new Label("Select Players Type"));
+            PlayersLabel.getStyleClass().addAll("minwidth","h3");
             Option.getChildren().addAll(PlayersLabel,PlayerType,CustomPlayer);
         }
     }
@@ -414,16 +411,16 @@ public class GUIGameMainMenu {
         ComboBox<String> PointsType = new ComboBox<>();
         GridPane CustomPoint = new GridPane();
         //Elements
-        TextField RevealFloodFill = new TextField();
-        TextField RevealEmpty = new TextField();
-        TextField RevealMine = new TextField();
-        TextField MarkMine = new TextField();
-        TextField MarkNotMine = new TextField();
-        TextField Unmarkmine = new TextField();
-        TextField UnmarkNotMine = new TextField();
-        TextField LastNumber = new TextField();
-        TextField hasNormlShield = new TextField();
-        TextField lostNormalShield = new TextField();
+        JFXTextField RevealFloodFill = new JFXTextField();
+        JFXTextField RevealEmpty = new JFXTextField();
+        JFXTextField RevealMine = new JFXTextField();
+        JFXTextField MarkMine = new JFXTextField();
+        JFXTextField MarkNotMine = new JFXTextField();
+        JFXTextField Unmarkmine = new JFXTextField();
+        JFXTextField UnmarkNotMine = new JFXTextField();
+        JFXTextField LastNumber = new JFXTextField();
+        JFXTextField hasNormlShield = new JFXTextField();
+        JFXTextField lostNormalShield = new JFXTextField();
 
         PointsOption(){
             PointsType.getItems().addAll("Default","Custom");

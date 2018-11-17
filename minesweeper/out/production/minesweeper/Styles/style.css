@@ -86,7 +86,7 @@
     -fx-border-radius: 0;
     -fx-background-radius: 0;
     -fx-text-fill: #fff;
-    -fx-font-size: 16;
+    -fx-font-size: 14;
     -fx-font-family: Lato;
     -fx-font-weight: bold;
 
@@ -138,6 +138,7 @@
 }
 .h2 {
     -fx-font-size: 24;
+    -fx-font-weight: 400;
     -fx-text-fill: #FFFFFF;
 }
 .h3 {
@@ -202,4 +203,12 @@
 
 .jfx-tab-pane .headers-region .tab-selected-line {
     -fx-background-color: white;
+}
+
+.jfx-text-field {
+    -fx-prompt-text-fill: rgb(170,170,170);
+    -fx-text-fill: white;
+    -fx-font-size: 15;
+    -jfx-focus-color: #8DEC26;
+    -jfx-unfocus-color: #4d4d4d;
 }

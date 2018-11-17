@@ -55,8 +55,8 @@ public class MineSweeperGrid extends SquareType2DArray {
             int randomWidth,randomHeight;
             //checking that there is no duplicated mines in one square
             while (true) {
-                randomWidth = rand.nextInt(width-2)+1;
-                randomHeight = rand.nextInt(height-2)+1;
+                randomWidth = rand.nextInt(width-1)+1;
+                randomHeight = rand.nextInt(height-1)+1;
                 if(randomHeight==FirstMove.getSquare().getX() && randomWidth==FirstMove.getSquare().getY())continue;
                 if (type[randomHeight][randomWidth] == SquareType.Empty) {
                     type[randomHeight][randomWidth] = SquareType.Mine;

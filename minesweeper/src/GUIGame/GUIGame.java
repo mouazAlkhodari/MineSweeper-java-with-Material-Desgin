@@ -31,6 +31,7 @@ public class GUIGame extends NormalGame {
     protected GridPane FXgrid;
     protected VBox ScoreBoard;
     protected HBox footer;
+    protected HBox top;
 
     protected Scene scene;
     protected BorderPane layout;
@@ -69,6 +70,7 @@ public class GUIGame extends NormalGame {
         layout.setCenter(FXgrid);
         layout.setRight(ScoreBoard);
         layout.setBottom(footer);
+        layout.setTop(top);
         scene = new Scene(layout);
         scene.getStylesheets().add("Styles/style.css");
     }
@@ -116,9 +118,12 @@ public class GUIGame extends NormalGame {
         ScoreBoard.setStyle("-fx-alignment: CENTER;");
         String[] colors = {"#8E44AD","#1F4788","#03A678"};
         for(Player _player:super.players){
-            PlayerPanel _playerPanle=new PlayerPanel(_player);
-            PlayersPanel.add(_playerPanle);
-            ScoreBoard.getChildren().add(_playerPanle.getPanel());
+            PlayerPanel _playerPanel=new PlayerPanel(_player);
+            PlayersPanel.add(_playerPanel);
+            ScoreBoard.getChildren().add(_playerPanel.getLeftPanel());
+            if(_player==currentPlayer){
+                top=_playerPanel.getTopPanel();
+            }
         }
     }
     private void initfooter() {
@@ -220,30 +225,14 @@ public class GUIGame extends NormalGame {
                     break;
             }
         }
-        // TODO: make functon return Panels
-        // in Left for name & score & bla bla
-        // and  int top for timer
-        // Update ScoreBoard View
         for(int i=0;i<players.size();i++){
             Player _player=players.get(i);
-
-            VBox currenPanel=(VBox)ScoreBoard.getChildren().get(i);
-
-            Label currentNameLabel=(Label)currenPanel.getChildren().get(0);
-            Label currentScoreLabel=(Label)currenPanel.getChildren().get(1);
-            Label currentShieldLabel=(Label)currenPanel.getChildren().get(2);
-
-            currentScoreLabel.setText(String.valueOf(_player.getCurrentScore().getScore()));
-            if(_player.getCurrentStatus()==PlayerStatus.Lose)currentScoreLabel.setText(currentScoreLabel.getText()+" Lose");
-            if(_player.getNumberOfShield()>=0)
-                currentShieldLabel.setText(String.valueOf("#_#: "+_player.getNumberOfShield()));
-
-            if(_player.getCurrentStatus()== PlayerStatus.Playing){
-                currentNameLabel.setStyle("-fx-font-weight: Bold");
+            PlayerPanel _currentpanel=PlayersPanel.get(i);
+            _currentpanel.Update();
+            if(_player==currentPlayer){
+                top=_currentpanel.getTopPanel();
             }
-            else{
-                currentNameLabel.setStyle("-fx-font-weight: normal");
-            }
+            layout.setTop(top);
         }
         // Update footer Move Label
         String LastMove="--";

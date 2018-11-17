@@ -1,15 +1,9 @@
 package GUIGame;
 
-import Models.Game.Points;
-import Models.Game.WhenHitMine;
-import Models.Game.WhenScoreNegative;
-import Models.Grid.Square;
-import Models.Grid.SquareStatus;
-import Models.Move.MoveType;
-import Models.Move.PlayerMove;
-import Models.Player.Player;
-import Models.Player.PlayerStatus;
-import javafx.scene.layout.VBox;
+import Models.Game.*;
+import Models.Grid.*;
+import Models.Move.*;
+import Models.Player.*;
 
 import java.util.List;
 
@@ -87,7 +81,7 @@ public class GUIGameCustom extends GUIGame {
         ShildNumber=NumOfShield;
     }
 
-    @Override
+    /*@Override
     protected void initScene() {
         super.initScene();
     }
@@ -95,5 +89,5 @@ public class GUIGameCustom extends GUIGame {
     @Override
     protected void initScoreBoard() {
         super.initScoreBoard();
-    }
+    }*/
 }

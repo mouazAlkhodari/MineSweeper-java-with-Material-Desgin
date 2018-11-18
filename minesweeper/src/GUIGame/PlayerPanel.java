@@ -17,18 +17,20 @@ import java.io.FileInputStream;
 public class PlayerPanel {
     VBox leftPanel;
     HBox topPanel;
-    public Label playerNameLabel,playerScoreLabel,playerNumberOfShieldLabel,playerTimerLabel;
+    public Label playerNameLeftLabel,playerNameTopLabel,playerScoreLabel,playerNumberOfShieldLabel,playerTimerLabel;
     public ImageView shieldsImage,scoreImage;
     public HBox Shields = new HBox(20);
     public HBox Score = new HBox(20);
     Player player;
     public PlayerPanel(Player _player) {
         player=_player;
-        playerNameLabel=new Label(player.getName());
+        playerNameLeftLabel=new Label(player.getName());
+        playerNameTopLabel=new Label(player.getName());
         playerScoreLabel=new Label(String.valueOf(player.getCurrentScore().getScore()));
         playerNumberOfShieldLabel=new Label(String.valueOf(player.getNumberOfShield()));
         playerTimerLabel=new Label("Time: " );
-            playerNameLabel.getStyleClass().add("h2");
+            playerNameLeftLabel.getStyleClass().add("h2");
+            playerNameTopLabel.getStyleClass().add("h2");
             playerScoreLabel.getStyleClass().addAll("h1","center");
             playerNumberOfShieldLabel.getStyleClass().addAll("h1","center");
             playerTimerLabel.getStyleClass().add("h2");
@@ -44,18 +46,14 @@ public class PlayerPanel {
         leftPanel =new VBox();
             leftPanel.getStyleClass().add("playerboard");
             leftPanel.setStyle("-fx-background-color: "+(player.getColor())+";");
-        leftPanel.getChildren().addAll(playerNameLabel,Score,Shields);
+        leftPanel.getChildren().addAll(playerNameLeftLabel,Score,Shields);
 
         topPanel =new HBox();
             topPanel.getStyleClass().add("playerboard");
             topPanel.setStyle("-fx-background-color: "+(player.getColor())+";");
-        topPanel.getChildren().addAll(playerNameLabel,playerTimerLabel);
+        topPanel.getChildren().addAll(playerNameTopLabel,playerTimerLabel);
     }
-    public VBox getLeftPanel() {
-        leftPanel.getChildren().clear();
-        leftPanel.getChildren().addAll(playerNameLabel,Score,Shields);
-        return leftPanel;
-    }
+
     public void Update(){
         playerScoreLabel.setText(String.valueOf(player.getCurrentScore().getScore()));
         if(player.getCurrentStatus()== PlayerStatus.Lose)playerScoreLabel.setText(playerScoreLabel.getText() + " Lose");
@@ -63,19 +61,16 @@ public class PlayerPanel {
             playerNumberOfShieldLabel.setText(String.valueOf(player.getNumberOfShield()));
 
         if(player.getCurrentStatus()== PlayerStatus.Playing){
-            playerNameLabel.setStyle("-fx-font-weight: Bold");
+            playerNameLeftLabel.setStyle("-fx-font-weight: Bold");
         }
         else{
-            playerNameLabel.setStyle("-fx-font-weight: normal");
+            playerNameLeftLabel.setStyle("-fx-font-weight: normal");
         }
     }
+    public VBox getLeftPanel() {
+        return leftPanel;
+    }
     public HBox getTopPanel(){
-        topPanel.getChildren().clear();
-        playerNameLabel.setText(player.getName()+": ");
-        playerTimerLabel.setText("Time: ");
-        topPanel.getChildren().addAll(playerNameLabel,playerTimerLabel);
-        topPanel.getStyleClass().add("playerboard");
-        topPanel.setStyle("-fx-background-color: "+(player.getColor())+";");
         return topPanel;
     }
 

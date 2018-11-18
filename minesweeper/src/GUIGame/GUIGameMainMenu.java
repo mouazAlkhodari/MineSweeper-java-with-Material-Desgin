@@ -83,7 +83,7 @@ public class GUIGameMainMenu {
         switch (optionsScene.playersOption.PlayerType.getSelectionModel().getSelectedItem()) {
             //"Single Player","VS Dump PC","Custom"
             case "Single Player":
-                _players.add(new GUIPlayer("Your Score","#ffe082"));
+                _players.add(new GUIPlayer("You ","#ffe082"));
                 break;
             case "VS Dump PC":
                 _players.add(new GUIPlayer("You","#ffe082"));

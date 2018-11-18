@@ -75,6 +75,7 @@ public class GUIGame extends NormalGame {
         layout.setRight(ScoreBoard);
         layout.setBottom(footer);
         layout.setTop(top);
+        layout.getStyleClass().add("padding");
         scene = new Scene(layout);
         scene.getStylesheets().add("Styles/style.css");
     }
@@ -117,12 +118,19 @@ public class GUIGame extends NormalGame {
 
     protected void initScoreBoard() {
         // Initialize ScoreBoard
-        ScoreBoard = new VBox();
+        ScoreBoard = new VBox(20);
         ScoreBoard.setMinWidth(200);
         ScoreBoard.setStyle("-fx-alignment: CENTER;");
         String[] colors = {"#8E44AD","#1F4788","#03A678"};
         for(Player _player:super.players){
             PlayerPanel _playerPanel=new PlayerPanel(_player);
+            _playerPanel.playerNumberOfShieldLabel.textProperty().addListener((v,oldValue,newValue) -> {
+                if(Integer.valueOf(oldValue) < Integer.valueOf(newValue)) {
+                    _playerPanel.ShieldsIncAnimation();
+                } else if (Integer.valueOf(newValue) < Integer.valueOf(oldValue)) {
+                    _playerPanel.ShieldsDecAnimation();
+                }
+            });
             PlayersPanel.add(_playerPanel);
             ScoreBoard.getChildren().add(_playerPanel.getLeftPanel());
             if(_player==currentPlayer){
@@ -232,6 +240,8 @@ public class GUIGame extends NormalGame {
                     break;
             }
         }
+
+        //Update ScoreBoard
         for(int i=0;i<players.size();i++){
             Player _player=players.get(i);
             PlayerPanel _currentpanel=PlayersPanel.get(i);

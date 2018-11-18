@@ -34,8 +34,8 @@
     -fx-text-fill: #1EB98F;
     -fx-font-weight: bold;
 }
-.custombutton { -fx-background-color: #8DEC26}
-.custombutton:hover { -fx-text-fill: #8DEC26}
+.custombutton { -fx-background-color: #FF7629}
+.custombutton:hover { -fx-text-fill: #FF7629}
 .buttonlabel {
     -fx-background-color: #485761;
     -fx-background-radius: 5;
@@ -109,12 +109,14 @@
 
 .playerboard{
     -fx-background-color:#BE90D4;
+    -fx-background-radius: 5;
+    -fx-border-width: 0;
     -fx-min-height: 100;
     -fx-alignment: CENTER;
-    -fx-border-width: 1;
     -fx-border-color: #323232;
 }
-.padding {-fx-padding: 50px;}
+
+.img-view { -fx-fit-to-height: 50;-fx-fit-to-width: 50;}
 .leftpadding { -fx-padding: 0 50px 0 0;}
 .bottomPadding { -fx-padding: 0 0 50 0;}
 .maxwidth250 {-fx-max-width: 250}
@@ -130,11 +132,12 @@
 .Closed{-fx-background-color: #22a6b3}
 .center { -fx-alignment: CENTER;}
 .minwidth { -fx-min-width: 100;}
-.padding {-fx-padding: 50px;}
+.padding {-fx-padding: 25px;}
 .padding-sm{-fx-padding: 10px 20px;}
 .h1 {
     -fx-font-size: 30;
     -fx-text-fill: #FFFFFF;
+    -fx-min-height: 75;
 }
 .h2 {
     -fx-font-size: 24;
@@ -189,7 +192,7 @@
 }
 
 .jfx-tab-pane .tab-header-background {
-    -fx-background-color: #8DEC26;
+    -fx-background-color: #5032C0;
     -fx-text-fill: WHITE;
 }
 
@@ -209,6 +212,6 @@
     -fx-prompt-text-fill: rgb(170,170,170);
     -fx-text-fill: white;
     -fx-font-size: 15;
-    -jfx-focus-color: #8DEC26;
+    -jfx-focus-color: #5032C0;
     -jfx-unfocus-color: #4d4d4d;
 }

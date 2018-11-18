@@ -22,7 +22,7 @@ import java.util.List;
 import static java.lang.Math.max;
 
 public class GUIGame extends NormalGame {
-    private static final List<PlayerPanel> PlayersPanel =new ArrayList<>() ;
+    protected List<PlayerPanel> PlayersPanel =new ArrayList<>() ;
     // <__ DATA MEMBERS __> \\
     protected MoveType TypeOfMove;
     protected Button ClickedButton;
@@ -120,6 +120,7 @@ public class GUIGame extends NormalGame {
         // Initialize ScoreBoard
         ScoreBoard = new VBox(20);
         ScoreBoard.setMinWidth(200);
+        PlayersPanel=new ArrayList<PlayerPanel>();
         ScoreBoard.setStyle("-fx-alignment: CENTER;");
         String[] colors = {"#8E44AD","#1F4788","#03A678"};
         for(Player _player:super.players){

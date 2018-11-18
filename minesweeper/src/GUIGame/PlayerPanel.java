@@ -71,6 +71,8 @@ public class PlayerPanel {
     }
     public HBox getTopPanel(){
         topPanel.getChildren().clear();
+        playerNameLabel.setText(player.getName()+": ");
+        playerTimerLabel.setText("Time: ");
         topPanel.getChildren().addAll(playerNameLabel,playerTimerLabel);
         topPanel.getStyleClass().add("playerboard");
         topPanel.setStyle("-fx-background-color: "+(player.getColor())+";");

@@ -8,6 +8,9 @@ import Models.Player.*;
 import java.util.List;
 
 public class GUIGameCustom extends GUIGame {
+
+
+
     class CustomRules extends DefaultRules{
         public CustomRules() {
             super();
@@ -19,6 +22,10 @@ public class GUIGameCustom extends GUIGame {
             super(_points, pressMineBehavior, scoreNegativeBehavior);
         }
         protected void ChangePlayerStatus(List<PlayerMove> moves) {
+            if(moves.size()==0){
+                currentPlayer.setCurrentStatus(PlayerStatus.waiting);
+                return;
+            }
             if(moves.get(0).getType()== MoveType.Reveal) {
                 if (PressMineBehavior == WhenHitMine.Lose && currentPlayer.getNumberOfShield() < 0) {
                     currentPlayer.setCurrentStatus(PlayerStatus.Lose);
@@ -34,6 +41,7 @@ public class GUIGameCustom extends GUIGame {
             currentPlayer.setCurrentStatus(PlayerStatus.waiting);
         }
         protected void GetScoreChange(List<PlayerMove> moves) {
+            if(moves.size()==0)return;
             super.GetScoreChange(moves);
             if(moves.get(0).getType()==MoveType.Reveal) {
                 for (PlayerMove currentMove : moves) {

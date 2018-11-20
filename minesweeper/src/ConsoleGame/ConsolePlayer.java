@@ -32,6 +32,7 @@ public class ConsolePlayer extends Player {
                 System.out.println("Enter your move:\n");
                 // read the details of the move
                 String NumberOfRow_col = in.nextLine();
+                System.out.println("###" + getName() + ": " + NumberOfRow_col);
                 validMove=true;
                 for (int i = 0; i < NumberOfRow_col.length(); i++) {
                     char c = NumberOfRow_col.charAt(i);

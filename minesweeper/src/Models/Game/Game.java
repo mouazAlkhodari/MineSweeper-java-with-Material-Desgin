@@ -7,6 +7,7 @@ package Models.Game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import BaseAlphabit.Converter;
 import CustomSequences.SquareType2DArray;
@@ -22,10 +23,42 @@ import MineSweeperGameDefineException.IllegalGameMove;
 
 public abstract class Game {
     // <__ INNER CLASS __> \\
-    abstract class GameRules{
+    protected abstract static class Timer extends Thread {
+        protected int currentTime;
+        public Timer() {
+            this.currentTime = 10;
+        }
+        public Timer(int t) {
+            this.currentTime = t;
+        }
+
+        public void run()
+        {
+            while (currentTime > 0) {
+                Show(currentTime--);
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    System.err.println("Interrupted Timer");
+                    return;
+                }
+            }
+            EndTimer();
+        }
+        public void setCurrentTime(int time){
+            currentTime=time;
+        }
+        public abstract void Show(int Time);
+        public abstract void EndTimer();
+        public int getCurrentTime() {
+            return currentTime;
+        }
+    }
+    protected Timer currentTimer;
+    protected abstract class GameRules{
         protected abstract void ChangePlayerStatus(List<PlayerMove> moves);
         protected abstract void GetScoreChange(List<PlayerMove> moves);
-        protected abstract Player DecideNextPlayer(List<PlayerMove> moves);
+        public abstract void DecideNextPlayer(List<PlayerMove> moves);
     }
     // <__ DATA MEMBERS __> \\
     protected Player currentPlayer;
@@ -77,15 +110,12 @@ public abstract class Game {
     }
     protected void ApplyPlayerMove(PlayerMove move) {
         // here We ApPly The move And then Check The Status Of The Game And Players
+        currentTimer.interrupt();
         if(status==GameStatus.FirstMove){
             initGame(move);
         }
         moves=this.grid.AcceptMove(move);
-        currentRules.GetScoreChange(moves);
-        currentRules.ChangePlayerStatus(moves);
-        ChangeStatus();
-        Player nextPlayer = currentRules.DecideNextPlayer(moves);
-        setCurrentPlayer(nextPlayer);
+        currentRules.DecideNextPlayer(moves);
         if(move.getType()==MoveType.Mark){
             FlagsNumber +=(move.getSquare().getStatus()==SquareStatus.Marked ?-1:1);
         }
@@ -125,6 +155,7 @@ public abstract class Game {
         int num=0;
         for(int i=1;i<this.grid.getHeight();i++){
             for(int j=1;j<this.grid.getWidth();j++){
+                if(status==GameStatus.FirstMove)continue;
                 switch (feild[i][j].getStatus()){
                     case OpenedMine:
                     case Marked:
@@ -143,8 +174,8 @@ public abstract class Game {
         if(num==this.grid.getMinesCount() || !CanContinue){
             status=GameStatus.Finish;
         }
-        else{
-            status=GameStatus.Running;
+        else if(moves.size()!=0){
+                status=GameStatus.Running;
         }
     }
     protected void AddPlayer(Player player)
@@ -195,5 +226,4 @@ public abstract class Game {
     public static String fixedLengthString(String string, int length) {
         return String.format("%1$"+length+ "s  ", string);
     }
-
 }

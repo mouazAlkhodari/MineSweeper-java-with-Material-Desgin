@@ -5,9 +5,8 @@
  */
 package ConsoleGame;
 
-import ConsoleGame.ConsoleGame;
 import Models.Game.Game;
-import Models.Game.Timer;
+import Models.Player.DumbPlayer;
 import Models.Player.Player;
 
 import java.util.ArrayList;
@@ -22,6 +21,7 @@ public class ConsoleMinesweeper {
 
 
     private static final Player ConstPlayer=new ConsolePlayer("Flan");
+    private static final Player ConstDumbPlayer=new DumbPlayer(10,10);
     /**
      */
 
@@ -29,10 +29,8 @@ public class ConsoleMinesweeper {
         // TODO code application logic here
        ArrayList<Player> Players=new ArrayList<Player>();
        Players.add(ConstPlayer);
+       Players.add(ConstDumbPlayer);
        Game ConstGame=new ConsoleGame(Players);
-       Timer t = new Timer();
-       Thread test = new Thread(t);
-       test.start();
        ConstGame.StartGame();
     }
 

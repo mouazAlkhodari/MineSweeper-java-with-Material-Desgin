@@ -51,6 +51,10 @@ public abstract class NormalGame extends Game {
         }//EndOfClass
 
         protected void ChangePlayerStatus(List<PlayerMove> moves) {
+            if(moves.size()==0){
+                currentPlayer.setCurrentStatus(PlayerStatus.waiting);
+                return;
+            }
             if (moves.get(0).getSquare().getStatus() == SquareStatus.OpenedMine && PressMineBehavior == WhenHitMine.Lose){
                 currentPlayer.setCurrentStatus(PlayerStatus.Lose);
                 return;
@@ -65,6 +69,9 @@ public abstract class NormalGame extends Game {
         }
 
         protected void GetScoreChange(List<PlayerMove> moves) {
+            if(moves.size()==0){
+                return;
+            }
             if (moves.size() == 1) {
                 PlayerMove move = moves.get(0);
                 switch (move.getSquare().getStatus()) {
@@ -96,15 +103,19 @@ public abstract class NormalGame extends Game {
         }
 
         @Override
-        protected Player DecideNextPlayer(List<PlayerMove> moves) {
+        public void DecideNextPlayer(List<PlayerMove> moves) {
+            currentRules.GetScoreChange(moves);
+            currentRules.ChangePlayerStatus(moves);
+            ChangeStatus();
             int indOfcurrentPlayer = players.lastIndexOf(currentPlayer);
             for (int i = 0; i < players.size(); i++) {
                 indOfcurrentPlayer = (indOfcurrentPlayer + 1) % players.size();
                 if (players.get(indOfcurrentPlayer).getCurrentStatus() == PlayerStatus.waiting) {
-                    return players.get(indOfcurrentPlayer);
+                    setCurrentPlayer(players.get(indOfcurrentPlayer));
+                    return;
                 }
             }
-          return currentPlayer;
+            setCurrentPlayer(currentPlayer);
         }
     }
 

@@ -10,6 +10,8 @@ public class PlayerMove {
     private Player player;
     private Square square;
     private MoveType type;
+
+
     private MoveResult result;
 
     // <__ CONSTRUCTER __> \\
@@ -39,5 +41,8 @@ public class PlayerMove {
     public Player getPlayer() { return player; }
     public MoveResult getResult() {
         return result;
+    }
+    public void setType(MoveType type) {
+        this.type = type;
     }
 }

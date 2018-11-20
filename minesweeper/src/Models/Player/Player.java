@@ -6,7 +6,7 @@ import java.awt.*;
 
 import static java.lang.Math.min;
 
-public abstract class Player {
+public abstract class Player{
 
     private String name;
     private Score currentScore;
@@ -15,7 +15,17 @@ public abstract class Player {
 
     int numberOfShield;
     int maxNumberOfShild;
+    boolean canPlay;
 
+
+    int TimeforTimer=3;
+    public int getTimeforTimer() {
+        return TimeforTimer;
+    }
+
+    public void setTimeforTimer(int timeforTimer) {
+        TimeforTimer = timeforTimer;
+    }
     public void addNormalshild(int num){
         numberOfShield=min(numberOfShield+num,maxNumberOfShild);
     }
@@ -44,7 +54,7 @@ public abstract class Player {
 
     //Getters And Setters
     public void setCurrentStatus(PlayerStatus currentStatus) {
-        this.currentStatus = currentStatus;
+        this.currentStatus = currentStatus;canPlay=true;
     }
     public PlayerStatus getCurrentStatus() {
         return currentStatus;
@@ -68,5 +78,9 @@ public abstract class Player {
     }
     public void setNumberOfShild(int NumberOfShild) {
         this.numberOfShield = NumberOfShild;
+    }
+
+    public void stop(){
+        canPlay=false;
     }
 }

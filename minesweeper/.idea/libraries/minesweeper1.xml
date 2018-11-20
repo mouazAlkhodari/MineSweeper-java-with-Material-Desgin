@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="minesweeper1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jfoenix-9.0.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Source_Folder_And_Java_Files.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

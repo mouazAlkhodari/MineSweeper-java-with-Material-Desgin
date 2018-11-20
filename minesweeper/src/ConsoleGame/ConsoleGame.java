@@ -8,10 +8,29 @@ import Models.Move.PlayerMove;
 import Models.Player.PlayerStatus;
 import MineSweeperGameDefineException.IllegalGameMove;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConsoleGame extends NormalGame {
+    protected class ConsoleTimer extends Timer{
 
+        public ConsoleTimer(int time){
+            super(time);
+        }
+        @Override
+        public void Show(int Time) {
+            System.out.println(Time);
+        }
+
+        @Override
+        public void EndTimer() {
+            currentPlayer.stop();
+            moves=new ArrayList<>();
+            currentRules.DecideNextPlayer(moves);
+            UpdateVeiw(moves);
+            GetMove();
+        }
+    }
     public ConsoleGame(List _players){
         super(_players);
     }
@@ -22,6 +41,8 @@ public class ConsoleGame extends NormalGame {
     @Override
     public void StartGame() {
         UpdateVeiw(moves);
+        currentTimer=new ConsoleTimer(currentPlayer.getTimeforTimer());
+        currentTimer.start();
         GetMove();
     }
 
@@ -32,12 +53,21 @@ public class ConsoleGame extends NormalGame {
             AcceptMove(move);
         } catch (IllegalGameMove illegalGameMove) {
             illegalGameMove.handle();
+            if(this.status== GameStatus.Finish){
+                EndGame();
+            }
+            else{
+                GetMove();
+            }
+            return;
         }
         if(this.status== GameStatus.Finish){
             EndGame();
         }
         else{
             UpdateVeiw(moves);
+            currentTimer=new ConsoleTimer(currentPlayer.getTimeforTimer());
+            currentTimer.start();
             GetMove();
         }
     }
@@ -80,7 +110,7 @@ public class ConsoleGame extends NormalGame {
             }
         }
         System.out.println();
-
+        System.out.println(currentPlayer.getName());
     }
     @Override
     protected void EndGame() {

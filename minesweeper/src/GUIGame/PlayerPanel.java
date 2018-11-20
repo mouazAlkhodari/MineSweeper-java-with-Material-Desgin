@@ -4,6 +4,7 @@ import Models.Player.Player;
 import Models.Player.PlayerStatus;
 import Models.Shield.Shield;
 import javafx.animation.ScaleTransition;
+import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,17 +18,44 @@ import java.io.FileInputStream;
 public class PlayerPanel {
     VBox leftPanel;
     HBox topPanel;
-    public Label playerNameLeftLabel,playerNameTopLabel,playerScoreLabel,playerNumberOfShieldLabel,playerTimerLabel;
-    public ImageView shieldsImage,scoreImage;
-    public HBox Shields = new HBox(20);
-    public HBox Score = new HBox(20);
-    Player player;
+    private Label playerNameLeftLabel;
+    private Label playerNameTopLabel;
+    private Label playerScoreLabel;
+    private Label playerNumberOfShieldLabel;
+    private Label playerTimerLabel;
+    private ImageView shieldsImage,scoreImage;
+    private HBox Shields = new HBox(20);
+    private HBox Score = new HBox(20);
+    private Player player;
+
+    public VBox getLeftPanel() {
+        return leftPanel;
+    }
+    public HBox getTopPanel(){
+        return topPanel;
+    }
+    public void setTime(int time){
+        Platform.runLater(new Runnable() {
+            @Override public void run() {
+                playerTimerLabel.setText("Time: " + String.valueOf(time));
+            }
+        });
+
+    }
+
     public PlayerPanel(Player _player) {
         player=_player;
         playerNameLeftLabel=new Label(player.getName());
         playerNameTopLabel=new Label(player.getName());
         playerScoreLabel=new Label(String.valueOf(player.getCurrentScore().getScore()));
         playerNumberOfShieldLabel=new Label(String.valueOf(player.getNumberOfShield()));
+        playerNumberOfShieldLabel.textProperty().addListener((v,oldValue,newValue) -> {
+            if(Integer.valueOf(oldValue) < Integer.valueOf(newValue)) {
+                ShieldsIncAnimation();
+            } else if (Integer.valueOf(newValue) < Integer.valueOf(oldValue)) {
+                ShieldsDecAnimation();
+            }
+        });
         playerTimerLabel=new Label("Time: " );
             playerNameLeftLabel.getStyleClass().add("h2");
             playerNameTopLabel.getStyleClass().add("h2");
@@ -67,13 +95,6 @@ public class PlayerPanel {
             playerNameLeftLabel.setStyle("-fx-font-weight: normal");
         }
     }
-    public VBox getLeftPanel() {
-        return leftPanel;
-    }
-    public HBox getTopPanel(){
-        return topPanel;
-    }
-
     public void ShieldsIncAnimation() {
         ScaleTransition st = new ScaleTransition(Duration.millis(500), shieldsImage);
         st.setByX(1.75);

@@ -38,7 +38,7 @@ public class GUIGameCustom extends GUIGame {
                 }
             }
             currentPlayer.setCurrentStatus(PlayerStatus.waiting);
-        }git
+        }
         protected void GetScoreChange(List<PlayerMove> moves) {
             if(moves.size()==0){
                 if(status==GameStatus.Finish)

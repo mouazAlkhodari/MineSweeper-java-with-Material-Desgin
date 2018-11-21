@@ -39,7 +39,7 @@ public class Points {
     public void addUnmarkNotMinePoints(Player currentPlayer) { currentPlayer.getCurrentScore().addPoints(UnmarkNotMine); }
     public void addRevealEmptyPontis(Player currentPlayer) { currentPlayer.getCurrentScore().addPoints(RevealEmpty); }
     public void addRevealFloodFill(Player currentPlayer,int SquaresNumber) { currentPlayer.getCurrentScore().addPoints(RevealFloodFill*(SquaresNumber - 1) + RevealEmpty); }
-    public void addHasNormalShieldPointPoints(Player currentPlayer) { currentPlayer.getCurrentScore().addPoints(hasNormalShield); }
+    public void addHasNormalShieldPointPoints(Player currentPlayer) { currentPlayer.getCurrentScore().addPoints(currentPlayer.getNumberOfShield()*hasNormalShield); }
     public void addLostNormalShieldPoints(Player currentPlayer) { currentPlayer.getCurrentScore().addPoints(lostNormalShield); }
 
 }

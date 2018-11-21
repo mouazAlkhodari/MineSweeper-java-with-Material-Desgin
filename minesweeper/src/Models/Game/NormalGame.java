@@ -29,8 +29,11 @@ public abstract class NormalGame extends Game {
 
     // InnerClass
     // #see GameRules In Game Class
-    protected class DefaultRules extends GameRules {
+    public class DefaultRules extends GameRules {
         public Points points;
+        public Points getPoints() {
+            return points;
+        }
         protected WhenHitMine PressMineBehavior;
         protected WhenScoreNegative ScoreNegativeBehavior;
         public DefaultRules() {
@@ -106,16 +109,18 @@ public abstract class NormalGame extends Game {
         public void DecideNextPlayer(List<PlayerMove> moves) {
             currentRules.GetScoreChange(moves);
             currentRules.ChangePlayerStatus(moves);
-            ChangeStatus();
-            int indOfcurrentPlayer = players.lastIndexOf(currentPlayer);
-            for (int i = 0; i < players.size(); i++) {
-                indOfcurrentPlayer = (indOfcurrentPlayer + 1) % players.size();
-                if (players.get(indOfcurrentPlayer).getCurrentStatus() == PlayerStatus.waiting) {
-                    setCurrentPlayer(players.get(indOfcurrentPlayer));
-                    return;
+            if(status!=GameStatus.Finish) {
+                ChangeStatus();
+                int indOfcurrentPlayer = players.lastIndexOf(currentPlayer);
+                for (int i = 0; i < players.size(); i++) {
+                    indOfcurrentPlayer = (indOfcurrentPlayer + 1) % players.size();
+                    if (players.get(indOfcurrentPlayer).getCurrentStatus() == PlayerStatus.waiting) {
+                        setCurrentPlayer(players.get(indOfcurrentPlayer));
+                        return;
+                    }
                 }
+                setCurrentPlayer(currentPlayer);
             }
-            setCurrentPlayer(currentPlayer);
         }
     }
 

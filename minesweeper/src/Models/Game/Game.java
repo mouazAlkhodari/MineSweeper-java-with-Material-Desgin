@@ -23,7 +23,7 @@ import MineSweeperGameDefineException.IllegalGameMove;
 
 public abstract class Game {
     // <__ INNER CLASS __> \\
-    protected abstract class Timer extends Thread {
+    public abstract class Timer extends Thread {
         protected int currentTime;
         public Timer() {
             this.currentTime = 10;
@@ -56,16 +56,17 @@ public abstract class Game {
         }
     }
     protected Timer currentTimer;
-    protected abstract class GameRules{
+    public abstract class GameRules{
         protected abstract void ChangePlayerStatus(List<PlayerMove> moves);
         protected abstract void GetScoreChange(List<PlayerMove> moves);
         public abstract void DecideNextPlayer(List<PlayerMove> moves);
     }
+    protected GameRules currentRules;
     // <__ DATA MEMBERS __> \\
     protected Player currentPlayer;
     protected Grid grid;
     protected GameStatus status;
-    protected GameRules currentRules;
+
     protected List<Player> players=new ArrayList<Player>();
     protected List<PlayerMove> moves=new ArrayList<PlayerMove>();
 
@@ -73,6 +74,7 @@ public abstract class Game {
     protected int FlagsNumber;
     protected int ShildNumber;
     protected int HeroShieldNumber;
+
     public Game(List _players){
         this(10,10,10,0,_players);
     }
@@ -152,6 +154,7 @@ public abstract class Game {
         throw new IllegalGameMove("Out Of Bounds");
     }
     protected void ChangeStatus(){
+
         Square[][] feild =this.grid.getField();
         int num=0;
         for(int i=1;i<this.grid.getHeight();i++){
@@ -172,7 +175,7 @@ public abstract class Game {
                 CanContinue=true;
             }
         }
-        if(num==this.grid.getMinesCount() || !CanContinue){
+        if(status==GameStatus.Finish || num==this.grid.getMinesCount() || !CanContinue){
             status=GameStatus.Finish;
         }
         else if(moves.size()!=0){
@@ -188,8 +191,10 @@ public abstract class Game {
     //Setters
     protected void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
-        if(currentPlayer.getCurrentStatus()!=PlayerStatus.Lose)
+        if(currentPlayer.getCurrentStatus()!=PlayerStatus.Lose) {
             currentPlayer.setCurrentStatus(PlayerStatus.Playing);
+            currentPlayer.Play();
+        }
     }
     protected void setStatus(GameStatus status) {
         this.status = status;

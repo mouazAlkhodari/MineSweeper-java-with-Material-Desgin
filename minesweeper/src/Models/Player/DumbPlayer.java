@@ -19,25 +19,33 @@ public class DumbPlayer extends Player {
         super();
         this.width = width;
         this.height = height;
+        maxNumberOfShild=0;
     }
     public DumbPlayer(String _name, int width, int height) {
         super(_name);
         this.width = width;
         this.height = height;
+        maxNumberOfShild=0;
     }
     public DumbPlayer(String _name,String _color,int width,int height){
         super(_name,_color);
         this.width = width;
         this.height = height;
+        maxNumberOfShild=0;
     }
-    public DumbPlayer(String _name,PlayerStatus _playerStatus,int width,int height){ super(_name,_playerStatus);this.width = width;
+    public DumbPlayer(String _name,PlayerStatus _playerStatus,int width,int height){ super(_name,_playerStatus);
+        this.width = width;
         this.height = height;
+        maxNumberOfShild=0;
     }
     public DumbPlayer(String name,PlayerStatus currentStatus,String _color) { super(name,currentStatus,_color);this.width = width;
         this.height = height;
+        maxNumberOfShild=0;
     }
-    public DumbPlayer(String name, Score currentScore, PlayerStatus currentStatus,String _color) { super(name,currentScore,currentStatus,_color);this.width = width;
+    public DumbPlayer(String name, Score currentScore, PlayerStatus currentStatus,String _color) { super(name,currentScore,currentStatus,_color);
+        this.width = width;
         this.height = height;
+        maxNumberOfShild=0;
     }
 
     @Override

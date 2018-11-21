@@ -78,10 +78,11 @@ public abstract class Player{
         this.maxNumberOfShild = maxNumberOfShild;
     }
     public void setNumberOfShild(int NumberOfShild) {
-        this.numberOfShield =Math.max(0,NumberOfShild);
+        this.numberOfShield = min(maxNumberOfShild,Math.max(0,NumberOfShild));
     }
 
     public void stop(){
         canPlay=false;
     }
+    public void Play(){canPlay=true;}
 }

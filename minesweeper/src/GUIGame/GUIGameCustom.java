@@ -9,8 +9,6 @@ import java.util.List;
 
 public class GUIGameCustom extends GUIGame {
 
-
-
     class CustomRules extends DefaultRules{
         public CustomRules() {
             super();
@@ -23,7 +21,8 @@ public class GUIGameCustom extends GUIGame {
         }
         protected void ChangePlayerStatus(List<PlayerMove> moves) {
             if(moves.size()==0){
-                currentPlayer.setCurrentStatus(PlayerStatus.waiting);
+                if(status!=GameStatus.Finish)
+                    currentPlayer.setCurrentStatus(PlayerStatus.waiting);
                 return;
             }
             if(moves.get(0).getType()== MoveType.Reveal) {
@@ -39,9 +38,13 @@ public class GUIGameCustom extends GUIGame {
                 }
             }
             currentPlayer.setCurrentStatus(PlayerStatus.waiting);
-        }
+        }git
         protected void GetScoreChange(List<PlayerMove> moves) {
-            if(moves.size()==0)return;
+            if(moves.size()==0){
+                if(status==GameStatus.Finish)
+                    points.addHasNormalShieldPointPoints(currentPlayer);
+                return;
+            }
             super.GetScoreChange(moves);
             if(moves.get(0).getType()==MoveType.Reveal) {
                 for (PlayerMove currentMove : moves) {

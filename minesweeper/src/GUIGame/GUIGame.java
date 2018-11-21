@@ -341,8 +341,16 @@ public class GUIGame extends NormalGame {
                         // Get The Winner
                         Player winner = players.get(0);
                         for (int i = 0; i < players.size(); i++) {
-                            if (players.get(i).getCurrentScore().getScore() > winner.getCurrentScore().getScore()) {
+                            Player _player=players.get(i);
+                            PlayerPanel _Panel=PlayersPanel.get(i);
+                            if (_player.getCurrentScore().getScore() > winner.getCurrentScore().getScore()) {
                                 winner = players.get(i);
+                            }
+                            if(_player.getNumberOfShield()>0){
+                                setCurrentPlayer(_player);
+                                moves=new ArrayList<>();
+                                currentRules.DecideNextPlayer(moves);
+                                _Panel.Update();
                             }
                         }
                         // Update footer Move Label

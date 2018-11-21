@@ -39,7 +39,8 @@ public abstract class Game {
                 try {
                     TimeUnit.SECONDS.sleep(1);
                 } catch (InterruptedException e) {
-                    System.err.println("Interrupted Timer");
+                    // TODO: Some Handling way
+                    //System.err.println("Interrupted Timer");
                     return;
                 }
             }

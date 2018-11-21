@@ -59,7 +59,6 @@ public class GUIGame extends NormalGame {
         @Override
         public void Show(int Time) {
             currentPanel.setTime(Time);
-            System.out.println("##" +currentPlayer.getName() +": "+ Time);
         }
 
         @Override
@@ -328,38 +327,43 @@ public class GUIGame extends NormalGame {
         Thread EndGameThread=new Thread(new Runnable() {
             @Override
             public void run() {
-                currentTimer.interrupt();
-                List<PlayerMove> curr = new ArrayList<>();
-                for(Square mineSqauer:grid.getMines()){
-                    mineSqauer.ChangeStatus(currentPlayer,MoveType.Reveal);
-                    curr.add(new PlayerMove(currentPlayer,mineSqauer));
-                }
-                UpdateVeiw(curr);
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        currentTimer.interrupt();
+                        List<PlayerMove> curr = new ArrayList<>();
+                        for (Square mineSqauer : grid.getMines()) {
+                            mineSqauer.ChangeStatus(currentPlayer, MoveType.Reveal);
+                            curr.add(new PlayerMove(currentPlayer, mineSqauer));
+                        }
+                        UpdateVeiw(curr);
 
-                // Get The Winner
-                Player winner=players.get(0);
-                for(int i=0;i<players.size();i++) {
-                    if(players.get(i).getCurrentScore().getScore()>winner.getCurrentScore().getScore()){
-                        winner=players.get(i);
+                        // Get The Winner
+                        Player winner = players.get(0);
+                        for (int i = 0; i < players.size(); i++) {
+                            if (players.get(i).getCurrentScore().getScore() > winner.getCurrentScore().getScore()) {
+                                winner = players.get(i);
+                            }
+                        }
+                        // Update footer Move Label
+
+                        Label LastMoveLabel = (Label) footer.getChildren().get(0);
+                        String WinnerStr = winner.getName() + " Win The Game";
+                        if (players.size() == 1) {
+                            WinnerStr = winner.getCurrentStatus() == PlayerStatus.Lose ? "You Lose" : "You Win";
+                        }
+                        winner.setCurrentStatus(PlayerStatus.win);
+                        LastMoveLabel.setText(WinnerStr);
+
+                        for (int i = 1; i < grid.getHeight(); i++) {
+                            for (int j = 1; j < grid.getWidth(); j++) {
+                                int H = (i - 1) * (grid.getWidth() - 1) + (j - 1);
+                                Button currentButton = (Button) FXgrid.getChildren().get(H);
+                                currentButton.setDisable(true);
+                            }
+                        }
                     }
-                }
-                // Update footer Move Label
-
-                Label LastMoveLabel=(Label)footer.getChildren().get(0);
-                String WinnerStr=winner.getName() + " Win The Game";
-                if(players.size()==1){
-                    WinnerStr = winner.getCurrentStatus()==PlayerStatus.Lose ?"You Lose" : "You Win";
-                }
-                winner.setCurrentStatus(PlayerStatus.win);
-                LastMoveLabel.setText(WinnerStr);
-
-                for(int i=1;i<grid.getHeight();i++){
-                    for(int j=1;j<grid.getWidth();j++){
-                        int H=(i-1)*(grid.getWidth()-1)+(j-1);
-                        Button currentButton=(Button)FXgrid.getChildren().get(H);
-                        currentButton.setDisable(true);
-                    }
-                }
+                });
             }
         });
         GUIGameThreadStart(EndGameThread);

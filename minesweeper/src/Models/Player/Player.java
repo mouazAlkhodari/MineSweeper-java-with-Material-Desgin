@@ -19,7 +19,7 @@ public abstract class Player{
     boolean canPlay;
 
 
-    int TimeforTimer=3;
+    int TimeforTimer=10;
     public int getTimeforTimer() {
         return TimeforTimer;
     }

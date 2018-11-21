@@ -7,6 +7,9 @@ import Models.Move.PlayerMove;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.Thread.currentThread;
+import static java.lang.Thread.sleep;
+
 public class DumbPlayer extends Player {
 
     private int width,height;
@@ -37,20 +40,20 @@ public class DumbPlayer extends Player {
         this.height = height;
     }
 
-
     @Override
     public PlayerMove GetPlayerMove() {
+        Thread.currentThread().yield();
         PlayerMove move;
         try {
-            TimeUnit.MILLISECONDS.sleep(1000);
+            currentThread().sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         Random rand = new Random();
-        int randomx = rand.nextInt(height-2)+1;
+        int randomx = rand.nextInt(height-2) +1;
         int randomy = rand.nextInt(width-2) +1;
         MoveType randowmType= (rand.nextBoolean()?MoveType.Reveal:MoveType.Mark);
-        move = new PlayerMove(new DumbPlayer(height,width),new Square(randomx,randomy));
+        move = new PlayerMove(this,new Square(randomx,randomy));
         if(!canPlay)
             move=new PlayerMove();
         return  move;

@@ -23,7 +23,7 @@ import MineSweeperGameDefineException.IllegalGameMove;
 
 public abstract class Game {
     // <__ INNER CLASS __> \\
-    protected abstract static class Timer extends Thread {
+    protected abstract class Timer extends Thread {
         protected int currentTime;
         public Timer() {
             this.currentTime = 10;
@@ -110,11 +110,11 @@ public abstract class Game {
     }
     protected void ApplyPlayerMove(PlayerMove move) {
         // here We ApPly The move And then Check The Status Of The Game And Players
-        currentTimer.interrupt();
         if(status==GameStatus.FirstMove){
             initGame(move);
         }
         moves=this.grid.AcceptMove(move);
+        currentTimer.interrupt();
         currentRules.DecideNextPlayer(moves);
         if(move.getType()==MoveType.Mark){
             FlagsNumber +=(move.getSquare().getStatus()==SquareStatus.Marked ?-1:1);

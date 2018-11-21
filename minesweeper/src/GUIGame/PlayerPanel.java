@@ -56,7 +56,7 @@ public class PlayerPanel {
                 ShieldsDecAnimation();
             }
         });
-        playerTimerLabel=new Label("Time: " );
+        playerTimerLabel=new Label("Time: " +player.getTimeforTimer());
             playerNameLeftLabel.getStyleClass().add("h2");
             playerNameTopLabel.getStyleClass().add("h2");
             playerScoreLabel.getStyleClass().addAll("h1","center");

@@ -8,6 +8,7 @@ import Models.Move.PlayerMove;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,7 +22,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javafx.concurrent.Task;
 import static java.lang.Math.max;
 
 public class GUIGame extends NormalGame {
@@ -66,17 +67,18 @@ public class GUIGame extends NormalGame {
             currentPlayer.stop();
             moves=new ArrayList<>();
             currentRules.DecideNextPlayer(moves);
-            UpdateVeiw(moves);
             updateTimer();
         }
     }
-    public void updateTimer(){
-        currentTimer=new GUITimer(currentPlayer.getTimeforTimer());
-        currentTimer.setDaemon(true);
-        currentTimer.start();
-
-        if (!(currentPlayer instanceof GUIPlayer))
-            GetMove();
+    public void updateTimer() {
+        UpdateVeiw(moves);
+        if (status != GameStatus.Finish) {
+            currentTimer = new GUITimer(currentPlayer.getTimeforTimer());
+            currentTimer.setDaemon(true);
+            currentTimer.start();
+            if (!(currentPlayer instanceof GUIPlayer))
+                GetMove();
+        }
     }
     // <__ CONSTRUCTOR __> \\
     public GUIGame(List _players){
@@ -145,10 +147,13 @@ public class GUIGame extends NormalGame {
                 currentbutton.setMinSize(buttonborder, buttonborder);
                 //Set Action
                 currentbutton.setOnMouseClicked(e->{
-                    currentPlayerMove = new PlayerMove(currentPlayer,new Square(GridPane.getRowIndex(currentbutton),GridPane.getColumnIndex(currentbutton)));
-                    if (e.getButton() == MouseButton.PRIMARY) currentPlayerMove.setType(MoveType.Reveal);
-                    else currentPlayerMove.setType(MoveType.Mark);
-                    GetMove();
+                    if(currentPlayer instanceof GUIPlayer) {
+                        currentPlayerMove = new PlayerMove(currentPlayer, new Square(GridPane.getRowIndex(currentbutton), GridPane.getColumnIndex(currentbutton)));
+                        if (e.getButton() == MouseButton.PRIMARY) currentPlayerMove.setType(MoveType.Reveal);
+                        else currentPlayerMove.setType(MoveType.Mark);
+                        GetMove();
+                    }
+                    // TODO: Some Exception for Thar :p
                 });
                 FXgrid.add(currentbutton, j, i);
             }
@@ -197,139 +202,167 @@ public class GUIGame extends NormalGame {
         footer.getChildren().addAll(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton);
     }
 
-
+    void GUIGameThreadStart(Thread thread){
+        thread.setDaemon(true);
+        thread.start();
+    }
     @Override
     public void StartGame() {
-        UpdateVeiw(moves);
-        updateTimer();
+        Thread StartGameThread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                UpdateVeiw(moves);
+                updateTimer();
+            }
+        });
+        GUIGameThreadStart(StartGameThread);
     }
 
     @Override
     public void GetMove(){
-        PlayerMove move = this.currentPlayer.GetPlayerMove();
-        if(!(currentPlayer instanceof GUIPlayer))
-                currentPlayerMove=move;
-        try {
-            AcceptMove(currentPlayerMove);
-        } catch (IllegalGameMove illegalGameMove) {
-            illegalGameMove.handle();
-            if(this.status== GameStatus.Finish){
-                EndGame();
-            }
-            else if (!(currentPlayer instanceof GUIPlayer)){
-                GetMove();
-            }
-            return;
-        }
+        Thread GetMoveThread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PlayerMove move = currentPlayer.GetPlayerMove();
+                if(!(currentPlayer instanceof GUIPlayer))
+                    currentPlayerMove=move;
+                try {
+                    AcceptMove(currentPlayerMove);
+                } catch (IllegalGameMove illegalGameMove) {
+                    illegalGameMove.handle();
+                    if(status== GameStatus.Finish){
+                        EndGame();
+                    }
+                    else if (!(currentPlayer instanceof GUIPlayer)){
+                        GetMove();
+                    }
+                    return;
+                }
 
-        // need else some thing wrong input Or Some Thing Like that :3
-        if(this.status== GameStatus.Finish){
-            EndGame();
-        }
-        else{
-            UpdateVeiw(moves);
-            updateTimer();
-        }
+                // need else some thing wrong input Or Some Thing Like that :3
+                if(status== GameStatus.Finish){
+                    EndGame();
+                }
+                else{
+                    updateTimer();
+                }
+            }
+        });
+        GUIGameThreadStart(GetMoveThread);
     }
     @Override
     protected void UpdateVeiw(List<PlayerMove> Moves){
-        Platform.runLater(new Runnable() {
-            @Override public void run() {
-                // Update Grid View
-                for(PlayerMove currentmove:Moves) {
-                    int i = currentmove.getSquare().getX();
-                    int j = currentmove.getSquare().getY();
-                    int Position = (i - 1) * (grid.getWidth() - 1) + (j - 1);
-                    Button currentButton = (Button) FXgrid.getChildren().get(Position);
-                    Square currentSquare = currentmove.getSquare();
-                    if(currentSquare.hasNormalSield()){
-                        ShildNumber--;
+        Thread UpdateViewThread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        //     Update Grid View
+                        for(PlayerMove currentmove:Moves) {
+                            int i = currentmove.getSquare().getX();
+                            int j = currentmove.getSquare().getY();
+                            int Position = (i - 1) * (grid.getWidth() - 1) + (j - 1);
+                            Button currentButton = (Button) FXgrid.getChildren().get(Position);
+                            Square currentSquare = currentmove.getSquare();
+                            if(currentSquare.hasNormalSield()){
+                                ShildNumber--;
+                            }
+                            switch (currentSquare.getStatus()) {
+                                case Closed:
+                                    currentButton.getStyleClass().removeAll("pressed", "openedMine", "marked");
+                                    currentButton.getStyleClass().add("notpressed");
+                                    break;
+                                case OpenedEmpty:
+                                    currentButton.setStyle("-fx-background-color: " + currentSquare.getColor() + "");
+                                    currentButton.getStyleClass().add("pressed");
+                                    break;
+                                case OpenedNumber:
+                                    currentButton.getStyleClass().add("f" + (String.valueOf(currentSquare.getNumberOfSurroundedMines())) + "");
+                                    currentButton.setText("" + currentSquare.getNumberOfSurroundedMines());
+                                    currentButton.setStyle("-fx-background-color: " + currentSquare.getColor() + "");
+                                    currentButton.getStyleClass().add("pressed");
+
+                                    break;
+                                case OpenedMine:
+                                    currentButton.getStyleClass().addAll("pressed", "openedMine");
+                                    break;
+                                case Marked:
+                                    currentButton.getStyleClass().removeAll("notpressed", "closed");
+                                    currentButton.getStyleClass().addAll("pressed", "marked");
+                                    break;
+                            }
+                        }
+
+                        //Update ScoreBoard
+                        for(int i=0;i<players.size();i++){
+                            Player _player=players.get(i);
+                            PlayerPanel _currentpanel=PlayersPanel.get(i);
+                            _currentpanel.Update();
+                            if(_player==currentPlayer){
+                                setTop(_currentpanel);
+                            }
+                            layout.setTop(top);
+                        }
+
+                        // Update footer Move Label
+                        String LastMove="--";
+                        if(currentPlayerMove!=null)
+                            LastMove=String.valueOf(currentPlayerMove.getSquare().getX()) + " --- " + String.valueOf((currentPlayerMove.getSquare().getY()));
+
+                        LastMoveLabel.setText(LastMove);
+
+                        FlagsNumberLabel.setText("Flags: "+ FlagsNumber + "");
+                        shieldNumberLabel.setText("Shieldsz: "+ShildNumber + "");
                     }
-                    switch (currentSquare.getStatus()) {
-                        case Closed:
-                            currentButton.getStyleClass().removeAll("pressed", "openedMine", "marked");
-                            currentButton.getStyleClass().add("notpressed");
-                            break;
-                        case OpenedEmpty:
-                            currentButton.setStyle("-fx-background-color: " + currentSquare.getColor() + "");
-                            currentButton.getStyleClass().add("pressed");
-                            break;
-                        case OpenedNumber:
-                            currentButton.getStyleClass().add("f" + (String.valueOf(currentSquare.getNumberOfSurroundedMines())) + "");
-                            currentButton.setText("" + currentSquare.getNumberOfSurroundedMines());
-                            currentButton.setStyle("-fx-background-color: " + currentSquare.getColor() + "");
-                            currentButton.getStyleClass().add("pressed");
-
-                            break;
-                        case OpenedMine:
-                            currentButton.getStyleClass().addAll("pressed", "openedMine");
-                            break;
-                        case Marked:
-                            currentButton.getStyleClass().removeAll("notpressed", "closed");
-                            currentButton.getStyleClass().addAll("pressed", "marked");
-                            break;
-                    }
-                }
-
-                //Update ScoreBoard
-                for(int i=0;i<players.size();i++){
-                    Player _player=players.get(i);
-                    PlayerPanel _currentpanel=PlayersPanel.get(i);
-                    _currentpanel.Update();
-                    if(_player==currentPlayer){
-                        setTop(_currentpanel);
-                    }
-                    layout.setTop(top);
-                }
-
-                // Update footer Move Label
-                String LastMove="--";
-                if(currentPlayerMove!=null)
-                    LastMove=String.valueOf(currentPlayerMove.getSquare().getX()) + " --- " + String.valueOf((currentPlayerMove.getSquare().getY()));
-
-                LastMoveLabel.setText(LastMove);
-
-                FlagsNumberLabel.setText("Flags: "+ FlagsNumber + "");
-                shieldNumberLabel.setText("Shilds: "+ShildNumber + "");
+                });
             }
         });
+        GUIGameThreadStart(UpdateViewThread);
     }
 
     @Override
     protected void EndGame() {
         // show All The mines in The Game
         // and Update View For Shows
-        List<PlayerMove> curr = new ArrayList<>();
-        for(Square mineSqauer:this.grid.getMines()){
-            mineSqauer.ChangeStatus(currentPlayer,MoveType.Reveal);
-            curr.add(new PlayerMove(currentPlayer,mineSqauer));
-        }
-        UpdateVeiw(curr);
+        Thread EndGameThread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                currentTimer.interrupt();
+                List<PlayerMove> curr = new ArrayList<>();
+                for(Square mineSqauer:grid.getMines()){
+                    mineSqauer.ChangeStatus(currentPlayer,MoveType.Reveal);
+                    curr.add(new PlayerMove(currentPlayer,mineSqauer));
+                }
+                UpdateVeiw(curr);
 
-        // Get The Winner
-        Player winner=players.get(0);
-        for(int i=0;i<players.size();i++) {
-            if(players.get(i).getCurrentScore().getScore()>winner.getCurrentScore().getScore()){
-                winner=players.get(i);
+                // Get The Winner
+                Player winner=players.get(0);
+                for(int i=0;i<players.size();i++) {
+                    if(players.get(i).getCurrentScore().getScore()>winner.getCurrentScore().getScore()){
+                        winner=players.get(i);
+                    }
+                }
+                // Update footer Move Label
+
+                Label LastMoveLabel=(Label)footer.getChildren().get(0);
+                String WinnerStr=winner.getName() + " Win The Game";
+                if(players.size()==1){
+                    WinnerStr = winner.getCurrentStatus()==PlayerStatus.Lose ?"You Lose" : "You Win";
+                }
+                winner.setCurrentStatus(PlayerStatus.win);
+                LastMoveLabel.setText(WinnerStr);
+
+                for(int i=1;i<grid.getHeight();i++){
+                    for(int j=1;j<grid.getWidth();j++){
+                        int H=(i-1)*(grid.getWidth()-1)+(j-1);
+                        Button currentButton=(Button)FXgrid.getChildren().get(H);
+                        currentButton.setDisable(true);
+                    }
+                }
             }
-        }
-        // Update footer Move Label
-
-        Label LastMoveLabel=(Label)footer.getChildren().get(0);
-        String WinnerStr=winner.getName() + " Win The Game";
-        if(players.size()==1){
-            WinnerStr = winner.getCurrentStatus()==PlayerStatus.Lose ?"You Lose" : "You Win";
-        }
-        winner.setCurrentStatus(PlayerStatus.win);
-        LastMoveLabel.setText(WinnerStr);
-
-        for(int i=1;i<this.grid.getHeight();i++){
-           for(int j=1;j<this.grid.getWidth();j++){
-               int H=(i-1)*(this.grid.getWidth()-1)+(j-1);
-               Button currentButton=(Button)FXgrid.getChildren().get(H);
-               currentButton.setDisable(true);
-           }
-        }
+        });
+        GUIGameThreadStart(EndGameThread);
     }
 
 }

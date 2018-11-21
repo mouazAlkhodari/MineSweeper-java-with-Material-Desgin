@@ -4,6 +4,7 @@ import Models.Move.PlayerMove;
 
 import java.awt.*;
 
+import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public abstract class Player{
@@ -77,7 +78,7 @@ public abstract class Player{
         this.maxNumberOfShild = maxNumberOfShild;
     }
     public void setNumberOfShild(int NumberOfShild) {
-        this.numberOfShield = NumberOfShild;
+        this.numberOfShield =Math.max(0,NumberOfShild);
     }
 
     public void stop(){

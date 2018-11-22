@@ -315,7 +315,7 @@ public class GUIGame extends NormalGame {
                         LastMoveLabel.setText(LastMove);
 
                         FlagsNumberLabel.setText("Flags: "+ FlagsNumber + "");
-                        shieldNumberLabel.setText("Shieldsz: "+ShildNumber + "");
+                        shieldNumberLabel.setText("Shigelds: "+ShildNumber + "");
                     }
                 });
             }

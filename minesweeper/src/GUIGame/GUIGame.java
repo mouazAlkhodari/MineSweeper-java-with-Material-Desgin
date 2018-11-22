@@ -1,6 +1,5 @@
 package GUIGame;
 
-import CustomProgress.indicators.RingProgressIndicator;
 import MineSweeperGameDefineException.IllegalGameMove;
 import Models.Game.*;
 import Models.Grid.Square;

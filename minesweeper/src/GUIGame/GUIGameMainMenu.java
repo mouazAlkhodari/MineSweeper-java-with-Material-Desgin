@@ -105,9 +105,9 @@ public class GUIGameMainMenu {
         //Getting Values Of RulesOption
         WhenHitMine pressMineBehavior=WhenHitMine.Lose;
         WhenScoreNegative scoreNegativeBehavior=WhenScoreNegative.End;
-        if(!optionsScene.EndGameWhenHitMine.isSelected())
+        if(!optionsScene.customRulesOption.EndGameWhenHitMine.isSelected())
             pressMineBehavior=WhenHitMine.Continue;
-        if(optionsScene.ContinuePlayinginNegativeScore.isSelected())
+        if(optionsScene.customRulesOption.ContinuePlayinginNegativeScore.isSelected())
             scoreNegativeBehavior=WhenScoreNegative.Continue;
         //Getting Values Of PointsOption
         int _RevealFloodFill;
@@ -202,16 +202,15 @@ public class GUIGameMainMenu {
         VBox EnabledLayout = new VBox(20);
         JFXTabPane OptionsTabs = new JFXTabPane();
         Label optionsLabel = new Label("Enter your Game Properties");
+
         GridOption gridOption=new GridOption();
         PlayersOption playersOption=new PlayersOption();
         PointsOption pointsOption=new PointsOption();
-        HBox CustomRulesOption = new HBox(10);
+        CustomRulesOption customRulesOption = new CustomRulesOption();
+
 
         //initializing CustomRulesOptions
         //Elements
-        JFXCheckBox EndGameWhenHitMine = new JFXCheckBox("End Game When Hit Mine");
-        JFXCheckBox FloodfillWhenHitMine = new JFXCheckBox("Flood fill When Hit Mine");
-        JFXCheckBox ContinuePlayinginNegativeScore = new JFXCheckBox("Continue Playing in Negative Score");
 
         HBox BottomButtons = new HBox(20);
         Button startGameButton = new Button("START GAME");
@@ -233,7 +232,6 @@ public class GUIGameMainMenu {
         private void initLayout() {
             initOptionsLabel();
             initOptionsButtons();
-            initCustomRulesOption();
             initEnabledLayout();
             initVerticalSide();
             OptionLayout.getStyleClass().addAll("windowsize","bottomPadding");
@@ -255,6 +253,8 @@ public class GUIGameMainMenu {
                     OptionLayout.setCenter(playersOption.Option);
                 } else if (newValue == Points) {
                     OptionLayout.setCenter(pointsOption.Option);
+                } else if (newValue == CustomRules) {
+                    OptionLayout.setCenter(customRulesOption.Option);
                 }
             });
 
@@ -267,18 +267,13 @@ public class GUIGameMainMenu {
 
         private void initEnabledLayout() {
 
-            EnabledLayout.getChildren().addAll(optionsLabel,gridOption.Option,playersOption.Option, pointsOption.Option, CustomRulesOption);
+            EnabledLayout.getChildren().addAll(optionsLabel,gridOption.Option,playersOption.Option, pointsOption.Option, customRulesOption.Option);
         }
 
-        private void initCustomRulesOption() {
-            EndGameWhenHitMine.setSelected(true);
-            FloodfillWhenHitMine.setSelected(true);
-            FloodfillWhenHitMine.setDisable(true);
-            CustomRulesOption.getChildren().addAll(EndGameWhenHitMine,FloodfillWhenHitMine,ContinuePlayinginNegativeScore);
-        }
+
 
         private void initOptionsButtons(){
-            startGameButton.getStyleClass().addAll("menubutton","h3");
+            startGameButton.getStyleClass().addAll("menubutton","custombutton","h3");
             SaveButton.getStyleClass().addAll("menubutton","h3");
 
             startGameButton.setOnAction(e-> initGame());
@@ -462,6 +457,24 @@ public class GUIGameMainMenu {
             Label PointsLabel=new Label("Points: ");
             PointsLabel.getStyleClass().addAll("minwidth","h4");
             Option.getChildren().addAll(PointsLabel,PointsType,CustomPoint);
+        }
+    }
+
+    class CustomRulesOption {
+        JFXCheckBox EndGameWhenHitMine = new JFXCheckBox("End Game When Hit Mine");
+        JFXCheckBox FloodfillWhenHitMine = new JFXCheckBox("Flood fill When Hit Mine");
+        JFXCheckBox ContinuePlayinginNegativeScore = new JFXCheckBox("Continue Playing in Negative Score");
+        VBox Option = new VBox(20);
+
+        public CustomRulesOption() {
+                EndGameWhenHitMine.setSelected(true);
+                FloodfillWhenHitMine.setSelected(true);
+                FloodfillWhenHitMine.setDisable(true);
+            Option.getChildren().addAll(EndGameWhenHitMine,FloodfillWhenHitMine,ContinuePlayinginNegativeScore);
+            Option.getStyleClass().addAll("center");
+            EndGameWhenHitMine.getStyleClass().addAll("h3");
+            FloodfillWhenHitMine.getStyleClass().addAll("h3");
+            ContinuePlayinginNegativeScore.getStyleClass().addAll("h3");
         }
     }
 }

@@ -339,7 +339,7 @@ public class GUIGame extends NormalGame {
                             mineSqauer.ChangeStatus(currentPlayer, MoveType.Reveal);
                             curr.add(new PlayerMove(currentPlayer, mineSqauer));
                         }
-                        UpdateVeiw(curr);
+
 
                         // Get The Winner
                         Player winner = players.get(0);
@@ -356,6 +356,7 @@ public class GUIGame extends NormalGame {
                                 _Panel.Update();
                             }
                         }
+                        UpdateVeiw(curr);
                         // Update footer Move Label
 
                         Label LastMoveLabel = (Label) footer.getChildren().get(0);

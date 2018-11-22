@@ -84,7 +84,7 @@ public class PlayerPanel {
         leftPanel.getChildren().addAll(timeProgress);
         topPanel =new HBox();
             topPanel.getStyleClass().add("playerboard");
-            topPanel.setStyle("-fx-background-color: "+(player.getColor())+";");
+            topPanel.setStyle("-fx-background-color: "+(player.getColor())+";-fx-max-height: 25;");
         topPanel.getChildren().addAll(playerNameTopLabel);
     }
 

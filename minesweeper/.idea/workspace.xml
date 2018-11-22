@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b1292635-e601-407e-ad62-9fb46d555718" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/CustomProgress/indicators/FillProgressIndicator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/CustomProgress/indicators/FillProgressIndicatorSkin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/CustomProgress/indicators/ProgressCircleIndicator$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/CustomProgress/indicators/ProgressCircleIndicator$StyleableProperties$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/CustomProgress/indicators/ProgressCircleIndicator$StyleableProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/CustomProgress/indicators/ProgressCircleIndicator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/CustomProgress/indicators/RingProgressIndicator$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/CustomProgress/indicators/RingProgressIndicator$StyleableProperties$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/CustomProgress/indicators/RingProgressIndicator$StyleableProperties.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/CustomProgress/indicators/RingProgressIndicator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/CustomProgress/indicators/RingProgressIndicatorSkin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUIGame/PlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/PlayerPanel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,31 +98,40 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="59" />
-          <entry key="java" value="602" />
+          <entry key="java" value="615" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="59" />
-          <entry key="JAVA" value="602" />
+          <entry key="JAVA" value="615" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="2" />
-          <entry key="java" value="10" />
+          <entry key="java" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="2" />
-          <entry key="JAVA" value="10" />
+          <entry key="JAVA" value="13" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Models/Game/Game.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="62" column="29" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Styles/style.css">
           <provider selected="true" editor-type-id="text-editor">
@@ -120,14 +141,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="476" column="42" selection-start-line="476" selection-start-column="42" selection-end-line="476" selection-end-column="42" />
+            <state relative-caret-position="1031">
+              <caret line="469" column="17" lean-forward="true" selection-start-line="469" selection-start-column="17" selection-end-line="469" selection-end-column="17" />
               <folding>
                 <element signature="class#WelcomeScene#0;class#GUIGameMainMenu#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="903">
+              <caret line="358" column="41" selection-start-line="358" selection-start-column="41" selection-end-line="358" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GUIGame/PlayerPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="86" column="95" selection-start-line="86" selection-start-column="95" selection-end-line="86" selection-end-column="95" />
             </state>
           </provider>
         </entry>
@@ -142,9 +181,9 @@
       <find>guiT</find>
       <find>center</find>
       <find>getle</find>
-      <find>start g</find>
       <find>scorebo</find>
       <find>padding</find>
+      <find>start g</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -166,9 +205,9 @@
         <option value="$PROJECT_DIR$/src/Models/Game/Game.java" />
         <option value="$PROJECT_DIR$/src/Styles/style.css" />
         <option value="$PROJECT_DIR$/src/Models/Player/DumbPlayer.java" />
+        <option value="$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java" />
         <option value="$PROJECT_DIR$/src/GUIGame/GUIGame.java" />
         <option value="$PROJECT_DIR$/src/GUIGame/PlayerPanel.java" />
-        <option value="$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java" />
       </list>
     </option>
   </component>
@@ -205,12 +244,6 @@
               <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
               <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="indicators" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
-              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GUIGame" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -240,7 +273,7 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="minesweeper" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542802572341" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542861465617" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -303,12 +336,12 @@
       <workItem from="1542817295443" duration="4383000" />
       <workItem from="1542824647271" duration="1813000" />
       <workItem from="1542827380698" duration="212000" />
-      <workItem from="1542835631082" duration="4886000" />
+      <workItem from="1542835631082" duration="5754000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19023000" />
+    <option name="totallyTimeSpent" value="19891000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -365,7 +398,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/GUIGame/GUIGame.java</url>
-          <line>304</line>
+          <line>303</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
@@ -471,7 +504,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CustomProgress/indicators/RingProgressIndicator.java">
+    <entry file="file://$PROJECT_DIR$/src/CustomProgressIndicators/RingProgressIndicator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
@@ -520,17 +553,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CustomProgress/indicators/ProgressCircleIndicator.java">
+    <entry file="file://$PROJECT_DIR$/src/CustomProgressIndicators/ProgressCircleIndicator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="59" column="16" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUIGame/PlayerPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="91" column="48" selection-start-line="91" selection-start-column="48" selection-end-line="91" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -538,30 +564,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Models/Game/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="40" column="51" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="51" />
-          <folding>
-            <element signature="e#860#861#0" expanded="true" />
-            <element signature="e#905#906#0" expanded="true" />
-            <element signature="e#935#936#0" expanded="true" />
-            <element signature="e#979#980#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1055">
-          <caret line="309" lean-forward="true" selection-start-line="309" selection-end-line="309" />
-          <folding>
-            <element signature="e#1586#1587#0" expanded="true" />
-            <element signature="e#1636#1637#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -581,11 +583,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="476" column="42" selection-start-line="476" selection-start-column="42" selection-end-line="476" selection-end-column="42" />
+        <state relative-caret-position="1031">
+          <caret line="469" column="17" lean-forward="true" selection-start-line="469" selection-start-column="17" selection-end-line="469" selection-end-column="17" />
           <folding>
             <element signature="class#WelcomeScene#0;class#GUIGameMainMenu#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Models/Game/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="62" column="29" selection-start-line="62" selection-start-column="29" selection-end-line="62" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="903">
+          <caret line="358" column="41" selection-start-line="358" selection-start-column="41" selection-end-line="358" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUIGame/PlayerPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="86" column="95" selection-start-line="86" selection-start-column="95" selection-end-line="86" selection-end-column="95" />
         </state>
       </provider>
     </entry>

@@ -24,20 +24,21 @@ import MineSweeperGameDefineException.IllegalGameMove;
 public abstract class Game {
     // <__ INNER CLASS __> \\
     public abstract class Timer extends Thread {
-        protected int currentTime;
+        protected double currentTime;
         public Timer() {
             this.currentTime = 10;
         }
-        public Timer(int t) {
+        public Timer(double t) {
             this.currentTime = t;
         }
 
         public void run()
         {
             while (currentTime > 0) {
-                Show(currentTime--);
+                currentTime -= 0.1;
+                Show(currentTime);
                 try {
-                    TimeUnit.SECONDS.sleep(1);
+                    TimeUnit.MILLISECONDS.sleep(100);
                 } catch (InterruptedException e) {
                     // TODO: Some Handling way
                     //System.err.println("Interrupted Timer");
@@ -49,9 +50,9 @@ public abstract class Game {
         public void setCurrentTime(int time){
             currentTime=time;
         }
-        public abstract void Show(int Time);
+        public abstract void Show(double Time);
         public abstract void EndTimer();
-        public int getCurrentTime() {
+        public double getCurrentTime() {
             return currentTime;
         }
     }

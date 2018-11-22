@@ -5,7 +5,7 @@ import java.util.concurrent.TimeoutException;
 
 public class Timer extends Thread {
 
-    private int currentTime;
+    private double currentTime;
 
     public Timer() {
         this.currentTime = 10;
@@ -19,9 +19,9 @@ public class Timer extends Thread {
     {
         while(currentTime > 0)
         {
-            currentTime--;
+            currentTime-=1;
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.MILLISECONDS.sleep(100);
             } catch (InterruptedException e) {
                 System.err.println("Interrupted Timer");
             }
@@ -29,7 +29,7 @@ public class Timer extends Thread {
         }
     }
 
-    public int getCurrentTime() {
+    public double getCurrentTime() {
         return currentTime;
     }
 }

@@ -57,7 +57,7 @@ abstract class ProgressCircleIndicator extends Control {
      * @param progressValue
      * @see ProgressCircleIndicator#makeIndeterminate()
      */
-    public void setProgress(int progressValue) {
+    public void setProgress(double progressValue) {
         progress.set(defaultToHundred(progressValue));
         indeterminate.set(progressValue < 0);
     }
@@ -78,11 +78,12 @@ abstract class ProgressCircleIndicator extends Control {
         return indeterminate.getReadOnlyProperty();
     }
 
-    private int defaultToHundred(int value) {
+    private int defaultToHundred(double value) {
+        value *= 10;
         if (value > 100) {
             return 100;
         }
-        return value;
+        return (int)value;
     }
 
     public final void setInnerCircleRadius(int value) {

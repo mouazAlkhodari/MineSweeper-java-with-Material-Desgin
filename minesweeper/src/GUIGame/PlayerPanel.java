@@ -1,8 +1,8 @@
 package GUIGame;
 
+import CustomProgress.indicators.RingProgressIndicator;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
-import Models.Shield.Shield;
 import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
@@ -13,30 +13,33 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import javafx.animation.TranslateTransition;
 
-import java.io.FileInputStream;
-
 public class PlayerPanel {
-    VBox leftPanel;
+    VBox rightPanel;
     HBox topPanel;
+    VBox leftPanel;
     private Label playerNameLeftLabel;
     private Label playerNameTopLabel;
     private Label playerScoreLabel;
     private Label playerNumberOfShieldLabel;
     private Label playerTimerLabel;
+    private RingProgressIndicator timeProgress;
     private ImageView shieldsImage,scoreImage;
     private HBox Shields = new HBox(20);
     private HBox Score = new HBox(20);
     private Player player;
 
-    public VBox getLeftPanel() {
-        return leftPanel;
+    public VBox getRightPanel() {
+        return rightPanel;
     }
     public HBox getTopPanel(){
         return topPanel;
     }
-    public void setTime(int time){
+    public VBox getLeftPanel() { return leftPanel;}
+    public RingProgressIndicator getTimeProgress(){ return timeProgress; }
+    public void setTime(double time){
         Platform.runLater(new Runnable() {
             @Override public void run() {
+                timeProgress.setProgress(time);
                 playerTimerLabel.setText("Time: " + String.valueOf(time));
             }
         });
@@ -57,6 +60,7 @@ public class PlayerPanel {
             }
         });
         playerTimerLabel=new Label("Time: " +player.getTimeforTimer());
+        timeProgress = new RingProgressIndicator();
             playerNameLeftLabel.getStyleClass().add("h2");
             playerNameTopLabel.getStyleClass().add("h2");
             playerScoreLabel.getStyleClass().addAll("h1","center");
@@ -71,15 +75,17 @@ public class PlayerPanel {
         scoreImage.setFitHeight(75);scoreImage.setFitWidth(75);
         Score.setStyle("-fx-border-width: 0 0 0.5 0;-fx-border-color: #485761;");
         Score.getChildren().addAll(scoreImage,playerScoreLabel);
-        leftPanel =new VBox();
-            leftPanel.getStyleClass().add("playerboard");
-            leftPanel.setStyle("-fx-background-color: "+(player.getColor())+";");
-        leftPanel.getChildren().addAll(playerNameLeftLabel,Score,Shields);
-
+        rightPanel =new VBox();
+            rightPanel.getStyleClass().add("playerboard");
+            rightPanel.setStyle("-fx-background-color: "+(player.getColor())+";");
+        rightPanel.getChildren().addAll(playerNameLeftLabel,Score,Shields);
+        leftPanel = new VBox();
+            leftPanel.getStyleClass().addAll("center");
+        leftPanel.getChildren().addAll(timeProgress);
         topPanel =new HBox();
             topPanel.getStyleClass().add("playerboard");
             topPanel.setStyle("-fx-background-color: "+(player.getColor())+";");
-        topPanel.getChildren().addAll(playerNameTopLabel,playerTimerLabel);
+        topPanel.getChildren().addAll(playerNameTopLabel);
     }
 
     public void Update(){

@@ -18,7 +18,7 @@ public class ConsoleGame extends NormalGame {
             super(time);
         }
         @Override
-        public void Show(int Time) {
+        public void Show(double Time) {
             System.out.println(Time);
         }
 

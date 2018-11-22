@@ -1,5 +1,6 @@
 package GUIGame;
 
+import CustomProgress.indicators.RingProgressIndicator;
 import MineSweeperGameDefineException.IllegalGameMove;
 import Models.Game.*;
 import Models.Grid.Square;
@@ -8,7 +9,6 @@ import Models.Move.PlayerMove;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.List;
-import javafx.concurrent.Task;
+
 import static java.lang.Math.max;
 
 public class GUIGame extends NormalGame {
@@ -36,8 +36,8 @@ public class GUIGame extends NormalGame {
     protected GridPane FXgrid;
     protected VBox ScoreBoard;
     protected HBox footer;
-
     protected HBox top;
+    protected VBox left;
 
     protected Scene scene;
     protected BorderPane layout;
@@ -53,11 +53,11 @@ public class GUIGame extends NormalGame {
         public GUITimer(){
             super();
         }
-        public GUITimer(int t){
+        public GUITimer(double t){
             super(t);
         }
         @Override
-        public void Show(int Time) {
+        public void Show(double Time) {
             currentPanel.setTime(Time);
         }
 
@@ -115,6 +115,8 @@ public class GUIGame extends NormalGame {
         layout.setRight(ScoreBoard);
         layout.setBottom(footer);
         layout.setTop(top);
+        layout.setLeft(left);
+        layout.getLeft().getStyleClass().add("center");
         layout.getStyleClass().add("padding");
         scene = new Scene(layout);
         scene.getStylesheets().add("Styles/style.css");
@@ -165,13 +167,13 @@ public class GUIGame extends NormalGame {
         ScoreBoard.setMinWidth(200);
         PlayersPanel=new ArrayList<PlayerPanel>();
         ScoreBoard.setStyle("-fx-alignment: CENTER;");
-
         for(Player _player:super.players){
             PlayerPanel _playerPanel=new PlayerPanel(_player);
             PlayersPanel.add(_playerPanel);
-            ScoreBoard.getChildren().add(_playerPanel.getLeftPanel());
+            ScoreBoard.getChildren().add(_playerPanel.getRightPanel());
             if(_player==currentPlayer){
                 setTop(_playerPanel);
+                left= _playerPanel.getLeftPanel();
             }
         }
     }
@@ -300,7 +302,9 @@ public class GUIGame extends NormalGame {
                             _currentpanel.Update();
                             if(_player==currentPlayer){
                                 setTop(_currentpanel);
+                                left = _currentpanel.getLeftPanel();
                             }
+                            layout.setLeft(left);
                             layout.setTop(top);
                         }
 

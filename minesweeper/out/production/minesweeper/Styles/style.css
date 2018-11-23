@@ -103,15 +103,14 @@
     -fx-background-color: rgba(255,255,255,0);
 }
 .line {
-    -fx-background-color: #000;
-    -fx-min-height: 1;
+    -fx-border-width: 0 0 0.5 0;-fx-border-color: #485761;
 }
 
 .playerboard{
     -fx-background-color:#BE90D4;
     -fx-background-radius: 5;
     -fx-border-width: 0;
-    -fx-min-height: 100;
+    -fx-min-height: 50;
     -fx-alignment: CENTER;
     -fx-border-color: #323232;
 }
@@ -120,6 +119,7 @@
 .leftpadding { -fx-padding: 0 50px 0 0;}
 .bottomPadding { -fx-padding: 0 0 50 0;}
 .maxwidth250 {-fx-max-width: 250}
+.maxwidth300 {-fx-max-width: 300}
 
 .f1{-fx-text-fill: #e26e0e;  -fx-font-weight: 700;}
 .f2{-fx-text-fill: #d5654d;  -fx-font-weight: 700;}

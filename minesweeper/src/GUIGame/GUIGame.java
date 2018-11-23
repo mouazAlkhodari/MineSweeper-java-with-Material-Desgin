@@ -356,7 +356,7 @@ public class GUIGame extends NormalGame {
                             if (_player.getCurrentScore().getScore() > winner.getCurrentScore().getScore()) {
                                 winner = players.get(i);
                             }
-                         g}
+                         }
                         UpdateVeiw(curr);
                         // Update footer Move Label
 

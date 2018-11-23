@@ -42,9 +42,11 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
     private final StackPane container = new StackPane();
     private final Arc fillerArc = new Arc();
     private final RotateTransition transition = new RotateTransition(Duration.millis(2000), fillerArc);
+    private int maximum;
 
     public RingProgressIndicatorSkin(final RingProgressIndicator indicator) {
         this.indicator = indicator;
+        maximum = indicator.maximum;
         initContainer(indicator);
         initFillerArc();
         container.widthProperty().addListener((o, oldVal, newVal) -> {
@@ -88,9 +90,9 @@ public class RingProgressIndicatorSkin implements Skin<RingProgressIndicator> {
         container.getChildren().addAll(fillerArc, outerCircle, innerCircle, percentLabel);
     }
 
-    private void setProgressLabel(int value) {
+    public void setProgressLabel(int value) {
         if (value >= 0) {
-            percentLabel.setText(String.valueOf(value/10));
+            percentLabel.setText(String.valueOf(value*maximum/100));
         }
     }
 

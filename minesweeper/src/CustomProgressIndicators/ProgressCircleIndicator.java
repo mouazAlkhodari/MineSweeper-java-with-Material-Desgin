@@ -39,12 +39,13 @@ import javafx.css.converter.SizeConverter;
  */
 abstract class ProgressCircleIndicator extends Control {
     private static final int INDETERMINATE_PROGRESS = -1;
-
+    protected int maximum;
     private ReadOnlyIntegerWrapper progress = new ReadOnlyIntegerWrapper(0);
     private ReadOnlyBooleanWrapper indeterminate = new ReadOnlyBooleanWrapper(false);
 
-    public ProgressCircleIndicator() {
+    public ProgressCircleIndicator(int mx) {
         this.getStylesheets().add("Styles/Ring.css");
+        maximum = mx;
     }
 
     public int getProgress() {
@@ -79,7 +80,7 @@ abstract class ProgressCircleIndicator extends Control {
     }
 
     private int defaultToHundred(double value) {
-        value *= 10;
+        value = value*100/maximum;
         if (value > 100) {
             return 100;
         }

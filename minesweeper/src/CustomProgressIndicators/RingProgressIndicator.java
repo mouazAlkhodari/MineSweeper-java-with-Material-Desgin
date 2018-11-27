@@ -35,7 +35,8 @@ import javafx.css.converter.SizeConverter;
  *
  */
 public class RingProgressIndicator extends ProgressCircleIndicator {
-    public RingProgressIndicator() {
+    public RingProgressIndicator(int mx) {
+        super(mx);
         this.getStylesheets().add("Styles/Ring.css");
         this.getStyleClass().add("ringindicator");
     }

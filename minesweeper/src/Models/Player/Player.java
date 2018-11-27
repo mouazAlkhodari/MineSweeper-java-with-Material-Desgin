@@ -19,7 +19,7 @@ public abstract class Player{
     boolean canPlay;
 
 
-    int TimeforTimer=10;
+    int TimeforTimer=5;
     public int getTimeforTimer() {
         return TimeforTimer;
     }
@@ -74,7 +74,7 @@ public abstract class Player{
         return maxNumberOfShild;
     }
 
-    public void setMaxNumberOfShild(int maxNumberOfShild) {
+    public void setMaxNumberOfShields(int maxNumberOfShild) {
         this.maxNumberOfShild = maxNumberOfShild;
     }
     public void setNumberOfShild(int NumberOfShild) {

@@ -8,7 +8,6 @@ import Models.Player.DumbPlayer;
 import Models.Player.Player;
 import com.jfoenix.controls.*;
 import javafx.animation.FadeTransition;
-import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -77,26 +76,36 @@ public class GUIGameMainMenu {
                 _heroShields = getVal(optionsScene.gridOption.HeroShieldsInput,10);
                 break;
         }
-
+        int Timer=10;
+        Timer=getVal(optionsScene.customRulesOption.TimerField,10);
         //Getting Values Of PlayerOptions
         ArrayList<Player> _players= new ArrayList<Player>();
         switch (optionsScene.playersOption.PlayerType.getSelectionModel().getSelectedItem()) {
             //"Single Player","VS Dump PC","Custom"
             case "Single Player":
-                _players.add(new GUIPlayer("You ","#ffe082"));
+                Player _player=new GUIPlayer("You ","#ffe082");
+                _player.setTimeforTimer(Timer);
+                _players.add(_player);
                 break;
             case "VS Dump PC":
-                _players.add(new GUIPlayer("You","#ffe082"));
-                _players.add(new DumbPlayer(_width,_height));
+                Player _player1=new GUIPlayer("You ","#ffe082");
+                _player1.setTimeforTimer(Timer);
+                _players.add(_player1);
+                Player _player2=new DumbPlayer(_width,_height);
+                _player2.setTimeforTimer(Timer);
+                _players.add(_player2);
                 break;
             case "Custom":
                 int i=0;
                 for(Node playerfield:optionsScene.playersOption.playerFields.getChildren()){
                     JFXTextField _playerName=(JFXTextField)(((HBox)playerfield).getChildren().get(0));
                     JFXTextField _NumberOfShield=(JFXTextField)(((HBox)playerfield).getChildren().get(1));
+                    JFXCheckBox DisableShield = (JFXCheckBox)(((HBox) playerfield).getChildren().get(2));
                     if(_playerName.getText().length()!=0) {
                         Player currentPlayer=new GUIPlayer(_playerName.getText(), optionsScene.playersOption._playersColor.get(i++));
+                        if (DisableShield.isSelected()) { currentPlayer.setMaxNumberOfShields(0);}
                         currentPlayer.setNumberOfShild(getVal(_NumberOfShield,1));
+                        currentPlayer.setTimeforTimer(Timer);
                         _players.add(currentPlayer);
                     }
                 }
@@ -348,7 +357,7 @@ public class GUIGameMainMenu {
             Label MinesLabel=new Label("Mines");
             Label ShieldsLabel=new Label("Shields");
             Label HeroShieldsLabel=new Label("Hero Shields");
-            CustomGrid.getChildren().addAll(WidthLabel,WidthInput,HeightLabel,HeightInput,MinesLabel,MinesInput,ShieldsLabel,ShieldsInput,HeroShieldsLabel,HeroShieldsInput);
+            CustomGrid.getChildren().addAll(WidthLabel,WidthInput,HeightLabel,HeightInput,MinesLabel,MinesInput,ShieldsLabel,ShieldsInput);
             Option.getStyleClass().addAll("center","maxwidth250");
             JFXRippler difficultyLabel=new JFXRippler(new Label("Please Select Difficulty: "));
             difficultyLabel.getStyleClass().addAll("minwidth","h2");
@@ -383,7 +392,11 @@ public class GUIGameMainMenu {
                 _playerField.setPromptText("player " + i);
                 JFXTextField _playerShield=new JFXTextField("");
                 _playerShield.setPromptText("Begin with Shields e.g 0");
-                currentbox.getChildren().addAll(_playerField,_playerShield);
+                JFXCheckBox _disableShield = new JFXCheckBox("Disable Shields for this player");
+                _disableShield.selectedProperty().addListener((v,oldValue,newValue)-> {
+                    _playerShield.setDisable(newValue == true ? true : false);
+                });
+                currentbox.getChildren().addAll(_playerField,_playerShield,_disableShield);
                 playerFields.getChildren().add(currentbox);
             }
             CustomPlayer.getChildren().add(playerFields);
@@ -393,14 +406,14 @@ public class GUIGameMainMenu {
             _playersColor.add("#00838f");
             _playersColor.add("#972e0e");
 
-            Option.getStyleClass().addAll("center","maxwidth250");
-            JFXRippler PlayersLabel=new JFXRippler(new Label("Select Players Type"));
-            PlayersLabel.getStyleClass().addAll("minwidth","h3");
+            Option.getStyleClass().addAll("center","padding");
+            JFXRippler PlayersLabel=new JFXRippler(new Label("Select Players Type:"));
+            PlayersLabel.getStyleClass().addAll("minwidth","h2");
             Option.getChildren().addAll(PlayersLabel,PlayerType,CustomPlayer);
         }
     }
     class PointsOption{
-        HBox Option = new HBox(30);
+        VBox Option = new VBox(30);
 
         //initializing PointOptions
         ComboBox<String> PointsType = new ComboBox<>();
@@ -441,6 +454,7 @@ public class GUIGameMainMenu {
             CustomPoint.add(LastNumber,1,3);
             CustomPoint.add(hasNormlShield,0,4);
             CustomPoint.add(lostNormalShield,1,4);
+            CustomPoint.getStyleClass().addAll("center");
 
             RevealFloodFill.setPromptText("RevealFloodFill: e.g.: 1");
             RevealEmpty.setPromptText("RevealEmpty: e.g.: 10");
@@ -454,8 +468,9 @@ public class GUIGameMainMenu {
             lostNormalShield.setPromptText("lostNormalShield: e.g.: 250");
 
             Option.getStyleClass().addAll("center");
-            Label PointsLabel=new Label("Points: ");
-            PointsLabel.getStyleClass().addAll("minwidth","h4");
+            JFXRippler PointsLabel=new JFXRippler(new Label("Choose Points Type:"));
+            PointsLabel.getStyleClass().addAll("minwidth","h2");
+
             Option.getChildren().addAll(PointsLabel,PointsType,CustomPoint);
         }
     }
@@ -464,14 +479,16 @@ public class GUIGameMainMenu {
         JFXCheckBox EndGameWhenHitMine = new JFXCheckBox("End Game When Hit Mine");
         JFXCheckBox FloodfillWhenHitMine = new JFXCheckBox("Flood fill When Hit Mine");
         JFXCheckBox ContinuePlayinginNegativeScore = new JFXCheckBox("Continue Playing in Negative Score");
+        JFXTextField TimerField = new JFXTextField();
         VBox Option = new VBox(20);
 
         public CustomRulesOption() {
                 EndGameWhenHitMine.setSelected(true);
                 FloodfillWhenHitMine.setSelected(true);
                 FloodfillWhenHitMine.setDisable(true);
-            Option.getChildren().addAll(EndGameWhenHitMine,FloodfillWhenHitMine,ContinuePlayinginNegativeScore);
-            Option.getStyleClass().addAll("center");
+            TimerField.setPromptText("Time Waiting for Player: e.g.: 10");
+            Option.getChildren().addAll(EndGameWhenHitMine,FloodfillWhenHitMine,ContinuePlayinginNegativeScore,TimerField);
+            Option.getStyleClass().addAll("center","maxwidth300");
             EndGameWhenHitMine.getStyleClass().addAll("h3");
             FloodfillWhenHitMine.getStyleClass().addAll("h3");
             ContinuePlayinginNegativeScore.getStyleClass().addAll("h3");

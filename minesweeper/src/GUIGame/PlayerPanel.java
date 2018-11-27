@@ -43,13 +43,12 @@ public class PlayerPanel {
                 playerTimerLabel.setText("Time: " + String.valueOf(time));
             }
         });
-
     }
 
     public PlayerPanel(Player _player) {
         player=_player;
         playerNameLeftLabel=new Label(player.getName());
-        playerNameTopLabel=new Label(player.getName());
+        playerNameTopLabel=new Label("Current Player: "+player.getName());
         playerScoreLabel=new Label(String.valueOf(player.getCurrentScore().getScore()));
         playerNumberOfShieldLabel=new Label(String.valueOf(player.getNumberOfShield()));
         playerNumberOfShieldLabel.textProperty().addListener((v,oldValue,newValue) -> {
@@ -60,8 +59,8 @@ public class PlayerPanel {
             }
         });
         playerTimerLabel=new Label("Time: " +player.getTimeforTimer());
-        timeProgress = new RingProgressIndicator();
-            playerNameLeftLabel.getStyleClass().add("h2");
+        timeProgress = new RingProgressIndicator(   player.getTimeforTimer());
+            playerNameLeftLabel.getStyleClass().addAll("h2");
             playerNameTopLabel.getStyleClass().add("h2");
             playerScoreLabel.getStyleClass().addAll("h1","center");
             playerNumberOfShieldLabel.getStyleClass().addAll("h1","center");
@@ -73,7 +72,7 @@ public class PlayerPanel {
 
         scoreImage = new ImageView(new Image("images/score.png"));
         scoreImage.setFitHeight(75);scoreImage.setFitWidth(75);
-        Score.setStyle("-fx-border-width: 0 0 0.5 0;-fx-border-color: #485761;");
+        Score.getStyleClass().addAll("line");
         Score.getChildren().addAll(scoreImage,playerScoreLabel);
         rightPanel =new VBox();
             rightPanel.getStyleClass().add("playerboard");
@@ -84,7 +83,7 @@ public class PlayerPanel {
         leftPanel.getChildren().addAll(timeProgress);
         topPanel =new HBox();
             topPanel.getStyleClass().add("playerboard");
-            topPanel.setStyle("-fx-background-color: "+(player.getColor())+";-fx-max-height: 25;");
+            topPanel.setStyle("-fx-background-color: "+(player.getColor())+";-fx-pref-height: 25;");
         topPanel.getChildren().addAll(playerNameTopLabel);
     }
 

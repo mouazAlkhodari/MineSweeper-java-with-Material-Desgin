@@ -51,18 +51,12 @@ public class GUIGameCustom extends GUIGame {
                     Square currentSquare = currentMove.getSquare();
                     if (currentSquare.isMine() && currentPlayer.getNumberOfShield() >= 0) {
                         currentPlayer.addNormalshild(-1);
-                        if (currentPlayer.getNumberOfShield() >= 0 && PressMineBehavior!=WhenHitMine.Lose)
+                        if (currentPlayer.getNumberOfShield() >= 0 && PressMineBehavior!= WhenHitMine.Lose)
                             points.addLostNormalShieldPoints(currentPlayer);
                     } else if (currentSquare.hasNormalSield()) {
                         currentPlayer.addNormalshild((1));
                     } else if (currentSquare.hasHeroSield()) {
                         // Todo: add number Of Normal Shield To Points and Player
-                    }
-                }
-                if (PressMineBehavior != WhenHitMine.Lose) {
-                    while (currentPlayer.getCurrentScore().getScore() < 0 && currentPlayer.getNumberOfShield() > 0) {
-                        points.addLostNormalShieldPoints(currentPlayer);
-                        currentPlayer.addNormalshild(-1);
                     }
                 }
             }

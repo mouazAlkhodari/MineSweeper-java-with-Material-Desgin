@@ -58,10 +58,12 @@ public abstract class Game implements Serializable {
         }
     }
     protected Timer currentTimer;
+    protected int GameTime;
+
 
     public abstract class GameRules implements Serializable{
 
-        protected int GameTime;
+
         protected abstract void ChangePlayerStatus(List<PlayerMove> moves);
         protected abstract void GetScoreChange(List<PlayerMove> moves);
         public abstract void DecideNextPlayer(List<PlayerMove> moves);

@@ -57,6 +57,7 @@ public abstract class Game {
         }
     }
     protected Timer currentTimer;
+    protected int GameTime;
     public abstract class GameRules{
         protected abstract void ChangePlayerStatus(List<PlayerMove> moves);
         protected abstract void GetScoreChange(List<PlayerMove> moves);
@@ -90,7 +91,9 @@ public abstract class Game {
             setCurrentPlayer(players.get(0));
 
         initGame(Width,Height,NumMines,ShildCount);
+        GameTime = 0;
     }
+
     // <__ METHODS __> \\
     protected void initGame(int width, int height, int minesCount,int ShildCount){
         try {

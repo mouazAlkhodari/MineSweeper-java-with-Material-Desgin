@@ -5,7 +5,9 @@ import Models.Grid.Square;
 import Models.Player.DumbPlayer;
 import Models.Player.Player;
 
-public class PlayerMove {
+import java.io.Serializable;
+
+public class PlayerMove implements Serializable {
     // <__ DATA MEMBERS__> \\
     private Player player;
     private Square square;

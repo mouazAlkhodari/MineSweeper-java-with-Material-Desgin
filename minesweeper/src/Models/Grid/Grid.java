@@ -9,11 +9,12 @@ import Models.Move.MoveType;
 import Models.Move.PlayerMove;
 import MineSweeperGameDefineException.IllegalBoundsOfGrid;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Grid {
+public class Grid implements Serializable {
     // <__ DATA MEMBERS __> \\
     private int width;
     private int height;

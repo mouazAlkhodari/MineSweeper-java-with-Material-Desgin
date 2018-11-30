@@ -2,11 +2,14 @@ package GUIGame;
 
 import MineSweeperGameDefineException.IllegalGameMove;
 import Models.Game.*;
+import Models.Grid.Grid;
 import Models.Grid.Square;
 import Models.Move.MoveType;
 import Models.Move.PlayerMove;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
+import SaveLoadPackage.GameSave;
+import SaveLoadPackage.SaveLoadGame;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -43,6 +46,8 @@ public class GUIGame extends NormalGame {
     protected BorderPane layout;
 
     protected Button BackButton;
+    protected Button SaveButton;
+
     protected GUIGameMainMenu Begin;
 
     // in footer
@@ -195,11 +200,20 @@ public class GUIGame extends NormalGame {
         BackButton.getStyleClass().addAll("menubutton","h3");
         BackButton.setPrefSize(80,40);
 
+        SaveButton =new Button("Save");
+        SaveButton.getStyleClass().addAll("menubutton","h3");
+        SaveButton.setPrefSize(80,40);
+
+        SaveButton.setOnAction(event -> {
+            String fileName = "saved.txt";
+            SaveLoadGame.saveGame(fileName,this);
+        });
+
         BackButton.setOnAction(e->{
             Begin.Window.setScene(Begin.getWelcomescene());
             Begin.Window.centerOnScreen();
         });
-        footer.getChildren().addAll(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton);
+        footer.getChildren().addAll(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton, SaveButton);
     }
 
     void GUIGameThreadStart(Thread thread){
@@ -379,7 +393,30 @@ public class GUIGame extends NormalGame {
                 });
             }
         });
+
         GUIGameThreadStart(EndGameThread);
     }
+    public Player getCurrentPlayer(){
+        return this.currentPlayer;
+    }
+    public List<Player> getPlayers(){
+        return this.players;
+    }
+    public Grid getGrid(){
+        return this.grid;
+    }
+    public GameStatus getGameStatus(){
+        return this.status;
+    }
+    public List<PlayerMove> getGameMoves(){
+        return this.moves;
+    }
+    public int getShieldsNumber(){
+        return this.ShildNumber;
+    }
+    public int getFlagsNumber(){
+        return this.FlagsNumber;
+    }
+
 
 }

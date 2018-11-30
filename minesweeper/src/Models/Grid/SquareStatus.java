@@ -1,6 +1,8 @@
 package Models.Grid;
 
-public enum SquareStatus {
+import java.io.Serializable;
+
+public enum SquareStatus implements Serializable {
     Closed,OpenedEmpty,OpenedNumber,OpenedMine,Marked;
 }
 

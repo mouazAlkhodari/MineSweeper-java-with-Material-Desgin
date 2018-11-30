@@ -1,5 +1,7 @@
 package Models.Game;
 
-public enum WhenScoreNegative {
+import java.io.Serializable;
+
+public enum WhenScoreNegative implements Serializable {
     End,Continue
 }

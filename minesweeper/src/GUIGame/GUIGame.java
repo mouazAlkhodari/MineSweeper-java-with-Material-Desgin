@@ -22,6 +22,7 @@ import javafx.scene.layout.VBox;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.max;
 
@@ -83,14 +84,17 @@ public class GUIGame extends NormalGame {
     public GUIGame(List _players){
         super(_players);
         initScene();
+        CalcGameTime();
     }
     public GUIGame(int Width, int Height, int NumMines, List ListOfPlayers) {// Constructor
         super(Width,Height,NumMines,ListOfPlayers);
         initScene();
+        CalcGameTime();
     }
     public GUIGame(int Width, int Height, int NumMines, List _players, Points points, WhenHitMine pressMineBehavior,WhenScoreNegative scoreNegativeBehavior){
         super(Width,Height,NumMines,_players,points,pressMineBehavior,scoreNegativeBehavior);
         initScene();
+        CalcGameTime();
     }
 
     // <__ GETTERS-SETTERS __> \\
@@ -205,6 +209,26 @@ public class GUIGame extends NormalGame {
     void GUIGameThreadStart(Thread thread){
         thread.setDaemon(true);
         thread.start();
+    }
+
+    void CalcGameTime() {
+        Thread GameTimerThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (status != GameStatus.Finish) {
+                    GameTime++;
+                    System.out.print(GameTime);
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException e) {
+                       //TODO: Some Handling way
+
+                        return;
+                    }
+                }
+            }
+        });
+        GUIGameThreadStart(GameTimerThread);
     }
     @Override
     public void StartGame() {

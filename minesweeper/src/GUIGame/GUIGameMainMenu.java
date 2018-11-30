@@ -175,26 +175,37 @@ public class GUIGameMainMenu {
         Scene scene;
         VBox WelcomeLayout;
         Label Welcome;
-        Button CustomGame;
-        Button StartGame;
+        Button NewGame;
+        Button LoadGame;
+        Button Scoreboard;
+        Button Profile;
 
         private void initLayout() {
             WelcomeLayout = new VBox(20);
             Welcome = new Label("MineSweeper");
-            CustomGame = new Button("CUSTOM GAME");
-            StartGame = new Button("START GAME");
-            CustomGame.getStyleClass().addAll("menubutton","custombutton","h3");
-            StartGame.getStyleClass().addAll("menubutton","h3");
-            CustomGame.setOnAction(e -> {Window.setScene(optionsScene.scene);Window.centerOnScreen();});
-            StartGame.setOnAction(e -> initGame());
+            NewGame = new Button("NEW GAME");
+            NewGame.getStyleClass().addAll("menubutton","custombutton","h3");
+            NewGame.setOnAction(e -> {Window.setScene(optionsScene.scene);Window.centerOnScreen();});
             //Setting Style
+            LoadGame = new Button("LOAD GAME");
+            LoadGame.getStyleClass().addAll("menubutton","h3");
+            LoadGame.setDisable(true);
+
+            Scoreboard = new Button("SCOREBOARD");
+            Scoreboard.getStyleClass().addAll("menubutton","h3");
+            Scoreboard.setDisable(true);
+
+            Profile = new Button("PROFILE");
+            Profile.getStyleClass().addAll("menubutton","h3");
+            Profile.setDisable(true);
+
             WelcomeLayout.getStyleClass().add("windowsize");
             Welcome.getStyleClass().add("h1");
             Welcome.getStylesheets().add("Styles/style.css");
-            CustomGame.getStylesheets().add("Styles/style.css");
+            NewGame.getStylesheets().add("Styles/style.css");
             WelcomeLayout.getStylesheets().add("Styles/style.css");
             //Adding Components to layout
-            WelcomeLayout.getChildren().addAll(Welcome, StartGame,CustomGame);
+            WelcomeLayout.getChildren().addAll(Welcome, NewGame,LoadGame,Scoreboard,Profile);
         }
 
         public WelcomeScene() {
@@ -223,7 +234,7 @@ public class GUIGameMainMenu {
 
         HBox BottomButtons = new HBox(20);
         Button startGameButton = new Button("START GAME");
-        Button SaveButton =new Button("Save");
+        Button SaveButton =new Button("BACK");
 
         public OptionScene() {
             initScene();

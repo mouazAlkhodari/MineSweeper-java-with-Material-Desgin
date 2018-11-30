@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="minesweeper1" level="project" />
     <orderEntry type="library" name="minesweeper" level="project" />
+    <orderEntry type="library" name="simpleumlce_8205" level="project" />
   </component>
 </module>

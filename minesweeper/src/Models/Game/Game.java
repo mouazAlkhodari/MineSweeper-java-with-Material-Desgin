@@ -57,12 +57,40 @@ public abstract class Game {
         }
     }
     protected Timer currentTimer;
+
     public abstract class GameRules{
         protected abstract void ChangePlayerStatus(List<PlayerMove> moves);
         protected abstract void GetScoreChange(List<PlayerMove> moves);
         public abstract void DecideNextPlayer(List<PlayerMove> moves);
     }
     protected GameRules currentRules;
+
+    public class MovesOfGame {
+        List<PlayerMove> Moves;
+        MovesOfGame(){
+            this(new ArrayList<PlayerMove>());
+        }
+        MovesOfGame(List<PlayerMove> _moves){
+            Moves=_moves;
+        }
+
+        public List<PlayerMove> getMoves() {
+            return Moves;
+        }
+
+        public void setMoves(List<PlayerMove> moves) {
+            Moves = moves;
+        }
+        public void add(PlayerMove _move){
+            Moves.add(_move);
+        }
+        public void clear(){
+            Moves.clear();
+        }
+    }
+
+    protected MovesOfGame GameMove;
+
     // <__ DATA MEMBERS __> \\
     protected Player currentPlayer;
     protected Grid grid;
@@ -117,6 +145,7 @@ public abstract class Game {
         if(status==GameStatus.FirstMove){
             initGame(move);
         }
+        GameMove.add(move);
         moves=this.grid.AcceptMove(move);
         currentTimer.interrupt();
         currentRules.DecideNextPlayer(moves);

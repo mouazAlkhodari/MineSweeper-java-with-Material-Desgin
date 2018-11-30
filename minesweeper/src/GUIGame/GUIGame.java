@@ -25,7 +25,7 @@ import java.util.List;
 import static java.lang.Math.max;
 
 public class GUIGame extends NormalGame {
-    protected List<PlayerPanel> PlayersPanel =new ArrayList<>() ;
+    protected List<PlayerPanel> PlayersPanel = new ArrayList<>() ;
     protected PlayerPanel currentPanel;
     // <__ DATA MEMBERS __> \\
 
@@ -382,4 +382,16 @@ public class GUIGame extends NormalGame {
         GUIGameThreadStart(EndGameThread);
     }
 
+    protected void showGame(){
+        Thread ShowGameThread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // reset component
+                for(Player _player:players){
+                    _player.reset();
+                }
+            }
+        });
+        ShowGameThread.start();
+    }
 }

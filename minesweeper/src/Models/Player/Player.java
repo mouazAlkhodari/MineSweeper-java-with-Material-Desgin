@@ -55,7 +55,8 @@ public abstract class Player{
 
     //Getters And Setters
     public void setCurrentStatus(PlayerStatus currentStatus) {
-        this.currentStatus = currentStatus;canPlay=true;
+        this.currentStatus = currentStatus;
+        canPlay=true;
     }
     public PlayerStatus getCurrentStatus() {
         return currentStatus;
@@ -85,4 +86,9 @@ public abstract class Player{
         canPlay=false;
     }
     public void Play(){canPlay=true;}
+
+    public void reset(){
+        currentStatus=PlayerStatus.waiting;
+        currentScore.setScore(0);
+    }
 }

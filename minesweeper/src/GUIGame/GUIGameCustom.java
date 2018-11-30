@@ -85,7 +85,18 @@ public class GUIGameCustom extends GUIGame {
         currentRules=new CustomRules(points,pressMineBehavior,scoreNegativeBehavior);
         ShildNumber=NumOfShield;
     }
-
+    protected void showGame(){
+        Thread ShowGameThread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // reset component
+                for(Player _player:players){
+                    _player.reset();
+                }
+            }
+        });
+        ShowGameThread.start();
+    }
     /*@Override
     protected void initScene() {
         super.initScene();

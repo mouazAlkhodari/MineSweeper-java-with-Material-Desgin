@@ -109,6 +109,7 @@ public abstract class Game implements Serializable {
     protected int ShildNumber;
     protected int HeroShieldNumber;
 
+
     public Game(List _players){
         this(10,10,10,0,_players);
     }

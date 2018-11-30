@@ -2,40 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b1292635-e601-407e-ad62-9fb46d555718" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$5$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameCustom$CustomRules.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameCustom.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/minesweeper/Models/ScoreBoard/PlayerBoard.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/minesweeper/Models/ScoreBoard/ScoreBoard.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$3$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$4$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$GUITimer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$GUITimer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$CustomRulesOption.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$GridOption.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$OptionScene.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$PlayersOption.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$PointsOption.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$WelcomeScene.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/Models/Game/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/Models/Game/Game$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/Models/Game/Game$GameRules.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/Models/Game/Game$MovesOfGame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/Models/Game/Game$Timer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/Models/Game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/Models/Game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/Models/Game/NormalGame$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/Models/Game/NormalGame$DefaultRules.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/Models/Game/NormalGame.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUIGame/PlayerPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/PlayerPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIGameCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIGameCustom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Models/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Game/NormalGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Game/NormalGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SaveLoadPackage/SaveLoadGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SaveLoadPackage/SaveLoadGame.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,45 +23,56 @@
     <session id="-232348197">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="java" value="3" />
           <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="JAVA" value="3" />
           <entry key="XML" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="98" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="98" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="213" column="13" selection-start-line="213" selection-start-column="9" selection-end-line="213" selection-end-column="13" />
+            <state relative-caret-position="295">
+              <caret line="445" selection-start-line="445" selection-end-line="445" />
               <folding>
-                <element signature="e#1457#1458#0" expanded="true" />
-                <element signature="e#1488#1489#0" expanded="true" />
-                <element signature="e#1523#1524#0" expanded="true" />
-                <element signature="e#1555#1556#0" expanded="true" />
-                <element signature="e#1613#1614#0" expanded="true" />
-                <element signature="e#1663#1664#0" expanded="true" />
-                <element signature="method#GUIGameThreadStart#0;class#GUIGame#0" />
-                <element signature="method#StartGame#0;class#GUIGame#0" />
-                <element signature="method#UpdateVeiw#0;class#GUIGame#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Models/Player/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="83" selection-start-line="83" selection-end-line="83" />
-              <folding>
-                <element signature="method#Player#6;class#Player#0" />
+                <element signature="e#1586#1587#0" expanded="true" />
+                <element signature="e#1617#1618#0" expanded="true" />
+                <element signature="e#1652#1653#0" expanded="true" />
+                <element signature="e#1684#1685#0" expanded="true" />
+                <element signature="e#1742#1743#0" expanded="true" />
+                <element signature="e#1792#1793#0" expanded="true" />
+                <element signature="e#16563#16564#0" expanded="true" />
+                <element signature="e#16604#16605#0" expanded="true" />
+                <element signature="e#16642#16643#0" expanded="true" />
+                <element signature="e#16677#16678#0" expanded="true" />
+                <element signature="e#16704#16705#0" expanded="true" />
+                <element signature="e#16736#16737#0" expanded="true" />
+                <element signature="e#16775#16776#0" expanded="true" />
+                <element signature="e#16809#16810#0" expanded="true" />
+                <element signature="e#16853#16854#0" expanded="true" />
+                <element signature="e#16886#16887#0" expanded="true" />
+                <element signature="e#16921#16922#0" expanded="true" />
+                <element signature="e#16960#16961#0" expanded="true" />
+                <element signature="e#16993#16994#0" expanded="true" />
+                <element signature="e#17032#17033#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,10 +81,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Models/Game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2215">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
+            <state relative-caret-position="135">
+              <caret line="111" selection-start-line="111" selection-end-line="111" />
               <folding>
-                <element signature="class#Timer#0;class#Game#0" />
+                <element signature="e#940#941#0" expanded="true" />
+                <element signature="e#985#986#0" expanded="true" />
+                <element signature="e#1018#1019#0" expanded="true" />
+                <element signature="e#1062#1063#0" expanded="true" />
+                <element signature="e#1585#1586#0" expanded="true" />
+                <element signature="e#1625#1626#0" expanded="true" />
+                <element signature="e#1755#1756#0" expanded="true" />
+                <element signature="e#1797#1798#0" expanded="true" />
                 <element signature="e#2246#2247#0" expanded="true" />
                 <element signature="e#2303#2304#0" expanded="true" />
                 <element signature="e#2349#2350#0" expanded="true" />
@@ -126,19 +116,37 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGameCustom.java">
+        <entry file="file://$PROJECT_DIR$/src/SaveLoadPackage/GameSave.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+            <state relative-caret-position="64">
+              <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUIGame/PlayerPanel.java">
+        <entry file="file://$PROJECT_DIR$/src/SaveLoadPackage/SaveLoadGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="736">
-              <caret line="61" column="23" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
+            <state relative-caret-position="48">
+              <caret line="9" column="57" selection-start-line="9" selection-start-column="57" selection-end-line="9" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Models/Game/NormalGame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGameCustom.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="98" column="5" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -194,7 +202,6 @@
         <option value="$PROJECT_DIR$/src/ConsoleGame/ConsoleMinesweeper.java" />
         <option value="$PROJECT_DIR$/src/GUIMinesweeperMain.java" />
         <option value="$PROJECT_DIR$/src/Models/Game/Points.java" />
-        <option value="$PROJECT_DIR$/src/Models/Game/NormalGame.java" />
         <option value="$PROJECT_DIR$/src/Styles/Ring.css" />
         <option value="$PROJECT_DIR$/src/Models/Game/Timer.java" />
         <option value="$PROJECT_DIR$/src/CustomProgress/indicators/ProgressCircleIndicator.java" />
@@ -205,13 +212,15 @@
         <option value="$PROJECT_DIR$/src/CustomProgressIndicators/RingProgressIndicatorSkin.java" />
         <option value="$PROJECT_DIR$/src/Styles/style.css" />
         <option value="$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java" />
-        <option value="$PROJECT_DIR$/src/GUIGame/GUIGameCustom.java" />
         <option value="$PROJECT_DIR$/src/GUIGame/PlayerPanel.java" />
         <option value="$PROJECT_DIR$/src/Models/Player/Player.java" />
-        <option value="$PROJECT_DIR$/src/GUIGame/GUIGame.java" />
         <option value="$PROJECT_DIR$/src/ConsoleGame/ConsoleGame.java" />
         <option value="$PROJECT_DIR$/minesweeper.iml" />
+        <option value="$PROJECT_DIR$/src/GUIGame/GUIGame.java" />
+        <option value="$PROJECT_DIR$/src/GUIGame/GUIGameCustom.java" />
+        <option value="$PROJECT_DIR$/src/SaveLoadPackage/SaveLoadGame.java" />
         <option value="$PROJECT_DIR$/src/Models/Game/Game.java" />
+        <option value="$PROJECT_DIR$/src/Models/Game/NormalGame.java" />
       </list>
     </option>
   </component>
@@ -249,6 +258,12 @@
               <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
               <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUIGame" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -257,6 +272,12 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Models" type="462c0819:PsiDirectoryNode" />
               <item name="Game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="minesweeper" type="b2602c69:ProjectViewProjectNode" />
+              <item name="minesweeper" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="SaveLoadPackage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -267,7 +288,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543585838538" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543588702975" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/simpleumlce_8205.jar!/" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -339,18 +360,18 @@
       <workItem from="1543008592802" duration="1109000" />
       <workItem from="1543092357646" duration="9000" />
       <workItem from="1543136671770" duration="4118000" />
-      <workItem from="1543578864970" duration="3856000" />
+      <workItem from="1543578864970" duration="6814000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="385000" />
+    <option name="totallyTimeSpent" value="3343000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2987897" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2987897" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -366,10 +387,10 @@
       <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Statistic" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.58428806" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.22422259" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32569557" />
-      <window_info active="true" anchor="bottom" id="Run" order="12" visible="true" weight="0.32569557" />
+      <window_info anchor="bottom" id="Run" order="12" weight="0.32569557" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -419,12 +440,86 @@
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Models/Player/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
+          <folding>
+            <element signature="method#Player#6;class#Player#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGameCustom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="98" column="5" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="445" selection-start-line="445" selection-end-line="445" />
+          <folding>
+            <element signature="e#1586#1587#0" expanded="true" />
+            <element signature="e#1617#1618#0" expanded="true" />
+            <element signature="e#1652#1653#0" expanded="true" />
+            <element signature="e#1684#1685#0" expanded="true" />
+            <element signature="e#1742#1743#0" expanded="true" />
+            <element signature="e#1792#1793#0" expanded="true" />
+            <element signature="e#16563#16564#0" expanded="true" />
+            <element signature="e#16604#16605#0" expanded="true" />
+            <element signature="e#16642#16643#0" expanded="true" />
+            <element signature="e#16677#16678#0" expanded="true" />
+            <element signature="e#16704#16705#0" expanded="true" />
+            <element signature="e#16736#16737#0" expanded="true" />
+            <element signature="e#16775#16776#0" expanded="true" />
+            <element signature="e#16809#16810#0" expanded="true" />
+            <element signature="e#16853#16854#0" expanded="true" />
+            <element signature="e#16886#16887#0" expanded="true" />
+            <element signature="e#16921#16922#0" expanded="true" />
+            <element signature="e#16960#16961#0" expanded="true" />
+            <element signature="e#16993#16994#0" expanded="true" />
+            <element signature="e#17032#17033#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUIGame/PlayerPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="61" column="23" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SaveLoadPackage/GameSave.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SaveLoadPackage/SaveLoadGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="9" column="57" selection-start-line="9" selection-start-column="57" selection-end-line="9" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Models/Game/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2215">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
+        <state relative-caret-position="135">
+          <caret line="111" selection-start-line="111" selection-end-line="111" />
           <folding>
-            <element signature="class#Timer#0;class#Game#0" />
+            <element signature="e#940#941#0" expanded="true" />
+            <element signature="e#985#986#0" expanded="true" />
+            <element signature="e#1018#1019#0" expanded="true" />
+            <element signature="e#1062#1063#0" expanded="true" />
+            <element signature="e#1585#1586#0" expanded="true" />
+            <element signature="e#1625#1626#0" expanded="true" />
+            <element signature="e#1755#1756#0" expanded="true" />
+            <element signature="e#1797#1798#0" expanded="true" />
             <element signature="e#2246#2247#0" expanded="true" />
             <element signature="e#2303#2304#0" expanded="true" />
             <element signature="e#2349#2350#0" expanded="true" />
@@ -447,21 +542,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUIGame/GUIGame.java">
+    <entry file="file://$PROJECT_DIR$/src/Models/Game/NormalGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="213" column="13" selection-start-line="213" selection-start-column="9" selection-end-line="213" selection-end-column="13" />
-          <folding>
-            <element signature="e#1457#1458#0" expanded="true" />
-            <element signature="e#1488#1489#0" expanded="true" />
-            <element signature="e#1523#1524#0" expanded="true" />
-            <element signature="e#1555#1556#0" expanded="true" />
-            <element signature="e#1613#1614#0" expanded="true" />
-            <element signature="e#1663#1664#0" expanded="true" />
-            <element signature="method#GUIGameThreadStart#0;class#GUIGame#0" />
-            <element signature="method#StartGame#0;class#GUIGame#0" />
-            <element signature="method#UpdateVeiw#0;class#GUIGame#0" />
-          </folding>
+        <state relative-caret-position="96">
+          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
         </state>
       </provider>
     </entry>

@@ -443,16 +443,5 @@ public class GUIGame extends NormalGame {
     }
 
 
-    protected void showGame(){
-        Thread ShowGameThread=new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // reset component
-                for(Player _player:players){
-                    _player.reset();
-                }
-            }
-        });
-        ShowGameThread.start();
-    }
+
 }

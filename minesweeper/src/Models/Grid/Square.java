@@ -6,9 +6,10 @@ import Models.Shield.HeroShield;
 import Models.Shield.NormalShield;
 import Models.Shield.Shield;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Square {
+public class Square implements Serializable {
     // <__ DATA MEMBERS __> \\
     private int x;
     private int y;

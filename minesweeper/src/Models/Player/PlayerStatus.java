@@ -1,5 +1,7 @@
 package Models.Player;
 
-public enum PlayerStatus{
+import java.io.Serializable;
+
+public enum PlayerStatus implements Serializable {
     Playing,waiting,Lose,win
 }

@@ -1,6 +1,8 @@
 package Models.Grid;
 
-public class Mine {
+import java.io.Serializable;
+
+public class Mine implements Serializable {
    int ID;
    //to define unique id for each mine
    private static int IDNumber = 0;

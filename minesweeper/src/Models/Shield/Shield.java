@@ -1,4 +1,6 @@
 package Models.Shield;
 
-public abstract class Shield {
+import java.io.Serializable;
+
+public abstract class Shield implements Serializable {
 }

@@ -2,7 +2,9 @@ package Models.Game;
 
 import Models.Player.Player;
 
-public class Points {
+import java.io.Serializable;
+
+public class Points implements Serializable {
     int RevealFloodFill;
     int RevealEmpty;
     int RevealMine;

@@ -3,11 +3,12 @@ package Models.Player;
 import Models.Move.PlayerMove;
 
 import java.awt.*;
+import java.io.Serializable;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-public abstract class Player{
+public abstract class Player implements Serializable {
 
     private String name;
     private Score currentScore;

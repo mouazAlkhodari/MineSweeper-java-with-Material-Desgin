@@ -1,5 +1,7 @@
 package Models.Game;
 
-public enum WhenHitMine {
+import java.io.Serializable;
+
+public enum WhenHitMine implements Serializable {
     Lose,Continue
 }

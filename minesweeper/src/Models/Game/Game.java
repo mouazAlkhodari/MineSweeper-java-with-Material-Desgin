@@ -5,6 +5,7 @@
  */
 package Models.Game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -21,9 +22,9 @@ import Models.Player.PlayerStatus;
 import MineSweeperGameDefineException.IllegalBoundsOfGrid;
 import MineSweeperGameDefineException.IllegalGameMove;
 
-public abstract class Game {
+public abstract class Game implements Serializable {
     // <__ INNER CLASS __> \\
-    public abstract class Timer extends Thread {
+    public abstract class Timer extends Thread implements Serializable {
         protected double currentTime;
         public Timer() {
             this.currentTime = 10;
@@ -57,8 +58,10 @@ public abstract class Game {
         }
     }
     protected Timer currentTimer;
-    protected int GameTime;
-    public abstract class GameRules{
+
+    public abstract class GameRules implements Serializable{
+
+        protected int GameTime;
         protected abstract void ChangePlayerStatus(List<PlayerMove> moves);
         protected abstract void GetScoreChange(List<PlayerMove> moves);
         public abstract void DecideNextPlayer(List<PlayerMove> moves);

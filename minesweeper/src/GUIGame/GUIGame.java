@@ -19,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -195,7 +196,6 @@ public class GUIGame extends NormalGame {
         BackButton.setPrefSize(80,40);
 
         BackButton.setOnAction(e->{
-            currentTimer.interrupt();
             Begin.Window.setScene(Begin.getWelcomescene());
             Begin.Window.centerOnScreen();
         });

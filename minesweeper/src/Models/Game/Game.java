@@ -58,7 +58,10 @@ public abstract class Game implements Serializable {
         }
     }
     protected Timer currentTimer;
+
     public abstract class GameRules implements Serializable{
+
+        protected int GameTime;
         protected abstract void ChangePlayerStatus(List<PlayerMove> moves);
         protected abstract void GetScoreChange(List<PlayerMove> moves);
         public abstract void DecideNextPlayer(List<PlayerMove> moves);
@@ -91,7 +94,9 @@ public abstract class Game implements Serializable {
             setCurrentPlayer(players.get(0));
 
         initGame(Width,Height,NumMines,ShildCount);
+        GameTime = 0;
     }
+
     // <__ METHODS __> \\
     protected void initGame(int width, int height, int minesCount,int ShildCount){
         try {

@@ -13,13 +13,19 @@ import javafx.scene.layout.VBox;
 public class GUIScoreBoard extends ScoreBoard {
     public Scene scene;
     BorderPane layout = new BorderPane();
-    JFXRippler Title = new JFXRippler(new Label("SCOREBOARD"));
+    HBox Top = new HBox();
+    Label Title = new Label("SCOREBOARD");
     public GUIScoreBoard() {
         initScene();
     }
     void initScene() {
-        Title.getStyleClass().addAll("h2");
-        layout.setTop(Title);
+
+        //init Top
+        Title.getStyleClass().addAll("h1");
+        Top.getStyleClass().addAll("playerboard");
+        Top.getChildren().addAll(Title);
+        layout.setTop(Top);
+
         layout.getStylesheets().addAll("Styles/style.css");
         layout.getStyleClass().addAll("windowsize");
         initLayout();

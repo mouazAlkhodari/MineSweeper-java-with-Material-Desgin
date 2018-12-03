@@ -91,5 +91,6 @@ public abstract class Player implements Serializable {
     public void reset(){
         currentStatus=PlayerStatus.waiting;
         currentScore.setScore(0);
+        setNumberOfShild(0);
     }
 }

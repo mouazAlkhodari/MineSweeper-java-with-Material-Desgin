@@ -119,6 +119,14 @@ public class Grid implements Serializable {
         return PlayerMoves;
     }
 
+    public void reset(){
+        for(int i=1;i<width;i++){
+            for(int j=1;j<height;j++){
+                if(field[i][j]!=null)
+                   field[i][j].reset();
+            }
+        }
+    }
     //Getters
 
     public ArrayList<Square> getMines() { return mines; }

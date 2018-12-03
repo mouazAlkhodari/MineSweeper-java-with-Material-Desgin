@@ -19,6 +19,8 @@ public class Square implements Serializable {
     private ArrayList playersMoves;
     private SquareStatus status;
     private String Color;
+
+    private SquareType Type;
     // <__ CONSTRUCTER __> \\
     public Square() { this(0,0,SquareType.Empty,0); }
     public Square(int x, int y) { this(x,y,SquareType.Empty,0); }
@@ -30,6 +32,7 @@ public class Square implements Serializable {
         this.playersMoves = new ArrayList();
         this.status = SquareStatus.Closed;
         this.NumberOfSurroundedMines = NOSM;
+        this.Type=type;
     }
     // <__ METHODS __> \\
     public void ChangeStatus(Player PlayerWhoMadeTheMove, MoveType Type) {
@@ -56,7 +59,12 @@ public class Square implements Serializable {
         this.y = y;
     }
 
+    public void reset(){
+        this.playersMoves = new ArrayList();
+        this.status = SquareStatus.Closed;
+    }
     // Getters
+
     public int getNumberOfSurroundedMines() { return this.NumberOfSurroundedMines;}
     public int getX() { return this.x;}
     public int getY() { return this.y;}
@@ -65,6 +73,5 @@ public class Square implements Serializable {
     public Boolean hasHeroSield() { return shield == null ? false : (shield instanceof HeroShield); }
     public SquareStatus getStatus() { return status; }
     public String getColor() { return Color; }
-
 
 }

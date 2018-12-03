@@ -9,7 +9,7 @@ import java.util.List;
 
 public class GUIGameCustom extends GUIGame {
 
-    class CustomRules extends DefaultRules{
+    class CustomRules extends DefaultRules {
         public CustomRules() {
             super();
         }
@@ -21,7 +21,7 @@ public class GUIGameCustom extends GUIGame {
         }
         protected void ChangePlayerStatus(List<PlayerMove> moves) {
             if(moves.size()==0){
-                if(status!=GameStatus.Finish)
+                if(status != GameStatus.Finish)
                     currentPlayer.setCurrentStatus(PlayerStatus.waiting);
                 return;
             }
@@ -61,7 +61,9 @@ public class GUIGameCustom extends GUIGame {
                 }
             }
         }
-    };
+
+
+    }
 
     public GUIGameCustom(int NumOfShield,List _players) {
         super(_players);

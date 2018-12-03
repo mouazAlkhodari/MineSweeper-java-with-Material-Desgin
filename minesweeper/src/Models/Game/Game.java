@@ -62,11 +62,16 @@ public abstract class Game implements Serializable {
 
 
     public abstract class GameRules implements Serializable{
-
-
         protected abstract void ChangePlayerStatus(List<PlayerMove> moves);
         protected abstract void GetScoreChange(List<PlayerMove> moves);
         public abstract void DecideNextPlayer(List<PlayerMove> moves);
+        protected abstract Points getPoints();
+        protected abstract WhenHitMine getPressMineBehavior();
+        protected abstract WhenScoreNegative getScoreNegativeBehavior();
+        protected abstract void setPoints(Points points);
+        protected abstract void setPressMineBehavior(WhenHitMine pressMineBehavior);
+        protected abstract void setScoreNegativeBehavior(WhenScoreNegative scoreNegativeBehavior);
+
     }
     protected GameRules currentRules;
     // <__ DATA MEMBERS __> \\
@@ -97,6 +102,18 @@ public abstract class Game implements Serializable {
 
         initGame(Width,Height,NumMines,ShildCount);
         GameTime = 0;
+    }
+
+    public Game(int gameTime, GameRules currentRules, Player currentPlayer, Grid grid, GameStatus status, List<Player> players, List<PlayerMove> moves, int flagsNumber, int shildNumber) {
+        GameTime = gameTime;
+        this.currentRules = currentRules;
+        this.currentPlayer = currentPlayer;
+        this.grid = grid;
+        this.status = status;
+        this.players = players;
+        this.moves = moves;
+        FlagsNumber = flagsNumber;
+        ShildNumber = shildNumber;
     }
 
     // <__ METHODS __> \\
@@ -212,6 +229,7 @@ public abstract class Game implements Serializable {
     public GameStatus getStatus() {
         return status;
     }
+    public GameRules getGameRules(){ return this.currentRules; }
 
     //This func Implement in each kind of game Like Console Or GUI...
     public abstract void StartGame();

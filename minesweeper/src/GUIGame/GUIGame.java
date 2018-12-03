@@ -85,6 +85,13 @@ public class GUIGame extends NormalGame {
                 GetMove();
         }
     }
+
+    public GUIGame(int gameTime, GameRules currentRules, Player currentPlayer, Grid grid, GameStatus status, List<Player> players, List<PlayerMove> moves, int flagsNumber, int shildNumber) {
+        super(gameTime, currentRules, currentPlayer, grid, status, players, moves, flagsNumber, shildNumber);
+        FlagsNumberLabel.setText(String.valueOf(flagsNumber));
+        this.shieldNumberLabel.setText(String.valueOf(shildNumber));
+    }
+
     // <__ CONSTRUCTOR __> \\
     public GUIGame(List _players){
         super(_players);
@@ -441,6 +448,5 @@ public class GUIGame extends NormalGame {
     public int getFlagsNumber(){
         return this.FlagsNumber;
     }
-
-
+    public int getGameTime(){ return this.GameTime; }
 }

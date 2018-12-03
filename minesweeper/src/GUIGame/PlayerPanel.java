@@ -59,7 +59,7 @@ public class PlayerPanel {
             }
         });
         playerTimerLabel=new Label("Time: " +player.getTimeforTimer());
-        timeProgress = new RingProgressIndicator(player.getTimeforTimer());
+        timeProgress = new RingProgressIndicator();
             playerNameLeftLabel.getStyleClass().addAll("h2");
             playerNameTopLabel.getStyleClass().add("h2");
             playerScoreLabel.getStyleClass().addAll("h1","center");

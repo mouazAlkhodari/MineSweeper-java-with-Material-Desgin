@@ -125,6 +125,7 @@ public abstract class Game implements Serializable {
 
         initGame(Width,Height,NumMines,ShildCount);
         GameTime = 0;
+        GameMoves = new MovesOfGame();
     }
 
     // <__ METHODS __> \\

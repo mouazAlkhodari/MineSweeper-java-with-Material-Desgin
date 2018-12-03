@@ -8,6 +8,7 @@ import Models.Move.MoveType;
 import Models.Move.PlayerMove;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
+import Models.ScoreBoard.PlayerBoard;
 import SaveLoadPackage.GameSave;
 import SaveLoadPackage.SaveLoadGame;
 import javafx.application.Platform;
@@ -380,6 +381,7 @@ public class GUIGame extends NormalGame {
         Thread EndGameThread=new Thread(new Runnable() {
             @Override
             public void run() {
+                Player winner = players.get(0);
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
@@ -427,6 +429,9 @@ public class GUIGame extends NormalGame {
                         }
                     }
                 });
+                Begin.scoreboard.AddPlayer(new PlayerBoard(winner.getName(),GameTime,winner.getCurrentScore().getScore(),winner.getNumberOfShield(),grid.getWidth(),grid.getHeight()));
+                Begin.scoreboard.initScene();
+
             }
         });
 
@@ -458,48 +463,44 @@ public class GUIGame extends NormalGame {
         Thread showGameThread= new Thread(new Runnable() {
             @Override
             public void run() {
-//                Platform.runLater(new Runnable() {
-//                    @Override//
-//                  public void run() {
-                        // reset component
-                        for(Player _player:players){
-                            _player.reset();
+                // reset component
+                for(Player _player:players){
+                    _player.reset();
+                }
+                currentPlayer=players.get(0);
+
+                grid.reset();
+                FlagsNumber=grid.getMinesCount();
+                ShildNumber=grid.getShieldsCount();
+
+                initFXComponoents();
+                scene.setRoot(layout);
+
+                scene.getStylesheets().add("Styles/style.css");
+
+                BackButton.setDisable(true);
+                SaveButton.setDisable(true);
+                ReplayButton.setDisable(true);
+                System.out.println(GameMoves.getMoves().size());
+                for(PlayerMove _move:GameMoves.getMoves()){
+                    double currentTime=2;// TODO: get it From The Move
+                    while (currentTime > 0) {
+                        currentTime -= 0.1;
+                        currentPanel.setTime(currentTime);
+                        try {
+                            TimeUnit.MILLISECONDS.sleep(100);
+                        } catch (InterruptedException e) {
+                            // TODO: Some Handling way
+                            //System.err.println("Interrupted Timer");
+                            return;
                         }
-                        currentPlayer=players.get(0);
-
-                        grid.reset();
-
-                        initFXComponoents();
-                        scene.setRoot(layout);
-
-                        scene.getStylesheets().add("Styles/style.css");
-
-                        BackButton.setDisable(true);
-                        SaveButton.setDisable(true);
-                        ReplayButton.setDisable(true);
-                        System.out.println(GameMoves.getMoves().size());
-                        for(PlayerMove _move:GameMoves.getMoves()){
-                            double currentTime=2;// TODO: get it From The Move
-                            while (currentTime > 0) {
-                                currentTime -= 0.1;
-                                currentPanel.setTime(currentTime);
-                                try {
-                                    TimeUnit.MILLISECONDS.sleep(100);
-                                } catch (InterruptedException e) {
-                                    // TODO: Some Handling way
-                                    //System.err.println("Interrupted Timer");
-                                    return;
-                                }
-                            }
-                            ApplyPlayerMove(_move);
-                            UpdateVeiw(moves);
-                        }
-                        BackButton.setDisable(false);
-                        SaveButton.setDisable(false);
-                        ReplayButton.setDisable(false);
-   //                 }
-     //           });
-
+                    }
+                    ApplyPlayerMove(_move);
+                    UpdateVeiw(moves);
+                }
+                BackButton.setDisable(false);
+                SaveButton.setDisable(false);
+                ReplayButton.setDisable(false);
             }
         });
         showGameThread.start();

@@ -109,10 +109,8 @@
 .playerboard{
     -fx-background-color:#BE90D4;
     -fx-background-radius: 5;
-    -fx-border-width: 0;
     -fx-min-height: 50;
     -fx-alignment: CENTER;
-    -fx-border-color: #323232;
 }
 
 .img-view { -fx-fit-to-height: 50;-fx-fit-to-width: 50;}

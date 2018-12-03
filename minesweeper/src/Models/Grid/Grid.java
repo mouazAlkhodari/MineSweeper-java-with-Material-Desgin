@@ -132,6 +132,7 @@ public class Grid implements Serializable {
     public ArrayList<Square> getMines() { return mines; }
 
     public int getMinesCount() { return minesCount; }
+    public int getShieldsCount() { return shieldsCount; }
     public int getWidth(){return this.width;}
     public int getHeight(){return this.height;}
     public Square[][] getField() { return this.field;}

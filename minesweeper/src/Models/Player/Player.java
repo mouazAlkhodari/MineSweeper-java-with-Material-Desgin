@@ -16,6 +16,7 @@ public abstract class Player implements Serializable {
     private String color;
 
     int numberOfShield;
+    int ShieldCountBegin;
     int maxNumberOfShild;
     boolean canPlay;
 
@@ -48,6 +49,7 @@ public abstract class Player implements Serializable {
         this.currentStatus = currentStatus;
         this.color=_color;
         numberOfShield=_numberOfShield;
+        ShieldCountBegin=_numberOfShield;
         maxNumberOfShild=_maxNumberOfShild;
     }
 
@@ -91,6 +93,6 @@ public abstract class Player implements Serializable {
     public void reset(){
         currentStatus=PlayerStatus.waiting;
         currentScore.setScore(0);
-        setNumberOfShild(0);
+        setNumberOfShild(ShieldCountBegin);
     }
 }

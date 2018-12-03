@@ -2,4 +2,5 @@
 /minesweeper/build/
 /minesweeper/.idea/workspace.xml
 /minesweeper/dist/
-./out
+./out/*.*
+./.idea/*.*

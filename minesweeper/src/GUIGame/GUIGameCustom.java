@@ -6,10 +6,11 @@ import Models.Move.*;
 import Models.Player.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class GUIGameCustom extends GUIGame {
 
-    class CustomRules extends DefaultRules{
+    class CustomRules extends DefaultRules {
         public CustomRules() {
             super();
         }
@@ -21,7 +22,7 @@ public class GUIGameCustom extends GUIGame {
         }
         protected void ChangePlayerStatus(List<PlayerMove> moves) {
             if(moves.size()==0){
-                if(status!=GameStatus.Finish)
+                if(status != GameStatus.Finish)
                     currentPlayer.setCurrentStatus(PlayerStatus.waiting);
                 return;
             }
@@ -61,7 +62,9 @@ public class GUIGameCustom extends GUIGame {
                 }
             }
         }
-    };
+
+
+    }
 
     public GUIGameCustom(int NumOfShield,List _players) {
         super(_players);
@@ -85,18 +88,7 @@ public class GUIGameCustom extends GUIGame {
         currentRules=new CustomRules(points,pressMineBehavior,scoreNegativeBehavior);
         ShildNumber=NumOfShield;
     }
-    protected void showGame(){
-        Thread ShowGameThread=new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // reset component
-                for(Player _player:players){
-                    _player.reset();
-                }
-            }
-        });
-        ShowGameThread.start();
-    }
+
     /*@Override
     protected void initScene() {
         super.initScene();

@@ -1,5 +1,6 @@
 package Models.Game;
 
+import Models.Grid.Grid;
 import Models.Grid.SquareStatus;
 import Models.Player.Player;
 import Models.Move.PlayerMove;
@@ -10,19 +11,31 @@ import java.util.List;
 public class NormalGame extends Game {
 
 
+    public NormalGame(int gameTime, GameRules currentRules, Player currentPlayer, Grid grid, GameStatus status, List<Player> players, List<PlayerMove> moves, int flagsNumber, int shildNumber) {
+        super(gameTime, currentRules, currentPlayer, grid, status, players, moves, flagsNumber, shildNumber);
+    }
     // Constructors
     public NormalGame(List ListOfPlayers){
         super(ListOfPlayers);
         currentRules=new DefaultRules();
+        this.whenHitMine = currentRules.getPressMineBehavior();
+        this.whenScoreNegative = currentRules.getScoreNegativeBehavior();
+        this.points = currentRules.getPoints();
     }
     public NormalGame(int Width,int Height,int NumMines,List ListOfPlayers){
         super(Width,Height,NumMines,ListOfPlayers);
         currentRules=new DefaultRules();
+        this.whenHitMine = currentRules.getPressMineBehavior();
+        this.whenScoreNegative = currentRules.getScoreNegativeBehavior();
+        this.points = currentRules.getPoints();
     }
     public NormalGame(int width, int height, int numMines, List players,
                       Points points, WhenHitMine pressMineBehavior, WhenScoreNegative scoreNegativeBehavior) {
         super(width, height, numMines, players);
         currentRules=new DefaultRules(points,pressMineBehavior,scoreNegativeBehavior);
+        this.whenHitMine = pressMineBehavior;
+        this.whenScoreNegative = scoreNegativeBehavior;
+        this.points = points;
     }
 
 
@@ -31,9 +44,6 @@ public class NormalGame extends Game {
     // #see GameRules In Game Class
     public class DefaultRules extends GameRules {
         public Points points;
-        public Points getPoints() {
-            return points;
-        }
         protected WhenHitMine PressMineBehavior;
         protected WhenScoreNegative ScoreNegativeBehavior;
         public DefaultRules() {
@@ -122,8 +132,46 @@ public class NormalGame extends Game {
                 setCurrentPlayer(currentPlayer);
             }
         }
+
+        public Points getPoints() {
+            return points;
+        }
+
+        public WhenHitMine getPressMineBehavior() {
+            return PressMineBehavior;
+        }
+
+        public WhenScoreNegative getScoreNegativeBehavior() {
+            return ScoreNegativeBehavior;
+        }
+
+        public void setPoints(Points points) {
+            this.points = points;
+        }
+
+        public void setPressMineBehavior(WhenHitMine pressMineBehavior) {
+            PressMineBehavior = pressMineBehavior;
+        }
+
+        public void setScoreNegativeBehavior(WhenScoreNegative scoreNegativeBehavior) {
+            ScoreNegativeBehavior = scoreNegativeBehavior;
+        }
+    }
+    private WhenHitMine whenHitMine ;
+    private WhenScoreNegative whenScoreNegative ;
+    private Points points;
+
+    public WhenHitMine getWhenHitMine() {
+        return whenHitMine;
     }
 
+    public Points getPoints() {
+        return points;
+    }
+
+    public WhenScoreNegative getWhenScoreNegative() {
+        return whenScoreNegative;
+    }
 
     @Override
     public void StartGame() {};

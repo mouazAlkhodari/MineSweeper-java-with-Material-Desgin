@@ -6,6 +6,8 @@ import Models.Game.WhenHitMine;
 import Models.Game.WhenScoreNegative;
 import Models.Player.DumbPlayer;
 import Models.Player.Player;
+import SaveLoadPackage.GameSave;
+import SaveLoadPackage.SaveLoadGame;
 import com.jfoenix.controls.*;
 import javafx.animation.FadeTransition;
 import javafx.scene.Node;
@@ -190,7 +192,10 @@ public class GUIGameMainMenu {
             //Setting Style
             LoadGame = new Button("LOAD GAME");
             LoadGame.getStyleClass().addAll("menubutton","h3");
-            LoadGame.setDisable(true);
+            //LoadGame.setDisable(true);
+            LoadGame.setOnAction(event -> {
+       //         SaveLoadGame.loadGame("saved.txt");
+            });
 
             Scoreboard = new Button("SCOREBOARD");
             Scoreboard.getStyleClass().addAll("menubutton","h3");

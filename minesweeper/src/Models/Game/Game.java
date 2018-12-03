@@ -62,28 +62,33 @@ public abstract class Game implements Serializable {
 
 
     public abstract class GameRules implements Serializable{
-
-
         protected abstract void ChangePlayerStatus(List<PlayerMove> moves);
         protected abstract void GetScoreChange(List<PlayerMove> moves);
         public abstract void DecideNextPlayer(List<PlayerMove> moves);
+        protected abstract Points getPoints();
+        protected abstract WhenHitMine getPressMineBehavior();
+        protected abstract WhenScoreNegative getScoreNegativeBehavior();
+        protected abstract void setPoints(Points points);
+        protected abstract void setPressMineBehavior(WhenHitMine pressMineBehavior);
+        protected abstract void setScoreNegativeBehavior(WhenScoreNegative scoreNegativeBehavior);
+
     }
     protected GameRules currentRules;
 
     public class MovesOfGame {
-        List<PlayerMove> Moves;
+        ArrayList<PlayerMove> Moves;
         MovesOfGame(){
             this(new ArrayList<PlayerMove>());
         }
-        MovesOfGame(List<PlayerMove> _moves){
+        MovesOfGame(ArrayList<PlayerMove> _moves){
             Moves=_moves;
         }
 
-        public List<PlayerMove> getMoves() {
+        public ArrayList<PlayerMove> getMoves() {
             return Moves;
         }
 
-        public void setMoves(List<PlayerMove> moves) {
+        public void setMoves(ArrayList<PlayerMove> moves) {
             Moves = moves;
         }
         public void add(PlayerMove _move){
@@ -94,7 +99,7 @@ public abstract class Game implements Serializable {
         }
     }
 
-    protected MovesOfGame GameMove;
+    protected MovesOfGame GameMoves=new MovesOfGame();
 
     // <__ DATA MEMBERS __> \\
     protected Player currentPlayer;
@@ -125,7 +130,19 @@ public abstract class Game implements Serializable {
 
         initGame(Width,Height,NumMines,ShildCount);
         GameTime = 0;
-        GameMove = new MovesOfGame();
+        GameMoves = new MovesOfGame();
+    }
+
+    public Game(int gameTime, GameRules currentRules, Player currentPlayer, Grid grid, GameStatus status, List<Player> players, List<PlayerMove> moves, int flagsNumber, int shildNumber) {
+        GameTime = gameTime;
+        this.currentRules = currentRules;
+        this.currentPlayer = currentPlayer;
+        this.grid = grid;
+        this.status = status;
+        this.players = players;
+        this.moves = moves;
+        FlagsNumber = flagsNumber;
+        ShildNumber = shildNumber;
     }
 
     // <__ METHODS __> \\
@@ -154,7 +171,6 @@ public abstract class Game implements Serializable {
         if(status==GameStatus.FirstMove){
             initGame(move);
         }
-        GameMove.add(move);
         moves=this.grid.AcceptMove(move);
         currentTimer.interrupt();
         currentRules.DecideNextPlayer(moves);
@@ -164,16 +180,19 @@ public abstract class Game implements Serializable {
     }
     protected void AcceptMove(PlayerMove move)throws IllegalGameMove {// x Rows Y columns
         Square s = move.getSquare();
-        if(status==GameStatus.FirstMove){
-            ApplyPlayerMove(move);
-            return;
-        }
+        //        GameMoves.add(move);
         if(SquareType2DArray.CheckIndex(s.getX(),s.getY(),grid.getWidth(),grid.getHeight()))
         {
+            if(status==GameStatus.FirstMove){
+                ApplyPlayerMove(move);
+                GameMoves.add(move);
+                return;
+            }
             move.setSquare(grid.getField()[move.getSquare().getX()][move.getSquare().getY()]);
             if(move.getType()==MoveType.Reveal) {
                 if (move.getSquare().getStatus() == SquareStatus.Closed) {
                     ApplyPlayerMove(move);
+                    GameMoves.add(move);
                     return;
                 }
                 else{
@@ -183,6 +202,7 @@ public abstract class Game implements Serializable {
             else{
                 if(move.getSquare().getStatus() == SquareStatus.Marked  || (FlagsNumber >0 && move.getSquare().getStatus()==SquareStatus.Closed)) {
                     ApplyPlayerMove(move);
+                    GameMoves.add(move);
                     return;
                 }
                 else{
@@ -242,6 +262,7 @@ public abstract class Game implements Serializable {
     public GameStatus getStatus() {
         return status;
     }
+    public GameRules getGameRules(){ return this.currentRules; }
 
     //This func Implement in each kind of game Like Console Or GUI...
     public abstract void StartGame();

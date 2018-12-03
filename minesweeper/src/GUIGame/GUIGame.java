@@ -22,6 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -56,6 +57,7 @@ public class GUIGame extends NormalGame {
     protected Label LastMoveLabel,FlagsNumberLabel,shieldNumberLabel;
 
 
+    protected Button ReplayButton;
     class GUITimer extends Timer{
         public GUITimer(){
             super();
@@ -86,6 +88,13 @@ public class GUIGame extends NormalGame {
                 GetMove();
         }
     }
+
+    public GUIGame(int gameTime, GameRules currentRules, Player currentPlayer, Grid grid, GameStatus status, List<Player> players, List<PlayerMove> moves, int flagsNumber, int shildNumber) {
+        super(gameTime, currentRules, currentPlayer, grid, status, players, moves, flagsNumber, shildNumber);
+        FlagsNumberLabel.setText(String.valueOf(flagsNumber));
+        this.shieldNumberLabel.setText(String.valueOf(shildNumber));
+    }
+
     // <__ CONSTRUCTOR __> \\
     public GUIGame(List _players){
         super(_players);
@@ -120,14 +129,6 @@ public class GUIGame extends NormalGame {
 
     protected void initScene() {
         initFXComponoents();
-        layout=new BorderPane();
-        layout.setCenter(FXgrid);
-        layout.setRight(ScoreBoard);
-        layout.setBottom(footer);
-        layout.setTop(top);
-        layout.setLeft(left);
-        layout.getLeft().getStyleClass().add("center");
-        layout.getStyleClass().add("padding");
         scene = new Scene(layout);
         scene.getStylesheets().add("Styles/style.css");
     }
@@ -138,6 +139,15 @@ public class GUIGame extends NormalGame {
         initGrid();
         initScoreBoard();
         initfooter();
+
+        layout=new BorderPane();
+        layout.setCenter(FXgrid);
+        layout.setRight(ScoreBoard);
+        layout.setBottom(footer);
+        layout.setTop(top);
+        layout.setLeft(left);
+        layout.getLeft().getStyleClass().add("center");
+        layout.getStyleClass().add("padding");
     }
 
     private void initGrid() {
@@ -203,11 +213,11 @@ public class GUIGame extends NormalGame {
 
         BackButton =new Button("Back");
         BackButton.getStyleClass().addAll("menubutton","h3");
-        BackButton.setPrefSize(80,40);
+        BackButton.setPrefSize(60,40);
 
         SaveButton =new Button("Save");
         SaveButton.getStyleClass().addAll("menubutton","h3");
-        SaveButton.setPrefSize(80,40);
+        SaveButton.setPrefSize(60,40);
 
         SaveButton.setOnAction(event -> {
             String fileName = "saved.txt";
@@ -218,7 +228,16 @@ public class GUIGame extends NormalGame {
             Begin.Window.setScene(Begin.getWelcomescene());
             Begin.Window.centerOnScreen();
         });
-        footer.getChildren().addAll(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton, SaveButton);
+
+        ReplayButton=new Button("Replay");
+        ReplayButton.getStyleClass().addAll("menubutton","h3");
+        ReplayButton.setPrefSize(60,40);
+
+        ReplayButton.setOnAction(e->{
+            currentTimer.interrupt();
+            showGame();
+        });
+        footer.getChildren().addAll(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton, SaveButton,ReplayButton);
     }
 
     void GUIGameThreadStart(Thread thread){
@@ -232,7 +251,7 @@ public class GUIGame extends NormalGame {
             public void run() {
                 while (status != GameStatus.Finish) {
                     GameTime++;
-                    System.out.print(GameTime);
+                    //System.out.print(GameTime);
                     try {
                         TimeUnit.SECONDS.sleep(1);
                     } catch (InterruptedException e) {
@@ -446,7 +465,51 @@ public class GUIGame extends NormalGame {
     public int getFlagsNumber(){
         return this.FlagsNumber;
     }
+    public int getGameTime(){ return this.GameTime; }
+    protected void showGame(){
+        Thread showGameThread= new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // reset component
+                for(Player _player:players){
+                    _player.reset();
+                }
+                currentPlayer=players.get(0);
 
+                grid.reset();
+                FlagsNumber=grid.getMinesCount();
+                ShildNumber=grid.getShieldsCount();
 
+                initFXComponoents();
+                scene.setRoot(layout);
 
+                scene.getStylesheets().add("Styles/style.css");
+
+                BackButton.setDisable(true);
+                SaveButton.setDisable(true);
+                ReplayButton.setDisable(true);
+                System.out.println(GameMoves.getMoves().size());
+                for(PlayerMove _move:GameMoves.getMoves()){
+                    double currentTime=2;// TODO: get it From The Move
+                    while (currentTime > 0) {
+                        currentTime -= 0.1;
+                        currentPanel.setTime(currentTime);
+                        try {
+                            TimeUnit.MILLISECONDS.sleep(100);
+                        } catch (InterruptedException e) {
+                            // TODO: Some Handling way
+                            //System.err.println("Interrupted Timer");
+                            return;
+                        }
+                    }
+                    ApplyPlayerMove(_move);
+                    UpdateVeiw(moves);
+                }
+                BackButton.setDisable(false);
+                SaveButton.setDisable(false);
+                ReplayButton.setDisable(false);
+            }
+        });
+        showGameThread.start();
+    }
 }

@@ -2,7 +2,7 @@ package GUIGame;
 
 import Models.ScoreBoard.PlayerBoard;
 import Models.ScoreBoard.ScoreBoard;
-import com.jfoenix.controls.JFXRippler;
+import com.jfoenix.controls.JFXTreeTableView;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -14,6 +14,7 @@ public class GUIScoreBoard extends ScoreBoard {
     public Scene scene;
     BorderPane layout = new BorderPane();
     HBox Top = new HBox();
+    JFXTreeTableView table = new JFXTreeTableView();
     Label Title = new Label("SCOREBOARD");
     public GUIScoreBoard() {
         initScene();
@@ -34,6 +35,7 @@ public class GUIScoreBoard extends ScoreBoard {
 
     void initLayout() {
         for (PlayerBoard _player : scoreboard) {
+            //init PlayerBoard
 
         }
     }

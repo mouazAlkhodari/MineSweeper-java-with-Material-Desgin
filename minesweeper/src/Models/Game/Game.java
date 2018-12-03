@@ -74,6 +74,33 @@ public abstract class Game implements Serializable {
 
     }
     protected GameRules currentRules;
+
+    public class MovesOfGame {
+        ArrayList<PlayerMove> Moves;
+        MovesOfGame(){
+            this(new ArrayList<PlayerMove>());
+        }
+        MovesOfGame(ArrayList<PlayerMove> _moves){
+            Moves=_moves;
+        }
+
+        public ArrayList<PlayerMove> getMoves() {
+            return Moves;
+        }
+
+        public void setMoves(ArrayList<PlayerMove> moves) {
+            Moves = moves;
+        }
+        public void add(PlayerMove _move){
+            Moves.add(_move);
+        }
+        public void clear(){
+            Moves.clear();
+        }
+    }
+
+    protected MovesOfGame GameMoves=new MovesOfGame();
+
     // <__ DATA MEMBERS __> \\
     protected Player currentPlayer;
     protected Grid grid;
@@ -86,6 +113,7 @@ public abstract class Game implements Serializable {
     protected int FlagsNumber;
     protected int ShildNumber;
     protected int HeroShieldNumber;
+
 
     public Game(List _players){
         this(10,10,10,0,_players);
@@ -102,6 +130,7 @@ public abstract class Game implements Serializable {
 
         initGame(Width,Height,NumMines,ShildCount);
         GameTime = 0;
+        GameMoves = new MovesOfGame();
     }
 
     public Game(int gameTime, GameRules currentRules, Player currentPlayer, Grid grid, GameStatus status, List<Player> players, List<PlayerMove> moves, int flagsNumber, int shildNumber) {
@@ -151,16 +180,19 @@ public abstract class Game implements Serializable {
     }
     protected void AcceptMove(PlayerMove move)throws IllegalGameMove {// x Rows Y columns
         Square s = move.getSquare();
-        if(status==GameStatus.FirstMove){
-            ApplyPlayerMove(move);
-            return;
-        }
+        //        GameMoves.add(move);
         if(SquareType2DArray.CheckIndex(s.getX(),s.getY(),grid.getWidth(),grid.getHeight()))
         {
+            if(status==GameStatus.FirstMove){
+                ApplyPlayerMove(move);
+                GameMoves.add(move);
+                return;
+            }
             move.setSquare(grid.getField()[move.getSquare().getX()][move.getSquare().getY()]);
             if(move.getType()==MoveType.Reveal) {
                 if (move.getSquare().getStatus() == SquareStatus.Closed) {
                     ApplyPlayerMove(move);
+                    GameMoves.add(move);
                     return;
                 }
                 else{
@@ -170,6 +202,7 @@ public abstract class Game implements Serializable {
             else{
                 if(move.getSquare().getStatus() == SquareStatus.Marked  || (FlagsNumber >0 && move.getSquare().getStatus()==SquareStatus.Closed)) {
                     ApplyPlayerMove(move);
+                    GameMoves.add(move);
                     return;
                 }
                 else{

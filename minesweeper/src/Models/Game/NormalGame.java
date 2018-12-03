@@ -8,7 +8,7 @@ import Models.Player.PlayerStatus;
 
 import java.util.List;
 
-public abstract class NormalGame extends Game {
+public class NormalGame extends Game {
 
 
     public NormalGame(int gameTime, GameRules currentRules, Player currentPlayer, Grid grid, GameStatus status, List<Player> players, List<PlayerMove> moves, int flagsNumber, int shildNumber) {
@@ -174,7 +174,9 @@ public abstract class NormalGame extends Game {
     }
 
     @Override
-    public abstract void GetMove();
-    protected abstract void UpdateVeiw(List<PlayerMove> Moves);
-    protected abstract void EndGame();
+    public void StartGame() {};
+
+    public void GetMove(){};
+    protected void UpdateVeiw(List<PlayerMove> Moves){};
+    protected void EndGame(){};
 }

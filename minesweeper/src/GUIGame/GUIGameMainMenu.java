@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class GUIGameMainMenu {
     WelcomeScene welcomescene = new WelcomeScene();
     OptionScene optionsScene = new OptionScene();
+    public GUIScoreBoard scoreboard = new GUIScoreBoard();
 
     GUIGame guiGame;
     Stage Window;
@@ -198,7 +199,7 @@ public class GUIGameMainMenu {
 
             Scoreboard = new Button("SCOREBOARD");
             Scoreboard.getStyleClass().addAll("menubutton","h3");
-            Scoreboard.setDisable(true);
+            Scoreboard.setOnAction(e -> {Window.setScene(scoreboard.scene);Window.centerOnScreen();});
 
             Profile = new Button("PROFILE");
             Profile.getStyleClass().addAll("menubutton","h3");

@@ -8,6 +8,7 @@ import Models.Move.MoveType;
 import Models.Move.PlayerMove;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
+import Models.ScoreBoard.PlayerBoard;
 import SaveLoadPackage.GameSave;
 import SaveLoadPackage.SaveLoadGame;
 import javafx.application.Platform;
@@ -368,6 +369,7 @@ public class GUIGame extends NormalGame {
         Thread EndGameThread=new Thread(new Runnable() {
             @Override
             public void run() {
+                Player winner = players.get(0);
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
@@ -415,6 +417,9 @@ public class GUIGame extends NormalGame {
                         }
                     }
                 });
+                Begin.scoreboard.AddPlayer(new PlayerBoard(winner.getName(),GameTime,winner.getCurrentScore().getScore(),winner.getNumberOfShield(),grid.getWidth(),grid.getHeight()));
+                Begin.scoreboard.initScene();
+
             }
         });
 

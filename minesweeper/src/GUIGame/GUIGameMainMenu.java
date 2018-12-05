@@ -158,6 +158,15 @@ public class GUIGameMainMenu {
         Window.centerOnScreen();
         guiGame.StartGame();
     }
+    void loadGame(){
+        String fileName = "saved.txt";
+        guiGame=SaveLoadGame.loadGame(fileName);
+        guiGame.initscene();
+        guiGame.setBegin(this);
+        Window.setScene(guiGame.getScene());
+        Window.centerOnScreen();
+        guiGame.StartGame();
+    }
 
     void fadeIn(Node node) {
         node.setVisible(true);
@@ -193,9 +202,7 @@ public class GUIGameMainMenu {
             LoadGame = new Button("LOAD GAME");
             LoadGame.getStyleClass().addAll("menubutton","h3");
             //LoadGame.setDisable(true);
-            LoadGame.setOnAction(event -> {
-       //         SaveLoadGame.loadGame("saved.txt");
-            });
+            LoadGame.setOnAction(event -> loadGame());
 
             Scoreboard = new Button("SCOREBOARD");
             Scoreboard.getStyleClass().addAll("menubutton","h3");

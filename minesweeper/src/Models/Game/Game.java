@@ -75,7 +75,7 @@ public abstract class Game implements Serializable {
     }
     protected GameRules currentRules;
 
-    public class MovesOfGame {
+    public class MovesOfGame implements Serializable {
         ArrayList<PlayerMove> Moves;
         MovesOfGame(){
             this(new ArrayList<PlayerMove>());

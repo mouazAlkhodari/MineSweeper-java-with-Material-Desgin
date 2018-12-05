@@ -9,7 +9,6 @@ import Models.Move.PlayerMove;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
 import Models.ScoreBoard.PlayerBoard;
-import SaveLoadPackage.GameSave;
 import SaveLoadPackage.SaveLoadGame;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -22,43 +21,197 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import java.awt.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.max;
 
-public class GUIGame extends NormalGame {
-    protected List<PlayerPanel> PlayersPanel = new ArrayList<>() ;
-    protected PlayerPanel currentPanel;
-    // <__ DATA MEMBERS __> \\
-
+public class GUIGame extends NormalGame implements Serializable {
     protected PlayerMove currentPlayerMove;
-    protected static Double ConstBorder=400.0;
+    protected class UIGameElements{
+        protected List<PlayerPanel> PlayersPanel = new ArrayList<>() ;
+        protected PlayerPanel currentPanel;
+        // <__ DATA MEMBERS __> \\
 
-    protected GridPane FXgrid;
-    protected VBox ScoreBoard;
-    protected HBox footer;
-    protected HBox top;
-    protected VBox left;
+        protected Double ConstBorder=400.0;
 
-    protected Scene scene;
-    protected BorderPane layout;
+        protected GridPane FXgrid;
+        protected VBox ScoreBoard;
+        protected HBox footer;
+        protected HBox top;
+        protected VBox left;
 
-    protected Button BackButton;
-    protected Button SaveButton;
+        protected Scene scene;
+        protected BorderPane layout;
 
-    protected GUIGameMainMenu Begin;
+        protected Button BackButton;
+        protected Button SaveButton;
+        protected Button ReplayButton;
 
-    // in footer
-    protected Label LastMoveLabel,FlagsNumberLabel,shieldNumberLabel;
+        protected GUIGameMainMenu Begin;
+
+        // in footer
+        protected Label LastMoveLabel,FlagsNumberLabel,shieldNumberLabel;
+
+        public UIGameElements(){
+            initScene();
+        }
+        // <__ GETTERS-SETTERS __> \\
+        //Getters;
+
+        public GridPane getFXgrid() { return FXgrid; }
+        public VBox getScoreBoard() { return ScoreBoard; }
+        public Scene getScene() { return scene; }
+        public HBox getFooter() {return footer; }
+        public void setTop(PlayerPanel _panel) {
+            this.top =_panel.getTopPanel();
+            currentPanel=_panel;
+        }
+        public void setLayoutLeft(){
+            layout.setLeft(left);
+        }
+        public void setLayoutTop(){
+            layout.setTop(top);
+        }
+        public GUIGameMainMenu getBegin() { return Begin; }
+
+        public void setBegin(GUIGameMainMenu begin) { Begin = begin; }
+
+        protected void initScene() {
+            initFXComponoents();
+            scene = new Scene(layout);
+            scene.getStylesheets().add("Styles/style.css");
+        }
 
 
-    protected Button ReplayButton;
-    class GUITimer extends Timer{
+
+        private void initFXComponoents() {
+            initGrid();
+            initScoreBoard();
+            initfooter();
+
+            layout=new BorderPane();
+            layout.setCenter(FXgrid);
+            layout.setRight(ScoreBoard);
+            layout.setBottom(footer);
+            layout.setTop(top);
+            layout.setLeft(left);
+            layout.getLeft().getStyleClass().add("center");
+            layout.getStyleClass().add("padding");
+        }
+
+        private void initGrid() {
+            ConstBorder= Double.valueOf(Math.min(max(grid.getWidth(),grid.getHeight()) * 50,600));
+            // initialize Grid
+            FXgrid=new GridPane();
+            FXgrid.getStyleClass().add("grid");
+            FXgrid.getStylesheets().add("Styles/style.css");
+            for(int i=1;i<grid.getHeight();i++){
+                for(int j=1;j<grid.getWidth();j++){
+                    Button currentbutton=new Button();
+
+                    currentbutton.getStylesheets().add("Styles/style.css");
+                    //SettingSize
+                    double buttonborder = ConstBorder / max(grid.getHeight()-1,grid.getWidth()-1);
+                    //System.out.println(buttonborder + " " + grid.getHeight() + " " +grid.getWidth());
+                    currentbutton.setMaxSize(buttonborder, buttonborder);
+                    currentbutton.setMinSize(buttonborder, buttonborder);
+                    //Set Action
+                    currentbutton.setOnMouseClicked(e->{
+                        if(currentPlayer instanceof GUIPlayer) {
+                            currentPlayerMove = new PlayerMove(currentPlayer, new Square(GridPane.getRowIndex(currentbutton), GridPane.getColumnIndex(currentbutton)));
+                            if (e.getButton() == MouseButton.PRIMARY) currentPlayerMove.setType(MoveType.Reveal);
+                            else currentPlayerMove.setType(MoveType.Mark);
+                            GetMove();
+                        }
+                        // TODO: Some Exception for Thar :p
+                    });
+                    FXgrid.add(currentbutton, j, i);
+                }
+            }
+        }
+
+        protected void initScoreBoard() {
+            // Initialize ScoreBoard
+            ScoreBoard = new VBox(20);
+            ScoreBoard.setMinWidth(200);
+            PlayersPanel=new ArrayList<PlayerPanel>();
+            ScoreBoard.setStyle("-fx-alignment: CENTER;");
+            for(Player _player:players){
+                PlayerPanel _playerPanel=new PlayerPanel(_player);
+                PlayersPanel.add(_playerPanel);
+                ScoreBoard.getChildren().add(_playerPanel.getRightPanel());
+                if(_player==currentPlayer){
+                    setTop(_playerPanel);
+                    left= _playerPanel.getLeftPanel();
+                }
+            }
+        }
+        private void initfooter() {
+            // init Last Move Label
+            footer=new HBox();
+            footer.setPadding(new Insets(20));
+            footer.setSpacing(80);
+            footer.setAlignment(Pos.CENTER);
+
+            LastMoveLabel =new Label();
+            FlagsNumberLabel =new Label("Flags: "+ FlagsNumber +"");
+            shieldNumberLabel=new Label("Shields: " +ShildNumber + "");
+            FlagsNumberLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
+            LastMoveLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
+            shieldNumberLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
+
+            BackButton =new Button("Back");
+            BackButton.getStyleClass().addAll("menubutton","h3");
+            BackButton.setPrefSize(60,40);
+
+            SaveButton =new Button("Save");
+            SaveButton.getStyleClass().addAll("menubutton","h3");
+            SaveButton.setPrefSize(60,40);
+
+            SaveButton.setOnAction(event -> {
+                SaveGame();
+            });
+
+            BackButton.setOnAction(e->{
+                Begin.Window.setScene(Begin.getWelcomescene());
+                Begin.Window.centerOnScreen();
+            });
+
+            ReplayButton=new Button("Replay");
+            ReplayButton.getStyleClass().addAll("menubutton","h3");
+            ReplayButton.setPrefSize(60,40);
+
+            ReplayButton.setOnAction(e->{
+                currentTimer.interrupt();
+                showGame();
+            });
+            footer.getChildren().addAll(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton, SaveButton,ReplayButton);
+        }
+        public void reset(){
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    initFXComponoents();
+                    scene.setRoot(layout);
+                    UIElements.BackButton.setDisable(true);
+                    UIElements.SaveButton.setDisable(true);
+                    UIElements.ReplayButton.setDisable(true);
+                }
+            });
+        }
+    }
+
+    protected void SaveGame(){
+        String fileName = "saved.txt";
+        SaveLoadGame.saveGame(fileName,this);
+    }
+    transient protected UIGameElements UIElements;
+
+    class GUITimer extends Timer implements Serializable{
         public GUITimer(){
             super();
         }
@@ -67,7 +220,7 @@ public class GUIGame extends NormalGame {
         }
         @Override
         public void Show(double Time) {
-            currentPanel.setTime(Time);
+            UIElements.currentPanel.setTime(Time);
         }
 
         @Override
@@ -89,157 +242,27 @@ public class GUIGame extends NormalGame {
         }
     }
 
-    public GUIGame(int gameTime, GameRules currentRules, Player currentPlayer, Grid grid, GameStatus status, List<Player> players, List<PlayerMove> moves, int flagsNumber, int shildNumber) {
-        super(gameTime, currentRules, currentPlayer, grid, status, players, moves, flagsNumber, shildNumber);
-        FlagsNumberLabel.setText(String.valueOf(flagsNumber));
-        this.shieldNumberLabel.setText(String.valueOf(shildNumber));
-    }
-
     // <__ CONSTRUCTOR __> \\
     public GUIGame(List _players){
         super(_players);
-        initScene();
-        CalcGameTime();
+        UIElements=new UIGameElements();
     }
     public GUIGame(int Width, int Height, int NumMines, List ListOfPlayers) {// Constructor
         super(Width,Height,NumMines,ListOfPlayers);
-        initScene();
-        CalcGameTime();
+        UIElements=new UIGameElements();
     }
     public GUIGame(int Width, int Height, int NumMines, List _players, Points points, WhenHitMine pressMineBehavior,WhenScoreNegative scoreNegativeBehavior){
         super(Width,Height,NumMines,_players,points,pressMineBehavior,scoreNegativeBehavior);
-        initScene();
-        CalcGameTime();
-    }
-
-    // <__ GETTERS-SETTERS __> \\
-    //Getters;
-
-    public GridPane getFXgrid() { return FXgrid; }
-    public VBox getScoreBoard() { return ScoreBoard; }
-    public Scene getScene() { return scene; }
-    public HBox getFooter() {return footer; }
-    public void setTop(PlayerPanel _panel) {
-        this.top =_panel.getTopPanel();
-        currentPanel=_panel;
-    }
-    public GUIGameMainMenu getBegin() { return Begin; }
-
-    public void setBegin(GUIGameMainMenu begin) { Begin = begin; }
-
-    protected void initScene() {
-        initFXComponoents();
-        scene = new Scene(layout);
-        scene.getStylesheets().add("Styles/style.css");
+        UIElements=new UIGameElements();
     }
 
 
-
-    private void initFXComponoents() {
-        initGrid();
-        initScoreBoard();
-        initfooter();
-
-        layout=new BorderPane();
-        layout.setCenter(FXgrid);
-        layout.setRight(ScoreBoard);
-        layout.setBottom(footer);
-        layout.setTop(top);
-        layout.setLeft(left);
-        layout.getLeft().getStyleClass().add("center");
-        layout.getStyleClass().add("padding");
+    public void setBegin(GUIGameMainMenu MainMenueGame){
+        UIElements.setBegin(MainMenueGame);
     }
-
-    private void initGrid() {
-        ConstBorder= Double.valueOf(Math.min(max(grid.getWidth(),grid.getHeight()) * 50,600));
-        // initialize Grid
-        FXgrid=new GridPane();
-        FXgrid.getStyleClass().add("grid");
-        FXgrid.getStylesheets().add("Styles/style.css");
-        for(int i=1;i<this.grid.getHeight();i++){
-            for(int j=1;j<this.grid.getWidth();j++){
-                Button currentbutton=new Button();
-
-                currentbutton.getStylesheets().add("Styles/style.css");
-                //SettingSize
-                double buttonborder = ConstBorder / max(this.grid.getHeight()-1, this.grid.getWidth()-1);
-                //System.out.println(buttonborder + " " + grid.getHeight() + " " +grid.getWidth());
-                currentbutton.setMaxSize(buttonborder, buttonborder);
-                currentbutton.setMinSize(buttonborder, buttonborder);
-                //Set Action
-                currentbutton.setOnMouseClicked(e->{
-                    if(currentPlayer instanceof GUIPlayer) {
-                        currentPlayerMove = new PlayerMove(currentPlayer, new Square(GridPane.getRowIndex(currentbutton), GridPane.getColumnIndex(currentbutton)));
-                        if (e.getButton() == MouseButton.PRIMARY) currentPlayerMove.setType(MoveType.Reveal);
-                        else currentPlayerMove.setType(MoveType.Mark);
-                        GetMove();
-                    }
-                    // TODO: Some Exception for Thar :p
-                });
-                FXgrid.add(currentbutton, j, i);
-            }
-        }
+    public Scene getScene(){
+        return UIElements.getScene();
     }
-
-    protected void initScoreBoard() {
-        // Initialize ScoreBoard
-        ScoreBoard = new VBox(20);
-        ScoreBoard.setMinWidth(200);
-        PlayersPanel=new ArrayList<PlayerPanel>();
-        ScoreBoard.setStyle("-fx-alignment: CENTER;");
-        for(Player _player:super.players){
-            PlayerPanel _playerPanel=new PlayerPanel(_player);
-            PlayersPanel.add(_playerPanel);
-            ScoreBoard.getChildren().add(_playerPanel.getRightPanel());
-            if(_player==currentPlayer){
-                setTop(_playerPanel);
-                left= _playerPanel.getLeftPanel();
-            }
-        }
-    }
-    private void initfooter() {
-        // init Last Move Label
-        footer=new HBox();
-        footer.setPadding(new Insets(20));
-        footer.setSpacing(80);
-        footer.setAlignment(Pos.CENTER);
-
-        LastMoveLabel =new Label();
-        FlagsNumberLabel =new Label("Flags: "+ FlagsNumber +"");
-        shieldNumberLabel=new Label("Shields: " +ShildNumber + "");
-        FlagsNumberLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
-        LastMoveLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
-        shieldNumberLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
-
-        BackButton =new Button("Back");
-        BackButton.getStyleClass().addAll("menubutton","h3");
-        BackButton.setPrefSize(60,40);
-
-        SaveButton =new Button("Save");
-        SaveButton.getStyleClass().addAll("menubutton","h3");
-        SaveButton.setPrefSize(60,40);
-
-        SaveButton.setOnAction(event -> {
-            String fileName = "saved.txt";
-            SaveLoadGame.saveGame(fileName,this);
-        });
-
-        BackButton.setOnAction(e->{
-            Begin.Window.setScene(Begin.getWelcomescene());
-            Begin.Window.centerOnScreen();
-        });
-
-        ReplayButton=new Button("Replay");
-        ReplayButton.getStyleClass().addAll("menubutton","h3");
-        ReplayButton.setPrefSize(60,40);
-
-        ReplayButton.setOnAction(e->{
-            currentTimer.interrupt();
-            showGame();
-        });
-        footer.getChildren().addAll(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton, SaveButton,ReplayButton);
-    }
-
     void GUIGameThreadStart(Thread thread){
         thread.setDaemon(true);
         thread.start();
@@ -264,6 +287,9 @@ public class GUIGame extends NormalGame {
         });
         GUIGameThreadStart(GameTimerThread);
     }
+    public void initscene(){
+        UIElements=new UIGameElements();
+    }
     @Override
     public void StartGame() {
         Thread StartGameThread=new Thread(new Runnable() {
@@ -275,7 +301,6 @@ public class GUIGame extends NormalGame {
         });
         GUIGameThreadStart(StartGameThread);
     }
-
     @Override
     public void GetMove(){
         Thread GetMoveThread=new Thread(new Runnable() {
@@ -321,7 +346,7 @@ public class GUIGame extends NormalGame {
                             int i = currentmove.getSquare().getX();
                             int j = currentmove.getSquare().getY();
                             int Position = (i - 1) * (grid.getWidth() - 1) + (j - 1);
-                            Button currentButton = (Button) FXgrid.getChildren().get(Position);
+                            Button currentButton = (Button) UIElements.FXgrid.getChildren().get(Position);
                             Square currentSquare = currentmove.getSquare();
                             if(currentSquare.hasNormalSield()){
                                 ShildNumber--;
@@ -355,14 +380,14 @@ public class GUIGame extends NormalGame {
                         //Update ScoreBoard
                         for(int i=0;i<players.size();i++){
                             Player _player=players.get(i);
-                            PlayerPanel _currentpanel=PlayersPanel.get(i);
+                            PlayerPanel _currentpanel=UIElements.PlayersPanel.get(i);
                             _currentpanel.Update();
                             if(_player==currentPlayer){
-                                setTop(_currentpanel);
-                                left = _currentpanel.getLeftPanel();
+                                UIElements.setTop(_currentpanel);
+                                UIElements.left = _currentpanel.getLeftPanel();
                             }
-                            layout.setLeft(left);
-                            layout.setTop(top);
+                            UIElements.setLayoutLeft();
+                            UIElements.setLayoutTop();
                         }
 
                         // Update footer Move Label
@@ -370,10 +395,10 @@ public class GUIGame extends NormalGame {
                         if(currentPlayerMove!=null)
                             LastMove=String.valueOf(currentPlayerMove.getSquare().getX()) + " --- " + String.valueOf((currentPlayerMove.getSquare().getY()));
 
-                        LastMoveLabel.setText(LastMove);
+                        UIElements.LastMoveLabel.setText(LastMove);
 
-                        FlagsNumberLabel.setText("Flags: "+ FlagsNumber + "");
-                        shieldNumberLabel.setText("Shigelds: "+ShildNumber + "");
+                        UIElements.FlagsNumberLabel.setText("Flags: "+ FlagsNumber + "");
+                        UIElements.shieldNumberLabel.setText("Shigelds: "+ShildNumber + "");
                     }
                 });
             }
@@ -402,7 +427,7 @@ public class GUIGame extends NormalGame {
                         Player winner = players.get(0);
                         for (int i = 0; i < players.size(); i++) {
                             Player _player=players.get(i);
-                            PlayerPanel _Panel=PlayersPanel.get(i);
+                            PlayerPanel _Panel=UIElements.PlayersPanel.get(i);
                             if(_player.getNumberOfShield()>0){
                                 setCurrentPlayer(_player);
                                 moves=new ArrayList<>();
@@ -419,7 +444,7 @@ public class GUIGame extends NormalGame {
                         UpdateVeiw(curr);
                         // Update footer Move Label
 
-                        Label LastMoveLabel = (Label) footer.getChildren().get(0);
+                        Label LastMoveLabel = (Label) UIElements.footer.getChildren().get(0);
                         String WinnerStr = winner.getName() + " Win The Game";
                         if (players.size() == 1) {
                             WinnerStr = winner.getCurrentStatus() == PlayerStatus.Lose ? "You Lose" : "You Win";
@@ -430,14 +455,14 @@ public class GUIGame extends NormalGame {
                         for (int i = 1; i < grid.getHeight(); i++) {
                             for (int j = 1; j < grid.getWidth(); j++) {
                                 int H = (i - 1) * (grid.getWidth() - 1) + (j - 1);
-                                Button currentButton = (Button) FXgrid.getChildren().get(H);
+                                Button currentButton = (Button) UIElements.FXgrid.getChildren().get(H);
                                 currentButton.setDisable(true);
                             }
                         }
                     }
                 });
-                Begin.scoreboard.AddPlayer(new PlayerBoard(winner.getName(),GameTime,winner.getCurrentScore().getScore(),winner.getNumberOfShield(),grid.getWidth(),grid.getHeight()));
-                Begin.scoreboard.initScene();
+                UIElements.Begin.scoreboard.AddPlayer(new PlayerBoard(winner.getName(),GameTime,winner.getCurrentScore().getScore(),winner.getNumberOfShield(),grid.getWidth(),grid.getHeight()));
+                UIElements.Begin.scoreboard.initScene();
 
             }
         });
@@ -480,20 +505,15 @@ public class GUIGame extends NormalGame {
                 FlagsNumber=grid.getMinesCount();
                 ShildNumber=grid.getShieldsCount();
 
-                initFXComponoents();
-                scene.setRoot(layout);
+                UIElements.reset();
 
-                scene.getStylesheets().add("Styles/style.css");
 
-                BackButton.setDisable(true);
-                SaveButton.setDisable(true);
-                ReplayButton.setDisable(true);
                 System.out.println(GameMoves.getMoves().size());
                 for(PlayerMove _move:GameMoves.getMoves()){
                     double currentTime=2;// TODO: get it From The Move
                     while (currentTime > 0) {
                         currentTime -= 0.1;
-                        currentPanel.setTime(currentTime);
+                        UIElements.currentPanel.setTime(currentTime);
                         try {
                             TimeUnit.MILLISECONDS.sleep(100);
                         } catch (InterruptedException e) {
@@ -505,9 +525,9 @@ public class GUIGame extends NormalGame {
                     ApplyPlayerMove(_move);
                     UpdateVeiw(moves);
                 }
-                BackButton.setDisable(false);
-                SaveButton.setDisable(false);
-                ReplayButton.setDisable(false);
+                UIElements.BackButton.setDisable(false);
+                UIElements.SaveButton.setDisable(false);
+                UIElements.ReplayButton.setDisable(false);
             }
         });
         showGameThread.start();

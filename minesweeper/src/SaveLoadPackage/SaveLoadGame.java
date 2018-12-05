@@ -1,20 +1,20 @@
 package SaveLoadPackage;
 
 import GUIGame.GUIGame;
-
+import GUIGame.GUIGameCustom;
 
 import java.io.*;
+import java.nio.file.DirectoryIteratorException;
 
 public class SaveLoadGame {
-    public static void saveGame(String fname, GUIGame game){// GUIGame
+    public static<T> void saveGame(String fname, T game){// GUIGame
 
-            GameSave singleSave = new GameSave(game);
         try {
 
             File textFile = new File(fname);
             FileOutputStream fileStream = new FileOutputStream(textFile);
             ObjectOutputStream out = new ObjectOutputStream(fileStream);
-            out.writeObject(singleSave);
+            out.writeObject(game);
             out.close();
             fileStream.close();
             System.out.println("Saved Successfully");
@@ -26,20 +26,21 @@ public class SaveLoadGame {
             System.out.println("IO Exception");
         }
     }
-//    public static void loadGame(String fname){
-//        try{
-//            // Reading Object From a File
-//            FileInputStream loadFile = new FileInputStream(fname);
-//            ObjectInputStream loadStream = new ObjectInputStream(loadFile);
-//            GameSave loadedGame = new GameSave();
-//            loadedGame = (GameSave)loadStream.readObject();
-//            GUIGame currentGame = new GUIGame(loadedGame.gameTime,loadedGame.currentRules,loadedGame.currentPlayer,loadedGame.grid,loadedGame.status,loadedGame.players,loadedGame.moves,loadedGame.flagsNumber,loadedGame.shieldsNumber);
-//            loadStream.close();
-//            loadFile.close();
-//            currentGame.StartGame();
-//
-//        } catch (IOException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
+
+    public static<T> T loadGame(String fname){
+        try{
+            // Reading Object From a File
+            FileInputStream loadFile = new FileInputStream(fname);
+            ObjectInputStream loadStream = new ObjectInputStream(loadFile);
+            T loadedObject;
+            loadedObject = (T) loadStream.readObject();
+
+            loadStream.close();
+            loadFile.close();
+            return loadedObject;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -6,9 +6,10 @@ import Models.Player.Player;
 import Models.Move.PlayerMove;
 import Models.Player.PlayerStatus;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class NormalGame extends Game {
+public class NormalGame extends Game implements Serializable {
 
 
     public NormalGame(int gameTime, GameRules currentRules, Player currentPlayer, Grid grid, GameStatus status, List<Player> players, List<PlayerMove> moves, int flagsNumber, int shildNumber) {
@@ -42,7 +43,7 @@ public class NormalGame extends Game {
 
     // InnerClass
     // #see GameRules In Game Class
-    public class DefaultRules extends GameRules {
+    public class DefaultRules extends GameRules implements Serializable {
         public Points points;
         protected WhenHitMine PressMineBehavior;
         protected WhenScoreNegative ScoreNegativeBehavior;

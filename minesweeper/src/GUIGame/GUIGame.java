@@ -4,6 +4,7 @@ import MineSweeperGameDefineException.IllegalGameMove;
 import Models.Game.*;
 import Models.Grid.Grid;
 import Models.Grid.Square;
+import Models.Grid.SquareStatus;
 import Models.Move.MoveType;
 import Models.Move.PlayerMove;
 import Models.Player.Player;
@@ -235,10 +236,12 @@ public class GUIGame extends NormalGame implements Serializable {
         UpdateVeiw(moves);
         if (status != GameStatus.Finish) {
             currentTimer = new GUITimer(currentPlayer.getTimeforTimer());
-            currentTimer.setDaemon(true);
-            currentTimer.start();
+            GUIGameThreadStart(currentTimer);
             if (!(currentPlayer instanceof GUIPlayer))
                 GetMove();
+        }
+        else{
+            EndGame();
         }
     }
 
@@ -290,6 +293,8 @@ public class GUIGame extends NormalGame implements Serializable {
     public void initscene(){
         UIElements=new UIGameElements();
     }
+
+
     @Override
     public void StartGame() {
         Thread StartGameThread=new Thread(new Runnable() {
@@ -469,33 +474,13 @@ public class GUIGame extends NormalGame implements Serializable {
 
         GUIGameThreadStart(EndGameThread);
     }
-    public Player getCurrentPlayer(){
-        return this.currentPlayer;
-    }
-    public List<Player> getPlayers(){
-        return this.players;
-    }
-    public Grid getGrid(){
-        return this.grid;
-    }
-    public GameStatus getGameStatus(){
-        return this.status;
-    }
-    public List<PlayerMove> getGameMoves(){
-        return this.moves;
-    }
-    public int getShieldsNumber(){
-        return this.ShildNumber;
-    }
-    public int getFlagsNumber(){
-        return this.FlagsNumber;
-    }
-    public int getGameTime(){ return this.GameTime; }
+
     protected void showGame(){
         Thread showGameThread= new Thread(new Runnable() {
             @Override
             public void run() {
                 // reset component
+                currentTimer.interrupt();
                 for(Player _player:players){
                     _player.reset();
                 }
@@ -508,10 +493,12 @@ public class GUIGame extends NormalGame implements Serializable {
                 UIElements.reset();
 
 
+                Replay=GameReplay.on;
                 System.out.println(GameMoves.getMoves().size());
                 for(PlayerMove _move:GameMoves.getMoves()){
-                    double currentTime=2;// TODO: get it From The Move
-                    while (currentTime > 0) {
+                    System.out.println("#"+GameMoves.getMoves().size());
+                    double currentTime=currentPlayer.getTimeforTimer();// TODO: get it From The Move
+                    while (currentTime > _move.getEndTimeMove()) {
                         currentTime -= 0.1;
                         UIElements.currentPanel.setTime(currentTime);
                         try {
@@ -522,14 +509,61 @@ public class GUIGame extends NormalGame implements Serializable {
                             return;
                         }
                     }
-                    ApplyPlayerMove(_move);
+                    if(currentTime>0) {
+                        ApplyPlayerMove(_move);
+                    }
+                    else{
+                        moves=new ArrayList<>();
+                        currentRules.DecideNextPlayer(moves);
+                    }
                     UpdateVeiw(moves);
                 }
                 UIElements.BackButton.setDisable(false);
                 UIElements.SaveButton.setDisable(false);
                 UIElements.ReplayButton.setDisable(false);
+                Replay=GameReplay.off;
+
+                if(status==GameStatus.Finish)
+                    EndGame();
+                else{
+                    currentTimer = new GUITimer(currentTimer.getCurrentTime());
+                    GUIGameThreadStart(currentTimer);
+                    if (!(currentPlayer instanceof GUIPlayer))
+                        GetMove();
+                }
             }
         });
         showGameThread.start();
     }
+
+    public void ContinueGame(){
+        Thread ContinueGameThread=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                moves.clear();
+                for(int i=1;i<grid.getWidth();i++){
+                    for(int j=1;j<grid.getHeight();j++){
+                        Square currentSquare=grid.getField()[i][j];
+                        if(currentSquare.getStatus()!= SquareStatus.Closed){
+                            PlayerMove _move=new PlayerMove(currentPlayer,currentSquare);
+                            moves.add(_move);
+                        }
+                    }
+                }
+                UpdateVeiw(moves);
+                if (status != GameStatus.Finish) {
+                    currentTimer = new GUITimer(currentTimer.getCurrentTime());
+                    GUIGameThreadStart(currentTimer);
+                    if (!(currentPlayer instanceof GUIPlayer))
+                        GetMove();
+                }
+                else{
+                    EndGame();
+                }
+//                updateTimer();
+            }
+        });
+        GUIGameThreadStart(ContinueGameThread);
+    }
+
 }

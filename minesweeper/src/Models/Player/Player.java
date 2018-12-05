@@ -2,10 +2,8 @@ package Models.Player;
 
 import Models.Move.PlayerMove;
 
-import java.awt.*;
 import java.io.Serializable;
 
-import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public abstract class Player implements Serializable {
@@ -34,15 +32,14 @@ public abstract class Player implements Serializable {
     }
     // <__ CONSTRUCTOR __> \\
     public Player() { this("PC",new Score(),PlayerStatus.waiting,"#b39ddb",0,100000); }
-
     public Player(String _name){ this(_name,new Score(),PlayerStatus.waiting,"#4527a0",0,100000); }
     public Player(String _name,String _color){ this(_name,new Score(),PlayerStatus.waiting,_color,0,100000); }
     public Player(String _name,PlayerStatus _playerStatus){ this(_name,new Score(),_playerStatus,"#4527a0",0,100000); }
-    public Player(String name,PlayerStatus currentStatus,String _color,int _maxNumberOfShild) { this(name,new Score(),currentStatus,_color,0,_maxNumberOfShild); }
     public Player(String name,PlayerStatus currentStatus,String _color) { this(name,new Score(),currentStatus,_color,0,100000); }
     public Player(String name, Score currentScore, PlayerStatus currentStatus,String _color){
         this(name,currentScore,currentStatus,_color,0,100000);
     }
+    public Player(String name,PlayerStatus currentStatus,String _color,int _maxNumberOfShild) { this(name,new Score(),currentStatus,_color,0,_maxNumberOfShild); }
     public Player(String name, Score currentScore, PlayerStatus currentStatus,String _color,int _numberOfShield,int _maxNumberOfShild) {
         this.name = name;
         this.currentScore = currentScore;

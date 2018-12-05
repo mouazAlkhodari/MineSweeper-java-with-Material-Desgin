@@ -1,16 +1,11 @@
 package SaveLoadPackage;
 
-import GUIGame.GUIGame;
-import GUIGame.GUIGameCustom;
 
 import java.io.*;
-import java.nio.file.DirectoryIteratorException;
 
 public class SaveLoadGame {
     public static<T> void saveGame(String fname, T game){// GUIGame
-
         try {
-
             File textFile = new File(fname);
             FileOutputStream fileStream = new FileOutputStream(textFile);
             ObjectOutputStream out = new ObjectOutputStream(fileStream);
@@ -18,7 +13,6 @@ public class SaveLoadGame {
             out.close();
             fileStream.close();
             System.out.println("Saved Successfully");
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

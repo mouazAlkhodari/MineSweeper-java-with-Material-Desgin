@@ -6,7 +6,6 @@ import Models.Game.WhenHitMine;
 import Models.Game.WhenScoreNegative;
 import Models.Player.DumbPlayer;
 import Models.Player.Player;
-import SaveLoadPackage.GameSave;
 import SaveLoadPackage.SaveLoadGame;
 import com.jfoenix.controls.*;
 import javafx.animation.FadeTransition;
@@ -165,7 +164,7 @@ public class GUIGameMainMenu {
         guiGame.setBegin(this);
         Window.setScene(guiGame.getScene());
         Window.centerOnScreen();
-        guiGame.StartGame();
+        guiGame.ContinueGame();
     }
 
     void fadeIn(Node node) {

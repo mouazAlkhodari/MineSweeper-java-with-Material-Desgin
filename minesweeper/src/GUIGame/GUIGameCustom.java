@@ -4,14 +4,16 @@ import Models.Game.*;
 import Models.Grid.*;
 import Models.Move.*;
 import Models.Player.*;
+import SaveLoadPackage.SaveLoadGame;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class GUIGameCustom extends GUIGame {
 
+
     class CustomRules extends DefaultRules {
-        public CustomRules() {
+       public CustomRules() {
             super();
         }
         public CustomRules(WhenHitMine pressMineBehavior, WhenScoreNegative scoreNegativeBehavior) {
@@ -89,7 +91,8 @@ public class GUIGameCustom extends GUIGame {
         ShildNumber=NumOfShield;
     }
 
-    /*@Override
+    /*
+    @Override
     protected void initScene() {
         super.initScene();
     }
@@ -97,5 +100,6 @@ public class GUIGameCustom extends GUIGame {
     @Override
     protected void initScoreBoard() {
         super.initScoreBoard();
-    }*/
+    }
+    */
 }

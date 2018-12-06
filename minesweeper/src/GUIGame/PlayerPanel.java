@@ -90,8 +90,7 @@ public class PlayerPanel {
     public void Update(){
         playerScoreLabel.setText(String.valueOf(player.getCurrentScore().getScore()));
         if(player.getCurrentStatus()== PlayerStatus.Lose)playerScoreLabel.setText(playerScoreLabel.getText() + " Lose");
-        if(player.getNumberOfShield()>=0)
-            playerNumberOfShieldLabel.setText(String.valueOf(player.getNumberOfShield()));
+        playerNumberOfShieldLabel.setText(String.valueOf(player.getNumberOfShield()));
 
         if(player.getCurrentStatus()== PlayerStatus.Playing){
             playerNameLeftLabel.setStyle("-fx-font-weight: Bold");

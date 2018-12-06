@@ -207,6 +207,9 @@ public class GUIGame extends NormalGame implements Serializable {
     }
 
     protected void SaveGame(){
+        for(Player p:getPlayers()){
+            System.out.println(p.getNumberOfShield());
+        }
         String fileName = "saved.txt";
         SaveLoadGame.saveGame(fileName,this);
     }
@@ -266,6 +269,7 @@ public class GUIGame extends NormalGame implements Serializable {
     public Scene getScene(){
         return UIElements.getScene();
     }
+    public List<Player> getPlayers(){return players;}
     void GUIGameThreadStart(Thread thread){
         thread.setDaemon(true);
         thread.start();
@@ -466,8 +470,8 @@ public class GUIGame extends NormalGame implements Serializable {
                         }
                     }
                 });
-                UIElements.Begin.scoreboard.AddPlayer(new PlayerBoard(winner.getName(),GameTime,winner.getCurrentScore().getScore(),winner.getNumberOfShield(),grid.getWidth(),grid.getHeight()));
-                UIElements.Begin.scoreboard.initScene();
+                //UIElements.Begin.scoreboard.AddPlayer(new PlayerBoard(winner.getName(),GameTime,winner.getCurrentScore().getScore(),winner.getNumberOfShield(),grid.getWidth(),grid.getHeight()));
+//                UIElements.Begin.scoreboard.initScene();
 
             }
         });

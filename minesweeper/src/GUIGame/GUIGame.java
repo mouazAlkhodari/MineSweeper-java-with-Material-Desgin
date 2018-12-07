@@ -67,6 +67,7 @@ public class GUIGame extends NormalGame implements Serializable {
         public VBox getScoreBoard() { return ScoreBoard; }
         public Scene getScene() { return scene; }
         public HBox getFooter() {return footer; }
+        public UIGameElements getUIELements() { return UIElements;}
         public void setTop(PlayerPanel _panel) {
             this.top =_panel.getTopPanel();
             currentPanel=_panel;
@@ -470,9 +471,9 @@ public class GUIGame extends NormalGame implements Serializable {
                         }
                     }
                 });
+                UIElements.Begin.scoreboard.AddPlayer(new PlayerBoard(winner.getName(),GameTime,winner.getCurrentScore().getScore(),winner.getNumberOfShield(),grid.getWidth(),grid.getHeight()));
                 //UIElements.Begin.scoreboard.AddPlayer(new PlayerBoard(winner.getName(),GameTime,winner.getCurrentScore().getScore(),winner.getNumberOfShield(),grid.getWidth(),grid.getHeight()));
 //                UIElements.Begin.scoreboard.initScene();
-
             }
         });
 

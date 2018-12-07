@@ -6,6 +6,11 @@
     -fx-pref-width: 600;
     -fx-pref-height: 600;
 }
+.windowsize750 {
+    -fx-alignment: CENTER;
+    -fx-pref-width: 750;
+    -fx-pref-height: 600;
+}
 .optiongrid {
     -fx-vgap: 20;
     -fx-hgap: 20;

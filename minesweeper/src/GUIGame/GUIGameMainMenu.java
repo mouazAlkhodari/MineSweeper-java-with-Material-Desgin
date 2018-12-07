@@ -28,8 +28,7 @@ import java.util.ArrayList;
 public class GUIGameMainMenu {
     WelcomeScene welcomescene = new WelcomeScene();
     OptionScene optionsScene = new OptionScene();
-    public GUIScoreBoard scoreboard = new GUIScoreBoard();
-
+    public GUIScoreBoard scoreboard = new GUIScoreBoard(this);
     GUIGame guiGame;
     Stage Window;
 

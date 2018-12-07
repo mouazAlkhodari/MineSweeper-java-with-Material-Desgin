@@ -8,6 +8,7 @@ import Models.Player.DumbPlayer;
 import Models.Player.Player;
 import SaveLoadPackage.Directories;
 import SaveLoadPackage.SaveLoadGame;
+import SaveLoadPackage.StringID;
 import com.jfoenix.controls.*;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
@@ -29,10 +30,16 @@ import java.util.ArrayList;
 public class GUIGameMainMenu {
     WelcomeScene welcomescene = new WelcomeScene();
     OptionScene optionsScene = new OptionScene();
-    public GUIScoreBoard scoreboard = new GUIScoreBoard(this);
+    GUIScoreBoard scoreboard = new GUIScoreBoard(this);
+    GUIGameLoad gameLoader=new GUIGameLoad(this);
     GUIGame guiGame;
     Stage Window;
 
+    public void saveGame(){
+        String name=StringID.SaveID();
+        SaveLoadGame.saveGame(Directories.save, name,guiGame);
+        gameLoader.addGame(name);
+    }
     public void start(Stage primaryStage) throws IOException {
         Window = primaryStage;
         Window.setScene(welcomescene.scene);
@@ -160,8 +167,8 @@ public class GUIGameMainMenu {
         Window.centerOnScreen();
         guiGame.StartGame();
     }
-    void loadGame(){
-        guiGame=SaveLoadGame.loadGame(Directories.save,"save123.save");
+    void loadGame(String name){
+        guiGame=SaveLoadGame.loadGame(Directories.save,name);
         guiGame.initscene();
         guiGame.setBegin(this);
         Window.setScene(guiGame.getScene());
@@ -203,7 +210,9 @@ public class GUIGameMainMenu {
             LoadGame = new Button("LOAD GAME");
             LoadGame.getStyleClass().addAll("menubutton","h3");
             //LoadGame.setDisable(true);
-            LoadGame.setOnAction(event -> loadGame());
+            LoadGame.setOnAction(event -> {
+                Window.setScene(gameLoader.getScene());
+            });
 
             Scoreboard = new Button("SCOREBOARD");
             Scoreboard.getStyleClass().addAll("menubutton","h3");

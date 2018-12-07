@@ -16,13 +16,14 @@ public class Directories {
         ObservableList<String> Items = FXCollections.observableArrayList();
         if(path.exists()){
             if(path.isDirectory()){
-                for(String item:path.list()) {
-                    //item.lastIndexOf(" ");
-                    item.replaceFirst(item.substring(0, item.lastIndexOf(" ")), "");
-                    Items.add(item);
-                     }
-                }
+                    for(String item:path.list())
+                        Items.add(getVal(item));
+                    }
             }
         return Items;
+    }
+    public static String getVal(String item){
+        item=item.substring(item.lastIndexOf(' '),item.length());
+        return item;
     }
 }

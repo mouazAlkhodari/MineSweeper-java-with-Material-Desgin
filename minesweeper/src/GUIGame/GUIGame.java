@@ -1,5 +1,6 @@
 package GUIGame;
 
+import GUIElements.Top;
 import MineSweeperGameDefineException.IllegalGameMove;
 import Models.Game.*;
 import Models.Grid.Grid;
@@ -44,7 +45,7 @@ public class GUIGame extends NormalGame implements Serializable {
         protected GridPane FXgrid;
         protected VBox ScoreBoard;
         protected HBox footer;
-        protected HBox top;
+        protected Top top;
         protected VBox left;
 
         protected Scene scene;

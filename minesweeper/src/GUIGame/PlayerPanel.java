@@ -1,6 +1,7 @@
 package GUIGame;
 
 import CustomProgressIndicators.RingProgressIndicator;
+import GUIElements.Top;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
 import javafx.animation.ScaleTransition;
@@ -15,10 +16,9 @@ import javafx.animation.TranslateTransition;
 
 public class PlayerPanel {
     VBox rightPanel;
-    HBox topPanel;
+    Top topPanel;
     VBox leftPanel;
     private Label playerNameLeftLabel;
-    private Label playerNameTopLabel;
     private Label playerScoreLabel;
     private Label playerNumberOfShieldLabel;
     private Label playerTimerLabel;
@@ -31,7 +31,7 @@ public class PlayerPanel {
     public VBox getRightPanel() {
         return rightPanel;
     }
-    public HBox getTopPanel(){
+    public Top getTopPanel(){
         return topPanel;
     }
     public VBox getLeftPanel() { return leftPanel;}
@@ -48,7 +48,6 @@ public class PlayerPanel {
     public PlayerPanel(Player _player) {
         player=_player;
         playerNameLeftLabel=new Label(player.getName());
-        playerNameTopLabel=new Label("Current Player: "+player.getName());
         playerScoreLabel=new Label(String.valueOf(player.getCurrentScore().getScore()));
         playerNumberOfShieldLabel=new Label(String.valueOf(player.getNumberOfShield()));
         playerNumberOfShieldLabel.textProperty().addListener((v,oldValue,newValue) -> {
@@ -61,7 +60,6 @@ public class PlayerPanel {
         playerTimerLabel=new Label("Time: " +player.getTimeforTimer());
         timeProgress = new RingProgressIndicator(player.getTimeforTimer());
             playerNameLeftLabel.getStyleClass().addAll("h2");
-            playerNameTopLabel.getStyleClass().add("h2");
             playerScoreLabel.getStyleClass().addAll("h1","center");
             playerNumberOfShieldLabel.getStyleClass().addAll("h1","center");
             playerTimerLabel.getStyleClass().add("h2");
@@ -82,10 +80,8 @@ public class PlayerPanel {
         leftPanel = new VBox();
             leftPanel.getStyleClass().addAll("center");
         leftPanel.getChildren().addAll(timeProgress);
-        topPanel =new HBox();
-            topPanel.getStyleClass().add("playerboard");
-            topPanel.setStyle("-fx-background-color: "+(player.getColor())+";-fx-pref-height: 25;");
-        topPanel.getChildren().addAll(playerNameTopLabel);
+        topPanel =new Top("Current Player: "+player.getName());
+        topPanel.setStyle("-fx-background-color: "+(player.getColor())+";-fx-pref-height: 25;");
     }
 
     public void Update(){

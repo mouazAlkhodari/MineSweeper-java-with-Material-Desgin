@@ -1,5 +1,6 @@
 package GUIGame;
 
+import GUIElements.Top;
 import Models.ScoreBoard.PlayerBoard;
 import Models.ScoreBoard.ScoreBoard;
 import javafx.beans.binding.Bindings;
@@ -16,14 +17,13 @@ import javafx.scene.layout.VBox;
 public class GUIScoreBoard extends ScoreBoard {
     public Scene scene;
     protected BorderPane layout = new BorderPane();
-    protected HBox Top = new HBox();
+    protected Top Top = new Top("SCOREBOARD");
     protected HBox footer;
     protected Button BackButton;
     protected Button ReplayButton;
     protected TableView <PlayerBoard> table;
     protected  GUIGameMainMenu Begin;
 
-    Label Title = new Label("SCOREBOARD");
     public GUIScoreBoard(GUIGameMainMenu menu) {
         initScene();
         UpdateView();
@@ -36,12 +36,7 @@ public class GUIScoreBoard extends ScoreBoard {
     }
 
     void initLayout() {
-        //init TOP
-        Title.getStyleClass().addAll("h1");
-        Top.getStyleClass().addAll("playerboard");
-        Top.getChildren().addAll(Title);
-
-        //init Tabele
+             //init Tabele
         initTable();
 
         //inti FOOTER

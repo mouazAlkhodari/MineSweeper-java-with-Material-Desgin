@@ -1,5 +1,6 @@
 package GUIGame;
 
+import GUIElements.Top;
 import SaveLoadPackage.Directories;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -16,8 +17,7 @@ public class GUIGameLoad {
     protected ListView<String> games;
     protected BorderPane Layout = new BorderPane();
     protected VBox loadList;
-    protected HBox Top = new HBox();
-    protected Label Title = new Label("LOAD GAME");
+    protected Top Top = new Top("LOAD GAME");
     protected HBox footer=new HBox(80);
     protected GUIGameMainMenu begin;
     protected Button back,load;
@@ -36,7 +36,6 @@ public class GUIGameLoad {
     }
     private void initLayout(){
         initFooter();
-        initTop();
         initList();
         Layout.getStylesheets().add("Styles/style.css");
         Layout.getStyleClass().addAll("windowsize");
@@ -52,12 +51,6 @@ public class GUIGameLoad {
         loadList=new VBox();
         loadList.getChildren().addAll(games);
 
-    }
-
-    private void initTop() {
-        Title.getStyleClass().addAll("h1");
-        Top.getStyleClass().addAll("playerboard");
-        Top.getChildren().addAll(Title);
     }
 
     private void initFooter() {

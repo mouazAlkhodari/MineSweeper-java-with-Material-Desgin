@@ -123,14 +123,15 @@ public class NormalGame extends Game implements Serializable {
                     GameMoves.add(moves.get(0));
                 }
                 else{
-                    GameMoves.add(new PlayerMove());
+                    PlayerMove move=new PlayerMove();
+                    if(status!=GameStatus.Finish)
+                        GameMoves.add(move);
                 }
             }
             currentRules.GetScoreChange(moves);
             currentRules.ChangePlayerStatus(moves);
             if(status!=GameStatus.Finish) {
-                if(Replay!=GameReplay.on)
-                    ChangeStatus();
+                ChangeStatus();
                 int indOfcurrentPlayer = players.lastIndexOf(currentPlayer);
                 for (int i = 0; i < players.size(); i++) {
                     indOfcurrentPlayer = (indOfcurrentPlayer + 1) % players.size();

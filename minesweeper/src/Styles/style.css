@@ -8,7 +8,7 @@
 }
 .windowsize750 {
     -fx-alignment: CENTER;
-    -fx-pref-width: 750;
+    -fx-pref-width: 760;
     -fx-pref-height: 600;
 }
 .optiongrid {

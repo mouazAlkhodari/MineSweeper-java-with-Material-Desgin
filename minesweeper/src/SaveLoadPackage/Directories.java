@@ -18,11 +18,12 @@ public class Directories {
             if(path.isDirectory()){
                     for(String item:path.list())
                         Items.add(getVal(item));
-                }
+                    }
             }
         return Items;
     }
-    public static String getVal(String s){
-
+    public static String getVal(String item){
+        item=item.substring(item.lastIndexOf(' '),item.length());
+        return item;
     }
 }

@@ -527,7 +527,6 @@ public class GUIGame extends NormalGame implements Serializable {
                 UIElements.BackButton.setDisable(false);
                 UIElements.SaveButton.setDisable(false);
                 UIElements.ReplayButton.setDisable(false);
-                Replay=GameReplay.off;
 
                 if(status==GameStatus.Finish)
                     EndGame();
@@ -537,6 +536,8 @@ public class GUIGame extends NormalGame implements Serializable {
                     if (!(currentPlayer instanceof GUIPlayer))
                         GetMove();
                 }
+                Replay=GameReplay.off;
+
             }
         });
         GUIGameThreadStart(showGameThread);

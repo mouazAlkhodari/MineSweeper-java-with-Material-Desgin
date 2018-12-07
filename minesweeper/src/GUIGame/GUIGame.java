@@ -173,6 +173,7 @@ public class GUIGame extends NormalGame implements Serializable {
             BackButton.setPrefSize(60,40);
 
             SaveButton =new Button("Save");
+            SaveButton =new Button("Save");
             SaveButton.getStyleClass().addAll("menubutton","h3");
             SaveButton.setPrefSize(60,40);
 
@@ -210,9 +211,7 @@ public class GUIGame extends NormalGame implements Serializable {
     }
 
     protected void SaveGame(){
-        for(Player p:getPlayers()){
-            System.out.println(p.getNumberOfShield());
-        }
+
         SaveLoadGame.saveGame(Directories.save,"save123.save",this);
     }
     transient protected UIGameElements UIElements;

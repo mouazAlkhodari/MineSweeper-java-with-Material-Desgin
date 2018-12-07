@@ -10,6 +10,7 @@ public class SaveLoadGame {
     public static<T> void saveGame(File path,String name, T game){// GUIGame
         try {
             File textFile = new File(path.getCanonicalPath() + name);
+            System.out.println(textFile);
             FileOutputStream fileStream = new FileOutputStream(textFile);
             ObjectOutputStream out = new ObjectOutputStream(fileStream);
 
@@ -28,6 +29,7 @@ public class SaveLoadGame {
     public static<T> T loadGame(File path,String name){
         try{
             // Reading Object From a File
+            System.out.println("#Load"+name);
             FileInputStream loadFile = new FileInputStream(new File(path.getCanonicalPath() + name));
             ObjectInputStream loadStream = new ObjectInputStream(loadFile);
             T loadedObject;

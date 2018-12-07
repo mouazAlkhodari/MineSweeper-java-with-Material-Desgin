@@ -16,6 +16,15 @@ public class PlayerMove implements Serializable {
 
     private MoveResult result;
 
+    public double getEndTimeMove() {
+        return endTimeMove;
+    }
+
+    public void setEndTimeMove(double endTimeMove) {
+        this.endTimeMove = endTimeMove;
+    }
+
+    double endTimeMove=0;
     // <__ CONSTRUCTER __> \\
     public PlayerMove(){this(new ConsolePlayer(),new Square(),MoveType.Reveal,new MoveResult());}
     public PlayerMove(Player _player){ this(_player,new Square(),MoveType.Reveal,new MoveResult()); }

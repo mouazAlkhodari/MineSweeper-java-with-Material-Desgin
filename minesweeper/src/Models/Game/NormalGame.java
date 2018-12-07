@@ -6,14 +6,12 @@ import Models.Player.Player;
 import Models.Move.PlayerMove;
 import Models.Player.PlayerStatus;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class NormalGame extends Game {
+public class NormalGame extends Game implements Serializable {
 
 
-    public NormalGame(int gameTime, GameRules currentRules, Player currentPlayer, Grid grid, GameStatus status, List<Player> players, List<PlayerMove> moves, int flagsNumber, int shildNumber) {
-        super(gameTime, currentRules, currentPlayer, grid, status, players, moves, flagsNumber, shildNumber);
-    }
     // Constructors
     public NormalGame(List ListOfPlayers){
         super(ListOfPlayers);
@@ -42,10 +40,11 @@ public class NormalGame extends Game {
 
     // InnerClass
     // #see GameRules In Game Class
-    public class DefaultRules extends GameRules {
+    public class DefaultRules extends GameRules implements Serializable {
         public Points points;
         protected WhenHitMine PressMineBehavior;
         protected WhenScoreNegative ScoreNegativeBehavior;
+
         public DefaultRules() {
             PressMineBehavior = WhenHitMine.Lose;
             ScoreNegativeBehavior=WhenScoreNegative.End;
@@ -61,8 +60,9 @@ public class NormalGame extends Game {
             PressMineBehavior=pressMineBehavior;
             ScoreNegativeBehavior=scoreNegativeBehavior;
 
-        }//EndOfClass
+        }
 
+        @Override
         protected void ChangePlayerStatus(List<PlayerMove> moves) {
             if(moves.size()==0){
                 currentPlayer.setCurrentStatus(PlayerStatus.waiting);
@@ -81,6 +81,7 @@ public class NormalGame extends Game {
             currentPlayer.setCurrentStatus(PlayerStatus.waiting);
         }
 
+        @Override
         protected void GetScoreChange(List<PlayerMove> moves) {
             if(moves.size()==0){
                 return;
@@ -117,10 +118,19 @@ public class NormalGame extends Game {
 
         @Override
         public void DecideNextPlayer(List<PlayerMove> moves) {
+            if(Replay!=GameReplay.on){
+                if(moves.size()!=0) {
+                    GameMoves.add(moves.get(0));
+                }
+                else{
+                    GameMoves.add(new PlayerMove());
+                }
+            }
             currentRules.GetScoreChange(moves);
             currentRules.ChangePlayerStatus(moves);
             if(status!=GameStatus.Finish) {
-                ChangeStatus();
+                if(Replay!=GameReplay.on)
+                    ChangeStatus();
                 int indOfcurrentPlayer = players.lastIndexOf(currentPlayer);
                 for (int i = 0; i < players.size(); i++) {
                     indOfcurrentPlayer = (indOfcurrentPlayer + 1) % players.size();

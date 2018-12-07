@@ -40,7 +40,7 @@ public class Square implements Serializable {
         Color=PlayerWhoMadeTheMove.getColor();
         switch (Type) { 
             case Mark: 
-                this.status = (this.status == SquareStatus.Marked ? SquareStatus.Closed : SquareStatus.Marked);
+                status = (status == SquareStatus.Marked ? SquareStatus.Closed : SquareStatus.Marked);
                 break;
             case Reveal:
                 this.status = (this.mine != null ? SquareStatus.OpenedMine : this.NumberOfSurroundedMines == 0 ? SquareStatus.OpenedEmpty :SquareStatus.OpenedNumber);

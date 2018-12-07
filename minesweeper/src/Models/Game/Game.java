@@ -75,7 +75,7 @@ public abstract class Game implements Serializable {
     }
     protected GameRules currentRules;
 
-    public class MovesOfGame {
+    public class MovesOfGame implements Serializable {
         ArrayList<PlayerMove> Moves;
         MovesOfGame(){
             this(new ArrayList<PlayerMove>());
@@ -105,6 +105,7 @@ public abstract class Game implements Serializable {
     protected Player currentPlayer;
     protected Grid grid;
     protected GameStatus status;
+    protected GameReplay Replay=GameReplay.off;
 
     protected List<Player> players=new ArrayList<Player>();
     protected List<PlayerMove> moves=new ArrayList<PlayerMove>();
@@ -133,18 +134,6 @@ public abstract class Game implements Serializable {
         GameMoves = new MovesOfGame();
     }
 
-    public Game(int gameTime, GameRules currentRules, Player currentPlayer, Grid grid, GameStatus status, List<Player> players, List<PlayerMove> moves, int flagsNumber, int shildNumber) {
-        GameTime = gameTime;
-        this.currentRules = currentRules;
-        this.currentPlayer = currentPlayer;
-        this.grid = grid;
-        this.status = status;
-        this.players = players;
-        this.moves = moves;
-        FlagsNumber = flagsNumber;
-        ShildNumber = shildNumber;
-    }
-
     // <__ METHODS __> \\
     protected void initGame(int width, int height, int minesCount,int ShildCount){
         try {
@@ -153,7 +142,7 @@ public abstract class Game implements Serializable {
             e.handle();
             return;
         }setCurrentPlayer(players.get(0));
-        this.status=GameStatus.FirstMove;// need to change to New Start game
+        status=GameStatus.FirstMove;
         FlagsNumber = minesCount;
         ShildNumber = ShildCount;
     }
@@ -171,8 +160,10 @@ public abstract class Game implements Serializable {
         if(status==GameStatus.FirstMove){
             initGame(move);
         }
-        moves=this.grid.AcceptMove(move);
         currentTimer.interrupt();
+        move.setEndTimeMove(currentTimer.getCurrentTime());
+        moves=this.grid.AcceptMove(move);
+
         currentRules.DecideNextPlayer(moves);
         if(move.getType()==MoveType.Mark){
             FlagsNumber +=(move.getSquare().getStatus()==SquareStatus.Marked ?-1:1);
@@ -185,14 +176,12 @@ public abstract class Game implements Serializable {
         {
             if(status==GameStatus.FirstMove){
                 ApplyPlayerMove(move);
-                GameMoves.add(move);
                 return;
             }
             move.setSquare(grid.getField()[move.getSquare().getX()][move.getSquare().getY()]);
             if(move.getType()==MoveType.Reveal) {
                 if (move.getSquare().getStatus() == SquareStatus.Closed) {
                     ApplyPlayerMove(move);
-                    GameMoves.add(move);
                     return;
                 }
                 else{
@@ -202,7 +191,6 @@ public abstract class Game implements Serializable {
             else{
                 if(move.getSquare().getStatus() == SquareStatus.Marked  || (FlagsNumber >0 && move.getSquare().getStatus()==SquareStatus.Closed)) {
                     ApplyPlayerMove(move);
-                    GameMoves.add(move);
                     return;
                 }
                 else{

@@ -80,13 +80,13 @@
     -fx-text-fill: #fff;
 
 }
-.combo-box .list-view {
+.combo-box .list-view,.list-view {
     /*-fx-min-height: 30;*/
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
 
-.combo-box .list-cell  {
+.combo-box .list-cell,.list-cell,.table-view .cell  {
     -fx-background-color: #485761;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
@@ -96,7 +96,7 @@
     -fx-font-weight: bold;
 
 }
-.combo-box .list-cell:hover {
+.combo-box .list-cell:hover,.list-cell:hover {
     -fx-background-color: #1EB98F;
 }
 

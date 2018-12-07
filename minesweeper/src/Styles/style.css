@@ -86,7 +86,7 @@
     -fx-padding: 0;
 }
 
-.combo-box .list-cell,.list-cell  {
+.combo-box .list-cell,.list-cell,.table-view .cell  {
     -fx-background-color: #485761;
     -fx-border-radius: 0;
     -fx-background-radius: 0;

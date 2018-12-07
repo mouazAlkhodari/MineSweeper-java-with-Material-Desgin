@@ -89,11 +89,7 @@ public class GUIGame extends NormalGame {
         }
     }
 
-    public GUIGame(int gameTime, GameRules currentRules, Player currentPlayer, Grid grid, GameStatus status, List<Player> players, List<PlayerMove> moves, int flagsNumber, int shildNumber) {
-        super(gameTime, currentRules, currentPlayer, grid, status, players, moves, flagsNumber, shildNumber);
-        FlagsNumberLabel.setText(String.valueOf(flagsNumber));
-        this.shieldNumberLabel.setText(String.valueOf(shildNumber));
-    }
+
 
     // <__ CONSTRUCTOR __> \\
     public GUIGame(List _players){
@@ -437,8 +433,6 @@ public class GUIGame extends NormalGame {
                     }
                 });
                 Begin.scoreboard.AddPlayer(new PlayerBoard(winner.getName(),GameTime,winner.getCurrentScore().getScore(),winner.getNumberOfShield(),grid.getWidth(),grid.getHeight()));
-                Begin.scoreboard.initScene();
-
             }
         });
 

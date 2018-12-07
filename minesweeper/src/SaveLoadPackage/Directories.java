@@ -9,9 +9,9 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Directories {
-    public static File save = new File("data" + File.separator+ "savedGames" + File.separator);
-    public static File replay = new File("data" + File.separator+ "replayGames" + File.separator);
-    public static File scoreboard = new File("data" + File.separator+ "scoreBoard" + File.separator);
+    public static File save = new File("data" + File.separator+ "savedGames");
+    public static File replay = new File("data" + File.separator+ "replayGames");
+    public static File scoreboard = new File("data" + File.separator+ "scoreBoard");
     public static ObservableList<String> getItems(File path){
         ObservableList<String> Items = FXCollections.observableArrayList();
         if(path.exists()){
@@ -23,7 +23,7 @@ public class Directories {
         return Items;
     }
     public static String getVal(String item){
-        item=item.substring(item.lastIndexOf(' '),item.length());
+        item=item.substring(0,item.lastIndexOf('.'));
         return item;
     }
 }

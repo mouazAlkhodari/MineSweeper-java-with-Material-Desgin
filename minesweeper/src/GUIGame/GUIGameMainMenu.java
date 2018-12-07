@@ -168,7 +168,7 @@ public class GUIGameMainMenu {
         guiGame.StartGame();
     }
     void loadGame(String name){
-        guiGame=SaveLoadGame.loadGame(Directories.save,name);
+        guiGame=SaveLoadGame.loadGame(Directories.save,name+".save");
         guiGame.initscene();
         guiGame.setBegin(this);
         Window.setScene(guiGame.getScene());

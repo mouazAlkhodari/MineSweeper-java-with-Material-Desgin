@@ -2,9 +2,10 @@ package Models.ScoreBoard;
 
 import Models.Game.Game;
 
+import java.io.Serializable;
 import java.sql.Time;
 
-public class PlayerBoard {
+public class PlayerBoard implements Serializable {
     String PlayerName;
     String GameTime;
     int FinalScore;

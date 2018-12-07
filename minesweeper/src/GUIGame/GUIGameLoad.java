@@ -26,7 +26,7 @@ public class GUIGameLoad {
         scene=new Scene(layout);
     }
     public void addGame(String game){
-        games.getItems().add(game);
+        games.getItems().add(0,game);
     }
     private void initLayout(){
         // load The List

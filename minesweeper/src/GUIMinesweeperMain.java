@@ -22,9 +22,6 @@ public class GUIMinesweeperMain extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
-        System.out.println(StringID.ReplayID());
-        System.out.println(StringID.SaveID());
-        System.out.println(StringID.ScoreBoardID());
         window=primaryStage;
         currentGame=new GUIGameMainMenu();
         currentGame.start(window);

@@ -8,10 +8,11 @@ import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ScoreBoard {
+public abstract class ScoreBoard implements Serializable {
     protected ObservableList<PlayerBoard> scoreboard = FXCollections.observableArrayList();
 
     public ScoreBoard() {

@@ -1,5 +1,6 @@
 package GUIGame;
 
+import GUIGame.GUIElements.Footer;
 import GUIGame.GUIElements.MenuButton;
 import GUIGame.GUIElements.Top;
 import Models.ScoreBoard.PlayerBoard;
@@ -17,7 +18,7 @@ public class GUIScoreBoard extends ScoreBoard {
     public Scene scene;
     protected BorderPane layout = new BorderPane();
     protected Top Top = new Top("SCOREBOARD");
-    protected HBox footer;
+    protected Footer footer;
     protected MenuButton BackButton = new MenuButton("Back");
     protected MenuButton ReplayButton = new MenuButton("Replay");
     protected TableView <PlayerBoard> table;
@@ -47,11 +48,7 @@ public class GUIScoreBoard extends ScoreBoard {
             Begin.replayGame(table.getSelectionModel().getSelectedItem().getReplayedGame());
         });
 
-        footer=new HBox(80);
-        footer.setPadding(new Insets(20));
-        footer.getStyleClass().addAll("center");
-        footer.getChildren().addAll(BackButton,ReplayButton);
-
+        footer=new Footer(BackButton,ReplayButton);
 
         layout.setTop(Top);
         layout.setCenter(table);

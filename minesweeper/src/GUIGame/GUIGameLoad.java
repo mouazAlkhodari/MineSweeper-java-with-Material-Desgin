@@ -1,5 +1,6 @@
 package GUIGame;
 
+import GUIGame.GUIElements.Footer;
 import GUIGame.GUIElements.MenuButton;
 import GUIGame.GUIElements.Top;
 import SaveLoadPackage.Directories;
@@ -17,7 +18,7 @@ public class GUIGameLoad {
     protected BorderPane Layout = new BorderPane();
     protected VBox loadList;
     protected Top Top = new Top("LOAD GAME");
-    protected HBox footer=new HBox(80);
+    protected Footer footer;
     protected GUIGameMainMenu begin;
     protected MenuButton back = new MenuButton("Back");
     protected MenuButton load = new MenuButton("Load");
@@ -54,9 +55,7 @@ public class GUIGameLoad {
     }
 
     private void initFooter() {
-        footer.setPadding(new Insets(20));
-        footer.getStyleClass().addAll("center");
-       back.setOnAction(e->{
+        back.setOnAction(e->{
             begin.Window.setScene(begin.getWelcomescene());
             begin.Window.centerOnScreen();
         });
@@ -64,7 +63,6 @@ public class GUIGameLoad {
             if(!games.getItems().isEmpty())
                 begin.loadGame(games.getSelectionModel().getSelectedItem());
         });
-
-        footer.getChildren().addAll(back,load);
+        footer = new Footer(back,load);
     }
 }

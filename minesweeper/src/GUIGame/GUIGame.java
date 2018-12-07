@@ -23,6 +23,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -211,7 +212,7 @@ public class GUIGame extends NormalGame implements Serializable {
         for(Player p:getPlayers()){
             System.out.println(p.getNumberOfShield());
         }
-        String fileName = "saved.txt";
+        String fileName = "data" + File.separator+ "savedGames" + File.separator+ "saved.save";
         SaveLoadGame.saveGame(fileName,this);
     }
     transient protected UIGameElements UIElements;

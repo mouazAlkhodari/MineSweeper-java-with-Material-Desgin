@@ -499,7 +499,6 @@ public class GUIGameMainMenu {
             Option.getChildren().addAll(PointsLabel,PointsType,CustomPoint);
         }
     }
-
     class CustomRulesOption {
         JFXCheckBox EndGameWhenHitMine = new JFXCheckBox("End Game When Hit Mine");
         JFXCheckBox FloodfillWhenHitMine = new JFXCheckBox("Flood fill When Hit Mine");
@@ -519,4 +518,6 @@ public class GUIGameMainMenu {
             ContinuePlayinginNegativeScore.getStyleClass().addAll("h3");
         }
     }
+
+
 }

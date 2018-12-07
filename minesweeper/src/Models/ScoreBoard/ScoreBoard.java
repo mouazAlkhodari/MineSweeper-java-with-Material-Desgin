@@ -13,7 +13,7 @@ public abstract class ScoreBoard {
     public void AddPlayer(PlayerBoard _player) {
         scoreboard.add(_player);
         UpdateView();
-}
+    }
     public abstract void UpdateView();
 
 }

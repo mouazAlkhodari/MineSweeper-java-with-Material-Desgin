@@ -10,6 +10,7 @@ import Models.Move.PlayerMove;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
 import Models.ScoreBoard.PlayerBoard;
+import SaveLoadPackage.Directories;
 import SaveLoadPackage.SaveLoadGame;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -212,8 +213,7 @@ public class GUIGame extends NormalGame implements Serializable {
         for(Player p:getPlayers()){
             System.out.println(p.getNumberOfShield());
         }
-        String fileName = "data" + File.separator+ "savedGames" + File.separator+ "saved.save";
-        SaveLoadGame.saveGame(fileName,this);
+        SaveLoadGame.saveGame(Directories.save,"save123.save",this);
     }
     transient protected UIGameElements UIElements;
 

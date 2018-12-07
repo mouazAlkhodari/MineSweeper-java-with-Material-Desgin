@@ -6,6 +6,7 @@ import Models.Game.WhenHitMine;
 import Models.Game.WhenScoreNegative;
 import Models.Player.DumbPlayer;
 import Models.Player.Player;
+import SaveLoadPackage.Directories;
 import SaveLoadPackage.SaveLoadGame;
 import com.jfoenix.controls.*;
 import javafx.animation.FadeTransition;
@@ -160,8 +161,7 @@ public class GUIGameMainMenu {
         guiGame.StartGame();
     }
     void loadGame(){
-        String fileName = "saved.txt";
-        guiGame=SaveLoadGame.loadGame(fileName);
+        guiGame=SaveLoadGame.loadGame(Directories.save,"save123.save");
         guiGame.initscene();
         guiGame.setBegin(this);
         Window.setScene(guiGame.getScene());

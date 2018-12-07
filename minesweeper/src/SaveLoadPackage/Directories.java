@@ -17,7 +17,7 @@ public class Directories {
         if(path.exists()){
             if(path.isDirectory()){
                 for(String item:path.list())
-                    item.re
+                    item.replaceFirst()
                     Items.add(item);
                 }
             }

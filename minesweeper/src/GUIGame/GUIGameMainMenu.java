@@ -1,6 +1,8 @@
 package GUIGame;
 
 
+import GUIGame.GUIElements.Footer;
+import GUIGame.GUIElements.MenuButton;
 import Models.Game.Points;
 import Models.Game.WhenHitMine;
 import Models.Game.WhenScoreNegative;
@@ -11,9 +13,7 @@ import SaveLoadPackage.SaveLoadGame;
 import SaveLoadPackage.StringID;
 import com.jfoenix.controls.*;
 import javafx.animation.FadeTransition;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -235,7 +235,6 @@ public class GUIGameMainMenu {
             WelcomeLayout.getStyleClass().add("windowsize");
             Welcome.getStyleClass().add("h1");
             Welcome.getStylesheets().add("Styles/style.css");
-            NewGame.getStylesheets().add("Styles/style.css");
             WelcomeLayout.getStylesheets().add("Styles/style.css");
             //Adding Components to layout
             WelcomeLayout.getChildren().addAll(Welcome, NewGame,LoadGame,Scoreboard,Profile);
@@ -265,9 +264,9 @@ public class GUIGameMainMenu {
         //initializing CustomRulesOptions
         //Elements
 
-        HBox BottomButtons = new HBox(20);
-        Button startGameButton = new Button("START GAME");
-        Button SaveButton =new Button("BACK");
+        Footer footer;
+        MenuButton startGameButton = new MenuButton("START GAME");
+        MenuButton SaveButton =new MenuButton("BACK");
 
         public OptionScene() {
             initScene();
@@ -284,14 +283,14 @@ public class GUIGameMainMenu {
 
         private void initLayout() {
             initOptionsLabel();
-            initOptionsButtons();
+            initFooter();
             initEnabledLayout();
             initVerticalSide();
             OptionLayout.getStyleClass().addAll("windowsize","bottomPadding");
             OptionLayout.getStylesheets().add("Styles/style.css");
             OptionLayout.setCenter(gridOption.Option);
             OptionLayout.setTop(OptionsTabs);
-            OptionLayout.setBottom(BottomButtons);
+            OptionLayout.setBottom(footer);
            }
 
         private void initVerticalSide() {
@@ -325,17 +324,13 @@ public class GUIGameMainMenu {
 
 
 
-        private void initOptionsButtons(){
-            startGameButton.getStyleClass().addAll("menubutton","custombutton","h3");
-            SaveButton.getStyleClass().addAll("menubutton","h3");
-
+        private void initFooter(){
+            startGameButton.getStyleClass().addAll("custombutton");
             startGameButton.setOnAction(e-> initGame());
             SaveButton.setOnAction(e->{
                 Window.setScene(welcomescene.scene);
             });
-
-            BottomButtons.getStyleClass().addAll("center");
-            BottomButtons.getChildren().addAll(SaveButton,startGameButton);
+            footer = new Footer(SaveButton,startGameButton);
         }
 
         private void initOptionsLabel() {

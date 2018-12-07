@@ -1,8 +1,7 @@
 package GUIGame;
 
-import CustomProgressIndicators.RingProgressIndicator;
-import GUIElements.RingTimer;
-import GUIElements.Top;
+import GUIGame.GUIElements.RingTimer;
+import GUIGame.GUIElements.Top;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
 import javafx.animation.ScaleTransition;

@@ -1,4 +1,4 @@
-package GUIElements;
+package GUIGame.GUIElements;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;

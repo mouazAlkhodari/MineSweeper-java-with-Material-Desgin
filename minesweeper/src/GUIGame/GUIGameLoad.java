@@ -1,5 +1,6 @@
 package GUIGame;
 
+import GUIElements.MenuButton;
 import GUIElements.Top;
 import SaveLoadPackage.Directories;
 import javafx.geometry.Insets;
@@ -20,7 +21,8 @@ public class GUIGameLoad {
     protected Top Top = new Top("LOAD GAME");
     protected HBox footer=new HBox(80);
     protected GUIGameMainMenu begin;
-    protected Button back,load;
+    protected MenuButton back = new MenuButton("Back");
+    protected MenuButton load = new MenuButton("Load");
 
     public Scene getScene() {
         return scene;
@@ -56,16 +58,10 @@ public class GUIGameLoad {
     private void initFooter() {
         footer.setPadding(new Insets(20));
         footer.getStyleClass().addAll("center");
-        back=new Button("Back");
-        back.getStyleClass().addAll("menubutton","h3");
-        back.setPrefSize(60,40);
-        back.setOnAction(e->{
+       back.setOnAction(e->{
             begin.Window.setScene(begin.getWelcomescene());
             begin.Window.centerOnScreen();
         });
-        load=new Button("Load");
-        load.getStyleClass().addAll("menubutton","h3");
-        load.setPrefSize(60,40);
         load.setOnAction(e->{
             if(!games.getItems().isEmpty())
                 begin.loadGame(games.getSelectionModel().getSelectedItem());

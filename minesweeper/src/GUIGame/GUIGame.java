@@ -1,5 +1,6 @@
 package GUIGame;
 
+import GUIElements.MenuButton;
 import GUIElements.RingTimer;
 import GUIElements.Top;
 import MineSweeperGameDefineException.IllegalGameMove;
@@ -47,9 +48,9 @@ public class GUIGame extends NormalGame implements Serializable {
         protected Scene scene;
         protected BorderPane layout;
 
-        protected Button BackButton;
-        protected Button SaveButton;
-        protected Button ReplayButton;
+        protected MenuButton BackButton = new MenuButton("Back");
+        protected MenuButton SaveButton = new MenuButton("Save");
+        protected MenuButton ReplayButton = new MenuButton("Replay");
 
         protected GUIGameMainMenu Begin;
 
@@ -165,28 +166,13 @@ public class GUIGame extends NormalGame implements Serializable {
             LastMoveLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
             shieldNumberLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
 
-            BackButton =new Button("Back");
-            BackButton.getStyleClass().addAll("menubutton","h3");
-            BackButton.setPrefSize(60,40);
-
-            SaveButton =new Button("Save");
-            SaveButton =new Button("Save");
-            SaveButton.getStyleClass().addAll("menubutton","h3");
-            SaveButton.setPrefSize(60,40);
-
             SaveButton.setOnAction(event -> {
                 SaveGame();
             });
-
             BackButton.setOnAction(e->{
                 Begin.Window.setScene(Begin.getWelcomescene());
                 Begin.Window.centerOnScreen();
             });
-
-            ReplayButton=new Button("Replay");
-            ReplayButton.getStyleClass().addAll("menubutton","h3");
-            ReplayButton.setPrefSize(60,40);
-
             ReplayButton.setOnAction(e->{
                 currentTimer.interrupt();
                 showGame();

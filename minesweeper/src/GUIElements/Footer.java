@@ -1,4 +1,5 @@
 package GUIElements;
 
-public class footer {
+public class Footer {
+
 }

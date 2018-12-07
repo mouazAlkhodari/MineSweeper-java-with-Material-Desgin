@@ -23,6 +23,7 @@ public class Directories {
         return Items;
     }
     public static String getVal(String item){
+        System.out.println(item);
         item=item.substring(0,item.lastIndexOf('.'));
         return item;
     }

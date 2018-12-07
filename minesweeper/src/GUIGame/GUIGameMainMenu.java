@@ -176,7 +176,12 @@ public class GUIGameMainMenu {
         guiGame.ContinueGame();
     }
     void replayGame(String name){
-        loadGame(name);
+        guiGame=SaveLoadGame.loadGame(Directories.replay,name);
+        guiGame.initscene();
+        guiGame.setBegin(this);
+        Window.setScene(guiGame.getScene());
+        Window.centerOnScreen();
+        guiGame.ContinueGame();
         guiGame.showGame();
     }
 

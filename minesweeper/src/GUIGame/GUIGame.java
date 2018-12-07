@@ -471,9 +471,9 @@ public class GUIGame extends NormalGame implements Serializable {
                         }
                     }
                 });
-                UIElements.Begin.scoreboard.AddPlayer(new PlayerBoard(winner.getName(),GameTime,winner.getCurrentScore().getScore(),winner.getNumberOfShield(),grid.getWidth(),grid.getHeight()));
-                //UIElements.Begin.scoreboard.AddPlayer(new PlayerBoard(winner.getName(),GameTime,winner.getCurrentScore().getScore(),winner.getNumberOfShield(),grid.getWidth(),grid.getHeight()));
-//                UIElements.Begin.scoreboard.initScene();
+                if (Replay != GameReplay.on) {
+                    AddToScoreBoard(winner);
+                }
             }
         });
 
@@ -570,6 +570,10 @@ public class GUIGame extends NormalGame implements Serializable {
             }
         });
         GUIGameThreadStart(ContinueGameThread);
+    }
+
+    void AddToScoreBoard(Player winner) {
+        UIElements.Begin.scoreboard.AddBoard(this,winner);
     }
 
 }

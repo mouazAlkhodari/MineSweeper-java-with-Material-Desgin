@@ -19,12 +19,14 @@ public class GUIScoreBoard extends ScoreBoard {
     protected HBox Top = new HBox();
     protected HBox footer;
     protected Button BackButton;
+    protected Button ReplayButton;
     protected TableView <PlayerBoard> table;
     protected  GUIGameMainMenu Begin;
 
     Label Title = new Label("SCOREBOARD");
     public GUIScoreBoard(GUIGameMainMenu menu) {
         initScene();
+        UpdateView();
         Begin = menu;
     }
     void initScene() {
@@ -50,11 +52,17 @@ public class GUIScoreBoard extends ScoreBoard {
             Begin.Window.setScene(Begin.getWelcomescene());
             Begin.Window.centerOnScreen();
     });
+        ReplayButton =new Button("Replay");
+        ReplayButton.getStyleClass().addAll("menubutton","h3");
+        ReplayButton.setPrefSize(60,40);
+        ReplayButton.setOnAction(e -> {
+            Begin.replayGame(table.getSelectionModel().getSelectedItem().getReplayedGame());
+        });
 
         footer=new HBox(80);
         footer.setPadding(new Insets(20));
         footer.getStyleClass().addAll("center");
-        footer.getChildren().addAll(BackButton);
+        footer.getChildren().addAll(BackButton,ReplayButton);
 
 
         layout.setTop(Top);

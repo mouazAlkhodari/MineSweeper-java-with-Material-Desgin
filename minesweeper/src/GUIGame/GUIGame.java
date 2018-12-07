@@ -1,18 +1,15 @@
 package GUIGame;
 
+import GUIElements.RingTimer;
 import GUIElements.Top;
 import MineSweeperGameDefineException.IllegalGameMove;
 import Models.Game.*;
-import Models.Grid.Grid;
 import Models.Grid.Square;
 import Models.Grid.SquareStatus;
 import Models.Move.MoveType;
 import Models.Move.PlayerMove;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
-import Models.ScoreBoard.PlayerBoard;
-import SaveLoadPackage.Directories;
-import SaveLoadPackage.SaveLoadGame;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,7 +22,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +42,7 @@ public class GUIGame extends NormalGame implements Serializable {
         protected VBox ScoreBoard;
         protected HBox footer;
         protected Top top;
-        protected VBox left;
+        protected RingTimer left;
 
         protected Scene scene;
         protected BorderPane layout;
@@ -151,7 +147,7 @@ public class GUIGame extends NormalGame implements Serializable {
                 ScoreBoard.getChildren().add(_playerPanel.getRightPanel());
                 if(_player==currentPlayer){
                     setTop(_playerPanel);
-                    left= _playerPanel.getLeftPanel();
+                    left= _playerPanel.getRingTimer();
                 }
             }
         }
@@ -395,7 +391,7 @@ public class GUIGame extends NormalGame implements Serializable {
                             _currentpanel.Update();
                             if(_player==currentPlayer){
                                 UIElements.setTop(_currentpanel);
-                                UIElements.left = _currentpanel.getLeftPanel();
+                                UIElements.left = _currentpanel.getRingTimer();
                             }
                             UIElements.setLayoutLeft();
                             UIElements.setLayoutTop();

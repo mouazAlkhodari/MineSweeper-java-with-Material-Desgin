@@ -10,7 +10,9 @@ import SaveLoadPackage.GameSave;
 import SaveLoadPackage.SaveLoadGame;
 import com.jfoenix.controls.*;
 import javafx.animation.FadeTransition;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -20,6 +22,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -31,7 +34,7 @@ public class GUIGameMainMenu {
     GUIGame guiGame;
     Stage Window;
 
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         Window = primaryStage;
         Window.setScene(welcomescene.scene);
         Window.centerOnScreen();

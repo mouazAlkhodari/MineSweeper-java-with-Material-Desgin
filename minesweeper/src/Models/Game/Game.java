@@ -161,7 +161,8 @@ public abstract class Game implements Serializable {
             initGame(move);
         }
         currentTimer.interrupt();
-        move.setEndTimeMove(currentTimer.getCurrentTime());
+        if(Replay!=GameReplay.on)
+            move.setEndTimeMove(currentTimer.getCurrentTime());
         moves=this.grid.AcceptMove(move);
 
         currentRules.DecideNextPlayer(moves);

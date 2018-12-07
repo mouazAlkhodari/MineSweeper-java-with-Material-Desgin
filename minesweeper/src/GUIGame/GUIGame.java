@@ -502,6 +502,7 @@ public class GUIGame extends NormalGame implements Serializable {
                 for(PlayerMove _move:GameMoves.getMoves()){
                     System.out.println("#"+GameMoves.getMoves().size());
                     double currentTime=currentPlayer.getTimeforTimer();// TODO: get it From The Move
+                    System.out.println(_move.getEndTimeMove());
                     while (currentTime > _move.getEndTimeMove()) {
                         currentTime -= 0.1;
                         UIElements.currentPanel.setTime(currentTime);
@@ -537,7 +538,7 @@ public class GUIGame extends NormalGame implements Serializable {
                 }
             }
         });
-        showGameThread.start();
+        GUIGameThreadStart(showGameThread);
     }
 
     public void ContinueGame(){

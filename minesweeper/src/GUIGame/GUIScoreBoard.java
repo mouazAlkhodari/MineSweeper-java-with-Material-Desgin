@@ -90,7 +90,6 @@ public class GUIScoreBoard extends ScoreBoard {
         table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()).add(30));
     }
 
-
     @Override
     public void UpdateView() {
             table.setItems(scoreboard);

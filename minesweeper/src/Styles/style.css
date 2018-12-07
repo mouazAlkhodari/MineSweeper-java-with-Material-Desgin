@@ -96,8 +96,11 @@
     -fx-font-weight: bold;
 
 }
-.combo-box .list-cell:hover,.list-cell:hover,.list-cell:selected {
+.combo-box .list-cell:hover,.list-cell:selected {
     -fx-background-color: #1EB98F;
+}
+.list-cell:hover {
+    -fx-background-color: #35414A;
 }
 
 .grid  {
@@ -113,7 +116,7 @@
 
 .playerboard{
     -fx-background-color:#BE90D4;
-    -fx-background-radius: 5;
+    -fx-background-radius: 0;
     -fx-min-height: 50;
     -fx-alignment: CENTER;
 }
@@ -141,6 +144,7 @@
     -fx-font-size: 30;
     -fx-text-fill: #FFFFFF;
     -fx-min-height: 75;
+    -fx-font-weight: bolder;
 }
 .h2 {
     -fx-font-size: 24;

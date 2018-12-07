@@ -1,5 +1,7 @@
 package GUIGame;
 
+import GUIElements.MenuButton;
+import GUIElements.Top;
 import Models.ScoreBoard.PlayerBoard;
 import Models.ScoreBoard.ScoreBoard;
 import javafx.beans.binding.Bindings;
@@ -16,14 +18,13 @@ import javafx.scene.layout.VBox;
 public class GUIScoreBoard extends ScoreBoard {
     public Scene scene;
     protected BorderPane layout = new BorderPane();
-    protected HBox Top = new HBox();
+    protected Top Top = new Top("SCOREBOARD");
     protected HBox footer;
-    protected Button BackButton;
-    protected Button ReplayButton;
+    protected MenuButton BackButton = new MenuButton("Back");
+    protected MenuButton ReplayButton = new MenuButton("Replay");
     protected TableView <PlayerBoard> table;
     protected  GUIGameMainMenu Begin;
 
-    Label Title = new Label("SCOREBOARD");
     public GUIScoreBoard(GUIGameMainMenu menu) {
         initScene();
         UpdateView();
@@ -36,25 +37,14 @@ public class GUIScoreBoard extends ScoreBoard {
     }
 
     void initLayout() {
-        //init TOP
-        Title.getStyleClass().addAll("h1");
-        Top.getStyleClass().addAll("playerboard");
-        Top.getChildren().addAll(Title);
-
-        //init Tabele
+             //init Tabele
         initTable();
 
         //inti FOOTER
-        BackButton =new Button("Back");
-        BackButton.getStyleClass().addAll("menubutton","h3");
-        BackButton.setPrefSize(60,40);
         BackButton.setOnAction(e -> {
             Begin.Window.setScene(Begin.getWelcomescene());
             Begin.Window.centerOnScreen();
     });
-        ReplayButton =new Button("Replay");
-        ReplayButton.getStyleClass().addAll("menubutton","h3");
-        ReplayButton.setPrefSize(60,40);
         ReplayButton.setOnAction(e -> {
             Begin.replayGame(table.getSelectionModel().getSelectedItem().getReplayedGame());
         });

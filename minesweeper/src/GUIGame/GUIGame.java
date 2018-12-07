@@ -1,17 +1,16 @@
 package GUIGame;
 
+import GUIElements.MenuButton;
+import GUIElements.RingTimer;
+import GUIElements.Top;
 import MineSweeperGameDefineException.IllegalGameMove;
 import Models.Game.*;
-import Models.Grid.Grid;
 import Models.Grid.Square;
 import Models.Grid.SquareStatus;
 import Models.Move.MoveType;
 import Models.Move.PlayerMove;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
-import Models.ScoreBoard.PlayerBoard;
-import SaveLoadPackage.Directories;
-import SaveLoadPackage.SaveLoadGame;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -24,7 +23,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,15 +42,15 @@ public class GUIGame extends NormalGame implements Serializable {
         protected GridPane FXgrid;
         protected VBox ScoreBoard;
         protected HBox footer;
-        protected HBox top;
-        protected VBox left;
+        protected Top top;
+        protected RingTimer left;
 
         protected Scene scene;
         protected BorderPane layout;
 
-        protected Button BackButton;
-        protected Button SaveButton;
-        protected Button ReplayButton;
+        protected MenuButton BackButton = new MenuButton("Back");
+        protected MenuButton SaveButton = new MenuButton("Save");
+        protected MenuButton ReplayButton = new MenuButton("Replay");
 
         protected GUIGameMainMenu Begin;
 
@@ -150,7 +148,7 @@ public class GUIGame extends NormalGame implements Serializable {
                 ScoreBoard.getChildren().add(_playerPanel.getRightPanel());
                 if(_player==currentPlayer){
                     setTop(_playerPanel);
-                    left= _playerPanel.getLeftPanel();
+                    left= _playerPanel.getRingTimer();
                 }
             }
         }
@@ -168,28 +166,13 @@ public class GUIGame extends NormalGame implements Serializable {
             LastMoveLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
             shieldNumberLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
 
-            BackButton =new Button("Back");
-            BackButton.getStyleClass().addAll("menubutton","h3");
-            BackButton.setPrefSize(60,40);
-
-            SaveButton =new Button("Save");
-            SaveButton =new Button("Save");
-            SaveButton.getStyleClass().addAll("menubutton","h3");
-            SaveButton.setPrefSize(60,40);
-
             SaveButton.setOnAction(event -> {
                 SaveGame();
             });
-
             BackButton.setOnAction(e->{
                 Begin.Window.setScene(Begin.getWelcomescene());
                 Begin.Window.centerOnScreen();
             });
-
-            ReplayButton=new Button("Replay");
-            ReplayButton.getStyleClass().addAll("menubutton","h3");
-            ReplayButton.setPrefSize(60,40);
-
             ReplayButton.setOnAction(e->{
                 currentTimer.interrupt();
                 showGame();
@@ -408,7 +391,7 @@ public class GUIGame extends NormalGame implements Serializable {
                             _currentpanel.Update();
                             if(_player==currentPlayer){
                                 UIElements.setTop(_currentpanel);
-                                UIElements.left = _currentpanel.getLeftPanel();
+                                UIElements.left = _currentpanel.getRingTimer();
                             }
                             UIElements.setLayoutLeft();
                             UIElements.setLayoutTop();

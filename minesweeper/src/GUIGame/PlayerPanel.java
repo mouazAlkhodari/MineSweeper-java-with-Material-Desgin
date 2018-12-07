@@ -1,6 +1,8 @@
 package GUIGame;
 
 import CustomProgressIndicators.RingProgressIndicator;
+import GUIElements.RingTimer;
+import GUIElements.Top;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
 import javafx.animation.ScaleTransition;
@@ -15,14 +17,11 @@ import javafx.animation.TranslateTransition;
 
 public class PlayerPanel {
     VBox rightPanel;
-    HBox topPanel;
-    VBox leftPanel;
+    Top topPanel;
+    RingTimer ringTimer;
     private Label playerNameLeftLabel;
-    private Label playerNameTopLabel;
     private Label playerScoreLabel;
     private Label playerNumberOfShieldLabel;
-    private Label playerTimerLabel;
-    private RingProgressIndicator timeProgress;
     private ImageView shieldsImage,scoreImage;
     private HBox Shields = new HBox(20);
     private HBox Score = new HBox(20);
@@ -31,24 +30,26 @@ public class PlayerPanel {
     public VBox getRightPanel() {
         return rightPanel;
     }
-    public HBox getTopPanel(){
+    public Top getTopPanel(){
         return topPanel;
     }
-    public VBox getLeftPanel() { return leftPanel;}
-    public RingProgressIndicator getTimeProgress(){ return timeProgress; }
-    public void setTime(double time){
+    public RingTimer getRingTimer() { return ringTimer;}
+     public void setTime(double time){
         Platform.runLater(new Runnable() {
             @Override public void run() {
-                timeProgress.setProgress(time);
-                playerTimerLabel.setText("Time: " + String.valueOf(time));
+                ringTimer.setProgress(time);
             }
         });
     }
 
     public PlayerPanel(Player _player) {
         player=_player;
+
+        ringTimer = new RingTimer(player.getTimeforTimer());
+        topPanel =new Top("Current Player: "+player.getName());
+        topPanel.setStyle("-fx-background-color: "+(player.getColor())+";-fx-pref-height: 25;");
+
         playerNameLeftLabel=new Label(player.getName());
-        playerNameTopLabel=new Label("Current Player: "+player.getName());
         playerScoreLabel=new Label(String.valueOf(player.getCurrentScore().getScore()));
         playerNumberOfShieldLabel=new Label(String.valueOf(player.getShieldCountBegin()));
         playerNumberOfShieldLabel.textProperty().addListener((v,oldValue,newValue) -> {
@@ -58,13 +59,9 @@ public class PlayerPanel {
                 ShieldsDecAnimation();
             }
         });
-        playerTimerLabel=new Label("Time: " +player.getTimeforTimer());
-        timeProgress = new RingProgressIndicator(player.getTimeforTimer());
-            playerNameLeftLabel.getStyleClass().addAll("h2");
-            playerNameTopLabel.getStyleClass().add("h2");
+             playerNameLeftLabel.getStyleClass().addAll("h2");
             playerScoreLabel.getStyleClass().addAll("h1","center");
             playerNumberOfShieldLabel.getStyleClass().addAll("h1","center");
-            playerTimerLabel.getStyleClass().add("h2");
 
         shieldsImage = new ImageView(new Image("images/shields.png"));
         shieldsImage.setFitHeight(75);shieldsImage.setFitWidth(75);
@@ -79,13 +76,8 @@ public class PlayerPanel {
             rightPanel.getStyleClass().add("playerboard");
             rightPanel.setStyle("-fx-background-color: "+(player.getColor())+";");
         rightPanel.getChildren().addAll(playerNameLeftLabel,Score,Shields);
-        leftPanel = new VBox();
-            leftPanel.getStyleClass().addAll("center");
-        leftPanel.getChildren().addAll(timeProgress);
-        topPanel =new HBox();
-            topPanel.getStyleClass().add("playerboard");
-            topPanel.setStyle("-fx-background-color: "+(player.getColor())+";-fx-pref-height: 25;");
-        topPanel.getChildren().addAll(playerNameTopLabel);
+
+
     }
 
     public void Update(){

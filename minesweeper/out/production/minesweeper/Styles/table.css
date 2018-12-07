@@ -21,8 +21,6 @@
 .table-row-cell:selected {
     -fx-background-color: whitesmoke;
     -fx-text-background-color:  #6622CC;
-
-
 }
 
 /* scroll bar starts here */

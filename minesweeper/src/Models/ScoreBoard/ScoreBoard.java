@@ -19,9 +19,8 @@ public abstract class ScoreBoard implements Serializable {
     protected ObservableList<PlayerBoard> scoreboard = FXCollections.observableArrayList();
 
     public ScoreBoard() {
-        List<String> names = Directories.getItems(Directories.scoreboard);
-        for (String name : names) {
-            scoreboard.add(SaveLoadGame.loadGame(Directories.scoreboard,name+".score"));
+        for (String name : Directories.scoreboard.list()) {
+            scoreboard.add(SaveLoadGame.loadGame(Directories.scoreboard,name));
         }
     }
 

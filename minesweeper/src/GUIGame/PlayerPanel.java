@@ -75,6 +75,7 @@ public class PlayerPanel {
         Score.getStyleClass().addAll("line");
         Score.getChildren().addAll(scoreImage,playerScoreLabel);
         rightPanel =new VBox();
+            rightPanel.setMaxWidth(200);
             rightPanel.getStyleClass().add("playerboard");
             rightPanel.setStyle("-fx-background-color: "+(player.getColor())+";");
         rightPanel.getChildren().addAll(playerNameLeftLabel,Score,Shields);

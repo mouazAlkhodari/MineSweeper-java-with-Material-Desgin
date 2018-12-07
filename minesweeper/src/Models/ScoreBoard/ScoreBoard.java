@@ -22,7 +22,7 @@ public abstract class ScoreBoard {
         scoreboard.add(_player);
         SaveLoadGame.saveGame(Directories.scoreboard,"test",_player);
         UpdateView();
-}
+    }
     public abstract void UpdateView();
 
 }

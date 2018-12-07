@@ -244,6 +244,7 @@ public abstract class Game implements Serializable {
             currentPlayer.Play();
         }
     }
+    public Grid getGrid() { return grid;}
     protected void setStatus(GameStatus status) {
         this.status = status;
     }

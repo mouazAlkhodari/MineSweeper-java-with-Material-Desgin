@@ -11,13 +11,15 @@ public class PlayerBoard implements Serializable {
     int FinalScore;
     int ShieldsRemaining;
     String GameDifficulty;
+    String ReplayedGame;
 
-    public PlayerBoard(String _playerName,int _timeInSeconds,int _finalScore,int _shieldsRemaining,int _gameWidth,int _gameHeight) {
+    public PlayerBoard(String _playerName,int _timeInSeconds,int _finalScore,int _shieldsRemaining,int _gameWidth,int _gameHeight,String _replayerdGame) {
         PlayerName = _playerName;
         GameTime = TimeIntToString(_timeInSeconds);
         FinalScore = _finalScore;
         ShieldsRemaining = _shieldsRemaining;
         GameDifficulty = GameDifficultyToString(_gameWidth,_gameHeight);
+        ReplayedGame = _replayerdGame;
     }
 
     public String getPlayerName() { return PlayerName; }
@@ -25,6 +27,8 @@ public class PlayerBoard implements Serializable {
     public int getFinalScore() { return FinalScore; }
     public int getShieldsRemaining() { return ShieldsRemaining; }
     public String getGameDifficulty() { return GameDifficulty; }
+    public String getReplayedGame() { return ReplayedGame; }
+
 
 
     private String TimeIntToString(int time) {

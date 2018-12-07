@@ -196,17 +196,29 @@ public class GUIGame extends NormalGame implements Serializable {
             });
             footer.getChildren().addAll(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton, SaveButton,ReplayButton);
         }
+
         public void reset(){
-            Platform.runLater(new Runnable() {
+            Thread resetThread=new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    initFXComponoents();
-                    scene.setRoot(layout);
-                    UIElements.BackButton.setDisable(true);
-                    UIElements.SaveButton.setDisable(true);
-                    UIElements.ReplayButton.setDisable(true);
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            initFXComponoents();
+                            scene.setRoot(layout);
+                            UIElements.BackButton.setDisable(true);
+                            UIElements.SaveButton.setDisable(true);
+                            UIElements.ReplayButton.setDisable(true);
+                        }
+                    });
                 }
             });
+            GUIGameThreadStart(resetThread);
+            try {
+                resetThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -324,6 +336,7 @@ public class GUIGame extends NormalGame implements Serializable {
                 } catch (IllegalGameMove illegalGameMove) {
                     illegalGameMove.handle();
                     if(status== GameStatus.Finish){
+                        UpdateVeiw(moves);
                         EndGame();
                     }
                     else if (!(currentPlayer instanceof GUIPlayer)){
@@ -334,6 +347,7 @@ public class GUIGame extends NormalGame implements Serializable {
 
                 // need else some thing wrong input Or Some Thing Like that :3
                 if(status== GameStatus.Finish){
+                    UpdateVeiw(moves);
                     EndGame();
                 }
                 else{
@@ -471,9 +485,9 @@ public class GUIGame extends NormalGame implements Serializable {
                         }
                     }
                 });
-                UIElements.Begin.scoreboard.AddPlayer(new PlayerBoard(winner.getName(),GameTime,winner.getCurrentScore().getScore(),winner.getNumberOfShield(),grid.getWidth(),grid.getHeight()));
-                //UIElements.Begin.scoreboard.AddPlayer(new PlayerBoard(winner.getName(),GameTime,winner.getCurrentScore().getScore(),winner.getNumberOfShield(),grid.getWidth(),grid.getHeight()));
-//                UIElements.Begin.scoreboard.initScene();
+                if (Replay != GameReplay.on) {
+                    AddToScoreBoard(winner);
+                }
             }
         });
 
@@ -494,7 +508,7 @@ public class GUIGame extends NormalGame implements Serializable {
                 grid.reset();
                 FlagsNumber=grid.getMinesCount();
                 ShildNumber=grid.getShieldsCount();
-
+                status=GameStatus.Running;
                 UIElements.reset();
 
 
@@ -504,6 +518,7 @@ public class GUIGame extends NormalGame implements Serializable {
                     System.out.println("#"+GameMoves.getMoves().size());
                     double currentTime=currentPlayer.getTimeforTimer();// TODO: get it From The Move
                     System.out.println(_move.getEndTimeMove());
+                    System.out.println(currentPlayer.getName());
                     while (currentTime > _move.getEndTimeMove()) {
                         currentTime -= 0.1;
                         UIElements.currentPanel.setTime(currentTime);
@@ -527,16 +542,19 @@ public class GUIGame extends NormalGame implements Serializable {
                 UIElements.BackButton.setDisable(false);
                 UIElements.SaveButton.setDisable(false);
                 UIElements.ReplayButton.setDisable(false);
-                Replay=GameReplay.off;
 
-                if(status==GameStatus.Finish)
+                if(status==GameStatus.Finish) {
                     EndGame();
+                }
                 else{
                     currentTimer = new GUITimer(currentTimer.getCurrentTime());
                     GUIGameThreadStart(currentTimer);
                     if (!(currentPlayer instanceof GUIPlayer))
                         GetMove();
                 }
+
+//                Replay=GameReplay.off;
+
             }
         });
         GUIGameThreadStart(showGameThread);
@@ -570,6 +588,10 @@ public class GUIGame extends NormalGame implements Serializable {
             }
         });
         GUIGameThreadStart(ContinueGameThread);
+    }
+
+    void AddToScoreBoard(Player winner) {
+        UIElements.Begin.scoreboard.AddBoard(this,winner);
     }
 
 }

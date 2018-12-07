@@ -114,9 +114,10 @@ public class GUIGameMainMenu {
                     JFXTextField _NumberOfShield=(JFXTextField)(((HBox)playerfield).getChildren().get(1));
                     JFXCheckBox DisableShield = (JFXCheckBox)(((HBox) playerfield).getChildren().get(2));
                     if(_playerName.getText().length()!=0) {
-                        Player currentPlayer=new GUIPlayer(_playerName.getText(), optionsScene.playersOption._playersColor.get(i++));
-                        if (DisableShield.isSelected()) { currentPlayer.setMaxNumberOfShields(0);}
-                        currentPlayer.setNumberOfShild(getVal(_NumberOfShield,1));
+                        int numberShields=0,maxnumberShields=1000000;
+                        if (DisableShield.isSelected()) { maxnumberShields=0;}
+                        numberShields=getVal(_NumberOfShield,1);
+                        Player currentPlayer=new GUIPlayer(_playerName.getText(), optionsScene.playersOption._playersColor.get(i++),numberShields,maxnumberShields);
                         currentPlayer.setTimeforTimer(Timer);
                         _players.add(currentPlayer);
                     }
@@ -176,7 +177,11 @@ public class GUIGameMainMenu {
         guiGame.ContinueGame();
     }
     void replayGame(String name){
-        loadGame(name);
+        guiGame=SaveLoadGame.loadGame(Directories.replay,name);
+        guiGame.initscene();
+        guiGame.setBegin(this);
+        Window.setScene(guiGame.getScene());
+        Window.centerOnScreen();
         guiGame.showGame();
     }
 
@@ -209,7 +214,9 @@ public class GUIGameMainMenu {
             Welcome = new Label("MineSweeper");
             NewGame = new Button("NEW GAME");
             NewGame.getStyleClass().addAll("menubutton","custombutton","h3");
-            NewGame.setOnAction(e -> {Window.setScene(optionsScene.scene);Window.centerOnScreen();});
+            NewGame.setOnAction(e -> {
+                Window.setScene(optionsScene.scene);Window.centerOnScreen();
+            });
             //Setting Style
             LoadGame = new Button("LOAD GAME");
             LoadGame.getStyleClass().addAll("menubutton","h3");

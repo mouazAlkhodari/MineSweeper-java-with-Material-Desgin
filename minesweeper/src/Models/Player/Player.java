@@ -40,14 +40,17 @@ public abstract class Player implements Serializable {
         this(name,currentScore,currentStatus,_color,0,100000);
     }
     public Player(String name,PlayerStatus currentStatus,String _color,int _maxNumberOfShild) { this(name,new Score(),currentStatus,_color,0,_maxNumberOfShild); }
+    public Player(String name,String color,int numberOfShield,int maxNumberOfShild){
+        this(name,new Score(),PlayerStatus.waiting,color,numberOfShield,maxNumberOfShild);
+    }
     public Player(String name, Score currentScore, PlayerStatus currentStatus,String _color,int _numberOfShield,int _maxNumberOfShild) {
         this.name = name;
         this.currentScore = currentScore;
         this.currentStatus = currentStatus;
         this.color=_color;
-        numberOfShield=_numberOfShield;
-        ShieldCountBegin=_numberOfShield;
         maxNumberOfShild=_maxNumberOfShild;
+        setNumberOfShild(_numberOfShield);
+        ShieldCountBegin=numberOfShield;
     }
 
     // Implemented In each Kind Of Players Like Console Or GUI Player
@@ -91,5 +94,9 @@ public abstract class Player implements Serializable {
         currentStatus=PlayerStatus.waiting;
         currentScore.setScore(0);
         setNumberOfShild(ShieldCountBegin);
+    }
+
+    public int getShieldCountBegin() {
+        return ShieldCountBegin;
     }
 }

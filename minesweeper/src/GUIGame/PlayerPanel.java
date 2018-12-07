@@ -50,7 +50,7 @@ public class PlayerPanel {
         playerNameLeftLabel=new Label(player.getName());
         playerNameTopLabel=new Label("Current Player: "+player.getName());
         playerScoreLabel=new Label(String.valueOf(player.getCurrentScore().getScore()));
-        playerNumberOfShieldLabel=new Label(String.valueOf(player.getNumberOfShield()));
+        playerNumberOfShieldLabel=new Label(String.valueOf(player.getShieldCountBegin()));
         playerNumberOfShieldLabel.textProperty().addListener((v,oldValue,newValue) -> {
             if(Integer.valueOf(oldValue) < Integer.valueOf(newValue)) {
                 ShieldsIncAnimation();

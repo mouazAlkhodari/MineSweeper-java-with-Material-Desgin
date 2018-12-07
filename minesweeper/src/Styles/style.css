@@ -96,7 +96,7 @@
     -fx-font-weight: bold;
 
 }
-.combo-box .list-cell:hover,.list-cell:hover {
+.combo-box .list-cell:hover,.list-cell:hover,.list-cell:selected {
     -fx-background-color: #1EB98F;
 }
 

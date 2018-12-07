@@ -458,7 +458,9 @@ public class GUIGame extends NormalGame implements Serializable {
                         }
                         winner.setCurrentStatus(PlayerStatus.win);
                         LastMoveLabel.setText(WinnerStr);
-
+                        if (Replay != GameReplay.on) {
+                            AddToScoreBoard(winner);
+                        }
                         for (int i = 1; i < grid.getHeight(); i++) {
                             for (int j = 1; j < grid.getWidth(); j++) {
                                 int H = (i - 1) * (grid.getWidth() - 1) + (j - 1);
@@ -466,11 +468,10 @@ public class GUIGame extends NormalGame implements Serializable {
                                 currentButton.setDisable(true);
                             }
                         }
+
                     }
+
                 });
-                if (Replay != GameReplay.on) {
-                    AddToScoreBoard(winner);
-                }
             }
         });
 

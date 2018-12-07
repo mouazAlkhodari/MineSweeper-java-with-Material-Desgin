@@ -175,6 +175,10 @@ public class GUIGameMainMenu {
         Window.centerOnScreen();
         guiGame.ContinueGame();
     }
+    void replayGame(String name){
+        loadGame(name);
+        guiGame.showGame();
+    }
 
     void fadeIn(Node node) {
         node.setVisible(true);

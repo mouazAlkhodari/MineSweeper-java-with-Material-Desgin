@@ -12,9 +12,7 @@ public class SaveLoadGame {
             File textFile = new File(fname);
             FileOutputStream fileStream = new FileOutputStream(textFile);
             ObjectOutputStream out = new ObjectOutputStream(fileStream);
-            for(Player p:((GUIGame)game).getPlayers()){
-                System.out.println(p.getNumberOfShield());
-            }
+
             out.writeObject(game);
             out.close();
             fileStream.close();

@@ -210,9 +210,6 @@ public class GUIGame extends NormalGame implements Serializable {
     }
 
     protected void SaveGame(){
-        for(Player p:getPlayers()){
-            System.out.println(p.getNumberOfShield());
-        }
         SaveLoadGame.saveGame(Directories.save,"save123.save",this);
     }
     transient protected UIGameElements UIElements;

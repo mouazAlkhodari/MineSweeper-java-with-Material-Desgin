@@ -1,4 +1,5 @@
 import GUIGame.GUIGameMainMenu;
+import SaveLoadPackage.StringID;
 import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -21,6 +22,9 @@ public class GUIMinesweeperMain extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
+        System.out.println(StringID.ReplayID());
+        System.out.println(StringID.SaveID());
+        System.out.println(StringID.ScoreBoardID());
         window=primaryStage;
         currentGame=new GUIGameMainMenu();
         currentGame.start(window);

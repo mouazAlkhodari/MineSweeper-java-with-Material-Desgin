@@ -212,7 +212,6 @@ public class GUIGameMainMenu {
             Profile = new Button("PROFILE");
             Profile.getStyleClass().addAll("menubutton","h3");
             Profile.setDisable(true);
-
             WelcomeLayout.getStyleClass().add("windowsize");
             Welcome.getStyleClass().add("h1");
             Welcome.getStylesheets().add("Styles/style.css");

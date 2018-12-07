@@ -16,11 +16,13 @@ public class Directories {
         ObservableList<String> Items = FXCollections.observableArrayList();
         if(path.exists()){
             if(path.isDirectory()){
-                for(String item:path.list())
-//                    item.re
-                    Items.add(item);
+                    for(String item:path.list())
+                        Items.add(getVal(item));
                 }
             }
         return Items;
+    }
+    public static String getVal(String s){
+
     }
 }

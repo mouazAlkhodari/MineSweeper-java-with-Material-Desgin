@@ -7,14 +7,14 @@ import Models.Player.Player;
 import java.io.*;
 
 public class SaveLoadGame {
-    public static<T> void saveGame(File path,String name, T game){// GUIGame
+    public static<T> void saveGame(File path,String name, T object){// GUIGame
         try {
             File textFile = new File(path.getCanonicalPath() +File.separator+ name);
             System.out.println(textFile);
             FileOutputStream fileStream = new FileOutputStream(textFile);
             ObjectOutputStream out = new ObjectOutputStream(fileStream);
 
-            out.writeObject(game);
+            out.writeObject(object);
             out.close();
             fileStream.close();
             System.out.println("Saved Successfully");

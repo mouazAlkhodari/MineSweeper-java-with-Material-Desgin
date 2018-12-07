@@ -211,8 +211,8 @@ public class GUIGame extends NormalGame implements Serializable {
     }
 
     protected void SaveGame(){
+        UIElements.getBegin().saveGame();
 
-        SaveLoadGame.saveGame(Directories.save,"save123.save",this);
     }
     transient protected UIGameElements UIElements;
 

@@ -8,6 +8,7 @@ import Models.Player.DumbPlayer;
 import Models.Player.Player;
 import SaveLoadPackage.Directories;
 import SaveLoadPackage.SaveLoadGame;
+import SaveLoadPackage.StringID;
 import com.jfoenix.controls.*;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +35,11 @@ public class GUIGameMainMenu {
     GUIGame guiGame;
     Stage Window;
 
+    public void saveGame(){
+        String name=StringID.SaveID();
+        SaveLoadGame.saveGame(Directories.save, name,guiGame);
+        gameLoader.addGame(name);
+    }
     public void start(Stage primaryStage) throws IOException {
         Window = primaryStage;
         Window.setScene(welcomescene.scene);
@@ -215,7 +221,6 @@ public class GUIGameMainMenu {
             Profile = new Button("PROFILE");
             Profile.getStyleClass().addAll("menubutton","h3");
             Profile.setDisable(true);
-
             WelcomeLayout.getStyleClass().add("windowsize");
             Welcome.getStyleClass().add("h1");
             Welcome.getStylesheets().add("Styles/style.css");

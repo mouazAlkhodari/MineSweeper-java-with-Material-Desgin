@@ -1,7 +1,6 @@
-package GUIElements;
+package GUIGame.GUIElements;
 
 import CustomProgressIndicators.RingProgressIndicator;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class RingTimer extends VBox {

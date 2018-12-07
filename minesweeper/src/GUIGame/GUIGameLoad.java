@@ -1,12 +1,10 @@
 package GUIGame;
 
-import GUIElements.MenuButton;
-import GUIElements.Top;
+import GUIGame.GUIElements.MenuButton;
+import GUIGame.GUIElements.Top;
 import SaveLoadPackage.Directories;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;

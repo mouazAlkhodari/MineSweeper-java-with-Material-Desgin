@@ -1,8 +1,8 @@
 package GUIGame;
 
-import GUIElements.MenuButton;
-import GUIElements.RingTimer;
-import GUIElements.Top;
+import GUIGame.GUIElements.MenuButton;
+import GUIGame.GUIElements.RingTimer;
+import GUIGame.GUIElements.Top;
 import MineSweeperGameDefineException.IllegalGameMove;
 import Models.Game.*;
 import Models.Grid.Square;

@@ -1,18 +1,16 @@
 package GUIGame;
 
-import GUIElements.MenuButton;
-import GUIElements.Top;
+import GUIGame.GUIElements.MenuButton;
+import GUIGame.GUIElements.Top;
 import Models.ScoreBoard.PlayerBoard;
 import Models.ScoreBoard.ScoreBoard;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 
 public class GUIScoreBoard extends ScoreBoard {

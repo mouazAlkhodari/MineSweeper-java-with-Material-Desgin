@@ -7,9 +7,9 @@ import Models.Player.Player;
 import java.io.*;
 
 public class SaveLoadGame {
-    public static<T> void saveGame(String fname, T game){// GUIGame
+    public static<T> void saveGame(File path,String name, T game){// GUIGame
         try {
-            File textFile = new File(fname);
+            File textFile = new File(path.getCanonicalPath() + name);
             FileOutputStream fileStream = new FileOutputStream(textFile);
             ObjectOutputStream out = new ObjectOutputStream(fileStream);
             for(Player p:((GUIGame)game).getPlayers()){
@@ -27,10 +27,10 @@ public class SaveLoadGame {
         }
     }
 
-    public static<T> T loadGame(String fname){
+    public static<T> T loadGame(File path,String name){
         try{
             // Reading Object From a File
-            FileInputStream loadFile = new FileInputStream(fname);
+            FileInputStream loadFile = new FileInputStream(new File(path.getCanonicalPath() + name));
             ObjectInputStream loadStream = new ObjectInputStream(loadFile);
             T loadedObject;
             loadedObject = (T) loadStream.readObject();

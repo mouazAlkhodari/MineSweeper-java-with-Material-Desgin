@@ -20,7 +20,8 @@ public abstract class ScoreBoard implements Serializable {
 
     public ScoreBoard() {
         for (String name : Directories.scoreboard.list()) {
-            scoreboard.add(SaveLoadGame.loadGame(Directories.scoreboard,name));
+            PlayerBoard _board = SaveLoadGame.loadGame(Directories.scoreboard,name);
+            if (_board != null) { scoreboard.add(_board); }
         }
     }
 

@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import BaseAlphabit.Converter;
-import CustomSequences.SquareType2DArray;
+import extensions.BaseAlphabit.Converter;
+import extensions.CustomSequences.SquareType2DArray;
 import Models.Grid.Grid;
 import Models.Grid.Square;
 import Models.Grid.SquareStatus;

@@ -1,5 +1,5 @@
 package ConsoleGame;
-import BaseAlphabit.Converter;
+import extensions.BaseAlphabit.Converter;
 import Models.Game.GameStatus;
 import Models.Game.NormalGame;
 import Models.Grid.Square;

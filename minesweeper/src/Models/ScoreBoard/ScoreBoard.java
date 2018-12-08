@@ -2,18 +2,13 @@ package Models.ScoreBoard;
 
 import GUIGame.GUIGame;
 import Models.Player.Player;
-import Models.Player.Score;
-import SaveLoadPackage.Directories;
-import SaveLoadPackage.SaveLoadGame;
-import SaveLoadPackage.StringID;
+import SaveLoad.Directories;
+import SaveLoad.SaveLoadGame;
+import SaveLoad.StringID;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 
-import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class ScoreBoard implements Serializable {
     protected ObservableList<PlayerBoard> scoreboard = FXCollections.observableArrayList();

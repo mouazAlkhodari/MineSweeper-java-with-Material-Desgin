@@ -1,8 +1,8 @@
 package Models.Grid;
 
-import CustomSequences.MineSweeperGrid;
-import CustomSequences.SquareType2DArray;
-import CustomSequences.SurroundingMinesMatrix;
+import extensions.CustomSequences.MineSweeperGrid;
+import extensions.CustomSequences.SquareType2DArray;
+import extensions.CustomSequences.SurroundingMinesMatrix;
 import Models.Game.Game;
 import Models.Move.MoveResult;
 import Models.Move.MoveType;

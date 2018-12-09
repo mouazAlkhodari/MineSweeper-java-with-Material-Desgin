@@ -40,13 +40,29 @@ public class GUIGameMainMenu {
         SaveLoadGame.saveGame(Directories.save, name,guiGame);
         gameLoader.addGame(name);
     }
+    void loadGame(String name){
+        guiGame=SaveLoadGame.loadGame(Directories.save,name+".save");
+        guiGame.initscene();
+        guiGame.setBegin(this);
+        Window.setScene(guiGame.getScene());
+        Window.centerOnScreen();
+        guiGame.ContinueGame();
+    }
+    void replayGame(String name){
+        guiGame=SaveLoadGame.loadGame(Directories.replay,name);
+        guiGame.initscene();
+        guiGame.setBegin(this);
+        Window.setScene(guiGame.getScene());
+        Window.centerOnScreen();
+        guiGame.showGame();
+    }
+
     public void start(Stage primaryStage) throws IOException {
         Window = primaryStage;
         Window.setScene(welcomescene.scene);
         Window.centerOnScreen();
         Controller controller=new Controller();
         Window.show();
-
     }
     static int getVal(Node text,int begin){
         try {
@@ -167,22 +183,6 @@ public class GUIGameMainMenu {
         Window.setScene(guiGame.getScene());
         Window.centerOnScreen();
         guiGame.StartGame();
-    }
-    void loadGame(String name){
-        guiGame=SaveLoadGame.loadGame(Directories.save,name+".save");
-        guiGame.initscene();
-        guiGame.setBegin(this);
-        Window.setScene(guiGame.getScene());
-        Window.centerOnScreen();
-        guiGame.ContinueGame();
-    }
-    void replayGame(String name){
-        guiGame=SaveLoadGame.loadGame(Directories.replay,name);
-        guiGame.initscene();
-        guiGame.setBegin(this);
-        Window.setScene(guiGame.getScene());
-        Window.centerOnScreen();
-        guiGame.showGame();
     }
 
     void fadeIn(Node node) {

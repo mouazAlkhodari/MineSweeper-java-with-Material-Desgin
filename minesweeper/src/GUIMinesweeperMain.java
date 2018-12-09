@@ -1,16 +1,7 @@
 import GUIGame.GUIGameMainMenu;
-import SaveLoadPackage.StringID;
-import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import static java.lang.Thread.currentThread;
 import static java.lang.Thread.sleep;
 
 

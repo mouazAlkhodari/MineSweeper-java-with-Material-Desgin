@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import BaseAlphabit.Converter;
-import CustomSequences.SquareType2DArray;
+import extensions.BaseAlphabit.Converter;
+import extensions.CustomSequences.SquareType2DArray;
 import Models.Grid.Grid;
 import Models.Grid.Square;
 import Models.Grid.SquareStatus;
@@ -37,6 +37,7 @@ public abstract class Game implements Serializable {
         {
             while (currentTime > 0) {
                 currentTime -= 0.1;
+                GameTime+=0.1;
                 Show(currentTime);
                 try {
                     TimeUnit.MILLISECONDS.sleep(100);
@@ -58,7 +59,12 @@ public abstract class Game implements Serializable {
         }
     }
     protected Timer currentTimer;
-    protected int GameTime;
+
+    public double getGameTime() {
+        return GameTime;
+    }
+
+    protected double GameTime=0.0;
 
 
     public abstract class GameRules implements Serializable{
@@ -115,7 +121,6 @@ public abstract class Game implements Serializable {
     protected int ShildNumber;
     protected int HeroShieldNumber;
 
-
     public Game(List _players){
         this(10,10,10,0,_players);
     }
@@ -161,8 +166,9 @@ public abstract class Game implements Serializable {
             initGame(move);
         }
         currentTimer.interrupt();
-        if(Replay!=GameReplay.on)
+        if(Replay!=GameReplay.on) {
             move.setEndTimeMove(currentTimer.getCurrentTime());
+        }
         moves=this.grid.AcceptMove(move);
 
         currentRules.DecideNextPlayer(moves);

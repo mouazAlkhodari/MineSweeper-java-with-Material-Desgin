@@ -21,6 +21,7 @@ public class PlayerPanel {
     private Label playerNameLeftLabel;
     private Label playerScoreLabel;
     private Label playerNumberOfShieldLabel;
+    //private Label gameTimerLabel;
     private ImageView shieldsImage,scoreImage;
     private HBox Shields = new HBox(20);
     private HBox Score = new HBox(20);
@@ -58,7 +59,7 @@ public class PlayerPanel {
                 ShieldsDecAnimation();
             }
         });
-             playerNameLeftLabel.getStyleClass().addAll("h2");
+            playerNameLeftLabel.getStyleClass().addAll("h2");
             playerScoreLabel.getStyleClass().addAll("h1","center");
             playerNumberOfShieldLabel.getStyleClass().addAll("h1","center");
 

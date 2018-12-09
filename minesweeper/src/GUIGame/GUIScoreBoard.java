@@ -28,6 +28,7 @@ public class GUIScoreBoard extends ScoreBoard {
     protected  GUIGameMainMenu Begin;
 
     public GUIScoreBoard(GUIGameMainMenu menu) {
+        super();
         initScene();
         UpdateView();
         Begin = menu;

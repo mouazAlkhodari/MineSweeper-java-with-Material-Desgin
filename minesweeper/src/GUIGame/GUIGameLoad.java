@@ -3,12 +3,10 @@ package GUIGame;
 import GUIGame.GUIElements.Footer;
 import GUIGame.GUIElements.MenuButton;
 import GUIGame.GUIElements.Top;
-import SaveLoadPackage.Directories;
-import javafx.geometry.Insets;
+import SaveLoad.Directories;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 

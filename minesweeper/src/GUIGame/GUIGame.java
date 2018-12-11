@@ -1,10 +1,9 @@
 package GUIGame;
 
-import GUIGame.GUIElements.MenuButton;
-import GUIGame.GUIElements.RingTimer;
-import GUIGame.GUIElements.Top;
+import GUIGame.GUIElements.*;
 import MineSweeperGameDefineException.IllegalGameMove;
 import Models.Game.*;
+import Models.Grid.Grid;
 import Models.Grid.Square;
 import Models.Grid.SquareStatus;
 import Models.Move.MoveType;
@@ -41,7 +40,7 @@ public class GUIGame extends NormalGame implements Serializable {
 
         protected GridPane FXgrid;
         protected VBox ScoreBoard;
-        protected HBox footer;
+        protected Footer footer;
         protected Top top;
         protected RingTimer left;
 
@@ -55,7 +54,7 @@ public class GUIGame extends NormalGame implements Serializable {
         protected GUIGameMainMenu Begin;
 
         // in footer
-        protected Label LastMoveLabel,FlagsNumberLabel,shieldNumberLabel;
+        protected DarkLabel LastMoveLabel,FlagsNumberLabel,shieldNumberLabel;
 
         public UIGameElements(){
             initScene();
@@ -66,7 +65,7 @@ public class GUIGame extends NormalGame implements Serializable {
         public GridPane getFXgrid() { return FXgrid; }
         public VBox getScoreBoard() { return ScoreBoard; }
         public Scene getScene() { return scene; }
-        public HBox getFooter() {return footer; }
+        public Footer getFooter() {return footer; }
         public UIGameElements getUIELements() { return UIElements;}
         public void setTop(PlayerPanel _panel) {
             this.top =_panel.getTopPanel();
@@ -113,17 +112,11 @@ public class GUIGame extends NormalGame implements Serializable {
             FXgrid.getStylesheets().add("Styles/style.css");
             for(int i=1;i<grid.getHeight();i++){
                 for(int j=1;j<grid.getWidth();j++){
-                    Button currentbutton=new Button();
-
-                    currentbutton.getStylesheets().add("Styles/style.css");
-                    //SettingSize
                     double buttonborder = ConstBorder / max(grid.getHeight()-1,grid.getWidth()-1);
-                    //System.out.println(buttonborder + " " + grid.getHeight() + " " +grid.getWidth());
-                    currentbutton.setMaxSize(buttonborder, buttonborder);
-                    currentbutton.setMinSize(buttonborder, buttonborder);
-                    //Set Action
+                    GridButton currentbutton=new GridButton(buttonborder, buttonborder);
+
                     currentbutton.setOnMouseClicked(e->{
-                        if(currentPlayer instanceof GUIPlayer) {
+                        if(Replay !=GameReplay.on && currentPlayer instanceof GUIPlayer) {
                             currentPlayerMove = new PlayerMove(currentPlayer, new Square(GridPane.getRowIndex(currentbutton), GridPane.getColumnIndex(currentbutton)));
                             if (e.getButton() == MouseButton.PRIMARY) currentPlayerMove.setType(MoveType.Reveal);
                             else currentPlayerMove.setType(MoveType.Mark);
@@ -154,17 +147,9 @@ public class GUIGame extends NormalGame implements Serializable {
         }
         private void initfooter() {
             // init Last Move Label
-            footer=new HBox();
-            footer.setPadding(new Insets(20));
-            footer.setSpacing(80);
-            footer.setAlignment(Pos.CENTER);
-
-            LastMoveLabel =new Label();
-            FlagsNumberLabel =new Label("Flags: "+ FlagsNumber +"");
-            shieldNumberLabel=new Label("Shields: " +ShildNumber + "");
-            FlagsNumberLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
-            LastMoveLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
-            shieldNumberLabel.getStyleClass().addAll("buttonlabel","h3","padding-sm");
+            LastMoveLabel =new DarkLabel();
+            FlagsNumberLabel =new DarkLabel("Flags: "+ FlagsNumber +"");
+            shieldNumberLabel=new DarkLabel("Shields: " +ShildNumber + "");
 
             SaveButton.setOnAction(event -> {
                 SaveGame();
@@ -172,12 +157,13 @@ public class GUIGame extends NormalGame implements Serializable {
             BackButton.setOnAction(e->{
                 Begin.Window.setScene(Begin.getWelcomescene());
                 Begin.Window.centerOnScreen();
+                interruptThreads();
             });
             ReplayButton.setOnAction(e->{
                 currentTimer.interrupt();
                 showGame();
             });
-            footer.getChildren().addAll(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton, SaveButton,ReplayButton);
+            footer = new Footer(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton, SaveButton,ReplayButton);
         }
 
         public void reset(){
@@ -189,7 +175,6 @@ public class GUIGame extends NormalGame implements Serializable {
                         public void run() {
                             initFXComponoents();
                             scene.setRoot(layout);
-                            UIElements.BackButton.setDisable(true);
                             UIElements.SaveButton.setDisable(true);
                             UIElements.ReplayButton.setDisable(true);
                         }
@@ -200,15 +185,13 @@ public class GUIGame extends NormalGame implements Serializable {
             try {
                 resetThread.join();
             } catch (InterruptedException e) {
+                System.out.println("reset Scene interrupt");
                 e.printStackTrace();
             }
         }
     }
 
-    protected void SaveGame(){
-        UIElements.getBegin().saveGame();
 
-    }
     transient protected UIGameElements UIElements;
 
     class GUITimer extends Timer implements Serializable{
@@ -306,9 +289,12 @@ public class GUIGame extends NormalGame implements Serializable {
         });
         GUIGameThreadStart(StartGameThread);
     }
+
+
+    transient Thread GetMoveThread=new Thread();
     @Override
     public void GetMove(){
-        Thread GetMoveThread=new Thread(new Runnable() {
+        GetMoveThread=new Thread(new Runnable() {
             @Override
             public void run() {
                 PlayerMove move = currentPlayer.GetPlayerMove();
@@ -340,9 +326,12 @@ public class GUIGame extends NormalGame implements Serializable {
         });
         GUIGameThreadStart(GetMoveThread);
     }
+
+
+    transient Thread UpdateViewThread=new Thread();
     @Override
     protected void UpdateVeiw(List<PlayerMove> Moves){
-        Thread UpdateViewThread=new Thread(new Runnable() {
+        UpdateViewThread=new Thread(new Runnable() {
             @Override
             public void run() {
                 Platform.runLater(new Runnable() {
@@ -353,33 +342,26 @@ public class GUIGame extends NormalGame implements Serializable {
                             int i = currentmove.getSquare().getX();
                             int j = currentmove.getSquare().getY();
                             int Position = (i - 1) * (grid.getWidth() - 1) + (j - 1);
-                            Button currentButton = (Button) UIElements.FXgrid.getChildren().get(Position);
+                            GridButton currentButton = (GridButton) UIElements.FXgrid.getChildren().get(Position);
                             Square currentSquare = currentmove.getSquare();
                             if(currentSquare.hasNormalSield()){
                                 ShildNumber--;
                             }
                             switch (currentSquare.getStatus()) {
                                 case Closed:
-                                    currentButton.getStyleClass().removeAll("pressed", "openedMine", "marked");
-                                    currentButton.getStyleClass().add("notpressed");
+                                 currentButton.SetClosed();
                                     break;
                                 case OpenedEmpty:
-                                    currentButton.setStyle("-fx-background-color: " + currentSquare.getColor() + "");
-                                    currentButton.getStyleClass().add("pressed");
+                                    currentButton.SetEmpty(currentSquare.getColor());
                                     break;
                                 case OpenedNumber:
-                                    currentButton.getStyleClass().add("f" + (String.valueOf(currentSquare.getNumberOfSurroundedMines())) + "");
-                                    currentButton.setText("" + currentSquare.getNumberOfSurroundedMines());
-                                    currentButton.setStyle("-fx-background-color: " + currentSquare.getColor() + "");
-                                    currentButton.getStyleClass().add("pressed");
-
+                                    currentButton.SetNumber(currentSquare.getNumberOfSurroundedMines(),currentSquare.getColor());
                                     break;
                                 case OpenedMine:
-                                    currentButton.getStyleClass().addAll("pressed", "openedMine");
+                                    currentButton.SetMine();
                                     break;
                                 case Marked:
-                                    currentButton.getStyleClass().removeAll("notpressed", "closed");
-                                    currentButton.getStyleClass().addAll("pressed", "marked");
+                                    currentButton.SetMarked();
                                     break;
                             }
                         }
@@ -405,7 +387,7 @@ public class GUIGame extends NormalGame implements Serializable {
                         UIElements.LastMoveLabel.setText(LastMove);
 
                         UIElements.FlagsNumberLabel.setText("Flags: "+ FlagsNumber + "");
-                        UIElements.shieldNumberLabel.setText("Shigelds: "+ShildNumber + "");
+                        UIElements.shieldNumberLabel.setText("Shields: "+ShildNumber + "");
                     }
                 });
             }
@@ -413,14 +395,15 @@ public class GUIGame extends NormalGame implements Serializable {
         GUIGameThreadStart(UpdateViewThread);
     }
 
+
+    transient Thread EndGameThread=new Thread();
     @Override
     protected void EndGame() {
         // show All The mines in The Game
         // and Update View For Shows
-        Thread EndGameThread=new Thread(new Runnable() {
+        EndGameThread=new Thread(new Runnable() {
             @Override
             public void run() {
-                Player winner = players.get(0);
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
@@ -468,18 +451,26 @@ public class GUIGame extends NormalGame implements Serializable {
                                 currentButton.setDisable(true);
                             }
                         }
+                        UIElements.SaveButton.setDisable(true);
+                        UIElements.ReplayButton.setDisable(false);
 
                     }
 
                 });
             }
         });
-
         GUIGameThreadStart(EndGameThread);
+        try {
+            EndGameThread.join();
+        } catch (InterruptedException e) {
+            System.out.println("End Game interrupt");
+        }
     }
 
+
+    transient Thread showGameThread=new Thread();
     protected void showGame(){
-        Thread showGameThread= new Thread(new Runnable() {
+        showGameThread= new Thread(new Runnable() {
             @Override
             public void run() {
                 // reset component
@@ -493,16 +484,14 @@ public class GUIGame extends NormalGame implements Serializable {
                 FlagsNumber=grid.getMinesCount();
                 ShildNumber=grid.getShieldsCount();
                 status=GameStatus.Running;
+
                 UIElements.reset();
 
 
                 Replay=GameReplay.on;
                 System.out.println(GameMoves.getMoves().size());
                 for(PlayerMove _move:GameMoves.getMoves()){
-                    System.out.println("#"+GameMoves.getMoves().size());
                     double currentTime=currentPlayer.getTimeforTimer();// TODO: get it From The Move
-                    System.out.println(_move.getEndTimeMove());
-                    System.out.println(currentPlayer.getName());
                     while (currentTime > _move.getEndTimeMove()) {
                         currentTime -= 0.1;
                         UIElements.currentPanel.setTime(currentTime);
@@ -523,29 +512,29 @@ public class GUIGame extends NormalGame implements Serializable {
                     }
                     UpdateVeiw(moves);
                 }
-                UIElements.BackButton.setDisable(false);
                 UIElements.SaveButton.setDisable(false);
-                UIElements.ReplayButton.setDisable(false);
 
                 if(status==GameStatus.Finish) {
                     EndGame();
                 }
                 else{
+                    Replay=GameReplay.off;
                     currentTimer = new GUITimer(currentTimer.getCurrentTime());
                     GUIGameThreadStart(currentTimer);
                     if (!(currentPlayer instanceof GUIPlayer))
                         GetMove();
                 }
 
-//                Replay=GameReplay.off;
 
             }
         });
         GUIGameThreadStart(showGameThread);
     }
 
+
+    transient Thread ContinueGameThread=new Thread();
     public void ContinueGame(){
-        Thread ContinueGameThread=new Thread(new Runnable() {
+        ContinueGameThread=new Thread(new Runnable() {
             @Override
             public void run() {
                 moves.clear();
@@ -574,6 +563,23 @@ public class GUIGame extends NormalGame implements Serializable {
         GUIGameThreadStart(ContinueGameThread);
     }
 
+    public void interruptThreads(){
+        try {
+            showGameThread.interrupt();
+            UpdateViewThread.interrupt();
+            EndGameThread.interrupt();
+            GetMoveThread.interrupt();
+            ContinueGameThread.interrupt();
+            currentTimer.interrupt();
+        }
+        catch (Exception e){
+        }
+    }
+
+    protected void SaveGame(){
+        UIElements.getBegin().saveGame();
+
+    }
     void AddToScoreBoard(Player winner) {
         UIElements.Begin.scoreboard.AddBoard(this,winner);
     }

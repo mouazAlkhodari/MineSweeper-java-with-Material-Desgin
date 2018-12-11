@@ -1,6 +1,6 @@
 package ConsoleGame;
 
-import BaseAlphabit.Converter;
+import extensions.BaseAlphabit.Converter;
 import Models.Grid.Square;
 import Models.Move.MoveType;
 import Models.Player.Player;

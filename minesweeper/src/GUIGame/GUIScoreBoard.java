@@ -5,6 +5,7 @@ import GUIGame.GUIElements.MenuButton;
 import GUIGame.GUIElements.Top;
 import Models.ScoreBoard.PlayerBoard;
 import Models.ScoreBoard.ScoreBoard;
+import com.jfoenix.controls.JFXTreeTableView;
 import javafx.beans.binding.Bindings;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -22,9 +23,12 @@ public class GUIScoreBoard extends ScoreBoard {
     protected MenuButton BackButton = new MenuButton("Back");
     protected MenuButton ReplayButton = new MenuButton("Replay");
     protected TableView <PlayerBoard> table;
+//    protected JFXTreeTableView<PlayerBoard> table;
+
     protected  GUIGameMainMenu Begin;
 
     public GUIScoreBoard(GUIGameMainMenu menu) {
+        super();
         initScene();
         UpdateView();
         Begin = menu;

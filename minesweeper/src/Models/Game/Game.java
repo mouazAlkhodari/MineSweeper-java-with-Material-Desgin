@@ -24,6 +24,8 @@ import MineSweeperGameDefineException.IllegalGameMove;
 
 public abstract class Game implements Serializable {
     // <__ INNER CLASS __> \\
+
+    public String SavedName;
     public abstract class Timer extends Thread implements Serializable {
         protected double currentTime;
         public Timer() {

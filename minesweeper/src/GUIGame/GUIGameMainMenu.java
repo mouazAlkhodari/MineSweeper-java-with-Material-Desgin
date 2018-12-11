@@ -1,8 +1,10 @@
 package GUIGame;
 
-
 import GUIGame.GUIElements.Footer;
 import GUIGame.GUIElements.MenuButton;
+import GUIGame.GUIGame;
+import GUIGame.GUIGameLoad;
+import GUIGame.GUIScoreBoard;
 import Models.Game.Points;
 import Models.Game.WhenHitMine;
 import Models.Game.WhenScoreNegative;
@@ -36,8 +38,23 @@ public class GUIGameMainMenu {
     GUIGame guiGame;
     Stage Window;
 
-    public void saveGame(){
-        String name=StringID.SaveID();
+    public void QuickLoad(){
+        System.out.println("Quick Load");
+        guiGame = SaveLoadGame.loadGame(Directories.datadir,Directories.QuickGame);
+        guiGame.initscene();
+        guiGame.setBegin(this);
+        Window.setScene(guiGame.getScene());
+        Window.centerOnScreen();
+        guiGame.ContinueGame();
+    }
+    public void QuickSave(){
+        System.out.println("Quick Save");
+        SaveLoadGame.saveGame(Directories.datadir, Directories.QuickGame,guiGame);
+    }
+    public void saveGame(String name){
+        gameLoader.delete(Directories.getVal(guiGame.SavedName));
+
+        guiGame.SavedName=name;
         SaveLoadGame.saveGame(Directories.save, name,guiGame);
         gameLoader.addGame(name);
     }
@@ -94,10 +111,12 @@ public class GUIGameMainMenu {
                 case "Medium":
                     _width = _height = 16;
                     _mines = 40;
+                    _shields=20;
                     break;
                 case "Hard":
                     _width = _height = 24;
                     _mines = 150;
+                    _shields=40;
                     break;
                 case "Custom":
                     _width = getVal(optionsScene.gridOption.WidthInput,10);
@@ -211,35 +230,42 @@ public class GUIGameMainMenu {
         Scene scene;
         VBox WelcomeLayout;
         Label Welcome;
-        Button NewGame;
-        Button LoadGame;
-        Button Scoreboard;
-        Button Profile;
+        MenuButton NewGame,LoadGame, Scoreboard,Profile;
 
+        MenuButton QuickLoad;
         private void initLayout() {
 
             WelcomeLayout = new VBox(20);
 
             Welcome = new Label("MineSweeper");
-            NewGame = new Button("NEW GAME");
-            NewGame.getStyleClass().addAll("menubutton","custombutton","h3");
+
+            QuickLoad =new MenuButton("Quick Load");
+
+            QuickLoad.setOnAction(e->{
+                try {
+                    QuickLoad();
+                }
+                catch (Exception ex){
+                    System.out.println("Not Saved Quick Game");
+                }
+            });
+
+            NewGame = new MenuButton("NEW GAME");
+            NewGame.getStyleClass().addAll("custombutton");
             NewGame.setOnAction(e -> {
                 Window.setScene(optionsScene.scene);Window.centerOnScreen();
             });
             //Setting Style
-            LoadGame = new Button("LOAD GAME");
-            LoadGame.getStyleClass().addAll("menubutton","h3");
+            LoadGame = new MenuButton("LOAD GAME");
             //LoadGame.setDisable(true);
             LoadGame.setOnAction(event -> {
                 Window.setScene(gameLoader.getScene());
             });
 
-            Scoreboard = new Button("SCOREBOARD");
-            Scoreboard.getStyleClass().addAll("menubutton","h3");
+            Scoreboard = new MenuButton("SCOREBOARD");
             Scoreboard.setOnAction(e -> {Window.setScene(scoreboard.scene);Window.centerOnScreen();});
 
-            Profile = new Button("PROFILE");
-            Profile.getStyleClass().addAll("menubutton","h3");
+            Profile = new MenuButton("PROFILE");
             Profile.setDisable(true);
 
             WelcomeLayout.getStyleClass().add("windowsize");
@@ -248,7 +274,7 @@ public class GUIGameMainMenu {
             WelcomeLayout.getStylesheets().add("Styles/style.css");
             //Adding Components to layout
 
-            WelcomeLayout.getChildren().addAll(Welcome, NewGame,LoadGame,Scoreboard,Profile);
+            WelcomeLayout.getChildren().addAll(Welcome, NewGame,QuickLoad,LoadGame,Scoreboard,Profile);
 
         }
 

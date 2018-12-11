@@ -87,7 +87,7 @@
 }
 
 .button:disabled{
-    -fx-opacity: 0.7;
+    -fx-opacity: 0.8;
 }
 
 .button:focused{
@@ -151,7 +151,7 @@
 .center { -fx-alignment: CENTER;}
 .minwidth { -fx-min-width: 100;}
 .padding {-fx-padding: 10px 20px;}
-.padding-sm{-fx-padding: 10px 20px;}
+.padding-sm{-fx-padding: 5px 10px;}
 .h1 {
     -fx-font-size: 30;
     -fx-text-fill: #FFFFFF;
@@ -234,3 +234,5 @@
     -jfx-focus-color: #5032C0;
     -jfx-unfocus-color: #4d4d4d;
 }
+/* scroll bar starts here */
+

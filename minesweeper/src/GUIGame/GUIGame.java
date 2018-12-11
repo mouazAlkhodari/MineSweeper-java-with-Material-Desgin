@@ -3,23 +3,20 @@ package GUIGame;
 import GUIGame.GUIElements.*;
 import MineSweeperGameDefineException.IllegalGameMove;
 import Models.Game.*;
-import Models.Grid.Grid;
 import Models.Grid.Square;
 import Models.Grid.SquareStatus;
 import Models.Move.MoveType;
 import Models.Move.PlayerMove;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
+import SaveLoad.StringID;
 import javafx.application.Platform;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.Serializable;
@@ -49,8 +46,8 @@ public class GUIGame extends NormalGame implements Serializable {
 
         protected MenuButton BackButton = new MenuButton("Back");
         protected MenuButton SaveButton = new MenuButton("Save");
+        protected MenuButton QuickSave = new MenuButton("Quick Save");
         protected MenuButton ReplayButton = new MenuButton("Replay");
-
         protected GUIGameMainMenu Begin;
 
         // in footer
@@ -163,7 +160,10 @@ public class GUIGame extends NormalGame implements Serializable {
                 currentTimer.interrupt();
                 showGame();
             });
-            footer = new Footer(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton, SaveButton,ReplayButton);
+            QuickSave.setOnAction(e->{
+                QuicSaveGame();
+            });
+            footer = new Footer(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton,QuickSave, SaveButton,ReplayButton);
         }
 
         public void reset(){
@@ -175,6 +175,7 @@ public class GUIGame extends NormalGame implements Serializable {
                         public void run() {
                             initFXComponoents();
                             scene.setRoot(layout);
+                            UIElements.QuickSave.setDisable(true);
                             UIElements.SaveButton.setDisable(true);
                             UIElements.ReplayButton.setDisable(true);
                         }
@@ -344,9 +345,6 @@ public class GUIGame extends NormalGame implements Serializable {
                             int Position = (i - 1) * (grid.getWidth() - 1) + (j - 1);
                             GridButton currentButton = (GridButton) UIElements.FXgrid.getChildren().get(Position);
                             Square currentSquare = currentmove.getSquare();
-                            if(currentSquare.hasNormalSield()){
-                                ShildNumber--;
-                            }
                             switch (currentSquare.getStatus()) {
                                 case Closed:
                                  currentButton.SetClosed();
@@ -453,6 +451,7 @@ public class GUIGame extends NormalGame implements Serializable {
                         }
                         UIElements.SaveButton.setDisable(true);
                         UIElements.ReplayButton.setDisable(false);
+                        UIElements.QuickSave.setDisable(true);
 
                     }
 
@@ -513,6 +512,7 @@ public class GUIGame extends NormalGame implements Serializable {
                     UpdateVeiw(moves);
                 }
                 UIElements.SaveButton.setDisable(false);
+                UIElements.QuickSave.setDisable(false);
 
                 if(status==GameStatus.Finish) {
                     EndGame();
@@ -577,8 +577,11 @@ public class GUIGame extends NormalGame implements Serializable {
     }
 
     protected void SaveGame(){
-        UIElements.getBegin().saveGame();
-
+        UIElements.getBegin().saveGame(StringID.SaveID());
+    }
+    protected void QuicSaveGame(){
+        if(status!=GameStatus.Finish && Replay!=GameReplay.on)
+            UIElements.getBegin().QuickSave();
     }
     void AddToScoreBoard(Player winner) {
         UIElements.Begin.scoreboard.AddBoard(this,winner);

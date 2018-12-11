@@ -26,9 +26,6 @@
     -fx-background-color: #005797;
     -fx-text-background-color:  #6622CC;
 }
-
-/* scroll bar starts here */
-
 /* The increment and decrement button CSS class of scrollbar */
 .table-view .increment-button ,.table-view .decrement-button {
     -fx-background-color:transparent;
@@ -54,6 +51,7 @@
     -fx-background-radius: 2em;
 
 }
+
 
 /* chart properties */
 

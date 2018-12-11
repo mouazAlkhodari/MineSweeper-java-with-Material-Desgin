@@ -12,7 +12,7 @@ import Models.Player.Player;
 import java.util.ArrayList;
 
 import static java.lang.Thread.currentThread;
-
+import GUIGame.*;
 
 /**
  *
@@ -20,7 +20,6 @@ import static java.lang.Thread.currentThread;
  */
 
 public class ConsoleMinesweeper {
-
 
     private static final Player ConstPlayer=new ConsolePlayer("Flan");
     private static final Player ConstDumbPlayer=new DumbPlayer(10,10);

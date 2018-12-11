@@ -87,13 +87,6 @@
     -fx-padding: 0;
 }
 
-<<<<<<< HEAD
-.table-view .cell {
-    -fx-background-color: red;
-}
-
-.combo-box .list-cell,.list-cell,.table-view .cell  {
-=======
 .button:disabled{
     -fx-opacity: 0.8;
 }
@@ -107,7 +100,6 @@
 }
 
 .combo-box .list-cell,.list-cell/*,.table-view .cell*/  {
->>>>>>> 9f8ffc282501189bb667b545ea224ecd1ca6a822
     -fx-background-color: #485761;
     -fx-border-radius: 0;
     -fx-background-radius: 0;
@@ -125,10 +117,6 @@
 }
 .table-row-cell:selected {
     /*-fx-table-cell-border-color: transparent;*/
-}
-
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, orange;
 }
 
 .grid  {

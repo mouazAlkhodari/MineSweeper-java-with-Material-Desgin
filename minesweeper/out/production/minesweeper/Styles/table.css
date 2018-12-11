@@ -12,12 +12,16 @@
 }
 
 .table-view .cell{
+    -fx-background-color: #35414A;
     -fx-cell-size: 35;
+    -fx-border-width: 1 0;
+    -fx-border-top-color:red;
     -fx-alignment: center-left;
     -fx-text-fill: lightgray;
     -fx-alignment: CENTER_LEFT;
 
 }
+.table-row-cell { -fx-border-color:  rgba(255,255,255,0.1);}
 .table-row-cell:hover{
     -fx-opacity: 0.5;
 }

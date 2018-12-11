@@ -86,6 +86,10 @@
     -fx-padding: 0;
 }
 
+.table-view .cell {
+    -fx-background-color: red;
+}
+
 .combo-box .list-cell,.list-cell,.table-view .cell  {
     -fx-background-color: #485761;
     -fx-border-radius: 0;
@@ -101,6 +105,13 @@
 }
 .list-cell:hover {
     -fx-background-color: #35414A;
+}
+.table-row-cell:selected {
+    /*-fx-table-cell-border-color: transparent;*/
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color, -fx-cell-focus-inner-border, orange;
 }
 
 .grid  {

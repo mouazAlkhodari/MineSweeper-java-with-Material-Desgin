@@ -77,15 +77,17 @@ public class GUIScoreBoard extends ScoreBoard {
         GameDifficultyColumn.setCellValueFactory(new PropertyValueFactory<>("GameDifficulty"));
 
         table = new TableView<>();
-        table.getStylesheets().addAll("Styles/style.css","Styles/table.css");
+        table.getStylesheets().addAll("Styles/table.css");
+//        table.selectionModelProperty().addListener((v,oldValuue,newValue) -> {
+//           newValue.getSelectedCells().
+//        });
         table.setItems(scoreboard);
         table.setFixedCellSize(25);
         table.getColumns().addAll(PlayerNameColumn,GameTimeColumn,FinalScoreColumn,ShieldsRemainingColumn,GameDifficultyColumn);
-        table.prefHeightProperty().bind(Bindings.size(table.getItems()).multiply(table.getFixedCellSize()).add(30));
     }
 
     @Override
     public void UpdateView() {
-            table.setItems(scoreboard);
+            tablلهفe.setItems(scoreboard);
     }
 }

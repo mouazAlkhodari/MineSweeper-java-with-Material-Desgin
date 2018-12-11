@@ -9,10 +9,7 @@ import SaveLoad.Directories;
 import SaveLoad.SaveLoadGame;
 import javafx.beans.binding.Bindings;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.StageStyle;
@@ -86,7 +83,10 @@ public class GUIScoreBoard extends ScoreBoard {
             alert.setHeaderText("Look, you want to delete ["+ table.getSelectionModel().getSelectedItem().getScoreboardReg()+
                     "]\n that will remove its files from the data of the game"
             );
-            alert.setContentText("Are you ok with this?");
+            alert.setContentText("Are you sure ?");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().addAll("Styles/style.css");
+            dialogPane.getStyleClass().add("myDialog");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
                 // ... user chose OK

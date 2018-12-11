@@ -273,11 +273,11 @@
     -fx-text-fill: white;
     -fx-padding: 5 5;
     -fx-border-width: 0;
-    -fx-max-width: 100;
+    -fx-max-width: 130;
     -fx-min-width: 75;
 }
 .myDialog > *.label.content{
-    -fx-font-size: 18px;
+    -fx-font-size: 16px;
     -fx-padding: 0 0 10px 0;
 }
 .myDialog:header *.header-panel{

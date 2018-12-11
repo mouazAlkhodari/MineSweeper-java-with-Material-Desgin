@@ -161,17 +161,32 @@ public class GUIGame extends NormalGame implements Serializable {
                     alert.setHeaderText("Look, you want to go back and we are ok with that\n"+
                                         "but you don't save the game, so it will be saved now. 😲 "
                     );
-                    alert.setContentText("Are you ok with this?");
+                    alert.setContentText("Do you want to save the Game?");
+                    ButtonType buttonTypeOk = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+                    ButtonType buttonTypedont = new ButtonType("No", ButtonBar.ButtonData.FINISH);
+                    ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                    alert.getButtonTypes().setAll(buttonTypeOk, buttonTypedont, buttonTypeCancel);
+
                     DialogPane dialogPane = alert.getDialogPane();
                     dialogPane.getStylesheets().addAll("Styles/style.css");
                     dialogPane.getStyleClass().add("myDialog");
                     Optional<ButtonType> result = alert.showAndWait();
-                    if (result.get() == ButtonType.OK) {
+                    if (result.get() == buttonTypeOk) {
                         SaveGame();
                     }
+                    if(result.get()!=buttonTypeCancel){
+                        Begin.Window.setScene(Begin.getWelcomescene());
+                        Begin.Window.centerOnScreen();
+                    }
+                    else{
+                        ContinueGame();
+                    }
                 }
-                Begin.Window.setScene(Begin.getWelcomescene());
-                Begin.Window.centerOnScreen();
+                else{
+                    Begin.Window.setScene(Begin.getWelcomescene());
+                    Begin.Window.centerOnScreen();
+                }
             });
             ReplayButton.setOnAction(e->{
                 currentTimer.interrupt();
@@ -464,7 +479,7 @@ public class GUIGame extends NormalGame implements Serializable {
                                     "you win the Game with " +winner.getCurrentScore().getScore() +"points.\n"+
                                     "it's new achievement and its gonna added to the Score Board so you can watch the game later"
                             );
-                            alert.setContentText("Are you ok with this?");
+                            alert.setContentText("Do you want this to be in score Board?");
                             DialogPane dialogPane = alert.getDialogPane();
                             dialogPane.getStylesheets().addAll("Styles/style.css");
                             dialogPane.getStyleClass().add("myDialog");

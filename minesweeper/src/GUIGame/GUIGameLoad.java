@@ -101,7 +101,10 @@ public class GUIGameLoad {
             alert.setHeaderText("Look, you want to delete ["+ games.getSelectionModel().getSelectedItem()+
                     "]\n that will remove its files from the data of the game"
                     );
-            alert.setContentText("Are you ok with this?");
+            alert.setContentText("Are you sure?");
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().addAll("Styles/style.css");
+            dialogPane.getStyleClass().add("myDialog");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
                 // ... user chose OK

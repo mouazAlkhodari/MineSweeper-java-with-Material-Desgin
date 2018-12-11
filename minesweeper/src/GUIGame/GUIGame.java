@@ -471,12 +471,23 @@ public class GUIGame extends NormalGame implements Serializable {
                         }
                         winner.setCurrentStatus(PlayerStatus.win);
                         LastMoveLabel.setText(WinnerStr);
+                        for (int i = 1; i < grid.getHeight(); i++) {
+                            for (int j = 1; j < grid.getWidth(); j++) {
+                                int H = (i - 1) * (grid.getWidth() - 1) + (j - 1);
+                                Button currentButton = (Button) UIElements.FXgrid.getChildren().get(H);
+                                currentButton.setDisable(true);
+                            }
+                        }
+                        UIElements.SaveButton.setDisable(true);
+                        UIElements.ReplayButton.setDisable(false);
+                        UIElements.QuickSave.setDisable(true);
+
                         if (Replay != GameReplay.on) {
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.initStyle(StageStyle.UTILITY);
                             alert.setTitle("congratulations 💃💃💃");
                             alert.setHeaderText("eyyhaa "+winner.getName()+". 😍😍✨🎉🎊🎉✨✨🎉🎉🎉\n"+
-                                    "you win the Game with " +winner.getCurrentScore().getScore() +"points.\n"+
+                                    "you End the Game with (" +winner.getCurrentScore().getScore() +") points.\n"+
                                     "it's new achievement and its gonna added to the Score Board so you can watch the game later"
                             );
                             alert.setContentText("Do you want this to be in score Board?");
@@ -490,16 +501,6 @@ public class GUIGame extends NormalGame implements Serializable {
                                 deleteSavedGame();
                             }
                         }
-                        for (int i = 1; i < grid.getHeight(); i++) {
-                            for (int j = 1; j < grid.getWidth(); j++) {
-                                int H = (i - 1) * (grid.getWidth() - 1) + (j - 1);
-                                Button currentButton = (Button) UIElements.FXgrid.getChildren().get(H);
-                                currentButton.setDisable(true);
-                            }
-                        }
-                        UIElements.SaveButton.setDisable(true);
-                        UIElements.ReplayButton.setDisable(false);
-                        UIElements.QuickSave.setDisable(true);
 
                     }
 

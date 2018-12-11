@@ -22,7 +22,7 @@ public abstract class ScoreBoard implements Serializable {
     }
 
     public void AddBoard(GUIGame game, Player winner) {
-        PlayerBoard _board = new PlayerBoard(winner.getName(),game.getGameTime(),winner.getCurrentScore().getScore(),game.getGrid().getWidth(),game.getGrid().getHeight(),game.getMinesNumber(), game.getShieldsNumber());
+        PlayerBoard _board = new PlayerBoard(winner.getName(),game.getGameTime(),winner.getCurrentScore().getScore(),game.getGrid().getWidth(),game.getGrid().getHeight(),game.getMinesNumber(), game.getGrid().getShieldsCount());
         SaveLoadGame.saveGame(Directories.replay,_board.ReplayedGame,game);
         scoreboard.add(_board);
         UpdateView();

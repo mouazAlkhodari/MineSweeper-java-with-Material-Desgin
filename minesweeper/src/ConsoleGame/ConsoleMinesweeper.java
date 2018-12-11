@@ -26,15 +26,15 @@ public class ConsoleMinesweeper {
     /**
      */
 
-    public static void main(String[] args) {
-        // TODO code application logic here
-       ArrayList<Player> Players=new ArrayList<Player>();
-       Players.add(ConstPlayer);
-       Players.add(ConstDumbPlayer);
-       Game ConstGame=new ConsoleGame(Players);
-     //  ConstGame.StartGame();
-
-    }
+//    public static void main(String[] args) {
+//        // TODO code application logic here
+//       ArrayList<Player> Players=new ArrayList<Player>();
+//       Players.add(ConstPlayer);
+//       Players.add(ConstDumbPlayer);
+//       Game ConstGame=new ConsoleGame(Players);
+//     //  ConstGame.StartGame();
+//
+//    }
 
 
     

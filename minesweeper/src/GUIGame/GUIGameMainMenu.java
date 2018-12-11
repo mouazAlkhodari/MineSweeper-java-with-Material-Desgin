@@ -19,6 +19,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -84,6 +85,7 @@ public class GUIGameMainMenu {
     public void start(Stage primaryStage) throws IOException {
         Window = primaryStage;
         Window.setScene(welcomescene.scene);
+        Window.getIcons().add(new Image("images/icon.png"));
 //        decorator = new JFXDecorator(Window,welcomescene.WelcomeLayout);
 //        decorator.getStylesheets().addAll("Styles/style.css");
 //        welcomescene.scene.setRoot(decorator);

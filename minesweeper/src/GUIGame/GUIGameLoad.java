@@ -8,9 +8,11 @@ import SaveLoad.SaveLoadGame;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.StageStyle;
 
 import java.util.Optional;
 
@@ -93,6 +95,7 @@ public class GUIGameLoad {
         delete.setOnAction(e-> {
             if(games.getSelectionModel().getSelectedIndex()==-1)return;
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.initStyle(StageStyle.UTILITY);
             alert.setTitle("Confirmation Dialog");
             alert.setHeaderText("Look, you want to delete ["+ games.getSelectionModel().getSelectedItem()+
                     "]\n that will remove its files from the data of the game"

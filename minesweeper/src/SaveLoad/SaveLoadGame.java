@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 public class SaveLoadGame {
     public static<T> void saveGame(File path,String name, T object){// GUIGame
         try {
-            File textFile = new File(path.getCanonicalPath() +File.separator+ name);
+            File textFile = new File(path +File.separator+ name);
             FileOutputStream fileStream = new FileOutputStream(textFile);
             ObjectOutputStream out = new ObjectOutputStream(fileStream);
 
@@ -18,6 +18,7 @@ public class SaveLoadGame {
             fileStream.close();
             System.out.print("Saved Successfully:");
             System.out.println(textFile);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -29,7 +30,7 @@ public class SaveLoadGame {
     public static<T> T loadGame(File path,String name){
         try{
             // Reading Object From a File
-            FileInputStream loadFile = new FileInputStream(new File(path.getCanonicalPath()+File.separator + name));
+            FileInputStream loadFile = new FileInputStream(new File(path + File.separator + name));
             ObjectInputStream loadStream = new ObjectInputStream(loadFile);
             T loadedObject;
             loadedObject = (T) loadStream.readObject();
@@ -38,25 +39,14 @@ public class SaveLoadGame {
             loadFile.close();
             return loadedObject;
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Error in IO");
         }
         return null;
     }
     public static void deleteFile(File path,String name){
-        try{
-            File deletedFile=new File(path.getCanonicalPath()+File.separator+name);
+            File deletedFile = new File(path + File.separator + name);
             System.out.println(deletedFile);
-            if(deletedFile.exists())
-                if(deletedFile.delete()) {
-                    System.out.println("deleted succisful:");
-                }
-                else{
-                    System.out.println("not deleted");
-                }
-//            }
-        }
-        catch (Exception e) {
-            System.out.println("not deleted: ");
-        }
+            if (deletedFile.exists())
+                deletedFile.delete();
     }
 }

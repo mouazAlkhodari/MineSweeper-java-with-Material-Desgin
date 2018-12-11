@@ -39,7 +39,6 @@ public class GUIGameMainMenu {
     Stage Window;
 
     public void QuickLoad(){
-        System.out.println("Quick Load");
         guiGame = SaveLoadGame.loadGame(Directories.datadir,Directories.QuickGame);
         guiGame.initscene();
         guiGame.setBegin(this);
@@ -48,11 +47,17 @@ public class GUIGameMainMenu {
         guiGame.ContinueGame();
     }
     public void QuickSave(){
-        System.out.println("Quick Save");
         SaveLoadGame.saveGame(Directories.datadir, Directories.QuickGame,guiGame);
     }
-    public void saveGame(String name){
+
+    public void deleteSavedGame(){        // delete last saved if exists
         gameLoader.delete(Directories.getVal(guiGame.SavedName));
+    }
+    public void saveGame(){
+        saveGame(StringID.SaveID());
+    }
+    public void saveGame(String name){
+        deleteSavedGame();
 
         guiGame.SavedName=name;
         SaveLoadGame.saveGame(Directories.save, name,guiGame);

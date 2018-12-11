@@ -12,16 +12,20 @@ import Models.Player.PlayerStatus;
 import SaveLoad.StringID;
 import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.StageStyle;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.max;
@@ -152,9 +156,22 @@ public class GUIGame extends NormalGame implements Serializable {
                 SaveGame();
             });
             BackButton.setOnAction(e->{
+                interruptThreads();
+                if(status!=GameStatus.Finish && Replay!=GameReplay.on){
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.initStyle(StageStyle.UTILITY);
+                    alert.setTitle("Confirmation Dialog");
+                    alert.setHeaderText("Look, you want to go back and we are ok with that\n"+
+                                        "but you don't save the game, so it will be saved now. 😲 "
+                    );
+                    alert.setContentText("Are you ok with this?");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == ButtonType.OK) {
+                        SaveGame();
+                    }
+                }
                 Begin.Window.setScene(Begin.getWelcomescene());
                 Begin.Window.centerOnScreen();
-                interruptThreads();
             });
             ReplayButton.setOnAction(e->{
                 currentTimer.interrupt();
@@ -381,7 +398,7 @@ public class GUIGame extends NormalGame implements Serializable {
                         String LastMove="--";
                         if(currentPlayerMove!=null)
                             LastMove=String.valueOf(currentPlayerMove.getSquare().getX()) + " --- " + String.valueOf((currentPlayerMove.getSquare().getY()));
-
+                        if(Replay==GameReplay.on)//LastMove="Replay Mode";
                         UIElements.LastMoveLabel.setText(LastMove);
 
                         UIElements.FlagsNumberLabel.setText("Flags: "+ FlagsNumber + "");
@@ -440,7 +457,20 @@ public class GUIGame extends NormalGame implements Serializable {
                         winner.setCurrentStatus(PlayerStatus.win);
                         LastMoveLabel.setText(WinnerStr);
                         if (Replay != GameReplay.on) {
-                            AddToScoreBoard(winner);
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.initStyle(StageStyle.UTILITY);
+                            alert.setTitle("congratulations 💃💃💃");
+                            alert.setHeaderText("eyyhaa "+winner.getName()+". 😍😍✨🎉🎊🎉✨✨🎉🎉🎉\n"+
+                                    "you win the Game with " +winner.getCurrentScore().getScore() +"points.\n"+
+                                    "it's new achievement and its gonna added to the Score Board so you can watch the game later"
+                            );
+                            alert.setContentText("Are you ok with this?");
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if (result.get() == ButtonType.OK){
+                                // ... user chose OK
+                                AddToScoreBoard(winner);
+                                deleteSavedGame();
+                            }
                         }
                         for (int i = 1; i < grid.getHeight(); i++) {
                             for (int j = 1; j < grid.getWidth(); j++) {
@@ -488,7 +518,8 @@ public class GUIGame extends NormalGame implements Serializable {
 
 
                 Replay=GameReplay.on;
-                System.out.println(GameMoves.getMoves().size());
+                moves=new ArrayList<>();
+                UpdateVeiw(moves);
                 for(PlayerMove _move:GameMoves.getMoves()){
                     double currentTime=currentPlayer.getTimeforTimer();// TODO: get it From The Move
                     while (currentTime > _move.getEndTimeMove()) {
@@ -513,6 +544,7 @@ public class GUIGame extends NormalGame implements Serializable {
                 }
                 UIElements.SaveButton.setDisable(false);
                 UIElements.QuickSave.setDisable(false);
+                UIElements.ReplayButton.setDisable(false);
 
                 if(status==GameStatus.Finish) {
                     EndGame();
@@ -576,8 +608,11 @@ public class GUIGame extends NormalGame implements Serializable {
         }
     }
 
+    protected void deleteSavedGame(){
+        UIElements.getBegin().deleteSavedGame();
+    }
     protected void SaveGame(){
-        UIElements.getBegin().saveGame(StringID.SaveID());
+        UIElements.getBegin().saveGame();
     }
     protected void QuicSaveGame(){
         if(status!=GameStatus.Finish && Replay!=GameReplay.on)

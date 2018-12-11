@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.StageStyle;
 
 import java.util.Optional;
 
@@ -80,6 +81,7 @@ public class GUIScoreBoard extends ScoreBoard {
             if(table.getSelectionModel().getSelectedIndex()==-1)
                 return;
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.initStyle(StageStyle.UTILITY);
             alert.setTitle("Confirmation Dialog");
             alert.setHeaderText("Look, you want to delete ["+ table.getSelectionModel().getSelectedItem().getScoreboardReg()+
                     "]\n that will remove its files from the data of the game"

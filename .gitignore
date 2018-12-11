@@ -1,6 +1,7 @@
-/minesweeper/nbproject/private/
-/minesweeper/build/
-/minesweeper/.idea
-/minesweeper/dist/
-./out/*.*
-./.idea/*.*
+./minesweeper/nbproject/
+./minesweeper/build/
+./minesweeper/.idea/
+./minesweeper/dist/
+./minesweeper/out/*
+./out/
+./.idea/

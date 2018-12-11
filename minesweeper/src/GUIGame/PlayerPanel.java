@@ -59,7 +59,7 @@ public class PlayerPanel {
                 ShieldsDecAnimation();
             }
         });
-            playerNameLeftLabel.getStyleClass().addAll("h2");
+            playerNameLeftLabel.getStyleClass().addAll("h2","line");
             playerScoreLabel.getStyleClass().addAll("h1","center");
             playerNumberOfShieldLabel.getStyleClass().addAll("h1","center");
 

@@ -127,12 +127,12 @@
     -fx-background-color: rgba(255,255,255,0);
 }
 .line {
-    -fx-border-width: 0 0 0.5 0;-fx-border-color: #485761;
+    -fx-border-width: 0 0 2 0;-fx-border-color: rgba(53,65,74,0.2);
 }
 
 .playerboard{
     -fx-background-color:#5032C0;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 1, 5,5, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 1, 7,7, 7);
     -fx-background-radius: 0;
     -fx-min-height: 50;
     -fx-alignment: CENTER;
@@ -266,6 +266,7 @@
 }
 .myDialog > *.button-bar > *.container{
     -fx-background-color: #35414A;
+    -fx-alignment: center;
 }
 .myDialog > *.button-bar > *.container .button{
     -fx-background-color: #1EB98F;
@@ -280,7 +281,7 @@
     -fx-padding: 0 0 10px 0;
 }
 .myDialog:header *.header-panel{
-    -fx-background-color: #607d8b;
+    -fx-background-color: #35414A;
 }
 .myDialog:header *.header-panel *.label{
     -fx-font-size: 14px;

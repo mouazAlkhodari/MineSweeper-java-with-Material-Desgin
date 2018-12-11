@@ -1,6 +1,7 @@
 package Models.ScoreBoard;
 
 import Models.Game.Game;
+import Models.Shield.Shield;
 import SaveLoad.Directories;
 import SaveLoad.SaveLoadGame;
 import SaveLoad.StringID;
@@ -11,12 +12,13 @@ import java.sql.Time;
 import static extensions.BaseAlphabit.Converter.TimeIntToString;
 
 public class PlayerBoard implements Serializable {
-    String PlayerName;
-    String GameTime;
-    int FinalScore;
-    int ShieldsRemaining;
-    String GameDifficulty;
-    String ReplayedGame;
+    protected String PlayerName;
+    protected String GameTime;
+    protected int FinalScore;
+    protected String GameDifficulty;
+    protected String ReplayedGame;
+    protected int Mines;
+    protected int Shields;
 
     public String getScoreboardReg() {
         return ScoreboardReg;
@@ -24,12 +26,13 @@ public class PlayerBoard implements Serializable {
 
     String ScoreboardReg;
 
-    public PlayerBoard(String _playerName,double _timeInSeconds,int _finalScore,int _shieldsRemaining,int _gameWidth,int _gameHeight) {
+    public PlayerBoard(String _playerName,double _timeInSeconds,int _finalScore,int _gameWidth,int _gameHeight,int _mines,int _shields) {
         PlayerName = _playerName;
         GameTime = TimeIntToString(_timeInSeconds);
         FinalScore = _finalScore;
-        ShieldsRemaining = _shieldsRemaining;
         GameDifficulty = GameDifficultyToString(_gameWidth,_gameHeight);
+        Mines = _mines;
+        Shields = _shields;
         ReplayedGame = StringID.ReplayID();
         ScoreboardReg=StringID.ScoreBoardID();
         SaveLoadGame.saveGame(Directories.scoreboard,ScoreboardReg,this);
@@ -38,9 +41,11 @@ public class PlayerBoard implements Serializable {
     public String getPlayerName() { return PlayerName; }
     public String getGameTime() { return GameTime; }
     public int getFinalScore() { return FinalScore; }
-    public int getShieldsRemaining() { return ShieldsRemaining; }
     public String getGameDifficulty() { return GameDifficulty; }
     public String getReplayedGame() { return ReplayedGame; }
+    public int getMines() { return Mines; }
+    public int getShields() { return Shields; }
+
 
 
 

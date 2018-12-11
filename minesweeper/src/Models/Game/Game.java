@@ -120,7 +120,7 @@ public abstract class Game implements Serializable {
 
     // For View
     protected int FlagsNumber;
-    protected int ShildNumber;
+    protected int ShieldNumber;
     protected int HeroShieldNumber;
 
     public Game(List _players){
@@ -144,18 +144,18 @@ public abstract class Game implements Serializable {
     // <__ METHODS __> \\
     protected void initGame(int width, int height, int minesCount,int ShildCount){
         try {
-            grid=new Grid(width,height,minesCount,ShildNumber,HeroShieldNumber);
+            grid=new Grid(width,height,minesCount, ShieldNumber,HeroShieldNumber);
         } catch (IllegalBoundsOfGrid e) {
             e.handle();
             return;
         }setCurrentPlayer(players.get(0));
         status=GameStatus.FirstMove;
         FlagsNumber = minesCount;
-        ShildNumber = ShildCount;
+        ShieldNumber = ShildCount;
     }
     protected void initGame(PlayerMove move){
         try {
-            grid=new Grid(this.grid.getWidth()-1,this.grid.getHeight()-1,this.grid.getMinesCount(),ShildNumber,HeroShieldNumber,move);
+            grid=new Grid(this.grid.getWidth()-1,this.grid.getHeight()-1,this.grid.getMinesCount(), ShieldNumber,HeroShieldNumber,move);
         } catch (IllegalBoundsOfGrid e) {
             e.handle();
             return;
@@ -253,6 +253,8 @@ public abstract class Game implements Serializable {
         }
     }
     public Grid getGrid() { return grid;}
+    public int getMinesNumber() { return grid.getMinesNumber(); }
+    public int getShieldsNumber(){ return ShieldNumber;}
     protected void setStatus(GameStatus status) {
         this.status = status;
     }

@@ -7,6 +7,7 @@ import SaveLoad.SaveLoadGame;
 import SaveLoad.StringID;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 
 import java.io.Serializable;
 
@@ -21,11 +22,12 @@ public abstract class ScoreBoard implements Serializable {
     }
 
     public void AddBoard(GUIGame game, Player winner) {
-        PlayerBoard _board = new PlayerBoard(winner.getName(),game.getGameTime(),winner.getCurrentScore().getScore(),winner.getNumberOfShield(),game.getGrid().getWidth(),game.getGrid().getHeight());
+        PlayerBoard _board = new PlayerBoard(winner.getName(),game.getGameTime(),winner.getCurrentScore().getScore(),game.getGrid().getWidth(),game.getGrid().getHeight(),game.getMinesNumber(), game.getShieldsNumber());
         SaveLoadGame.saveGame(Directories.replay,_board.ReplayedGame,game);
         scoreboard.add(_board);
         UpdateView();
     }
     public abstract void UpdateView();
+
 
 }

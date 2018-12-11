@@ -46,7 +46,7 @@ public class GUIGameLoad {
         initFooter();
         initList();
         Layout.getStylesheets().add("Styles/style.css");
-        Layout.getStyleClass().addAll("windowsize750");
+        Layout.getStyleClass().addAll("windowsize");
         Layout.setTop(Top);
         Layout.setCenter(loadList);
         Layout.setBottom(footer);
@@ -73,6 +73,7 @@ public class GUIGameLoad {
         loadList=new VBox();
         loadList.getChildren().addAll(games);
         loadList.getStylesheets().addAll("Styles/style.css");
+        loadList.getStyleClass().addAll("padding-lg");
     }
 
     private void initFooter() {

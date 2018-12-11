@@ -1,6 +1,9 @@
 import GUIGame.GUIGameMainMenu;
+import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class GUIMinesweeperMain extends Application {
@@ -12,6 +15,8 @@ public class GUIMinesweeperMain extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         window=primaryStage;
+        window.setResizable(false);
+        window.initStyle(StageStyle.DECORATED);
         currentGame=new GUIGameMainMenu();
         currentGame.start(window);
 //        VBox layout=new VBox();

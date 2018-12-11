@@ -10,7 +10,7 @@
 }
 .windowsize750 {
     -fx-alignment: CENTER;
-    -fx-pref-width: 760;
+    -fx-pref-width: 915;
     -fx-pref-height: 600;
 }
 .optiongrid {
@@ -131,7 +131,8 @@
 }
 
 .playerboard{
-    -fx-background-color:#BE90D4;
+    -fx-background-color:#5032C0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 1, 5,5, 0);
     -fx-background-radius: 0;
     -fx-min-height: 50;
     -fx-alignment: CENTER;
@@ -156,6 +157,8 @@
 .minwidth { -fx-min-width: 100;}
 .padding {-fx-padding: 10px 20px;}
 .padding-sm{-fx-padding: 5px 10px;}
+.padding-lg{-fx-padding: 25px 25px;}
+.padding-lg-full-width{-fx-padding: 25px 0px;}
 .h1 {
     -fx-font-size: 30;
     -fx-text-fill: #FFFFFF;
@@ -240,3 +243,47 @@
 }
 /* scroll bar starts here */
 
+.jfx-decorator {
+    -fx-decorator-color: #5032C0;
+}
+
+.jfx-decorator .jfx-decorator-buttons-container {
+    -fx-background-color: #5032C0;
+
+}
+.jfx-decorator .jfx-decorator-buttons-container .button {
+    -fx-background-color: #5032C0;
+    -fx-padding: 2 10;
+    -fx-border-width: 0;
+}
+
+.jfx-decorator .resize-border {
+    -fx-border-color: -fx-decorator-color;
+    -fx-border-width: 0;
+}
+.myDialog{
+    -fx-background-color: #35414A;
+}
+.myDialog > *.button-bar > *.container{
+    -fx-background-color: #35414A;
+}
+.myDialog > *.button-bar > *.container .button{
+    -fx-background-color: #1EB98F;
+    -fx-text-fill: white;
+    -fx-padding: 5 5;
+    -fx-border-width: 0;
+    -fx-max-width: 100;
+    -fx-min-width: 75;
+}
+.myDialog > *.label.content{
+    -fx-font-size: 18px;
+    -fx-padding: 0 0 10px 0;
+}
+.myDialog:header *.header-panel{
+    -fx-background-color: #607d8b;
+}
+.myDialog:header *.header-panel *.label{
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+    -fx-fill: #fff;
+}

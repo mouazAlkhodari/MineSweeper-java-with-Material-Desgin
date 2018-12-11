@@ -53,7 +53,7 @@ public class GUIGameCustom extends GUIGame {
                     if(currentSquare.hasNormalSield() &&
                       (currentSquare.getStatus()==SquareStatus.OpenedNumber ||
                        currentSquare.getStatus()==SquareStatus.OpenedEmpty )) {
-                     ShildNumber--;
+                     ShieldNumber--;
                     }
                     if (currentSquare.isMine() && currentPlayer.getNumberOfShield() >= 0) {
                         currentPlayer.addNormalshild(-1);
@@ -74,24 +74,24 @@ public class GUIGameCustom extends GUIGame {
     public GUIGameCustom(int NumOfShield,List _players) {
         super(_players);
         currentRules=new CustomRules();
-        ShildNumber=NumOfShield;
+        ShieldNumber =NumOfShield;
     }
 
     public GUIGameCustom(int Width, int Height, int NumMines,int NumOfShield, List ListOfPlayers) {
         super(Width, Height, NumMines,ListOfPlayers);
-        ShildNumber=NumOfShield;
+        ShieldNumber =NumOfShield;
         currentRules=new CustomRules();
     }
     public GUIGameCustom(int Width, int Height, int NumMines,int NumOfShield, List ListOfPlayers, WhenHitMine pressMineBehavior, WhenScoreNegative scoreNegativeBehavior) {
         super(Width, Height, NumMines,ListOfPlayers);
-        ShildNumber=NumOfShield;
+        ShieldNumber =NumOfShield;
         currentRules=new CustomRules(pressMineBehavior,scoreNegativeBehavior);
     }
 
     public GUIGameCustom(int Width, int Height, int NumMines,int NumOfShield, List _players, Points points, WhenHitMine pressMineBehavior, WhenScoreNegative scoreNegativeBehavior) {
         super(Width, Height, NumMines, _players, points, pressMineBehavior, scoreNegativeBehavior);
         currentRules=new CustomRules(points,pressMineBehavior,scoreNegativeBehavior);
-        ShildNumber=NumOfShield;
+        ShieldNumber =NumOfShield;
     }
 
     /*

@@ -1,6 +1,7 @@
 package GUIGame;
 
 import GUIGame.GUIElements.*;
+import GUIGame.GUIElements.MenuButton;
 import MineSweeperGameDefineException.IllegalGameMove;
 import Models.Game.*;
 import Models.Grid.Square;
@@ -9,13 +10,9 @@ import Models.Move.MoveType;
 import Models.Move.PlayerMove;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
-import SaveLoad.StringID;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -150,7 +147,7 @@ public class GUIGame extends NormalGame implements Serializable {
             // init Last Move Label
             LastMoveLabel =new DarkLabel();
             FlagsNumberLabel =new DarkLabel("Flags: "+ FlagsNumber +"");
-            shieldNumberLabel=new DarkLabel("Shields: " +ShildNumber + "");
+            shieldNumberLabel=new DarkLabel("Shields: " + ShieldNumber + "");
 
             SaveButton.setOnAction(event -> {
                 SaveGame();
@@ -165,6 +162,9 @@ public class GUIGame extends NormalGame implements Serializable {
                                         "but you don't save the game, so it will be saved now. 😲 "
                     );
                     alert.setContentText("Are you ok with this?");
+                    DialogPane dialogPane = alert.getDialogPane();
+                    dialogPane.getStylesheets().addAll("Styles/style.css");
+                    dialogPane.getStyleClass().add("myDialog");
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.get() == ButtonType.OK) {
                         SaveGame();
@@ -402,7 +402,7 @@ public class GUIGame extends NormalGame implements Serializable {
                         UIElements.LastMoveLabel.setText(LastMove);
 
                         UIElements.FlagsNumberLabel.setText("Flags: "+ FlagsNumber + "");
-                        UIElements.shieldNumberLabel.setText("Shields: "+ShildNumber + "");
+                        UIElements.shieldNumberLabel.setText("Shields: "+ ShieldNumber + "");
                     }
                 });
             }
@@ -465,6 +465,9 @@ public class GUIGame extends NormalGame implements Serializable {
                                     "it's new achievement and its gonna added to the Score Board so you can watch the game later"
                             );
                             alert.setContentText("Are you ok with this?");
+                            DialogPane dialogPane = alert.getDialogPane();
+                            dialogPane.getStylesheets().addAll("Styles/style.css");
+                            dialogPane.getStyleClass().add("myDialog");
                             Optional<ButtonType> result = alert.showAndWait();
                             if (result.get() == ButtonType.OK){
                                 // ... user chose OK
@@ -511,7 +514,7 @@ public class GUIGame extends NormalGame implements Serializable {
 
                 grid.reset();
                 FlagsNumber=grid.getMinesCount();
-                ShildNumber=grid.getShieldsCount();
+                ShieldNumber =grid.getShieldsCount();
                 status=GameStatus.Running;
 
                 UIElements.reset();

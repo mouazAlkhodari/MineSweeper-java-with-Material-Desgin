@@ -16,7 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.StageStyle;
-
+import javafx.scene.control.skin.TableViewSkin;
 import java.util.Optional;
 
 
@@ -117,21 +117,24 @@ public class GUIScoreBoard extends ScoreBoard {
         TableColumn<PlayerBoard, Integer> FinalScoreColumn = new TableColumn<>("Final Score");
         FinalScoreColumn.setMinWidth(150);
         FinalScoreColumn.setCellValueFactory(new PropertyValueFactory<>("FinalScore"));
-        TableColumn<PlayerBoard, Integer> ShieldsRemainingColumn = new TableColumn<>("Shields Remaining");
-        ShieldsRemainingColumn.setMinWidth(150);
-        ShieldsRemainingColumn.setCellValueFactory(new PropertyValueFactory<>("ShieldsRemaining"));
         TableColumn<PlayerBoard, String> GameDifficultyColumn = new TableColumn<>("Game Difficulty");
         GameDifficultyColumn.setMinWidth(150);
         GameDifficultyColumn.setCellValueFactory(new PropertyValueFactory<>("GameDifficulty"));
+        TableColumn<PlayerBoard, String> MinesColumn = new TableColumn<>("Mines");
+        MinesColumn.setMinWidth(150);
+        MinesColumn.setCellValueFactory(new PropertyValueFactory<>("Mines"));
+        TableColumn<PlayerBoard, String> ShieldsColumns = new TableColumn<>("Shields");
+        ShieldsColumns.setMinWidth(150);
+        ShieldsColumns.setCellValueFactory(new PropertyValueFactory<>("Shields"));
 
         table = new TableView<>();
         table.getStylesheets().addAll("Styles/table.css");
+        table.getStyleClass().addAll("padding-lg-full-width");
 //        table.selectionModelProperty().addListener((v,oldValuue,newValue) -> {
 //           newValue.getSelectedCells().
 //        });
         table.setItems(scoreboard);
-        table.setFixedCellSize(25);
-        table.getColumns().addAll(PlayerNameColumn,GameTimeColumn,FinalScoreColumn,ShieldsRemainingColumn,GameDifficultyColumn);
+        table.getColumns().addAll(PlayerNameColumn,GameTimeColumn,FinalScoreColumn,GameDifficultyColumn,MinesColumn,ShieldsColumns);
     }
 
     @Override

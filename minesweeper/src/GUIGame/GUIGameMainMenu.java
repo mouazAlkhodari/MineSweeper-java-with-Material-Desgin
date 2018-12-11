@@ -35,6 +35,7 @@ public class GUIGameMainMenu {
     OptionScene optionsScene = new OptionScene();
     GUIScoreBoard scoreboard = new GUIScoreBoard(this);
     GUIGameLoad gameLoader=new GUIGameLoad(this);
+    JFXDecorator decorator;
     GUIGame guiGame;
     Stage Window;
 
@@ -83,9 +84,12 @@ public class GUIGameMainMenu {
     public void start(Stage primaryStage) throws IOException {
         Window = primaryStage;
         Window.setScene(welcomescene.scene);
+//        decorator = new JFXDecorator(Window,welcomescene.WelcomeLayout);
+//        decorator.getStylesheets().addAll("Styles/style.css");
+//        welcomescene.scene.setRoot(decorator);
         Window.centerOnScreen();
-        Controller controller=new Controller();
         Window.show();
+
     }
     static int getVal(Node text,int begin){
         try {
@@ -229,6 +233,9 @@ public class GUIGameMainMenu {
         ft.setToValue(0);
         ft.play();
         ft.onFinishedProperty().set(event -> node.setVisible(false));
+    }
+    public Node getWelcomelayout() {
+        return welcomescene.WelcomeLayout;
     }
 
     class WelcomeScene {

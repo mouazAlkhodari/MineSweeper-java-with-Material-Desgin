@@ -88,6 +88,6 @@ public class GUIScoreBoard extends ScoreBoard {
 
     @Override
     public void UpdateView() {
-            tablلهفe.setItems(scoreboard);
+            table.setItems(scoreboard);
     }
 }

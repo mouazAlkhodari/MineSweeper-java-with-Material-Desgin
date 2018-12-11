@@ -2,19 +2,23 @@ package SaveLoad;
 
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class SaveLoadGame {
     public static<T> void saveGame(File path,String name, T object){// GUIGame
         try {
-            File textFile = new File(path.getCanonicalPath() +File.separator+ name);
-            System.out.println(textFile);
+            File textFile = new File(path +File.separator+ name);
             FileOutputStream fileStream = new FileOutputStream(textFile);
             ObjectOutputStream out = new ObjectOutputStream(fileStream);
 
             out.writeObject(object);
             out.close();
             fileStream.close();
-            System.out.println("Saved Successfully");
+            System.out.print("Saved Successfully:");
+            System.out.println(textFile);
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -26,8 +30,7 @@ public class SaveLoadGame {
     public static<T> T loadGame(File path,String name){
         try{
             // Reading Object From a File
-            System.out.println("#Load"+name);
-            FileInputStream loadFile = new FileInputStream(new File(path.getCanonicalPath()+File.separator + name));
+            FileInputStream loadFile = new FileInputStream(new File(path + File.separator + name));
             ObjectInputStream loadStream = new ObjectInputStream(loadFile);
             T loadedObject;
             loadedObject = (T) loadStream.readObject();
@@ -36,8 +39,14 @@ public class SaveLoadGame {
             loadFile.close();
             return loadedObject;
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Error in IO");
         }
         return null;
+    }
+    public static void deleteFile(File path,String name){
+            File deletedFile = new File(path + File.separator + name);
+            System.out.println(deletedFile);
+            if (deletedFile.exists())
+                deletedFile.delete();
     }
 }

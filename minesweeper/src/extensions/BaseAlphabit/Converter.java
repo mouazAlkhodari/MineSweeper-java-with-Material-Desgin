@@ -1,6 +1,18 @@
 package extensions.BaseAlphabit;
 
+import java.sql.Time;
+
 public class Converter {
+
+    public static String TimeIntToString(double Time) {
+        int time=(int)Time;
+        int seconds = time%60;
+        time /= 60;
+        int minutes = time%60;
+        time /= 60;
+        int hours = time%60;
+        return new Time(hours,minutes,seconds).toString().replaceFirst("00:","");
+    }
     // get Integer Value Of Alphabet Numer
     public static int valueOf(String alphaNum) {
         int IntegerValue=0;

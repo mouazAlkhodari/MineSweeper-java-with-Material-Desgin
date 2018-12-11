@@ -1,6 +1,8 @@
-/minesweeper/nbproject/private/
-/minesweeper/build/
-/minesweeper/.idea/workspace.xml
-/minesweeper/dist/
-./out/*.*
-./.idea/*.*
+minesweeper/.idea/workspace.xml
+./minesweeper/nbproject/
+./minesweeper/build/
+./minesweeper/.idea/
+./minesweeper/dist/
+./minesweeper/out/*
+./out/
+./.idea/

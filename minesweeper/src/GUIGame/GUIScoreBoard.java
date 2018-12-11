@@ -5,13 +5,19 @@ import GUIGame.GUIElements.MenuButton;
 import GUIGame.GUIElements.Top;
 import Models.ScoreBoard.PlayerBoard;
 import Models.ScoreBoard.ScoreBoard;
+import SaveLoad.Directories;
+import SaveLoad.SaveLoadGame;
 import javafx.beans.binding.Bindings;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import javafx.stage.StageStyle;
+
+import java.util.Optional;
 
 
 public class GUIScoreBoard extends ScoreBoard {
@@ -21,7 +27,10 @@ public class GUIScoreBoard extends ScoreBoard {
     protected Footer footer;
     protected MenuButton BackButton = new MenuButton("Back");
     protected MenuButton ReplayButton = new MenuButton("Replay");
+    protected MenuButton deleteButton = new MenuButton("Delete");
     protected TableView <PlayerBoard> table;
+//    protected JFXTreeTableView<PlayerBoard> table;
+
     protected  GUIGameMainMenu Begin;
 
     public GUIScoreBoard(GUIGameMainMenu menu) {
@@ -36,6 +45,16 @@ public class GUIScoreBoard extends ScoreBoard {
         table.prefWidthProperty().bind(scene.widthProperty());
     }
 
+    public void deleteSelected() throws Exception {
+        if(table.getSelectionModel().getSelectedItem()==null)
+            throw new Exception("not valid selected");
+        delete(table.getSelectionModel().getSelectedIndex());
+    }
+    public void delete(int index){
+        SaveLoadGame.deleteFile(Directories.replay,table.getItems().get(index).getReplayedGame());
+        SaveLoadGame.deleteFile(Directories.scoreboard,table.getItems().get(index).getScoreboardReg());
+        table.getItems().remove(index);
+    }
     void initLayout() {
              //init Tabele
         initTable();
@@ -44,12 +63,41 @@ public class GUIScoreBoard extends ScoreBoard {
         BackButton.setOnAction(e -> {
             Begin.Window.setScene(Begin.getWelcomescene());
             Begin.Window.centerOnScreen();
-    });
-        ReplayButton.setOnAction(e -> {
-            Begin.replayGame(table.getSelectionModel().getSelectedItem().getReplayedGame());
         });
 
-        footer=new Footer(BackButton,ReplayButton);
+        ReplayButton.getStyleClass().addAll("custombutton");
+        ReplayButton.setOnAction(e -> {
+            try {
+                if(table.getSelectionModel().getSelectedIndex()==-1)throw new Exception("not valid selected");
+                Begin.replayGame(table.getSelectionModel().getSelectedItem().getReplayedGame());
+            }
+            catch (Exception ex){
+                System.out.println("not valid selected");
+//                ex.printStackTrace();
+            }
+        });
+        //noinspection Duplicates
+        deleteButton.setOnAction(e-> {
+            if(table.getSelectionModel().getSelectedIndex()==-1)
+                return;
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.initStyle(StageStyle.UTILITY);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("Look, you want to delete ["+ table.getSelectionModel().getSelectedItem().getScoreboardReg()+
+                    "]\n that will remove its files from the data of the game"
+            );
+            alert.setContentText("Are you ok with this?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                // ... user chose OK
+                try {
+                    deleteSelected();
+                } catch (Exception ex) {
+                    System.out.println("not valid selected");
+                }
+            }
+        });
+        footer=new Footer(BackButton,ReplayButton,deleteButton);
 
         layout.setTop(Top);
         layout.setCenter(table);

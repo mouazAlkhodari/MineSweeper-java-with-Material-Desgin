@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Footer extends HBox {
     public Footer(Node ... elements) {
-        super(80);
-        setPadding(new Insets(20));
+        super(50);
+        setPadding(new Insets(15));
         getStylesheets().addAll("Styles/style.css");
         getStyleClass().addAll("center");
         getChildren().addAll(elements);

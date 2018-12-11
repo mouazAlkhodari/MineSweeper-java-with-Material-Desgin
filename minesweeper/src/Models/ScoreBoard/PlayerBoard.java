@@ -1,9 +1,14 @@
 package Models.ScoreBoard;
 
 import Models.Game.Game;
+import SaveLoad.Directories;
+import SaveLoad.SaveLoadGame;
+import SaveLoad.StringID;
 
 import java.io.Serializable;
 import java.sql.Time;
+
+import static extensions.BaseAlphabit.Converter.TimeIntToString;
 
 public class PlayerBoard implements Serializable {
     String PlayerName;
@@ -13,13 +18,21 @@ public class PlayerBoard implements Serializable {
     String GameDifficulty;
     String ReplayedGame;
 
-    public PlayerBoard(String _playerName,int _timeInSeconds,int _finalScore,int _shieldsRemaining,int _gameWidth,int _gameHeight,String _replayerdGame) {
+    public String getScoreboardReg() {
+        return ScoreboardReg;
+    }
+
+    String ScoreboardReg;
+
+    public PlayerBoard(String _playerName,double _timeInSeconds,int _finalScore,int _shieldsRemaining,int _gameWidth,int _gameHeight) {
         PlayerName = _playerName;
         GameTime = TimeIntToString(_timeInSeconds);
         FinalScore = _finalScore;
         ShieldsRemaining = _shieldsRemaining;
         GameDifficulty = GameDifficultyToString(_gameWidth,_gameHeight);
-        ReplayedGame = _replayerdGame;
+        ReplayedGame = StringID.ReplayID();
+        ScoreboardReg=StringID.ScoreBoardID();
+        SaveLoadGame.saveGame(Directories.scoreboard,ScoreboardReg,this);
     }
 
     public String getPlayerName() { return PlayerName; }
@@ -31,14 +44,7 @@ public class PlayerBoard implements Serializable {
 
 
 
-    private String TimeIntToString(int time) {
-        int seconds = time%60;
-        time /= 60;
-        int minutes = time%60;
-        time /= 60;
-        int hours = time%60;
-        return new Time(hours,minutes,seconds).toString().replaceFirst("00:","");
-    }
+
     private String GameDifficultyToString(int width,int height) {
         return "" + width + " x " + height;
     }

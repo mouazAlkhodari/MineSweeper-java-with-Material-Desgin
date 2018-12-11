@@ -4,10 +4,17 @@ import GUIGame.GUIElements.Footer;
 import GUIGame.GUIElements.MenuButton;
 import GUIGame.GUIElements.Top;
 import SaveLoad.Directories;
+import SaveLoad.SaveLoadGame;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.StageStyle;
+
+import java.util.Optional;
 
 
 public class GUIGameLoad {
@@ -20,6 +27,8 @@ public class GUIGameLoad {
     protected GUIGameMainMenu begin;
     protected MenuButton back = new MenuButton("Back");
     protected MenuButton load = new MenuButton("Load");
+    protected MenuButton delete = new MenuButton("delete");
+
 
     public Scene getScene() {
         return scene;
@@ -31,25 +40,39 @@ public class GUIGameLoad {
         scene=new Scene(Layout);
     }
     public void addGame(String game){
-        games.getItems().add(0,Directories.getVal(game));
+        games.getItems().add(Directories.getVal(game));
     }
     private void initLayout(){
         initFooter();
         initList();
         Layout.getStylesheets().add("Styles/style.css");
-        Layout.getStyleClass().addAll("windowsize");
+        Layout.getStyleClass().addAll("windowsize750");
         Layout.setTop(Top);
         Layout.setCenter(loadList);
         Layout.setBottom(footer);
 
     }
-
+    public void delete(String name){
+        delete(games.getItems().lastIndexOf(name));
+    }
+    public void deleteSelected() throws Exception {
+        if(games.getSelectionModel().getSelectedItem()==null)
+            throw new Exception("not valid selected");
+        delete(games.getSelectionModel().getSelectedIndex());
+    }
+    public void delete(int index){
+        if(index<=-1 || index >= games.getItems().size())return;
+        SaveLoadGame.deleteFile(Directories.save,games.getItems().get(index)+".save");
+        games.getItems().remove(index);
+    }
     private void initList() {
         games=new ListView<>();
         games.setItems(Directories.getItems(Directories.save));
+        games.getStyleClass().add("list-view");
+        games.getStylesheets().addAll("Styles/style.css");
         loadList=new VBox();
         loadList.getChildren().addAll(games);
-
+        loadList.getStylesheets().addAll("Styles/style.css");
     }
 
     private void initFooter() {
@@ -57,10 +80,38 @@ public class GUIGameLoad {
             begin.Window.setScene(begin.getWelcomescene());
             begin.Window.centerOnScreen();
         });
+        load.getStyleClass().addAll("custombutton");
         load.setOnAction(e->{
-            if(!games.getItems().isEmpty())
+            try {
+                if(games.getSelectionModel().getSelectedIndex()==-1)throw new Exception("not valid selected");
                 begin.loadGame(games.getSelectionModel().getSelectedItem());
+            }
+            catch (Exception ex){
+                System.out.println("not valid selected");
+//`                ex.printStackTrace();
+            }
         });
-        footer = new Footer(back,load);
+        //noinspection Duplicates
+        delete.setOnAction(e-> {
+            if(games.getSelectionModel().getSelectedIndex()==-1)return;
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.initStyle(StageStyle.UTILITY);
+            alert.setTitle("Confirmation Dialog");
+            alert.setHeaderText("Look, you want to delete ["+ games.getSelectionModel().getSelectedItem()+
+                    "]\n that will remove its files from the data of the game"
+                    );
+            alert.setContentText("Are you ok with this?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                // ... user chose OK
+                try {
+                    deleteSelected();
+                } catch (Exception ex) {
+                    System.out.println("not valid selected");
+                }
+            }
+        });
+
+        footer = new Footer(back,load,delete);
     }
 }

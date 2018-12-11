@@ -2,8 +2,6 @@ import GUIGame.GUIGameMainMenu;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import static java.lang.Thread.sleep;
-
 
 public class GUIMinesweeperMain extends Application {
     private Stage window;
@@ -16,6 +14,12 @@ public class GUIMinesweeperMain extends Application {
         window=primaryStage;
         currentGame=new GUIGameMainMenu();
         currentGame.start(window);
-
+//        VBox layout=new VBox();
+//
+//        JFXSpinner spinner = new JFXSpinner();
+//        layout.getChildren().addAll(spinner);
+//        Scene scene = new Scene(layout);
+//        window.setScene(scene);
+// window.show();
     }
 }

@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="minesweeper">
+    <output-path>$PROJECT_DIR$/out/artifacts/minesweeper</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="GUIMinesweeperMain" />
+        <option name="description" value="&#9;&#9;" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="MineSweeper" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="minesweeper.jar">
+        <element id="module-output" name="minesweeper" />
+      </element>
+      <element id="library" level="project" name="jfoenix-9.0.6" />
+      <element id="artifact" artifact-name="minesweeper:jar" />
+    </root>
+  </artifact>
+</component>

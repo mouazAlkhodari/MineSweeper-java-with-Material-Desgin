@@ -50,6 +50,11 @@ public class GUIGameCustom extends GUIGame {
             if(moves.get(0).getType()==MoveType.Reveal) {
                 for (PlayerMove currentMove : moves) {
                     Square currentSquare = currentMove.getSquare();
+                    if(currentSquare.hasNormalSield() &&
+                      (currentSquare.getStatus()==SquareStatus.OpenedNumber ||
+                       currentSquare.getStatus()==SquareStatus.OpenedEmpty )) {
+                     ShildNumber--;
+                    }
                     if (currentSquare.isMine() && currentPlayer.getNumberOfShield() >= 0) {
                         currentPlayer.addNormalshild(-1);
                         if (currentPlayer.getNumberOfShield() >= 0 && PressMineBehavior!= WhenHitMine.Lose)

@@ -17,9 +17,13 @@
     -fx-alignment: CENTER_LEFT;
 
 }
-
+.table-row-cell:hover{
+    -fx-opacity: 0.5;
+}
 .table-row-cell:selected {
-    -fx-background-color: whitesmoke;
+    /*-fx-background: #FFD9D9;*/
+    -fx-opacity: 0.5;
+    -fx-background-color: #005797;
     -fx-text-background-color:  #6622CC;
 }
 

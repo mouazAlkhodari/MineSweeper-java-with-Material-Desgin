@@ -49,7 +49,14 @@ public class GUIScoreBoard extends ScoreBoard {
             Begin.Window.centerOnScreen();
     });
         ReplayButton.setOnAction(e -> {
-            Begin.replayGame(table.getSelectionModel().getSelectedItem().getReplayedGame());
+            try {
+                if(table.getSelectionModel().getSelectedItem()==null)throw new Exception("not valid selected");
+                Begin.replayGame(table.getSelectionModel().getSelectedItem().getReplayedGame());
+            }
+            catch (Exception ex){
+                System.out.println("not valid selected");
+//                ex.printStackTrace();
+            }
         });
 
         footer=new Footer(BackButton,ReplayButton);

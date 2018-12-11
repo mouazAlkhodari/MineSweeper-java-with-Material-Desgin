@@ -1,6 +1,8 @@
 .root {
     -fx-background-color: #35414A;
 }
+
+
 .windowsize {
     -fx-alignment: CENTER;
     -fx-pref-width: 600;
@@ -25,9 +27,6 @@
     -fx-font-size: 1.5em;
     -fx-font-family: Lato;
 }
-.button:hover {
-    -fx-background-color: #fff;
-}
 .menubutton {
     -fx-background-color: #1EB98F;
     -fx-padding: 10 10;
@@ -39,6 +38,7 @@
     -fx-text-fill: #1EB98F;
     -fx-font-weight: bold;
 }
+
 .custombutton { -fx-background-color: #FF7629}
 .custombutton:hover { -fx-text-fill: #FF7629}
 .buttonlabel {
@@ -86,7 +86,19 @@
     -fx-padding: 0;
 }
 
-.combo-box .list-cell,.list-cell,.table-view .cell  {
+.button:disabled{
+    -fx-opacity: 0.7;
+}
+
+.button:focused{
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+.button:hover {
+    -fx-background-color: #fff;
+}
+
+.combo-box .list-cell,.list-cell/*,.table-view .cell*/  {
     -fx-background-color: #485761;
     -fx-border-radius: 0;
     -fx-background-radius: 0;

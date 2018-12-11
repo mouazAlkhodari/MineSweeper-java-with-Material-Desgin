@@ -13,6 +13,7 @@ import SaveLoad.SaveLoadGame;
 import SaveLoad.StringID;
 import com.jfoenix.controls.*;
 import javafx.animation.FadeTransition;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -81,108 +82,114 @@ public class GUIGameMainMenu {
             return begin;
         }
     }
-    void initGame() {
-        //Getting Values Of GridOptions
-        int _width = 10,_height = 10,_mines = 10,_shields = 4,_heroShields = 0;
-        switch (optionsScene.gridOption.difficulty.getSelectionModel().getSelectedItem()) {
-            case "Easy":
-                _width = _height = _mines = 8;
-                break;
-            case "Medium":
-                _width = _height = 16;
-                _mines = 40;
-                break;
-            case "Hard":
-                _width = _height = 24;
-                _mines = 150;
-                break;
-            case "Custom":
-                _width = getVal(optionsScene.gridOption.WidthInput,10);
-                _height =getVal(optionsScene.gridOption.HeightInput,10);
-                _mines = getVal(optionsScene.gridOption.MinesInput,10);
-                _shields = getVal(optionsScene.gridOption.ShieldsInput,10);
-                _heroShields = getVal(optionsScene.gridOption.HeroShieldsInput,10);
-                break;
-        }
-        int Timer=10;
-        Timer=getVal(optionsScene.customRulesOption.TimerField,10);
-        //Getting Values Of PlayerOptions
-        ArrayList<Player> _players= new ArrayList<Player>();
-        switch (optionsScene.playersOption.PlayerType.getSelectionModel().getSelectedItem()) {
-            //"Single Player","VS Dump PC","Custom"
-            case "Single Player":
-                Player _player=new GUIPlayer("You ","#ffe082");
-                _player.setTimeforTimer(Timer);
-                _players.add(_player);
-                break;
-            case "VS Dump PC":
-                Player _player1=new GUIPlayer("You ","#ffe082");
-                _player1.setTimeforTimer(Timer);
-                _players.add(_player1);
-                Player _player2=new DumbPlayer(_width,_height);
-                _player2.setTimeforTimer(Timer);
-                _players.add(_player2);
-                break;
-            case "Custom":
-                int i=0;
-                for(Node playerfield:optionsScene.playersOption.playerFields.getChildren()){
-                    JFXTextField _playerName=(JFXTextField)(((HBox)playerfield).getChildren().get(0));
-                    JFXTextField _NumberOfShield=(JFXTextField)(((HBox)playerfield).getChildren().get(1));
-                    JFXCheckBox DisableShield = (JFXCheckBox)(((HBox) playerfield).getChildren().get(2));
-                    if(_playerName.getText().length()!=0) {
-                        int numberShields=0,maxnumberShields=1000000;
-                        if (DisableShield.isSelected()) { maxnumberShields=0;}
-                        numberShields=getVal(_NumberOfShield,1);
-                        Player currentPlayer=new GUIPlayer(_playerName.getText(), optionsScene.playersOption._playersColor.get(i++),numberShields,maxnumberShields);
-                        currentPlayer.setTimeforTimer(Timer);
-                        _players.add(currentPlayer);
+    void initGame(){
+        try {
+
+            //Getting Values Of GridOptions
+            int _width = 10,_height = 10,_mines = 10,_shields = 4,_heroShields = 0;
+            switch (optionsScene.gridOption.difficulty.getSelectionModel().getSelectedItem()) {
+                case "Easy":
+                    _width = _height = _mines = 8;
+                    break;
+                case "Medium":
+                    _width = _height = 16;
+                    _mines = 40;
+                    break;
+                case "Hard":
+                    _width = _height = 24;
+                    _mines = 150;
+                    break;
+                case "Custom":
+                    _width = getVal(optionsScene.gridOption.WidthInput,10);
+                    _height =getVal(optionsScene.gridOption.HeightInput,10);
+                    _mines = getVal(optionsScene.gridOption.MinesInput,10);
+                    _shields = getVal(optionsScene.gridOption.ShieldsInput,10);
+                    _heroShields = getVal(optionsScene.gridOption.HeroShieldsInput,10);
+                    break;
+            }
+            int Timer=10;
+            Timer=getVal(optionsScene.customRulesOption.TimerField,10);
+            //Getting Values Of PlayerOptions
+            ArrayList<Player> _players= new ArrayList<Player>();
+            switch (optionsScene.playersOption.PlayerType.getSelectionModel().getSelectedItem()) {
+                //"Single Player","VS Dump PC","Custom"
+                case "Single Player":
+                    Player _player=new GUIPlayer("You ","#ffe082");
+                    _player.setTimeforTimer(Timer);
+                    _players.add(_player);
+                    break;
+                case "VS Dump PC":
+                    Player _player1=new GUIPlayer("You ","#ffe082");
+                    _player1.setTimeforTimer(Timer);
+                    _players.add(_player1);
+                    Player _player2=new DumbPlayer(_width,_height);
+                    _player2.setTimeforTimer(Timer);
+                    _players.add(_player2);
+                    break;
+                case "Custom":
+                    int i=0;
+                    for(Node playerfield:optionsScene.playersOption.playerFields.getChildren()){
+                        JFXTextField _playerName=(JFXTextField)(((HBox)playerfield).getChildren().get(0));
+                        JFXTextField _NumberOfShield=(JFXTextField)(((HBox)playerfield).getChildren().get(1));
+                        JFXCheckBox DisableShield = (JFXCheckBox)(((HBox) playerfield).getChildren().get(2));
+                        if(_playerName.getText().length()!=0) {
+                            int numberShields=0,maxnumberShields=1000000;
+                            if (DisableShield.isSelected()) { maxnumberShields=0;}
+                            numberShields=getVal(_NumberOfShield,1);
+                            Player currentPlayer=new GUIPlayer(_playerName.getText(), optionsScene.playersOption._playersColor.get(i++),numberShields,maxnumberShields);
+                            currentPlayer.setTimeforTimer(Timer);
+                            _players.add(currentPlayer);
+                        }
                     }
-                }
-                break;
+                    break;
+            }
+            //Getting Values Of RulesOption
+            WhenHitMine pressMineBehavior=WhenHitMine.Lose;
+            WhenScoreNegative scoreNegativeBehavior=WhenScoreNegative.End;
+            if(!optionsScene.customRulesOption.EndGameWhenHitMine.isSelected())
+                pressMineBehavior=WhenHitMine.Continue;
+            if(optionsScene.customRulesOption.ContinuePlayinginNegativeScore.isSelected())
+                scoreNegativeBehavior=WhenScoreNegative.Continue;
+            //Getting Values Of PointsOption
+            int _RevealFloodFill;
+            int _RevealEmpty;
+            int _RevealMine;
+            int _MarkMine;
+            int _MarkNotMine;
+            int _Unmarkmine;
+            int _UnmarkNotMine;
+            int _LastNumber;
+            int _hasNormalShield;
+            int _lostNormalShield;
+            Points points;
+            switch (optionsScene.pointsOption.PointsType.getSelectionModel().getSelectedItem()) {
+                //"Default","Custom")
+                case "Default":
+                    guiGame=new GUIGameCustom(_width,_height,_mines,_shields,_players,pressMineBehavior,scoreNegativeBehavior);
+                    break;
+                case "Custom":
+                    _RevealFloodFill=getVal(optionsScene.pointsOption.RevealFloodFill,1);
+                    _RevealEmpty=getVal(optionsScene.pointsOption.RevealEmpty,10);
+                    _RevealMine=getVal(optionsScene.pointsOption.RevealMine,-250);
+                    _MarkMine=getVal(optionsScene.pointsOption.MarkMine,5);
+                    _MarkNotMine=getVal(optionsScene.pointsOption.MarkNotMine,-1);
+                    _Unmarkmine=getVal(optionsScene.pointsOption.Unmarkmine,-5);
+                    _UnmarkNotMine=getVal(optionsScene.pointsOption.UnmarkNotMine,1);
+                    _LastNumber=getVal(optionsScene.pointsOption.LastNumber,100);
+                    _hasNormalShield=getVal(optionsScene.pointsOption.hasNormlShield,50);
+                    _lostNormalShield=getVal(optionsScene.pointsOption.lostNormalShield,250);
+                    points=new Points(_RevealFloodFill, _RevealEmpty, _RevealMine, _MarkMine, _MarkNotMine, _Unmarkmine, _UnmarkNotMine, _LastNumber,_hasNormalShield,_lostNormalShield);
+                    guiGame=new GUIGameCustom(_width,_height,_mines,_shields,_players, points,pressMineBehavior,scoreNegativeBehavior);
+                    break;
+            }
+            guiGame.setBegin(this);
+            Window.setScene(guiGame.getScene());
+            Window.centerOnScreen();
+            guiGame.StartGame();
         }
-        //Getting Values Of RulesOption
-        WhenHitMine pressMineBehavior=WhenHitMine.Lose;
-        WhenScoreNegative scoreNegativeBehavior=WhenScoreNegative.End;
-        if(!optionsScene.customRulesOption.EndGameWhenHitMine.isSelected())
-            pressMineBehavior=WhenHitMine.Continue;
-        if(optionsScene.customRulesOption.ContinuePlayinginNegativeScore.isSelected())
-            scoreNegativeBehavior=WhenScoreNegative.Continue;
-        //Getting Values Of PointsOption
-        int _RevealFloodFill;
-        int _RevealEmpty;
-        int _RevealMine;
-        int _MarkMine;
-        int _MarkNotMine;
-        int _Unmarkmine;
-        int _UnmarkNotMine;
-        int _LastNumber;
-        int _hasNormalShield;
-        int _lostNormalShield;
-        Points points;
-        switch (optionsScene.pointsOption.PointsType.getSelectionModel().getSelectedItem()) {
-            //"Default","Custom")
-            case "Default":
-                guiGame=new GUIGameCustom(_width,_height,_mines,_shields,_players,pressMineBehavior,scoreNegativeBehavior);
-                break;
-            case "Custom":
-                _RevealFloodFill=getVal(optionsScene.pointsOption.RevealFloodFill,1);
-                _RevealEmpty=getVal(optionsScene.pointsOption.RevealEmpty,10);
-                _RevealMine=getVal(optionsScene.pointsOption.RevealMine,-250);
-                _MarkMine=getVal(optionsScene.pointsOption.MarkMine,5);
-                _MarkNotMine=getVal(optionsScene.pointsOption.MarkNotMine,-1);
-                _Unmarkmine=getVal(optionsScene.pointsOption.Unmarkmine,-5);
-                _UnmarkNotMine=getVal(optionsScene.pointsOption.UnmarkNotMine,1);
-                _LastNumber=getVal(optionsScene.pointsOption.LastNumber,100);
-                _hasNormalShield=getVal(optionsScene.pointsOption.hasNormlShield,50);
-                _lostNormalShield=getVal(optionsScene.pointsOption.lostNormalShield,250);
-                points=new Points(_RevealFloodFill, _RevealEmpty, _RevealMine, _MarkMine, _MarkNotMine, _Unmarkmine, _UnmarkNotMine, _LastNumber,_hasNormalShield,_lostNormalShield);
-                guiGame=new GUIGameCustom(_width,_height,_mines,_shields,_players, points,pressMineBehavior,scoreNegativeBehavior);
-            break;
+        catch (Exception ex){
+            System.out.println("not Valid input");
         }
-        guiGame.setBegin(this);
-        Window.setScene(guiGame.getScene());
-        Window.centerOnScreen();
-        guiGame.StartGame();
     }
 
     void fadeIn(Node node) {
@@ -210,7 +217,9 @@ public class GUIGameMainMenu {
         Button Profile;
 
         private void initLayout() {
+
             WelcomeLayout = new VBox(20);
+
             Welcome = new Label("MineSweeper");
             NewGame = new Button("NEW GAME");
             NewGame.getStyleClass().addAll("menubutton","custombutton","h3");
@@ -232,12 +241,15 @@ public class GUIGameMainMenu {
             Profile = new Button("PROFILE");
             Profile.getStyleClass().addAll("menubutton","h3");
             Profile.setDisable(true);
+
             WelcomeLayout.getStyleClass().add("windowsize");
             Welcome.getStyleClass().add("h1");
             Welcome.getStylesheets().add("Styles/style.css");
             WelcomeLayout.getStylesheets().add("Styles/style.css");
             //Adding Components to layout
+
             WelcomeLayout.getChildren().addAll(Welcome, NewGame,LoadGame,Scoreboard,Profile);
+
         }
 
         public WelcomeScene() {

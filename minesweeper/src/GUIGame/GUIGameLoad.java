@@ -4,6 +4,7 @@ import GUIGame.GUIElements.Footer;
 import GUIGame.GUIElements.MenuButton;
 import GUIGame.GUIElements.Top;
 import SaveLoad.Directories;
+import com.jfoenix.controls.JFXSnackbar;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
@@ -58,8 +59,14 @@ public class GUIGameLoad {
             begin.Window.centerOnScreen();
         });
         load.setOnAction(e->{
-            if(!games.getItems().isEmpty())
+            try {
+                if(games.getSelectionModel().getSelectedItem()==null)throw new Exception("not valid selected");
                 begin.loadGame(games.getSelectionModel().getSelectedItem());
+            }
+            catch (Exception ex){
+                System.out.println("not valid selected");
+//`                ex.printStackTrace();
+            }
         });
         footer = new Footer(back,load);
     }

@@ -26,11 +26,11 @@ public class GUIMinesweeperMain extends Application {
         window=primaryStage;
         currentGame=new GUIGameMainMenu();
         currentGame.start(window);
-        VBox layout=new VBox();
-
-        JFXSpinner spinner = new JFXSpinner();
-        layout.getChildren().addAll(spinner);
-        Scene scene = new Scene(layout);
+//        VBox layout=new VBox();
+//
+//        JFXSpinner spinner = new JFXSpinner();
+//        layout.getChildren().addAll(spinner);
+//        Scene scene = new Scene(layout);
 //        window.setScene(scene);
 // window.show();
     }

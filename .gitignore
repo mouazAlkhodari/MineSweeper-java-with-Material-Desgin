@@ -6,3 +6,8 @@ minesweeper/.idea/workspace.xml
 ./minesweeper/out/*
 ./out/
 ./.idea/
+/minesweeper/build/
+/minesweeper/dist/
+/minesweeper/nbproject/private/
+/minesweeper/nbdist/
+/JavaApplication3/nbproject/private/

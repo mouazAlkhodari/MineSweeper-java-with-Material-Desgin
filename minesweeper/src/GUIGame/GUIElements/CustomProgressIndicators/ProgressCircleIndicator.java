@@ -28,8 +28,8 @@ import javafx.css.CssMetaData;
 import javafx.css.Styleable;
 import javafx.css.StyleableDoubleProperty;
 import javafx.css.StyleableProperty;
-import javafx.scene.control.Control;
 import javafx.css.converter.SizeConverter;
+import javafx.scene.control.Control;
 
 /**
  * Base class for the progress indicator controls represented by circualr shapes

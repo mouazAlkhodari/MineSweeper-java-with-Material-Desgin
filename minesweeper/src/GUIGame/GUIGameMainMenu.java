@@ -3,6 +3,7 @@ package GUIGame;
 import GUIGame.GUIElements.Footer;
 import GUIGame.GUIElements.MenuButton;
 import Models.Game.Points;
+import Models.Game.SaveMode;
 import Models.Game.WhenHitMine;
 import Models.Game.WhenScoreNegative;
 import Models.Player.DumbPlayer;
@@ -15,7 +16,6 @@ import javafx.animation.FadeTransition;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -25,6 +25,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 public class GUIGameMainMenu {
@@ -37,7 +38,7 @@ public class GUIGameMainMenu {
     Stage Window;
 
     public void QuickLoad(){
-        guiGame = SaveLoadGame.loadGame(Directories.quicksave,Directories.QuickGame);
+        guiGame = SaveLoadGame.loadObject(Directories.quicksave,Directories.QuickGame);
         guiGame.initscene();
         guiGame.setBegin(this);
         Window.setScene(guiGame.getScene());
@@ -45,24 +46,48 @@ public class GUIGameMainMenu {
         guiGame.ContinueGame();
     }
     public void QuickSave(){
-        SaveLoadGame.saveGame(Directories.quicksave, Directories.QuickGame,guiGame);
+        SaveLoadGame.saveObject(Directories.quicksave, Directories.QuickGame,guiGame);
     }
 
     public void deleteSavedGame(){        // delete last saved if exists
         gameLoader.delete(Directories.getVal(guiGame.SavedName));
     }
     public void saveGame(){
-        saveGame(StringID.SaveID());
+        String name=guiGame.Name;
+        if(guiGame.SavedName==null){
+            if(guiGame.saveMode==SaveMode.askUser) {
+                TextInputDialog dialog = new TextInputDialog("walter");
+                dialog.setTitle("Text Input Dialog");
+                dialog.setHeaderText("Look, a Text Input Dialog");
+                dialog.setContentText("Please enter your name:");
+
+                DialogPane dialogPane = dialog.getDialogPane();
+                dialogPane.getStylesheets().addAll("Styles/style.css");
+                dialogPane.getStyleClass().add("myDialog");
+                // Traditional way to get the response value.
+                guiGame.interruptThreads();
+                Optional<String> result = dialog.showAndWait();
+                guiGame.ContinueGame();
+                if (result.isPresent()) {
+                    name=result.get();
+                    guiGame.Name=name;
+                }
+                else{
+                    return;
+                }
+            }
+        }
+        saveGame(name+StringID.SaveID());
     }
     public void saveGame(String name){
         deleteSavedGame();
 
         guiGame.SavedName=name;
-        SaveLoadGame.saveGame(Directories.save, name,guiGame);
+        SaveLoadGame.saveObject(Directories.save, name,guiGame);
         gameLoader.addGame(name);
     }
     void loadGame(String name){
-        guiGame=SaveLoadGame.loadGame(Directories.save,name+".save");
+        guiGame=SaveLoadGame.loadObject(Directories.save,name+".save");
         guiGame.initscene();
         guiGame.setBegin(this);
         Window.setScene(guiGame.getScene());
@@ -70,7 +95,7 @@ public class GUIGameMainMenu {
         guiGame.ContinueGame();
     }
     void replayGame(String name){
-        guiGame=SaveLoadGame.loadGame(Directories.replay,name);
+        guiGame=SaveLoadGame.loadObject(Directories.replay,name);
         guiGame.initscene();
         guiGame.setBegin(this);
         Window.setScene(guiGame.getScene());
@@ -83,8 +108,7 @@ public class GUIGameMainMenu {
     public void start(Stage primaryStage) throws IOException {
         Window = primaryStage;
         Window.setScene(welcomescene.scene);
-        Window.getIcons().add(new Image("images/icon.png"));
-//        decorator = new JFXDecorator(Window,welcomescene.WelcomeLayout);
+//        decorator = new JFXDecora/tor(Window,welcomescene.WelcomeLayout);
 //        decorator.getStylesheets().addAll("Styles/style.css");
 //        welcomescene.scene.setRoot(decorator);
         Window.centerOnScreen();
@@ -210,6 +234,10 @@ public class GUIGameMainMenu {
                     guiGame=new GUIGameCustom(_width,_height,_mines,_shields,_players, points,pressMineBehavior,scoreNegativeBehavior);
                     break;
             }
+            SaveMode saveMode=SaveMode.auto;
+            if(!optionsScene.customRulesOption.AutoSaveName.isSelected()) saveMode=SaveMode.askUser;
+            guiGame.setSaveMode(saveMode);
+
             guiGame.setBegin(this);
             Window.setScene(guiGame.getScene());
             Window.centerOnScreen();
@@ -564,22 +592,26 @@ public class GUIGameMainMenu {
         }
     }
     class CustomRulesOption {
-        JFXCheckBox EndGameWhenHitMine = new JFXCheckBox("End Game When Hit Mine");
-        JFXCheckBox FloodfillWhenHitMine = new JFXCheckBox("Flood fill When Hit Mine");
-        JFXCheckBox ContinuePlayinginNegativeScore = new JFXCheckBox("Continue Playing in Negative Score");
+        JFXCheckBox EndGameWhenHitMine = new JFXCheckBox("End game when hit mine");
+        JFXCheckBox FloodfillWhenHitMine = new JFXCheckBox("Flood fill when hit mine");
+        JFXCheckBox ContinuePlayinginNegativeScore = new JFXCheckBox("Continue playing in negative score");
+        JFXCheckBox AutoSaveName=new JFXCheckBox("Auto save name");
         JFXTextField TimerField = new JFXTextField();
+
         VBox Option = new VBox(20);
 
         public CustomRulesOption() {
                 EndGameWhenHitMine.setSelected(true);
                 FloodfillWhenHitMine.setSelected(true);
                 FloodfillWhenHitMine.setDisable(true);
+                AutoSaveName.setSelected(true);
             TimerField.setPromptText("Time Waiting for Player: e.g.: 10");
-            Option.getChildren().addAll(EndGameWhenHitMine,FloodfillWhenHitMine,ContinuePlayinginNegativeScore,TimerField);
+            Option.getChildren().addAll(EndGameWhenHitMine,FloodfillWhenHitMine,ContinuePlayinginNegativeScore,AutoSaveName,TimerField);
             Option.getStyleClass().addAll("center","maxwidth300");
-            EndGameWhenHitMine.getStyleClass().addAll("h3");
-            FloodfillWhenHitMine.getStyleClass().addAll("h3");
+            EndGameWhenHitMine.getStyleClass().addAll("h3","right");
+            FloodfillWhenHitMine.getStyleClass().addAll("h3","right");
             ContinuePlayinginNegativeScore.getStyleClass().addAll("h3");
+            AutoSaveName.getStyleClass().addAll("h3");
         }
     }
 

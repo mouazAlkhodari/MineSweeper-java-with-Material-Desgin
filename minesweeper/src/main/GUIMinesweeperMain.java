@@ -4,6 +4,7 @@ import GUIGame.GUIGameMainMenu;
 import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -21,6 +22,9 @@ public class GUIMinesweeperMain extends Application {
         window=primaryStage;
         window.setResizable(false);
         window.initStyle(StageStyle.DECORATED);
+        window.getIcons().add(new Image("images/icon.png"));
+        window.centerOnScreen();
+
         currentGame=new GUIGameMainMenu();
         currentGame.start(window);
 //        VBox layout=new VBox();

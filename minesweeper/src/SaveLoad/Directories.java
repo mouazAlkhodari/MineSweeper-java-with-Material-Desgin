@@ -25,13 +25,13 @@ public class Directories {
     }
     public static String getVal(String item){
         if(item==null || item.lastIndexOf('.')==-1)return item;
-        System.out.println(item);
+//        System.out.println(item);
         item=item.substring(0,item.lastIndexOf('.'));
         return item;
     }
 
     public static void CheckDir() {
-        System.out.println("test");
+//        System.out.println("test");
         if(!save.exists()) {
             save.mkdirs();
         }

@@ -5,15 +5,14 @@ import GUIGame.GUIElements.MenuButton;
 import GUIGame.GUIElements.Top;
 import SaveLoad.Directories;
 import SaveLoad.SaveLoadGame;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DialogPane;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 
@@ -41,6 +40,8 @@ public class GUIGameLoad {
     }
     public void addGame(String game){
         games.getItems().add(Directories.getVal(game));
+        games.getSelectionModel().selectFirst();
+
     }
     private void initLayout(){
         initFooter();
@@ -64,10 +65,15 @@ public class GUIGameLoad {
         if(index<=-1 || index >= games.getItems().size())return;
         SaveLoadGame.deleteFile(Directories.save,games.getItems().get(index)+".save");
         games.getItems().remove(index);
+        games.getSelectionModel().selectFirst();
     }
     private void initList() {
         games=new ListView<>();
         games.setItems(Directories.getItems(Directories.save));
+
+        games.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        games.getSelectionModel().selectFirst();
+
         games.getStyleClass().add("list-view");
         games.getStylesheets().addAll("Styles/style.css");
         loadList=new VBox();

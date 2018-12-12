@@ -153,7 +153,9 @@
 .f7{-fx-text-fill: #861a22;  -fx-font-weight: 700;}
 .f8{-fx-text-fill: #6b1c23;  -fx-font-weight: 700;}
 .Closed{-fx-background-color: #22a6b3}
-.center { -fx-alignment: CENTER;}
+
+.center { -fx-alignment: center;}
+.right { -fx-alignment: center-right;}
 .minwidth { -fx-min-width: 100;}
 .padding {-fx-padding: 10px 20px;}
 .padding-sm{-fx-padding: 5px 10px;}

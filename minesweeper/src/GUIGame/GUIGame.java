@@ -11,6 +11,7 @@ import Models.Move.PlayerMove;
 import Models.Player.Player;
 import Models.Player.PlayerStatus;
 import javafx.application.Platform;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
@@ -43,6 +44,11 @@ public class GUIGame extends NormalGame implements Serializable {
         protected RingTimer left;
 
         protected Scene scene;
+
+        public BorderPane getLayout() {
+            return layout;
+        }
+
         protected BorderPane layout;
 
         protected MenuButton BackButton = new MenuButton("Back");
@@ -516,6 +522,7 @@ public class GUIGame extends NormalGame implements Serializable {
     }
 
 
+
     transient Thread showGameThread=new Thread();
     protected void showGame(){
         showGameThread= new Thread(new Runnable() {
@@ -591,6 +598,7 @@ public class GUIGame extends NormalGame implements Serializable {
                 moves.clear();
                 for(int i=1;i<grid.getWidth();i++){
                     for(int j=1;j<grid.getHeight();j++){
+                        if(status==GameStatus.FirstMove)continue;
                         Square currentSquare=grid.getField()[i][j];
                         if(currentSquare.getStatus()!= SquareStatus.Closed){
                             PlayerMove _move=new PlayerMove(currentPlayer,currentSquare);
@@ -641,4 +649,7 @@ public class GUIGame extends NormalGame implements Serializable {
         UIElements.Begin.scoreboard.AddBoard(this,winner);
     }
 
+    public void setSaveMode(SaveMode _saveMode){
+        saveMode=_saveMode;
+    }
 }

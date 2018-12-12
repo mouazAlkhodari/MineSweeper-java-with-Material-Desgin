@@ -24,9 +24,9 @@ import javafx.css.CssMetaData;
 import javafx.css.Styleable;
 import javafx.css.StyleableDoubleProperty;
 import javafx.css.StyleableProperty;
+import javafx.css.converter.SizeConverter;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
-import javafx.css.converter.SizeConverter;
 
 /**
  * Progress indicator showing a filling arc.

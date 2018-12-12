@@ -1,13 +1,10 @@
 package Models.ScoreBoard;
 
-import Models.Game.Game;
-import Models.Shield.Shield;
 import SaveLoad.Directories;
 import SaveLoad.SaveLoadGame;
 import SaveLoad.StringID;
 
 import java.io.Serializable;
-import java.sql.Time;
 
 import static extensions.BaseAlphabit.Converter.TimeIntToString;
 
@@ -35,7 +32,7 @@ public class PlayerBoard implements Serializable {
         Shields = _shields;
         ReplayedGame = StringID.ReplayID();
         ScoreboardReg=StringID.ScoreBoardID();
-        SaveLoadGame.saveGame(Directories.scoreboard,ScoreboardReg,this);
+        SaveLoadGame.saveObject(Directories.scoreboard,ScoreboardReg,this);
     }
 
     public String getPlayerName() { return PlayerName; }

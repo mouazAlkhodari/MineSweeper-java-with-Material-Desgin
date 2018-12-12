@@ -2,9 +2,6 @@ package GUIGame;
 
 import GUIGame.GUIElements.Footer;
 import GUIGame.GUIElements.MenuButton;
-import GUIGame.GUIGame;
-import GUIGame.GUIGameLoad;
-import GUIGame.GUIScoreBoard;
 import Models.Game.Points;
 import Models.Game.WhenHitMine;
 import Models.Game.WhenScoreNegative;
@@ -15,7 +12,6 @@ import SaveLoad.SaveLoadGame;
 import SaveLoad.StringID;
 import com.jfoenix.controls.*;
 import javafx.animation.FadeTransition;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -41,7 +37,7 @@ public class GUIGameMainMenu {
     Stage Window;
 
     public void QuickLoad(){
-        guiGame = SaveLoadGame.loadGame(Directories.datadir,Directories.QuickGame);
+        guiGame = SaveLoadGame.loadGame(Directories.quicksave,Directories.QuickGame);
         guiGame.initscene();
         guiGame.setBegin(this);
         Window.setScene(guiGame.getScene());
@@ -49,7 +45,7 @@ public class GUIGameMainMenu {
         guiGame.ContinueGame();
     }
     public void QuickSave(){
-        SaveLoadGame.saveGame(Directories.datadir, Directories.QuickGame,guiGame);
+        SaveLoadGame.saveGame(Directories.quicksave, Directories.QuickGame,guiGame);
     }
 
     public void deleteSavedGame(){        // delete last saved if exists
@@ -81,6 +77,8 @@ public class GUIGameMainMenu {
         Window.centerOnScreen();
         guiGame.showGame();
     }
+
+    public GUIGameMainMenu() { Directories.CheckDir();}
 
     public void start(Stage primaryStage) throws IOException {
         Window = primaryStage;

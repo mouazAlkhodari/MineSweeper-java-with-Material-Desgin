@@ -2,15 +2,17 @@ package SaveLoad;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import javax.swing.*;
 import java.io.File;
 
 public class Directories {
-    public static File save = new File("data" + File.separator+ "savedGames");
-    public static File replay = new File("data" + File.separator+ "replayGames");
-    public static File scoreboard = new File("data" + File.separator+ "scoreBoard");
+    private static String HOME = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
+    private static String DATADIR = new File(HOME + File.separator  + "MineSweeper").toString();
+    public static File save = new File(DATADIR + File.separator + "data" + File.separator+ "savedGames");
+    public static File replay = new File(DATADIR + File.separator + "data" + File.separator+ "replayGames");
+    public static File scoreboard = new File(DATADIR + File.separator + "data" + File.separator+ "scoreBoard");
     public static String QuickGame="save Quick-saved-game.save";
-    public static File datadir= new File("data" + File.separator);
+    public static File quicksave = new File(DATADIR + File.separator + "data" + File.separator);
     public static ObservableList<String> getItems(File path){
         ObservableList<String> Items = FXCollections.observableArrayList();
         if(path.exists()){
@@ -26,5 +28,21 @@ public class Directories {
         System.out.println(item);
         item=item.substring(0,item.lastIndexOf('.'));
         return item;
+    }
+
+    public static void CheckDir() {
+        System.out.println("test");
+        if(!save.exists()) {
+            save.mkdirs();
+        }
+        if (!replay.exists()) {
+            replay.mkdirs();
+        }
+        if(!scoreboard.exists()) {
+            scoreboard.mkdirs();
+        }
+        if(!quicksave.exists()) {
+            quicksave.mkdirs();
+        }
     }
 }

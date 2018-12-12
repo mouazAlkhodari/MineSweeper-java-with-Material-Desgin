@@ -195,7 +195,7 @@ public class GUIGame extends NormalGame implements Serializable {
             QuickSave.setOnAction(e->{
                 QuicSaveGame();
             });
-            footer = new Footer(FlagsNumberLabel,shieldNumberLabel,LastMoveLabel, BackButton,QuickSave, SaveButton,ReplayButton);
+            footer = new Footer(FlagsNumberLabel,shieldNumberLabel, BackButton,QuickSave, SaveButton);
         }
 
         public void reset(){

@@ -10,11 +10,14 @@ import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public abstract class ScoreBoard implements Serializable {
     protected ObservableList<PlayerBoard> scoreboard = FXCollections.observableArrayList();
 
     public ScoreBoard() {
+        if (!Directories.scoreboard.exists()) { Directories.scoreboard.mkdirs();}
         for (String name : Directories.scoreboard.list()) {
             PlayerBoard _board = SaveLoadGame.loadGame(Directories.scoreboard,name);
             if (_board != null) { scoreboard.add(_board); }

@@ -16,7 +16,7 @@ public class SaveLoadGame {
                     out.writeObject(object);
                     out.close();
                     fileStream.close();
-                    System.out.println("Saved Successfully: "+textFile);
+//                    System.out.println("Saved Successfully: "+textFile);
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -39,7 +39,7 @@ public class SaveLoadGame {
             T loadedObject;
             loadedObject = (T) loadStream.readObject();
 
-            System.out.println("Load Successfully:"+textFile);
+//            System.out.println("Load Successfully:"+textFile);
 
             loadStream.close();
             loadFile.close();

@@ -1,5 +1,3 @@
-package main;
-
 import GUIGame.GUIGameMainMenu;
 import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;

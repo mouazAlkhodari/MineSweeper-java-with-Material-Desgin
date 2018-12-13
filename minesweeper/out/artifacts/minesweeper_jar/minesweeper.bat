@@ -1,1 +1,2 @@
-﻿java -jar minesweeper.jar
+﻿javaw.exe -jar minesweeper.jar
+exit

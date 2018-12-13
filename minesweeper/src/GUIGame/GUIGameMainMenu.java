@@ -56,10 +56,10 @@ public class GUIGameMainMenu {
         String name=guiGame.Name;
         if(guiGame.SavedName==null){
             if(guiGame.saveMode==SaveMode.askUser) {
-                TextInputDialog dialog = new TextInputDialog("walter");
-                dialog.setTitle("Text Input Dialog");
-                dialog.setHeaderText("Look, a Text Input Dialog");
-                dialog.setContentText("Please enter your name:");
+                TextInputDialog dialog = new TextInputDialog("Game save");
+                dialog.setTitle("Save Name Dialog");
+                dialog.setHeaderText("the name the game will have in loadGame menu");
+                dialog.setContentText("Please enter the name:");
 
                 DialogPane dialogPane = dialog.getDialogPane();
                 dialogPane.getStylesheets().addAll("Styles/style.css");

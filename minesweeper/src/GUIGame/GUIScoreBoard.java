@@ -6,8 +6,7 @@ import GUIGame.GUIElements.Top;
 import Models.ScoreBoard.PlayerBoard;
 import Models.ScoreBoard.ScoreBoard;
 import SaveLoad.Directories;
-import SaveLoad.SaveLoadGame;
-import javafx.beans.binding.Bindings;
+import SaveLoad.SaveLoad;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -47,8 +46,8 @@ public class GUIScoreBoard extends ScoreBoard {
         delete(table.getSelectionModel().getSelectedIndex());
     }
     public void delete(int index){
-        SaveLoadGame.deleteFile(Directories.replay,table.getItems().get(index).getReplayedGame());
-        SaveLoadGame.deleteFile(Directories.scoreboard,table.getItems().get(index).getScoreboardReg());
+        SaveLoad.deleteFile(Directories.replay,table.getItems().get(index).getReplayedGame());
+        SaveLoad.deleteFile(Directories.scoreboard,table.getItems().get(index).getScoreboardReg());
         table.getItems().remove(index);
     }
     void initLayout() {

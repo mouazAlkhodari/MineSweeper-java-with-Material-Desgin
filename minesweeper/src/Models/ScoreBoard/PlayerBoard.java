@@ -1,7 +1,7 @@
 package Models.ScoreBoard;
 
 import SaveLoad.Directories;
-import SaveLoad.SaveLoadGame;
+import SaveLoad.SaveLoad;
 import SaveLoad.StringID;
 
 import java.io.Serializable;
@@ -32,7 +32,7 @@ public class PlayerBoard implements Serializable {
         Shields = _shields;
         ReplayedGame = StringID.ReplayID();
         ScoreboardReg=StringID.ScoreBoardID();
-        SaveLoadGame.saveObject(Directories.scoreboard,ScoreboardReg,this);
+        SaveLoad.saveObject(Directories.scoreboard,ScoreboardReg,this);
     }
 
     public String getPlayerName() { return PlayerName; }

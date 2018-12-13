@@ -120,8 +120,8 @@ public class Grid implements Serializable {
     }
 
     public void reset(){
-        for(int i=1;i<width;i++){
-            for(int j=1;j<height;j++){
+        for(int i=1;i<height;i++){
+            for(int j=1;j<width;j++){
                 if(field[i][j]!=null)
                    field[i][j].reset();
             }

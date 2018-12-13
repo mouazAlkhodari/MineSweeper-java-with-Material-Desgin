@@ -4,15 +4,13 @@ import GUIGame.GUIElements.Footer;
 import GUIGame.GUIElements.MenuButton;
 import GUIGame.GUIElements.Top;
 import SaveLoad.Directories;
-import SaveLoad.SaveLoadGame;
-import javafx.collections.transformation.SortedList;
+import SaveLoad.SaveLoad;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 
@@ -63,7 +61,7 @@ public class GUIGameLoad {
     }
     public void delete(int index){
         if(index<=-1 || index >= games.getItems().size())return;
-        SaveLoadGame.deleteFile(Directories.save,games.getItems().get(index)+".save");
+        SaveLoad.deleteFile(Directories.save,games.getItems().get(index)+".save");
         games.getItems().remove(index);
         games.getSelectionModel().selectFirst();
     }

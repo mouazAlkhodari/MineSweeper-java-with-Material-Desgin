@@ -14,7 +14,7 @@ A new Material-Designed Minesweeper Game that contains alot of new features such
 All of us studnig ITE at Damascus Univercity
 # Download:
 ### Game: [download game from here](https://goo.gl/NKL8Dz)
-* Full Project: just clone or download the full repo
+#### Source Code: just clone or download the repo
 
 ---
 

@@ -109,7 +109,7 @@ public class GUIGame extends NormalGame implements Serializable {
         }
 
         private void initGrid() {
-            ConstBorder= Double.valueOf(Math.min(max(grid.getWidth(),grid.getHeight()) * 50,600));
+            ConstBorder= Double.valueOf(Math.min(max(grid.getWidth(),grid.getHeight()) * 50,550));
             // initialize Grid
             FXgrid=new GridPane();
             FXgrid.getStyleClass().add("grid");

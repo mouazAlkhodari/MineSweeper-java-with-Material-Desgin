@@ -1,5 +1,6 @@
 package GUIGame.GUIElements;
 
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 
 public class GridButton extends Button {

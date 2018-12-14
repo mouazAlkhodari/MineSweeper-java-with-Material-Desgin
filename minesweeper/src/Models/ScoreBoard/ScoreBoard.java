@@ -3,7 +3,7 @@ package Models.ScoreBoard;
 import GUIGame.GUIGame;
 import Models.Player.Player;
 import SaveLoad.Directories;
-import SaveLoad.SaveLoadGame;
+import SaveLoad.SaveLoad;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -15,14 +15,14 @@ public abstract class ScoreBoard implements Serializable {
     public ScoreBoard() {
         if (!Directories.scoreboard.exists()) { Directories.scoreboard.mkdirs();}
         for (String name : Directories.scoreboard.list()) {
-            PlayerBoard _board = SaveLoadGame.loadObject(Directories.scoreboard,name);
+            PlayerBoard _board = SaveLoad.loadObject(Directories.scoreboard,name);
             if (_board != null) { scoreboard.add(_board); }
         }
     }
 
     public void AddBoard(GUIGame game, Player winner) {
         PlayerBoard _board = new PlayerBoard(winner.getName(),game.getGameTime(),winner.getCurrentScore().getScore(),game.getGrid().getWidth(),game.getGrid().getHeight(),game.getMinesNumber(), game.getGrid().getShieldsCount());
-        SaveLoadGame.saveObject(Directories.replay,_board.ReplayedGame,game);
+        SaveLoad.saveObject(Directories.replay,_board.ReplayedGame,game);
         scoreboard.add(_board);
         UpdateView();
     }

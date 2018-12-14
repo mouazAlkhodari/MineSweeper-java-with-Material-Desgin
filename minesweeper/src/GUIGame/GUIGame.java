@@ -27,6 +27,8 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.max;
+import static java.lang.Math.min;
+import static java.lang.Thread.interrupted;
 
 public class GUIGame extends NormalGame implements Serializable {
     protected PlayerMove currentPlayerMove;
@@ -343,6 +345,8 @@ public class GUIGame extends NormalGame implements Serializable {
                     AcceptMove(currentPlayerMove);
                 } catch (IllegalGameMove illegalGameMove) {
                     illegalGameMove.handle();
+                    if(interrupted())
+                        return;
                     if(status== GameStatus.Finish){
                         UpdateVeiw(moves);
                         EndGame();
@@ -352,7 +356,8 @@ public class GUIGame extends NormalGame implements Serializable {
                     }
                     return;
                 }
-
+                if(interrupted())
+                    return;
                 // need else some thing wrong input Or Some Thing Like that :3
                 if(status== GameStatus.Finish){
                     UpdateVeiw(moves);
@@ -373,19 +378,27 @@ public class GUIGame extends NormalGame implements Serializable {
         UpdateViewThread=new Thread(new Runnable() {
             @Override
             public void run() {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
+                int sleepTime=90;
+                if(Moves.size()>0)
+                    sleepTime=min(sleepTime,max(1,1000/Moves.size()));
                         //     Update Grid View
-                        for(PlayerMove currentmove:Moves) {
-                            int i = currentmove.getSquare().getX();
-                            int j = currentmove.getSquare().getY();
-                            int Position = (i - 1) * (grid.getWidth() - 1) + (j - 1);
+                for(PlayerMove currentmove:Moves) {
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(sleepTime);
+                    } catch (InterruptedException e) {
+                        return;
+                    }
+                    int i = currentmove.getSquare().getX();
+                    int j = currentmove.getSquare().getY();
+                    int Position = (i - 1) * (grid.getWidth() - 1) + (j - 1);
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
                             GridButton currentButton = (GridButton) UIElements.FXgrid.getChildren().get(Position);
                             Square currentSquare = currentmove.getSquare();
                             switch (currentSquare.getStatus()) {
                                 case Closed:
-                                 currentButton.SetClosed();
+                                    currentButton.SetClosed();
                                     break;
                                 case OpenedEmpty:
                                     currentButton.SetEmpty(currentSquare.getColor());
@@ -401,7 +414,13 @@ public class GUIGame extends NormalGame implements Serializable {
                                     break;
                             }
                         }
+                    });
 
+                }
+
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
                         //Update ScoreBoard
                         for(int i=0;i<players.size();i++){
                             Player _player=players.get(i);
@@ -420,7 +439,7 @@ public class GUIGame extends NormalGame implements Serializable {
                         if(currentPlayerMove!=null)
                             LastMove=String.valueOf(currentPlayerMove.getSquare().getX()) + " --- " + String.valueOf((currentPlayerMove.getSquare().getY()));
                         if(Replay==GameReplay.on)//LastMove="Replay Mode";
-                        UIElements.LastMoveLabel.setText(LastMove);
+                            UIElements.LastMoveLabel.setText(LastMove);
 
                         UIElements.FlagsNumberLabel.setText("Flags: "+ FlagsNumber + "");
                         UIElements.shieldNumberLabel.setText("Shields: "+ ShieldNumber + "");

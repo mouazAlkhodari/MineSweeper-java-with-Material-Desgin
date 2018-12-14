@@ -9,7 +9,7 @@ import Models.Game.WhenScoreNegative;
 import Models.Player.DumbPlayer;
 import Models.Player.Player;
 import SaveLoad.Directories;
-import SaveLoad.SaveLoadGame;
+import SaveLoad.SaveLoad;
 import SaveLoad.StringID;
 import com.jfoenix.controls.*;
 import javafx.animation.FadeTransition;
@@ -38,7 +38,7 @@ public class GUIGameMainMenu {
     Stage Window;
 
     public void QuickLoad(){
-        guiGame = SaveLoadGame.loadObject(Directories.quicksave,Directories.QuickGame);
+        guiGame = SaveLoad.loadObject(Directories.quicksave,Directories.QuickGame);
         guiGame.initscene();
         guiGame.setBegin(this);
         Window.setScene(guiGame.getScene());
@@ -46,7 +46,7 @@ public class GUIGameMainMenu {
         guiGame.ContinueGame();
     }
     public void QuickSave(){
-        SaveLoadGame.saveObject(Directories.quicksave, Directories.QuickGame,guiGame);
+        SaveLoad.saveObject(Directories.quicksave, Directories.QuickGame,guiGame);
     }
 
     public void deleteSavedGame(){        // delete last saved if exists
@@ -83,11 +83,11 @@ public class GUIGameMainMenu {
         deleteSavedGame();
 
         guiGame.SavedName=name;
-        SaveLoadGame.saveObject(Directories.save, name,guiGame);
+        SaveLoad.saveObject(Directories.save, name,guiGame);
         gameLoader.addGame(name);
     }
     void loadGame(String name){
-        guiGame=SaveLoadGame.loadObject(Directories.save,name+".save");
+        guiGame= SaveLoad.loadObject(Directories.save,name+".save");
         guiGame.initscene();
         guiGame.setBegin(this);
         Window.setScene(guiGame.getScene());
@@ -95,7 +95,7 @@ public class GUIGameMainMenu {
         guiGame.ContinueGame();
     }
     void replayGame(String name){
-        guiGame=SaveLoadGame.loadObject(Directories.replay,name);
+        guiGame= SaveLoad.loadObject(Directories.replay,name);
         guiGame.initscene();
         guiGame.setBegin(this);
         Window.setScene(guiGame.getScene());
@@ -517,8 +517,8 @@ public class GUIGameMainMenu {
                 playerFields.getChildren().add(currentbox);
             }
             CustomPlayer.getChildren().add(playerFields);
-            _playersColor.add("#6a1b9a");
-            _playersColor.add("#00695c");
+            _playersColor.add("#ffe082");
+            _playersColor.add("#4527a0");
             _playersColor.add("#9e9d24");
             _playersColor.add("#00838f");
             _playersColor.add("#972e0e");

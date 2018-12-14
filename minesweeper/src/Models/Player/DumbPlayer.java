@@ -50,12 +50,11 @@ public class DumbPlayer extends Player {
 
     @Override
     public PlayerMove GetPlayerMove() {
-        Thread.currentThread().yield();
         PlayerMove move;
         try {
             currentThread().sleep(2000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+                return new PlayerMove();
         }
         Random rand = new Random();
         int randomx = rand.nextInt(height-2) +1;

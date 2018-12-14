@@ -1,10 +1,10 @@
 
 # MineSweeper Material Desgin
-> Built With Java, 
-> Used IntelliJ IDE
-> and JavaFX for the GUI 
+> Built With Java,</br>
+> Used IntelliJ IDE</br>
+> and JavaFX for the GUI</br>
 
-A new Material-Designed Minesweeper Game that contains alot of awesome features such as Shields, Multiplayer, New rules and more
+A new Material-Designed Minesweeper Game that contains a lot of awesome features such as Shields, Multiplayer, New rules and more
 
 ## Developed By:
 * [Kareem Dabbeet](https://github.com/KareemDa)
@@ -44,8 +44,8 @@ Explore alot of new features that you've never see in a minesweper gameBefore:
 
 ---
 ## Installation:
-Just downoad the game,Extract ZIP File and double click the jar file 
-see README for troubleshooting if the game didnt start correctly:
+Just downoad the game,Extract ZIP File and double click the jar file </br>
+see README for troubleshooting if the game didnt start correctly
 
 ## Coming Soon:
 

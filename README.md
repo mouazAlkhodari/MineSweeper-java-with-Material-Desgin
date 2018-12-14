@@ -2,16 +2,16 @@
 # MineSweeper Material Desgin
 > Built With Java, 
 > Used IntelliJ IDE
-> and JavaFX for the gui 
+> and JavaFX for the GUI 
 
-A new Material-Designed Minesweeper Game that contains alot of new features such as Shields, Multiplayer, New rules and more
+A new Material-Designed Minesweeper Game that contains alot of awesome features such as Shields, Multiplayer, New rules and more
 
 ## Developed By:
 * [Kareem Dabbeet](https://github.com/KareemDa)
 * [Mouaz AlKhoudari](https://github.com/mhz1990)
 * [Omar Alshallah](https://github.com/Omar-Sh1)
 
-All of us studnig ITE at Damascus Univercity
+All of us studying ITE 
 # Download:
 ### Game: [download game from here](https://goo.gl/NKL8Dz)
 #### Source Code: just clone or download the repo
@@ -33,7 +33,7 @@ Explore alot of new features that you've never see in a minesweper gameBefore:
    Shields are hidden in the grid and when you open a square that conatin one of thems , your shields will increase by one
    And When you hit a mine it will decreased by one
    
-3. **Multyplayer:** So because whe added score to the game, it will be more enjoyable if you played it with your friend, or even with      pc.
+3. **Multiplayer:** So because whe added score to the game, it will be more enjoyable if you played it with your friend, or even with      pc.
    We Added two new types of game: VS Dump PC, or Multyplayer game vs your friends(in 1 pc)
    
 4. **Custom Options:** You can change the game options as you want: Change grid size,difficulty of game, game rules, point rules & more

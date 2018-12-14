@@ -7,51 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1292635-e601-407e-ad62-9fb46d555718" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../minesweeper-full-v1.rar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/artifacts/minesweeper_jar/README.TXT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$4$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/replayGames/replay 2018-12-12 01-34-40.replay" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/replayGames/replay 2018-12-12 07-42-43.replay" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/scoreBoard/scoreboard 2018-12-12 01-34-40.score" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/scoreBoard/scoreboard 2018-12-12 07-42-43.score" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/minesweeper_jar/minesweeper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/minesweeper_jar/minesweeper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIElements/GridButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIElements/GridButton.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$4$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$4$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$5$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$5$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$GUITimer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$GUITimer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$UIGameElements$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$UIGameElements$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$UIGameElements$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$UIGameElements$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$UIGameElements.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame$UIGameElements.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameLoad.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameLoad.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$PlayersOption.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu$PlayersOption.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIGameMainMenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIScoreBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/GUIGame/GUIScoreBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/Models/Grid/Grid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/Models/Grid/Grid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/Models/Player/DumbPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/Models/Player/DumbPlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/Models/ScoreBoard/PlayerBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/Models/ScoreBoard/PlayerBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/Models/ScoreBoard/ScoreBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/Models/ScoreBoard/ScoreBoard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/SaveLoad/SaveLoadGame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/SaveLoad/SaveLoad$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/SaveLoad/SaveLoadGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/SaveLoad/SaveLoad.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/minesweeper/Styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/minesweeper/Styles/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIElements/GridButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIElements/GridButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIGameLoad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIGameLoad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIGameMainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUIGame/GUIScoreBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUIGame/GUIScoreBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Grid/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Grid/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Player/DumbPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Player/DumbPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/ScoreBoard/PlayerBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/ScoreBoard/PlayerBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/ScoreBoard/ScoreBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/ScoreBoard/ScoreBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SaveLoad/SaveLoadGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SaveLoad/SaveLoad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source_Folder_And_Java_Files.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source_Folder_And_Java_Files_2.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifest.mf" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -516,12 +474,12 @@
       <workItem from="1544612848624" duration="6988000" />
       <workItem from="1544676427753" duration="2542000" />
       <workItem from="1544688947893" duration="8391000" />
-      <workItem from="1544788129600" duration="3228000" />
+      <workItem from="1544788129600" duration="3922000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90253000" />
+    <option name="totallyTimeSpent" value="90947000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

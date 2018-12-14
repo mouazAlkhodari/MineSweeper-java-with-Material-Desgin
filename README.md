@@ -6,7 +6,7 @@
 
 A new Material-Designed Minesweeper Game that contains alot of new features such as Shields, Multiplayer, New rules and more
 
-## DeveLoped By:
+## Developed By:
 * [Kareem Dabbeet](https://www.linkedin.com/in/kareemda)
 * [Mouaz AlKhoudari](https://www.facebook.com/mouaz.syr.1)
 * [Omar Alshallah](https://www.facebook.com/oalshami2)

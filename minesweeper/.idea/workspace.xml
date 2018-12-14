@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="minesw" />
+      <artifact name="minesweeper" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b1292635-e601-407e-ad62-9fb46d555718" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Source_Folder_And_Java_Files.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source_Folder_And_Java_Files_2.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manifest.mf" beforeDir="false" />
-    </list>
+    <list default="true" id="b1292635-e601-407e-ad62-9fb46d555718" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -474,12 +470,12 @@
       <workItem from="1544612848624" duration="6988000" />
       <workItem from="1544676427753" duration="2542000" />
       <workItem from="1544688947893" duration="8391000" />
-      <workItem from="1544788129600" duration="3922000" />
+      <workItem from="1544788129600" duration="5040000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90947000" />
+    <option name="totallyTimeSpent" value="92065000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -491,7 +487,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49808428" visible="true" weight="0.21255673" />
       <window_info id="Structure" order="1" sideWeight="0.5019157" side_tool="true" weight="0.20347957" />

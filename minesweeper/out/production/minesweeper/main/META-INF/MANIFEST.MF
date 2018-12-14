@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Class-Path: jfoenix-9.0.6.jar
-Main-Class: GUIMinesweeperMain
-

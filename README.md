@@ -22,7 +22,6 @@ All of us studnig ITE at Damascus Univercity
 <img align="center" src="screenshots/1.jpg" alt="screenshots" width="400"/> <img align="center" src="screenshots/3.jpg" alt="screenshots" width="400"/>
 <img align="center" src="screenshots/2.jpg" alt="screenshots" width="400"/> <img align="center" src="screenshots/4.jpg" alt="screenshots" width="400"/>
 
----
 
 ## Features:
 
@@ -47,8 +46,6 @@ Explore alot of new features that you've never see in a minesweper gameBefore:
 ## Installation:
 Just downoad the game,Extract ZIP File and double click the jar file 
 see README for troubleshooting if the game didnt start correctly:
-
----
 
 ## Coming Soon:
 
